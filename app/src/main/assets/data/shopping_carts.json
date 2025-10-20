@@ -1,0 +1,111 @@
+[
+  {
+    "cartId": "cart_001",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "items": [
+      {
+        "cartItemId": "cart_item_001",
+        "product": {
+          "productId": "prod_001",
+          "name": "麻辣烫（大份）",
+          "restaurantId": "rest_001",
+          "restaurantName": "川香麻辣烫",
+          "description": "精选新鲜食材，麻辣鲜香",
+          "price": 28.0,
+          "originalPrice": 35.0,
+          "monthSales": 856,
+          "rating": 4.8,
+          "imageUrl": "https://example.com/products/malatang.jpg",
+          "category": "HOT_SALE",
+          "specifications": [
+            {
+              "specId": "spec_001_1",
+              "name": "微辣",
+              "price": 28.0,
+              "isDefault": true
+            },
+            {
+              "specId": "spec_001_2",
+              "name": "中辣",
+              "price": 28.0,
+              "isDefault": false
+            }
+          ],
+          "isAvailable": true,
+          "tags": ["辣", "招牌", "热销"]
+        },
+        "quantity": 2,
+        "selectedSpecId": "spec_001_1",
+        "remarks": "少放辣椒"
+      },
+      {
+        "cartItemId": "cart_item_002",
+        "product": {
+          "productId": "prod_006",
+          "name": "可乐",
+          "restaurantId": "rest_001",
+          "restaurantName": "川香麻辣烫",
+          "description": "冰爽可口",
+          "price": 5.0,
+          "originalPrice": null,
+          "monthSales": 2350,
+          "rating": 4.5,
+          "imageUrl": "https://example.com/products/cola.jpg",
+          "category": "BEVERAGE",
+          "specifications": [
+            {
+              "specId": "spec_006_2",
+              "name": "中杯",
+              "price": 5.0,
+              "isDefault": true
+            }
+          ],
+          "isAvailable": true,
+          "tags": ["饮品"]
+        },
+        "quantity": 1,
+        "selectedSpecId": "spec_006_2",
+        "remarks": null
+      }
+    ],
+    "selectedCouponId": "coupon_001"
+  },
+  {
+    "cartId": "cart_002",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "items": [
+      {
+        "cartItemId": "cart_item_003",
+        "product": {
+          "productId": "prod_004",
+          "name": "虾饺",
+          "restaurantId": "rest_004",
+          "restaurantName": "粤式早茶",
+          "description": "晶莹剔透，鲜虾饱满",
+          "price": 22.0,
+          "originalPrice": null,
+          "monthSales": 980,
+          "rating": 4.8,
+          "imageUrl": "https://example.com/products/xiajiao.jpg",
+          "category": "HOT_SALE",
+          "specifications": [
+            {
+              "specId": "spec_004_1",
+              "name": "一笼（4个）",
+              "price": 22.0,
+              "isDefault": true
+            }
+          ],
+          "isAvailable": true,
+          "tags": ["招牌", "早茶"]
+        },
+        "quantity": 3,
+        "selectedSpecId": "spec_004_1",
+        "remarks": null
+      }
+    ],
+    "selectedCouponId": null
+  }
+]

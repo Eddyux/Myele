@@ -1,0 +1,102 @@
+[
+  {
+    "billId": "bill_001",
+    "userId": "user_001",
+    "type": "ORDER",
+    "amount": -33.0,
+    "balance": 156.80,
+    "description": "川香麻辣烫 订单支付",
+    "relatedOrderId": "order_001",
+    "createTime": "2025-10-18T12:30:00.000Z"
+  },
+  {
+    "billId": "bill_002",
+    "userId": "user_001",
+    "type": "RECHARGE",
+    "amount": 100.0,
+    "balance": 189.80,
+    "description": "钱包充值",
+    "relatedOrderId": null,
+    "createTime": "2025-10-17T15:00:00.000Z"
+  },
+  {
+    "billId": "bill_003",
+    "userId": "user_001",
+    "type": "ORDER",
+    "amount": -81.5,
+    "balance": 89.80,
+    "description": "韩式炸鸡 订单支付",
+    "relatedOrderId": "order_004",
+    "createTime": "2025-10-17T18:30:00.000Z"
+  },
+  {
+    "billId": "bill_004",
+    "userId": "user_001",
+    "type": "COUPON",
+    "amount": 0.0,
+    "balance": 89.80,
+    "description": "领取优惠券：满30减10",
+    "relatedOrderId": null,
+    "createTime": "2025-10-16T10:00:00.000Z"
+  },
+  {
+    "billId": "bill_005",
+    "userId": "user_002",
+    "type": "ORDER",
+    "amount": -45.0,
+    "balance": 88.50,
+    "description": "粤式早茶 订单支付",
+    "relatedOrderId": "order_005",
+    "createTime": "2025-10-16T09:00:00.000Z"
+  },
+  {
+    "billId": "bill_006",
+    "userId": "user_002",
+    "type": "RECHARGE",
+    "amount": 50.0,
+    "balance": 133.50,
+    "description": "钱包充值",
+    "relatedOrderId": null,
+    "createTime": "2025-10-15T14:30:00.000Z"
+  },
+  {
+    "billId": "bill_007",
+    "userId": "user_003",
+    "type": "REFUND",
+    "amount": 20.0,
+    "balance": 320.00,
+    "description": "订单退款",
+    "relatedOrderId": "order_009",
+    "createTime": "2025-10-14T16:00:00.000Z"
+  },
+  {
+    "billId": "bill_008",
+    "userId": "user_003",
+    "type": "ORDER",
+    "amount": -112.0,
+    "balance": 300.00,
+    "description": "湘味轩 订单支付",
+    "relatedOrderId": "order_002",
+    "createTime": "2025-10-19T11:45:00.000Z"
+  },
+  {
+    "billId": "bill_009",
+    "userId": "user_004",
+    "type": "ORDER",
+    "amount": -36.12,
+    "balance": 52.20,
+    "description": "老北京炸酱面 订单支付",
+    "relatedOrderId": "order_003",
+    "createTime": "2025-10-19T12:05:00.000Z"
+  },
+  {
+    "billId": "bill_010",
+    "userId": "user_004",
+    "type": "RECHARGE",
+    "amount": 100.0,
+    "balance": 88.32,
+    "description": "钱包充值",
+    "relatedOrderId": null,
+    "createTime": "2025-10-18T10:00:00.000Z"
+  }
+]

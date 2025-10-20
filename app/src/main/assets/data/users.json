@@ -1,0 +1,50 @@
+[
+  {
+    "userId": "user_001",
+    "nickname": "美食达人小李",
+    "phone": "13800138001",
+    "avatar": "https://example.com/avatars/user001.jpg",
+    "gender": "MALE",
+    "birthday": "1995-06-15T00:00:00.000Z",
+    "email": "xiaoli@example.com",
+    "memberLevel": 3,
+    "points": 1280,
+    "hasSuperFoodieCard": true
+  },
+  {
+    "userId": "user_002",
+    "nickname": "吃货小王",
+    "phone": "13800138002",
+    "avatar": "https://example.com/avatars/user002.jpg",
+    "gender": "FEMALE",
+    "birthday": "1998-03-20T00:00:00.000Z",
+    "email": "xiaowang@example.com",
+    "memberLevel": 2,
+    "points": 650,
+    "hasSuperFoodieCard": false
+  },
+  {
+    "userId": "user_003",
+    "nickname": "夜宵爱好者",
+    "phone": "13800138003",
+    "avatar": "https://example.com/avatars/user003.jpg",
+    "gender": "MALE",
+    "birthday": "1992-11-08T00:00:00.000Z",
+    "email": "nightsnack@example.com",
+    "memberLevel": 4,
+    "points": 2560,
+    "hasSuperFoodieCard": true
+  },
+  {
+    "userId": "user_004",
+    "nickname": "健康饮食张小姐",
+    "phone": "13800138004",
+    "avatar": "https://example.com/avatars/user004.jpg",
+    "gender": "FEMALE",
+    "birthday": "2000-01-25T00:00:00.000Z",
+    "email": "healthy@example.com",
+    "memberLevel": 1,
+    "points": 320,
+    "hasSuperFoodieCard": false
+  }
+]

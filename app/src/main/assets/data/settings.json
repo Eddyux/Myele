@@ -1,0 +1,54 @@
+[
+  {
+    "userId": "user_001",
+    "notificationSettings": {
+      "userId": "user_001",
+      "orderUpdates": true,
+      "promotions": true,
+      "systemMessages": true,
+      "deliveryUpdates": true
+    },
+    "isPinPaymentEnabled": true,
+    "language": "zh-CN",
+    "receiveMarketingMessages": true
+  },
+  {
+    "userId": "user_002",
+    "notificationSettings": {
+      "userId": "user_002",
+      "orderUpdates": true,
+      "promotions": false,
+      "systemMessages": true,
+      "deliveryUpdates": true
+    },
+    "isPinPaymentEnabled": false,
+    "language": "zh-CN",
+    "receiveMarketingMessages": false
+  },
+  {
+    "userId": "user_003",
+    "notificationSettings": {
+      "userId": "user_003",
+      "orderUpdates": true,
+      "promotions": true,
+      "systemMessages": true,
+      "deliveryUpdates": true
+    },
+    "isPinPaymentEnabled": true,
+    "language": "zh-CN",
+    "receiveMarketingMessages": true
+  },
+  {
+    "userId": "user_004",
+    "notificationSettings": {
+      "userId": "user_004",
+      "orderUpdates": true,
+      "promotions": true,
+      "systemMessages": false,
+      "deliveryUpdates": true
+    },
+    "isPinPaymentEnabled": false,
+    "language": "zh-CN",
+    "receiveMarketingMessages": true
+  }
+]

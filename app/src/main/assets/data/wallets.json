@@ -1,0 +1,65 @@
+[
+  {
+    "walletId": "wallet_001",
+    "userId": "user_001",
+    "balance": 156.80,
+    "coupons": ["coupon_001", "coupon_002", "coupon_004"],
+    "superFoodieCard": {
+      "cardId": "card_001",
+      "name": "超级吃货卡月卡",
+      "price": 15.0,
+      "validDays": 30,
+      "monthlyDiscountLimit": 66.0,
+      "benefits": [
+        "每单立减，每月最高省66元",
+        "免配送费特权",
+        "专属客服优先响应",
+        "会员日专享折扣"
+      ],
+      "isPurchased": true,
+      "purchaseDate": "2025-10-01T00:00:00.000Z",
+      "expiryDate": "2025-10-31T23:59:59.000Z"
+    },
+    "isPinPaymentEnabled": true
+  },
+  {
+    "walletId": "wallet_002",
+    "userId": "user_002",
+    "balance": 88.50,
+    "coupons": ["coupon_001", "coupon_003", "coupon_005"],
+    "superFoodieCard": null,
+    "isPinPaymentEnabled": false
+  },
+  {
+    "walletId": "wallet_003",
+    "userId": "user_003",
+    "balance": 320.00,
+    "coupons": ["coupon_002", "coupon_004", "coupon_005"],
+    "superFoodieCard": {
+      "cardId": "card_002",
+      "name": "超级吃货卡季卡",
+      "price": 39.0,
+      "validDays": 90,
+      "monthlyDiscountLimit": 66.0,
+      "benefits": [
+        "每单立减，每月最高省66元",
+        "免配送费特权",
+        "专属客服优先响应",
+        "会员日专享折扣",
+        "季卡专享生日礼"
+      ],
+      "isPurchased": true,
+      "purchaseDate": "2025-09-01T00:00:00.000Z",
+      "expiryDate": "2025-11-30T23:59:59.000Z"
+    },
+    "isPinPaymentEnabled": true
+  },
+  {
+    "walletId": "wallet_004",
+    "userId": "user_004",
+    "balance": 52.20,
+    "coupons": ["coupon_001", "coupon_007"],
+    "superFoodieCard": null,
+    "isPinPaymentEnabled": false
+  }
+]

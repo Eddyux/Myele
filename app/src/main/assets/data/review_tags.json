@@ -1,0 +1,77 @@
+[
+  {
+    "tagId": "tag_001",
+    "name": "味道好",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_002",
+    "name": "送得快",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_003",
+    "name": "料足",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_004",
+    "name": "分量足",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_005",
+    "name": "新鲜",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_006",
+    "name": "正宗",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_007",
+    "name": "推荐",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_008",
+    "name": "鲜嫩",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_009",
+    "name": "包装精美",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_010",
+    "name": "性价比高",
+    "isPositive": true
+  },
+  {
+    "tagId": "tag_011",
+    "name": "一般",
+    "isPositive": false
+  },
+  {
+    "tagId": "tag_012",
+    "name": "送得慢",
+    "isPositive": false
+  },
+  {
+    "tagId": "tag_013",
+    "name": "分量少",
+    "isPositive": false
+  },
+  {
+    "tagId": "tag_014",
+    "name": "不新鲜",
+    "isPositive": false
+  },
+  {
+    "tagId": "tag_015",
+    "name": "太油腻",
+    "isPositive": false
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "reviewId": "review_001",
+    "orderId": "order_001",
+    "userId": "user_001",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "rating": 5,
+    "comment": "非常好吃！麻辣烫料很足，味道很正宗，配送速度也很快！",
+    "images": [
+      "https://example.com/reviews/review001_1.jpg",
+      "https://example.com/reviews/review001_2.jpg"
+    ],
+    "tags": ["味道好", "送得快", "料足"],
+    "createTime": "2025-10-18T14:30:00.000Z",
+    "canDelete": true
+  },
+  {
+    "reviewId": "review_002",
+    "orderId": "order_005",
+    "userId": "user_002",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "rating": 4,
+    "comment": "虾饺很新鲜，皮薄馅大，但是配送时间有点长",
+    "images": [
+      "https://example.com/reviews/review002_1.jpg"
+    ],
+    "tags": ["味道好", "新鲜"],
+    "createTime": "2025-10-16T10:15:00.000Z",
+    "canDelete": true
+  },
+  {
+    "reviewId": "review_003",
+    "orderId": "order_006",
+    "userId": "user_003",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "rating": 5,
+    "comment": "剁椒鱼头做得太棒了！鱼肉鲜嫩，剁椒香辣适中，非常满意！",
+    "images": [],
+    "tags": ["味道好", "分量足", "鲜嫩"],
+    "createTime": "2025-10-15T20:00:00.000Z",
+    "canDelete": true
+  },
+  {
+    "reviewId": "review_004",
+    "orderId": "order_007",
+    "userId": "user_001",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "rating": 3,
+    "comment": "炸鸡有点油腻，口味一般",
+    "images": [],
+    "tags": ["一般"],
+    "createTime": "2025-10-14T19:30:00.000Z",
+    "canDelete": true
+  },
+  {
+    "reviewId": "review_005",
+    "orderId": "order_008",
+    "userId": "user_004",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "rating": 5,
+    "comment": "正宗的老北京味道！炸酱浓郁，面条筋道，强烈推荐！",
+    "images": [
+      "https://example.com/reviews/review005_1.jpg"
+    ],
+    "tags": ["味道好", "正宗", "推荐"],
+    "createTime": "2025-10-13T13:00:00.000Z",
+    "canDelete": true
+  }
+]

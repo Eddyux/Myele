@@ -1,0 +1,54 @@
+[
+  {
+    "cardId": "card_001",
+    "name": "超级吃货卡月卡",
+    "price": 15.0,
+    "validDays": 30,
+    "monthlyDiscountLimit": 66.0,
+    "benefits": [
+      "每单立减，每月最高省66元",
+      "免配送费特权",
+      "专属客服优先响应",
+      "会员日专享折扣"
+    ],
+    "isPurchased": false,
+    "purchaseDate": null,
+    "expiryDate": null
+  },
+  {
+    "cardId": "card_002",
+    "name": "超级吃货卡季卡",
+    "price": 39.0,
+    "validDays": 90,
+    "monthlyDiscountLimit": 66.0,
+    "benefits": [
+      "每单立减，每月最高省66元",
+      "免配送费特权",
+      "专属客服优先响应",
+      "会员日专享折扣",
+      "季卡专享生日礼"
+    ],
+    "isPurchased": false,
+    "purchaseDate": null,
+    "expiryDate": null
+  },
+  {
+    "cardId": "card_003",
+    "name": "超级吃货卡年卡",
+    "price": 128.0,
+    "validDays": 365,
+    "monthlyDiscountLimit": 88.0,
+    "benefits": [
+      "每单立减，每月最高省88元",
+      "免配送费特权",
+      "专属客服优先响应",
+      "会员日专享折扣",
+      "年卡专享生日礼",
+      "会员专属活动优先参与",
+      "节日专属红包"
+    ],
+    "isPurchased": false,
+    "purchaseDate": null,
+    "expiryDate": null
+  }
+]

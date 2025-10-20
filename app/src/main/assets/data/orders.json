@@ -1,0 +1,188 @@
+[
+  {
+    "orderId": "order_001",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "status": "COMPLETED",
+    "orderTime": "2025-10-18T12:30:00.000Z",
+    "deliveryTime": "2025-10-18T13:15:00.000Z",
+    "items": [
+      {
+        "itemId": "item_001",
+        "productName": "麻辣烫（大份）",
+        "productId": "prod_001",
+        "quantity": 1,
+        "price": 28.0,
+        "specifications": "微辣",
+        "hasBeef": false
+      },
+      {
+        "itemId": "item_002",
+        "productName": "可乐",
+        "productId": "prod_006",
+        "quantity": 1,
+        "price": 5.0,
+        "specifications": "中杯",
+        "hasBeef": false
+      }
+    ],
+    "totalAmount": 33.0,
+    "discountAmount": 5.0,
+    "actualAmount": 33.0,
+    "deliveryAddress": {
+      "addressId": "addr_001",
+      "receiverName": "于骁",
+      "receiverPhone": "13800138001",
+      "street": "华中师范大学元宝山公寓二期",
+      "detailAddress": "六栋",
+      "addressType": "HOME",
+      "isDefault": true,
+      "tag": "家"
+    },
+    "deliveryFee": 5.0,
+    "packagingFee": 0.0,
+    "usedCouponId": "coupon_006",
+    "riderPhone": "13900139001",
+    "merchantPhone": "027-87654321",
+    "hasReview": true,
+    "reviewId": "review_001",
+    "canCancel": false,
+    "canApplyRefund": false,
+    "canApplyInsurance": false
+  },
+  {
+    "orderId": "order_002",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "status": "DELIVERING",
+    "orderTime": "2025-10-19T11:45:00.000Z",
+    "deliveryTime": null,
+    "items": [
+      {
+        "itemId": "item_003",
+        "productName": "剁椒鱼头",
+        "productId": "prod_003",
+        "quantity": 1,
+        "price": 68.0,
+        "specifications": null,
+        "hasBeef": false
+      },
+      {
+        "itemId": "item_004",
+        "productName": "毛血旺",
+        "productId": "prod_008",
+        "quantity": 1,
+        "price": 38.0,
+        "specifications": null,
+        "hasBeef": true
+      }
+    ],
+    "totalAmount": 106.0,
+    "discountAmount": 0.0,
+    "actualAmount": 112.0,
+    "deliveryAddress": {
+      "addressId": "addr_002",
+      "receiverName": "于骁",
+      "receiverPhone": "13800138001",
+      "street": "洪山区珞喻路152号",
+      "detailAddress": "华中师范大学图书馆",
+      "addressType": "SCHOOL",
+      "isDefault": false,
+      "tag": "学校"
+    },
+    "deliveryFee": 6.0,
+    "packagingFee": 0.0,
+    "usedCouponId": null,
+    "riderPhone": "13900139002",
+    "merchantPhone": "027-87998877",
+    "hasReview": false,
+    "reviewId": null,
+    "canCancel": false,
+    "canApplyRefund": false,
+    "canApplyInsurance": true
+  },
+  {
+    "orderId": "order_003",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "status": "PENDING_ACCEPT",
+    "orderTime": "2025-10-19T12:05:00.000Z",
+    "deliveryTime": null,
+    "items": [
+      {
+        "itemId": "item_005",
+        "productName": "老北京炸酱面",
+        "productId": "prod_002",
+        "quantity": 2,
+        "price": 18.0,
+        "specifications": "大碗",
+        "hasBeef": false
+      }
+    ],
+    "totalAmount": 36.0,
+    "discountAmount": 2.88,
+    "actualAmount": 36.12,
+    "deliveryAddress": {
+      "addressId": "addr_001",
+      "receiverName": "于骁",
+      "receiverPhone": "13800138001",
+      "street": "华中师范大学元宝山公寓二期",
+      "detailAddress": "六栋",
+      "addressType": "HOME",
+      "isDefault": true,
+      "tag": "家"
+    },
+    "deliveryFee": 3.0,
+    "packagingFee": 0.0,
+    "usedCouponId": "coupon_003",
+    "riderPhone": null,
+    "merchantPhone": "027-87123456",
+    "hasReview": false,
+    "reviewId": null,
+    "canCancel": true,
+    "canApplyRefund": false,
+    "canApplyInsurance": false
+  },
+  {
+    "orderId": "order_004",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "status": "PENDING_REVIEW",
+    "orderTime": "2025-10-17T18:30:00.000Z",
+    "deliveryTime": "2025-10-17T19:10:00.000Z",
+    "items": [
+      {
+        "itemId": "item_006",
+        "productName": "韩式炸鸡全家桶",
+        "productId": "prod_005",
+        "quantity": 1,
+        "price": 88.0,
+        "specifications": "辣味",
+        "hasBeef": false
+      }
+    ],
+    "totalAmount": 88.0,
+    "discountAmount": 10.0,
+    "actualAmount": 81.5,
+    "deliveryAddress": {
+      "addressId": "addr_004",
+      "receiverName": "于骁",
+      "receiverPhone": "13800138001",
+      "street": "洪山区光谷步行街",
+      "detailAddress": "世界城光谷广场C座808",
+      "addressType": "COMPANY",
+      "isDefault": false,
+      "tag": "公司"
+    },
+    "deliveryFee": 3.5,
+    "packagingFee": 0.0,
+    "usedCouponId": "coupon_001",
+    "riderPhone": "13900139003",
+    "merchantPhone": "027-87334455",
+    "hasReview": false,
+    "reviewId": null,
+    "canCancel": false,
+    "canApplyRefund": false,
+    "canApplyInsurance": false
+  }
+]

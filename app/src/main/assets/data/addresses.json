@@ -1,0 +1,52 @@
+[
+  {
+    "addressId": "addr_001",
+    "receiverName": "于骁",
+    "receiverPhone": "13800138001",
+    "street": "华中师范大学元宝山公寓二期",
+    "detailAddress": "六栋",
+    "addressType": "HOME",
+    "isDefault": true,
+    "tag": "家"
+  },
+  {
+    "addressId": "addr_002",
+    "receiverName": "于骁",
+    "receiverPhone": "13800138001",
+    "street": "洪山区珞喻路152号",
+    "detailAddress": "华中师范大学图书馆",
+    "addressType": "SCHOOL",
+    "isDefault": false,
+    "tag": "学校"
+  },
+  {
+    "addressId": "addr_003",
+    "receiverName": "于骁",
+    "receiverPhone": "13800138001",
+    "street": "洪山区街道口群光广场",
+    "detailAddress": "B座1506室",
+    "addressType": "COMPANY",
+    "isDefault": false,
+    "tag": "公司"
+  },
+  {
+    "addressId": "addr_004",
+    "receiverName": "于骁",
+    "receiverPhone": "13800138001",
+    "street": "洪山区光谷步行街",
+    "detailAddress": "世界城光谷广场C座808",
+    "addressType": "COMPANY",
+    "isDefault": false,
+    "tag": "公司"
+  },
+  {
+    "addressId": "addr_005",
+    "receiverName": "于骁",
+    "receiverPhone": "13800138001",
+    "street": "洪山区卓刀泉南路",
+    "detailAddress": "虎泉街凯乐桂园3-2-501",
+    "addressType": "OTHER",
+    "isDefault": false,
+    "tag": "其他"
+  }
+]

@@ -1,0 +1,278 @@
+[
+  {
+    "taskId": 1,
+    "description": "查看订单状态",
+    "type": "VIEW_ORDER_STATUS",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "orderStatus": "DELIVERING"
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "进入订单列表页面",
+        "action": "VIEW_ORDER_LIST",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "筛选配送中的订单",
+        "action": "VIEW_ORDER_STATUS",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 2,
+    "description": "搜索川菜餐厅并按好评排序",
+    "type": "SEARCH_RESTAURANT",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "cuisineType": "川菜",
+      "sortType": "RATING_HIGHEST"
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "在首页搜索框输入'川菜'",
+        "action": "SEARCH_RESTAURANT",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "选择按好评排序",
+        "action": "SORT_BY_RATING",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 3,
+    "description": "将麻辣烫加入购物车并下单",
+    "type": "PLACE_ORDER",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "productName": "麻辣烫",
+      "restaurantName": "川香麻辣烫"
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "搜索川香麻辣烫",
+        "action": "SEARCH_RESTAURANT",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "将麻辣烫加入购物车",
+        "action": "ADD_TO_CART",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "进入购物车结算",
+        "action": "CHECKOUT",
+        "isCompleted": false
+      },
+      {
+        "stepId": 4,
+        "description": "提交订单",
+        "action": "PLACE_ORDER",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 4,
+    "description": "查看即将过期的优惠券",
+    "type": "VIEW_EXPIRING_COUPONS",
+    "status": "NOT_STARTED",
+    "requiredParams": null,
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "进入个人中心",
+        "action": "VIEW_PROFILE",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "打开优惠券页面",
+        "action": "VIEW_COUPONS",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "筛选即将过期的优惠券",
+        "action": "VIEW_EXPIRING_COUPONS",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 5,
+    "description": "提交5星好评",
+    "type": "SUBMIT_REVIEW",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "rating": 5,
+      "reviewComment": "非常好吃，送得也很快！"
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "进入待评价订单",
+        "action": "VIEW_ORDER_LIST",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "选择5星评分",
+        "action": "SUBMIT_REVIEW",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "填写评价内容并提交",
+        "action": "SUBMIT_REVIEW",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 6,
+    "description": "筛选评分4.5+的餐厅",
+    "type": "FILTER_BY_RATING",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "minRating": 4.5
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "打开筛选页面",
+        "action": "FILTER_BY_RATING",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "选择4.5分以上",
+        "action": "FILTER_BY_RATING",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 7,
+    "description": "添加新的收货地址",
+    "type": "ADD_ADDRESS",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "addressType": "COMPANY",
+      "detailAddress": "科技园A座10层"
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "进入地址管理页面",
+        "action": "VIEW_ADDRESSES",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "点击添加新地址",
+        "action": "ADD_ADDRESS",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "填写地址信息并保存",
+        "action": "ADD_ADDRESS",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 8,
+    "description": "购买超级吃货卡",
+    "type": "PURCHASE_FOODIE_CARD",
+    "status": "NOT_STARTED",
+    "requiredParams": null,
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "进入钱包页面",
+        "action": "VIEW_WALLET",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "选择超级吃货卡",
+        "action": "PURCHASE_FOODIE_CARD",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "确认购买并支付",
+        "action": "PURCHASE_FOODIE_CARD",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 9,
+    "description": "取消订单",
+    "type": "CANCEL_ORDER",
+    "status": "NOT_STARTED",
+    "requiredParams": {
+      "cancelReason": "DONT_WANT_ANYMORE"
+    },
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "进入订单详情",
+        "action": "VIEW_ORDER_DETAIL",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "选择取消原因",
+        "action": "CANCEL_ORDER",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "确认取消订单",
+        "action": "CANCEL_ORDER",
+        "isCompleted": false
+      }
+    ]
+  },
+  {
+    "taskId": 10,
+    "description": "开启免密支付",
+    "type": "ENABLE_PIN_PAYMENT",
+    "status": "NOT_STARTED",
+    "requiredParams": null,
+    "steps": [
+      {
+        "stepId": 1,
+        "description": "打开设置页面",
+        "action": "OPEN_SETTINGS",
+        "isCompleted": false
+      },
+      {
+        "stepId": 2,
+        "description": "进入支付设置",
+        "action": "PAYMENT_SETTINGS",
+        "isCompleted": false
+      },
+      {
+        "stepId": 3,
+        "description": "开启免密支付开关",
+        "action": "ENABLE_PIN_PAYMENT",
+        "isCompleted": false
+      }
+    ]
+  }
+]

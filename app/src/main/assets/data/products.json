@@ -1,0 +1,508 @@
+[
+  {
+    "productId": "prod_001",
+    "name": "麻辣烫（大份）",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "精选新鲜食材，麻辣鲜香",
+    "price": 28.0,
+    "originalPrice": 35.0,
+    "monthSales": 856,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/malatang.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_001_1",
+        "name": "微辣",
+        "price": 28.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_001_2",
+        "name": "中辣",
+        "price": 28.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_001_3",
+        "name": "特辣",
+        "price": 28.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["辣", "招牌", "热销"]
+  },
+  {
+    "productId": "prod_002",
+    "name": "老北京炸酱面",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "传统手工炸酱，酱香浓郁",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 1250,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/zhajiangmian.jpg",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_002_1",
+        "name": "小碗",
+        "price": 15.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_002_2",
+        "name": "大碗",
+        "price": 18.0,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "传统"]
+  },
+  {
+    "productId": "prod_003",
+    "name": "剁椒鱼头",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "鲜嫩鱼肉，剁椒香辣",
+    "price": 68.0,
+    "originalPrice": 78.0,
+    "monthSales": 620,
+    "rating": 4.9,
+    "imageUrl": "https://example.com/products/duojiaoyutou.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["辣", "招牌", "湘菜"]
+  },
+  {
+    "productId": "prod_004",
+    "name": "虾饺",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "晶莹剔透，鲜虾饱满",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 980,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/xiajiao.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_004_1",
+        "name": "一笼（4个）",
+        "price": 22.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_004_2",
+        "name": "两笼（8个）",
+        "price": 40.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "早茶"]
+  },
+  {
+    "productId": "prod_005",
+    "name": "韩式炸鸡全家桶",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "酥脆外皮，多种口味",
+    "price": 88.0,
+    "originalPrice": 98.0,
+    "monthSales": 1560,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/friedchicken.jpg",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_005_1",
+        "name": "原味",
+        "price": 88.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_005_2",
+        "name": "辣味",
+        "price": 88.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_005_3",
+        "name": "芝士味",
+        "price": 98.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["套餐", "热销"]
+  },
+  {
+    "productId": "prod_006",
+    "name": "可乐",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "冰爽可口",
+    "price": 5.0,
+    "originalPrice": null,
+    "monthSales": 2350,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/cola.jpg",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_006_1",
+        "name": "小杯",
+        "price": 3.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_006_2",
+        "name": "中杯",
+        "price": 5.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_006_3",
+        "name": "大杯",
+        "price": 7.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["饮品"]
+  },
+  {
+    "productId": "prod_007",
+    "name": "烧鹅",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "皮脆肉嫩，香味浓郁",
+    "price": 48.0,
+    "originalPrice": null,
+    "monthSales": 450,
+    "rating": 4.9,
+    "imageUrl": "https://example.com/products/shaoe.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "粤菜"]
+  },
+  {
+    "productId": "prod_008",
+    "name": "毛血旺",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "麻辣鲜香，料足味美",
+    "price": 38.0,
+    "originalPrice": 45.0,
+    "monthSales": 1120,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/maoxuewang.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["辣", "热销"]
+  },
+  {
+    "productId": "prod_009",
+    "name": "生椰拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "椰香浓郁，咖啡香醇",
+    "price": 19.9,
+    "originalPrice": 24.0,
+    "monthSales": 3280,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/coconut_latte.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_009_1",
+        "name": "中杯",
+        "price": 19.9,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_009_2",
+        "name": "大杯",
+        "price": 22.9,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "热销", "新品"]
+  },
+  {
+    "productId": "prod_010",
+    "name": "美式咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "经典美式，提神醒脑",
+    "price": 9.9,
+    "originalPrice": 15.0,
+    "monthSales": 4560,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/americano.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_010_1",
+        "name": "中杯",
+        "price": 9.9,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_010_2",
+        "name": "大杯",
+        "price": 12.9,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["经典", "热销"]
+  },
+  {
+    "productId": "prod_011",
+    "name": "杨枝甘露",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "芒果西柚，清新解腻",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 2850,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/yangzhiganlv.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_011_1",
+        "name": "标准糖",
+        "price": 16.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_011_2",
+        "name": "少糖",
+        "price": 16.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_011_3",
+        "name": "无糖",
+        "price": 16.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "水果茶", "热销"]
+  },
+  {
+    "productId": "prod_012",
+    "name": "珍珠奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "经典奶茶，Q弹珍珠",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 3560,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/pearl_milk_tea.jpg",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_012_1",
+        "name": "标准糖",
+        "price": 12.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_012_2",
+        "name": "少糖",
+        "price": 12.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["经典", "珍珠"]
+  },
+  {
+    "productId": "prod_013",
+    "name": "柠檬水",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "清新柠檬，酸甜可口",
+    "price": 4.0,
+    "originalPrice": null,
+    "monthSales": 6850,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/lemon_water.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_013_1",
+        "name": "标准糖",
+        "price": 4.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_013_2",
+        "name": "少糖",
+        "price": 4.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["超值", "热销"]
+  },
+  {
+    "productId": "prod_014",
+    "name": "冰淇淋奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "奶香浓郁，冰爽丝滑",
+    "price": 6.0,
+    "originalPrice": null,
+    "monthSales": 5420,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/icecream_tea.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "冰淇淋"]
+  },
+  {
+    "productId": "prod_015",
+    "name": "焦糖玛奇朵",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "焦糖与浓缩咖啡的完美结合",
+    "price": 36.0,
+    "originalPrice": null,
+    "monthSales": 1850,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/caramel_macchiato.jpg",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_015_1",
+        "name": "中杯",
+        "price": 36.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_015_2",
+        "name": "大杯",
+        "price": 40.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_015_3",
+        "name": "超大杯",
+        "price": 44.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "咖啡"]
+  },
+  {
+    "productId": "prod_016",
+    "name": "抹茶拿铁",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "日式抹茶，香浓顺滑",
+    "price": 34.0,
+    "originalPrice": null,
+    "monthSales": 1620,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/matcha_latte.jpg",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_016_1",
+        "name": "中杯",
+        "price": 34.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_016_2",
+        "name": "大杯",
+        "price": 38.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["抹茶", "奶茶"]
+  },
+  {
+    "productId": "prod_017",
+    "name": "多肉葡萄",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "满杯葡萄，果肉爆棚",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 4280,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/grape_tea.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_017_1",
+        "name": "标准糖",
+        "price": 25.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_017_2",
+        "name": "少糖",
+        "price": 25.0,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_017_3",
+        "name": "无糖",
+        "price": 25.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "水果茶", "热销"]
+  },
+  {
+    "productId": "prod_018",
+    "name": "芝芝莓莓",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "草莓芝士，甜蜜双倍",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 3650,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/strawberry_cheese.jpg",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_018_1",
+        "name": "标准糖",
+        "price": 28.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_018_2",
+        "name": "少糖",
+        "price": 28.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["招牌", "芝士", "草莓"]
+  }
+]
