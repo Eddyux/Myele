@@ -66,7 +66,12 @@ fun MessagesScreen(navController: NavController) {
                 .weight(1f)
         ) {
             items(messages.filter { it.isRider }) { message ->
-                MessageCard(message = message)
+                MessageCard(
+                    message = message,
+                    onClick = {
+                        navController.navigate(com.example.myele.navigation.Screen.OnlineChat.route)
+                    }
+                )
             }
         }
     }
@@ -174,12 +179,12 @@ fun PlatformMessages() {
 }
 
 @Composable
-fun MessageCard(message: MessageItem) {
+fun MessageCard(message: MessageItem, onClick: () -> Unit = {}) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp)
-            .clickable { /* TODO */ },
+            .clickable { onClick() },
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {

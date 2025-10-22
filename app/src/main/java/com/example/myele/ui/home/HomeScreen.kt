@@ -100,7 +100,7 @@ fun HomeScreen(navController: NavController) {
                         CircularProgressIndicator()
                     }
                 } else {
-                    RestaurantList(restaurants = restaurants)
+                    RestaurantList(restaurants = restaurants, navController = navController)
                 }
             }
         }
@@ -435,25 +435,29 @@ fun FunctionButton(text: String, icon: ImageVector) {
 }
 
 @Composable
-fun RestaurantList(restaurants: List<Restaurant>) {
+fun RestaurantList(restaurants: List<Restaurant>, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(top = 8.dp)
     ) {
         restaurants.forEach { restaurant ->
-            RestaurantCard(restaurant)
+            RestaurantCard(restaurant, navController)
         }
     }
 }
 
 @Composable
-fun RestaurantCard(restaurant: Restaurant) {
+fun RestaurantCard(restaurant: Restaurant, navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 4.dp)
-            .clickable { /* TODO */ },
+            .clickable {
+                navController.navigate(
+                    com.example.myele.navigation.Screen.StorePage.createRoute(restaurant.restaurantId)
+                )
+            },
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {

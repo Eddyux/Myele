@@ -66,4 +66,22 @@ object ImageUtils {
             R.drawable.hot_deal_4
         )
     }
+
+    /**
+     * 根据商品ID获取对应的图片资源ID
+     */
+    fun getProductImage(productId: String): Int {
+        return when (productId) {
+            "prod_001" -> R.drawable.prod_001  // 麻辣烫（大份）
+            "prod_002" -> R.drawable.prod_002  // 老北京炸酱面
+            "prod_006" -> R.drawable.prod_006  // 可乐
+            "prod_019" -> R.drawable.prod_019  // 土豆粉
+            "prod_020" -> R.drawable.prod_020  // 红油抄手
+            "prod_021" -> R.drawable.prod_021  // 酸辣粉
+            "prod_022" -> R.drawable.prod_022  // 京酱肉丝
+            "prod_023" -> R.drawable.prod_023  // 炸灌肠
+            "prod_024" -> R.drawable.prod_024  // 老北京鸡肉卷
+            else -> 0 // 返回0表示没有对应的图片，显示默认图标
+        }
+    }
 }

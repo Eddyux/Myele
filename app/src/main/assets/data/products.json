@@ -504,5 +504,448 @@
     ],
     "isAvailable": true,
     "tags": ["招牌", "芝士", "草莓"]
+  },
+  {
+    "productId": "prod_019",
+    "name": "土豆粉",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "粉条劲道，麻辣入味",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 650,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/tudoufen.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["热销", "粉面"]
+  },
+  {
+    "productId": "prod_020",
+    "name": "红油抄手",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "皮薄馅大，香辣开胃",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 420,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/hongyouchaoshou.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "川菜"]
+  },
+  {
+    "productId": "prod_021",
+    "name": "酸辣粉",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "酸辣开胃，粉条爽滑",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 580,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/suanlafen.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["酸辣", "热销"]
+  },
+  {
+    "productId": "prod_022",
+    "name": "京酱肉丝",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "肉丝嫩滑，酱香浓郁",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 680,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/jingjiangrousi.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "北京菜"]
+  },
+  {
+    "productId": "prod_023",
+    "name": "炸灌肠",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "老北京小吃，外酥里嫩",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 350,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/zhaguanchang.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["小吃", "传统"]
+  },
+  {
+    "productId": "prod_024",
+    "name": "老北京鸡肉卷",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "鸡肉鲜嫩，酱料独特",
+    "price": 20.0,
+    "originalPrice": 25.0,
+    "monthSales": 920,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/jiroujuan.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["热销", "快餐"]
+  },
+  {
+    "productId": "prod_025",
+    "name": "农家小炒肉",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "辣椒炒肉，湘菜经典",
+    "price": 35.0,
+    "originalPrice": null,
+    "monthSales": 890,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/nongjia_xiaochaorou.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["湘菜", "辣", "热销"]
+  },
+  {
+    "productId": "prod_026",
+    "name": "口味虾",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "麻辣鲜香，虾肉Q弹",
+    "price": 58.0,
+    "originalPrice": 68.0,
+    "monthSales": 1250,
+    "rating": 4.9,
+    "imageUrl": "https://example.com/products/kouweixia.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "湘菜", "辣"]
+  },
+  {
+    "productId": "prod_027",
+    "name": "湘西外婆菜",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "下饭神器，咸香开胃",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 450,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/waipocai.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["下饭", "小菜"]
+  },
+  {
+    "productId": "prod_028",
+    "name": "流沙包",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "奶黄流心，香甜软糯",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 1120,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/liushabao.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "早茶", "点心"]
+  },
+  {
+    "productId": "prod_029",
+    "name": "叉烧包",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "叉烧馅料，皮薄馅大",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 850,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/chashaobao.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["早茶", "点心"]
+  },
+  {
+    "productId": "prod_030",
+    "name": "肠粉",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "滑嫩Q弹，鲜虾饱满",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 920,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/changfen.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_030_1",
+        "name": "鲜虾肠粉",
+        "price": 20.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_030_2",
+        "name": "牛肉肠粉",
+        "price": 18.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["早茶", "热销"]
+  },
+  {
+    "productId": "prod_031",
+    "name": "韩式炸鸡腿",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "外酥里嫩，多汁美味",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 1680,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/zhajitui.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_031_1",
+        "name": "原味",
+        "price": 28.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_031_2",
+        "name": "辣味",
+        "price": 28.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["热销", "炸鸡"]
+  },
+  {
+    "productId": "prod_032",
+    "name": "韩式炸鸡翅",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "香脆可口，鸡翅入味",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 1250,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/zhajichi.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["热销", "炸鸡"]
+  },
+  {
+    "productId": "prod_033",
+    "name": "年糕炒拉面",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩式炒面，Q弹年糕",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 680,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/nian_gao_lamian.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["韩餐", "主食"]
+  },
+  {
+    "productId": "prod_034",
+    "name": "厚乳拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "奶香浓郁，咖啡顺滑",
+    "price": 21.9,
+    "originalPrice": null,
+    "monthSales": 2850,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/hounai_latte.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_034_1",
+        "name": "中杯",
+        "price": 21.9,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_034_2",
+        "name": "大杯",
+        "price": 24.9,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["热销", "咖啡"]
+  },
+  {
+    "productId": "prod_035",
+    "name": "陨石拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "黑巧浓郁，丝滑香醇",
+    "price": 24.9,
+    "originalPrice": null,
+    "monthSales": 1920,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/yunshi_latte.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["招牌", "咖啡", "巧克力"]
+  },
+  {
+    "productId": "prod_036",
+    "name": "芋泥波波奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "香芋细腻，波波Q弹",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 3120,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/yunai_bobo.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_036_1",
+        "name": "标准糖",
+        "price": 18.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_036_2",
+        "name": "少糖",
+        "price": 18.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["热销", "奶茶", "芋泥"]
+  },
+  {
+    "productId": "prod_037",
+    "name": "烧仙草",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "清凉解暑，料足味美",
+    "price": 13.0,
+    "originalPrice": null,
+    "monthSales": 1850,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/shaoxiancao.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": ["甜品", "消暑"]
+  },
+  {
+    "productId": "prod_038",
+    "name": "冰淇淋圣代",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "香甜冰爽，口感细腻",
+    "price": 5.0,
+    "originalPrice": null,
+    "monthSales": 4280,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/icecream_sundae.jpg",
+    "category": "DESSERT",
+    "specifications": [
+      {
+        "specId": "spec_038_1",
+        "name": "草莓味",
+        "price": 5.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_038_2",
+        "name": "巧克力味",
+        "price": 5.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["甜品", "超值"]
+  },
+  {
+    "productId": "prod_039",
+    "name": "摩卡咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "巧克力咖啡，香醇丝滑",
+    "price": 35.0,
+    "originalPrice": null,
+    "monthSales": 1420,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/mocha.jpg",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_039_1",
+        "name": "中杯",
+        "price": 35.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_039_2",
+        "name": "大杯",
+        "price": 39.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["咖啡", "巧克力"]
+  },
+  {
+    "productId": "prod_040",
+    "name": "芒芒甘露",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "芒果浓郁，清爽甘甜",
+    "price": 26.0,
+    "originalPrice": null,
+    "monthSales": 3680,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/mango_ganlv.jpg",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_040_1",
+        "name": "标准糖",
+        "price": 26.0,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_040_2",
+        "name": "少糖",
+        "price": 26.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": ["热销", "水果茶", "芒果"]
   }
 ]

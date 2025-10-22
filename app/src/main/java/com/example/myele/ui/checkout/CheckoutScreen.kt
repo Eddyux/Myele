@@ -17,11 +17,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myele.data.CartManager
+import com.example.myele.ui.components.ProductImage
 
 @Composable
 fun CheckoutScreen(navController: NavController) {
     var deliveryMethod by remember { mutableStateOf("外卖配送") }
     var deliveryTime by remember { mutableStateOf("立即送出") }
+
+    // Get checkout products from CartManager
+    val checkoutProducts = remember { CartManager.getCheckoutProducts() }
+    val subtotal = remember { CartManager.getSubtotal() }
+
+    // Group products by restaurant
+    val productsByRestaurant = remember {
+        checkoutProducts.groupBy { it.first.restaurantName }
+    }
 
     Column(
         modifier = Modifier
@@ -57,14 +68,19 @@ fun CheckoutScreen(navController: NavController) {
                 )
             }
 
-            // 订单商品
-            item {
-                OrderItemsSection()
+            // 订单商品 - 按商家分组显示
+            productsByRestaurant.forEach { (restaurantName, products) ->
+                item {
+                    OrderItemsSection(
+                        restaurantName = restaurantName,
+                        products = products
+                    )
+                }
             }
 
             // 订单费用明细
             item {
-                OrderFeesSection()
+                OrderFeesSection(subtotal = subtotal)
             }
 
             // 备注和餐具
@@ -79,7 +95,7 @@ fun CheckoutScreen(navController: NavController) {
         }
 
         // 底部提交订单
-        BottomSubmitBar()
+        BottomSubmitBar(total = subtotal + 2.0 + 5.0)
     }
 }
 
@@ -220,7 +236,10 @@ fun DeliveryTimeSection(selectedTime: String, onTimeChanged: (String) -> Unit) {
 }
 
 @Composable
-fun OrderItemsSection() {
+fun OrderItemsSection(
+    restaurantName: String,
+    products: List<Pair<com.example.myele.model.Product, Int>>
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -230,27 +249,59 @@ fun OrderItemsSection() {
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = "箐筵·荷叶烤鸡(理工大店)",
+                text = restaurantName,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
             Spacer(modifier = Modifier.height(12.dp))
 
-            // 商品项
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Text("招牌荷叶烤鸡 x1", fontSize = 14.sp, color = Color.Black)
-                Text("¥38.0", fontSize = 14.sp, color = Color.Black)
+            // 商品列表
+            products.forEach { (product, quantity) ->
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    // 商品图片
+                    ProductImage(
+                        productId = product.productId,
+                        productName = product.name,
+                        modifier = Modifier.size(50.dp),
+                        size = 50.dp,
+                        cornerRadius = 6.dp
+                    )
+
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    // 商品名称和数量
+                    Text(
+                        text = "${product.name} x$quantity",
+                        fontSize = 14.sp,
+                        color = Color.Black,
+                        modifier = Modifier.weight(1f)
+                    )
+
+                    // 价格
+                    Text(
+                        text = "¥%.1f".format(product.price * quantity),
+                        fontSize = 14.sp,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun OrderFeesSection() {
+fun OrderFeesSection(subtotal: Double) {
+    val packagingFee = 2.0
+    val deliveryFee = 5.0
+    val total = subtotal + packagingFee + deliveryFee
+
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -259,16 +310,21 @@ fun OrderFeesSection() {
         color = Color.White
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
-            FeeItem("商品总额", "¥38.0")
-            FeeItem("打包费", "¥2.0")
-            FeeItem("配送费", "¥5.0")
+            FeeItem("商品总额", "¥%.1f".format(subtotal))
+            FeeItem("打包费", "¥%.1f".format(packagingFee))
+            FeeItem("配送费", "¥%.1f".format(deliveryFee))
             Divider(modifier = Modifier.padding(vertical = 8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text("小计", fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                Text("¥45.0", fontSize = 16.sp, fontWeight = FontWeight.Bold, color = Color(0xFFFF3366))
+                Text(
+                    text = "¥%.1f".format(total),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFFFF3366)
+                )
             }
         }
     }
@@ -357,7 +413,7 @@ fun PaymentMethodSection() {
 }
 
 @Composable
-fun BottomSubmitBar() {
+fun BottomSubmitBar(total: Double) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color.White,
@@ -373,7 +429,7 @@ fun BottomSubmitBar() {
             Column {
                 Text("合计:", fontSize = 12.sp, color = Color.Gray)
                 Text(
-                    "¥45.0",
+                    text = "¥%.1f".format(total),
                     fontSize = 20.sp,
                     color = Color(0xFFFF3366),
                     fontWeight = FontWeight.Bold
@@ -381,7 +437,7 @@ fun BottomSubmitBar() {
             }
 
             Button(
-                onClick = { /* TODO */ },
+                onClick = { /* TODO: Submit order */ },
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF3366)),
                 modifier = Modifier.height(48.dp)
             ) {

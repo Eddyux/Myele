@@ -158,3 +158,42 @@ fun HotDealImage(
         }
     }
 }
+
+/**
+ * 商品图片组件
+ */
+@Composable
+fun ProductImage(
+    productId: String,
+    productName: String,
+    modifier: Modifier = Modifier,
+    size: Dp = 80.dp,
+    cornerRadius: Dp = 8.dp
+) {
+    val imageRes = ImageUtils.getProductImage(productId)
+
+    Box(
+        modifier = modifier
+            .size(size)
+            .clip(RoundedCornerShape(cornerRadius))
+            .background(Color.LightGray),
+        contentAlignment = Alignment.Center
+    ) {
+        if (imageRes != 0) {
+            Image(
+                painter = painterResource(id = imageRes),
+                contentDescription = productName,
+                modifier = Modifier.size(size),
+                contentScale = ContentScale.Crop
+            )
+        } else {
+            // 如果没有图片，显示默认图标
+            Icon(
+                imageVector = Icons.Default.Restaurant,
+                contentDescription = productName,
+                tint = Color.White,
+                modifier = Modifier.size(size / 2.5f)
+            )
+        }
+    }
+}

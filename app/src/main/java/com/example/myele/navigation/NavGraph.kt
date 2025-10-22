@@ -29,6 +29,15 @@ import com.example.myele.ui.coupons.CouponsScreen
 import com.example.myele.ui.reviews.ReviewsScreen
 import com.example.myele.ui.mybills.MyBillsScreen
 import com.example.myele.ui.myaddresses.MyAddressesScreen
+import com.example.myele.ui.myfollows.MyFollowsScreen
+import com.example.myele.ui.frequentstores.FrequentStoresScreen
+import com.example.myele.ui.customerservice.CustomerServiceScreen
+import com.example.myele.ui.settings.SettingsScreen
+import com.example.myele.ui.paymentsettings.PaymentSettingsScreen
+import com.example.myele.ui.notificationsettings.NotificationSettingsScreen
+import com.example.myele.ui.myinfo.MyInfoScreen
+import com.example.myele.ui.changephone.ChangePhoneScreen
+import com.example.myele.ui.storepage.StorePageScreen
 
 /**
  * 导航图
@@ -61,6 +70,14 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(Screen.Checkout.route) {
             CheckoutScreen(navController)
+        }
+
+        composable(
+            route = Screen.StorePage.route,
+            arguments = listOf(navArgument("restaurantId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val restaurantId = backStackEntry.arguments?.getString("restaurantId") ?: ""
+            StorePageScreen(navController, restaurantId)
         }
 
         composable(Screen.Messages.route) {
@@ -110,6 +127,38 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(Screen.MyAddresses.route) {
             MyAddressesScreen(navController, repository)
+        }
+
+        composable(Screen.MyFollows.route) {
+            MyFollowsScreen(navController, repository)
+        }
+
+        composable(Screen.FrequentStores.route) {
+            FrequentStoresScreen(navController, repository)
+        }
+
+        composable(Screen.CustomerService.route) {
+            CustomerServiceScreen(navController, repository)
+        }
+
+        composable(Screen.Settings.route) {
+            SettingsScreen(navController)
+        }
+
+        composable(Screen.PaymentSettings.route) {
+            PaymentSettingsScreen(navController)
+        }
+
+        composable(Screen.NotificationSettings.route) {
+            NotificationSettingsScreen(navController)
+        }
+
+        composable(Screen.MyInfo.route) {
+            MyInfoScreen(navController)
+        }
+
+        composable(Screen.ChangePhone.route) {
+            ChangePhoneScreen(navController)
         }
     }
 }

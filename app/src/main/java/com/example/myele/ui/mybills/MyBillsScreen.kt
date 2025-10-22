@@ -28,7 +28,7 @@ data class TopRestaurant(val rank: Int, val name: String, val amount: Double, va
 @Composable
 fun MyBillsScreen(navController: NavController, repository: DataRepository) {
     var selectedTab by remember { mutableStateOf("周账单") }
-    val totalExpense = if (selectedTab == "周账单") 113.33 else 411.48
+    val totalExpense = if (selectedTab == "周账单") 113.33 else 41.48
 
     Scaffold(
         topBar = {

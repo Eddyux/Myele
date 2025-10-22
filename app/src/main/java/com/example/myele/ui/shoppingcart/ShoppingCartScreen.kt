@@ -18,9 +18,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.compose.ui.platform.LocalContext
+import com.example.myele.data.DataRepository
+import com.example.myele.data.CartManager
+import com.example.myele.ui.components.ProductImage
 
 data class CartItem(
-    val id: String,
+    val productId: String,
     val restaurantName: String,
     val productName: String,
     val price: Double,
@@ -36,26 +40,107 @@ data class RestaurantCart(
 
 @Composable
 fun ShoppingCartScreen(navController: NavController) {
+    val context = LocalContext.current
+    val repository = remember { DataRepository(context) }
+
+    // Load products and create shopping cart items
     var restaurantCarts by remember {
-        mutableStateOf(
-            listOf(
+        mutableStateOf<List<RestaurantCart>>(emptyList())
+    }
+
+    LaunchedEffect(Unit) {
+        val allProducts = repository.loadProducts()
+        // Initialize CartManager with all products
+        CartManager.setProducts(allProducts)
+
+        // Create sample shopping cart with products from different restaurants
+        // 从川香麻辣烫选1个商品
+        val product1 = allProducts.find { it.productId == "prod_001" } // 麻辣烫
+        // 从老北京炸酱面选2个商品
+        val product2 = allProducts.find { it.productId == "prod_002" } // 炸酱面
+        val product3 = allProducts.find { it.productId == "prod_022" } // 京酱肉丝
+        // 从湘味轩选1个商品
+        val product4 = allProducts.find { it.productId == "prod_026" } // 口味虾
+
+        val carts = mutableListOf<RestaurantCart>()
+
+        // 川香麻辣烫
+        if (product1 != null) {
+            carts.add(
                 RestaurantCart(
-                    "箐筵·荷叶烤鸡(理工大店)",
+                    product1.restaurantName,
                     listOf(
-                        CartItem("1", "箐筵·荷叶烤鸡(理工大店)", "招牌荷叶烤鸡", 38.0, 1, true)
-                    ),
-                    true
-                ),
-                RestaurantCart(
-                    "北京烤鸭(华师校园店)",
-                    listOf(
-                        CartItem("2", "北京烤鸭(华师校园店)", "经典烤鸭套餐", 68.0, 1, true),
-                        CartItem("3", "北京烤鸭(华师校园店)", "特色小菜", 18.0, 2, true)
+                        CartItem(
+                            product1.productId,
+                            product1.restaurantName,
+                            product1.name,
+                            product1.price,
+                            1,
+                            true
+                        )
                     ),
                     true
                 )
             )
-        )
+        }
+
+        // 老北京炸酱面
+        val laobeijingItems = mutableListOf<CartItem>()
+        if (product2 != null) {
+            laobeijingItems.add(
+                CartItem(
+                    product2.productId,
+                    product2.restaurantName,
+                    product2.name,
+                    product2.price,
+                    1,
+                    true
+                )
+            )
+        }
+        if (product3 != null) {
+            laobeijingItems.add(
+                CartItem(
+                    product3.productId,
+                    product3.restaurantName,
+                    product3.name,
+                    product3.price,
+                    2,
+                    true
+                )
+            )
+        }
+        if (laobeijingItems.isNotEmpty()) {
+            carts.add(
+                RestaurantCart(
+                    laobeijingItems.first().restaurantName,
+                    laobeijingItems,
+                    true
+                )
+            )
+        }
+
+        // 湘味轩
+        if (product4 != null) {
+            carts.add(
+                RestaurantCart(
+                    product4.restaurantName,
+                    listOf(
+                        CartItem(
+                            product4.productId,
+                            product4.restaurantName,
+                            product4.name,
+                            product4.price,
+                            1,
+                            true
+                        )
+                    ),
+                    true
+                )
+            )
+        }
+
+        restaurantCarts = carts
     }
 
     var selectAll by remember { mutableStateOf(true) }
@@ -134,6 +219,16 @@ fun ShoppingCartScreen(navController: NavController) {
             },
             totalPrice = totalPrice,
             onCheckoutClick = {
+                // Collect selected items and pass to CartManager
+                val selectedItems = mutableMapOf<String, Int>()
+                restaurantCarts.forEach { restaurant ->
+                    restaurant.items.forEach { item ->
+                        if (item.isSelected) {
+                            selectedItems[item.productId] = item.quantity
+                        }
+                    }
+                }
+                CartManager.setCheckoutItems(selectedItems)
                 navController.navigate(com.example.myele.navigation.Screen.Checkout.route)
             }
         )
@@ -271,20 +366,13 @@ fun RestaurantCartCard(
                     )
 
                     // 商品图片
-                    Box(
-                        modifier = Modifier
-                            .size(60.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(Color.LightGray),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Restaurant,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(28.dp)
-                        )
-                    }
+                    ProductImage(
+                        productId = item.productId,
+                        productName = item.productName,
+                        modifier = Modifier.size(60.dp),
+                        size = 60.dp,
+                        cornerRadius = 8.dp
+                    )
 
                     Spacer(modifier = Modifier.width(12.dp))
 

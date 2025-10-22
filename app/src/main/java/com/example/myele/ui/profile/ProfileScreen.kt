@@ -66,7 +66,7 @@ fun ProfileScreen(navController: NavController) {
 
         // 我的关注和常点的店
         item {
-            MyFavorites()
+            MyFavorites(navController)
         }
 
         // 更多功能
@@ -111,7 +111,7 @@ fun UserInfoHeader(navController: NavController) {
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
-                        text = "138****8888",
+                        text = "189****1018",
                         fontSize = 14.sp,
                         color = Color.Gray
                     )
@@ -358,7 +358,7 @@ fun WalletItem(title: String, icon: ImageVector) {
 }
 
 @Composable
-fun MyFavorites() {
+fun MyFavorites(navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -371,19 +371,27 @@ fun MyFavorites() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                FavoriteItem("我的关注", "12家店铺")
-                FavoriteItem("常点的店", "8家店铺")
+                FavoriteItem(
+                    title = "我的关注",
+                    subtitle = "12家店铺",
+                    onClick = { navController.navigate(Screen.MyFollows.route) }
+                )
+                FavoriteItem(
+                    title = "常点的店",
+                    subtitle = "8家店铺",
+                    onClick = { navController.navigate(Screen.FrequentStores.route) }
+                )
             }
         }
     }
 }
 
 @Composable
-fun RowScope.FavoriteItem(title: String, subtitle: String) {
+fun RowScope.FavoriteItem(title: String, subtitle: String, onClick: () -> Unit) {
     Column(
         modifier = Modifier
             .weight(1f)
-            .clickable { /* TODO */ }
+            .clickable(onClick = onClick)
             .padding(8.dp)
     ) {
         Text(
@@ -421,7 +429,7 @@ fun MoreFunctions(navController: NavController) {
 
             val functions = listOf(
                 ProfileMenuItem(Icons.Default.LocationOn, "我的地址", Screen.MyAddresses.route),
-                ProfileMenuItem(Icons.Default.Support, "我的客服", null),
+                ProfileMenuItem(Icons.Default.Support, "我的客服", Screen.CustomerService.route),
                 ProfileMenuItem(Icons.Default.Assessment, "我的账单", Screen.MyBills.route),
                 ProfileMenuItem(Icons.Default.AttachMoney, "下单返", null)
             )

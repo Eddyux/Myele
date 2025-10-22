@@ -26,7 +26,8 @@
 app/src/main/
 ├── java/com/example/myele/
 │   ├── data/                    # 数据层
-│   │   └── DataRepository.kt    # 数据仓库，负责加载JSON数据
+│   │   ├── DataRepository.kt    # 数据仓库，负责加载JSON数据
+│   │   └── CartManager.kt       # 购物车管理器(单例模式)
 │   ├── model/                   # 数据模型
 │   │   ├── User.kt             # 用户相关模型
 │   │   ├── Restaurant.kt       # 餐厅模型
@@ -84,9 +85,31 @@ app/src/main/
 │   │   │   └── MyBillsScreen.kt # View层（UI）
 │   │   ├── myaddresses/        # 我的地址模块
 │   │   │   └── MyAddressesScreen.kt # View层（UI）
+│   │   ├── myfollows/          # 我的关注模块
+│   │   │   └── MyFollowsScreen.kt # View层（UI）
+│   │   ├── frequentstores/     # 常点的店模块
+│   │   │   └── FrequentStoresScreen.kt # View层（UI）
+│   │   ├── customerservice/    # 我的客服模块
+│   │   │   └── CustomerServiceScreen.kt # View层（UI）
+│   │   ├── settings/           # 设置模块
+│   │   │   └── SettingsScreen.kt # View层（UI）
+│   │   ├── paymentsettings/    # 支付设置模块
+│   │   │   └── PaymentSettingsScreen.kt # View层（UI）
+│   │   ├── notificationsettings/ # 消息通知设置模块
+│   │   │   └── NotificationSettingsScreen.kt # View层（UI）
+│   │   ├── myinfo/             # 我的信息模块
+│   │   │   └── MyInfoScreen.kt # View层（UI）
+│   │   ├── changephone/        # 更换手机号模块
+│   │   │   └── ChangePhoneScreen.kt # View层（UI）
 │   │   ├── checkout/           # 结算页面模块
 │   │   │   └── CheckoutScreen.kt # View层（UI）
+│   │   ├── storepage/          # 商家详情页模块
+│   │   │   └── StorePageScreen.kt # View层（UI）
+│   │   ├── components/         # 可复用UI组件
+│   │   │   └── RestaurantImage.kt # 商家图片、用户头像、商品图片组件
 │   │   └── theme/              # 主题配置
+│   ├── utils/                   # 工具类
+│   │   └── ImageUtils.kt       # 图片资源工具类
 │   └── MainActivity.kt          # 主Activity
 └── assets/data/                 # JSON数据文件
     ├── users.json              # 用户数据
@@ -115,6 +138,7 @@ app/src/main/
 - ✅ 功能按钮（换一换、天天爆红包、减配送费、学生特价）
 - ✅ 商家列表展示（评分、月售、配送时间、距离、优惠活动）
 - ✅ 商家图片左对齐布局
+- ✅ 商家卡片点击跳转到商家详情页面
 
 ### 搜索页面 (Search)
 - ✅ 顶部搜索栏（带返回按钮）
@@ -148,17 +172,32 @@ app/src/main/
 - ✅ 平台消息板块
 - ✅ 聊天动态列表
 - ✅ 消息卡片展示（头像、标题、内容、时间）
+- ✅ 点击消息卡片跳转到在线聊天页面
+
+### 商家详情页面 (StorePage)
+- ✅ 顶部导航栏（返回、搜索、聊天、收藏、更多）
+- ✅ 商家头部信息（图片、评分、月售、配送时间）
+- ✅ 外送/自取切换按钮
+- ✅ 优惠券展示
+- ✅ 点餐/评价/商家/好友拼单标签页
+- ✅ 左侧菜品分类导航
+- ✅ 右侧商品列表（招牌菜、常规菜品）
+- ✅ 商品数量加减控制
+- ✅ 底部结算栏（显示购物车商品数量和总价）
+- ✅ 点击收藏按钮图标变红
+- ✅ 去结算跳转到Checkout页面
 
 ### 购物车页面 (ShoppingCart)
 - ✅ 顶部标题栏（显示地址和编辑按钮）
 - ✅ 快捷入口（我常买、全能超市）
-- ✅ 购物车商品列表（按店铺分组）
+- ✅ **动态购物车商品列表**（从products.json加载真实商品数据）
+- ✅ 按店铺分组显示（支持多商家购物车）
 - ✅ 店铺级复选框（可整店选择/取消）
 - ✅ 商品级复选框（可单选商品）
-- ✅ 商品卡片（图片、名称、价格、数量控制）
+- ✅ 商品卡片（显示真实商品名称、价格、数量）
 - ✅ 无法购买商品提示
 - ✅ 底部结算栏（全选、合计、一键结算）
-- ✅ 结算按钮跳转到Checkout页面
+- ✅ **结算时通过CartManager传递选中商品到Checkout页面**
 
 ### 我的页面 (Profile)
 - ✅ 顶部个人信息区域（头像、姓名、手机号）
@@ -176,11 +215,12 @@ app/src/main/
 - ✅ 配送方式选择（外卖配送/到店自取）
 - ✅ 收货地址信息展示
 - ✅ 配送时间选择（立即送出/预约配送）
-- ✅ 订单商品列表
-- ✅ 费用明细（商品总额、打包费、配送费、小计）
+- ✅ **动态订单商品列表**(根据CartManager数据显示)
+- ✅ **按商家分组显示商品**
+- ✅ **动态费用明细**（商品总额、打包费、配送费、小计自动计算）
 - ✅ 订单选项（备注、餐具、发票）
 - ✅ 支付方式选择
-- ✅ 底部提交订单按钮
+- ✅ 底部提交订单按钮(显示动态计算的总价)
 
 ### 底部导航栏
 - ✅ 首页（第1个位置）
@@ -208,14 +248,15 @@ app/src/main/
   - [x] 待评价/已评价 (Reviews) - **已完成**
   - [x] 我的账单 (MyBills) - **已完成**
   - [x] 我的地址 (MyAddresses) - **已完成**
-  - [ ] 我的关注 (MyFollows)
-  - [ ] 常点的店 (FrequentStores)
-  - [ ] 我的客服 (CustomerService)
-  - [ ] 设置 (Settings)
-    - [ ] 支付设置 (PaymentSettings)
-    - [ ] 消息通知设置 (NotificationSettings)
-    - [ ] 我的信息 (MyInfo)
-      - [ ] 更换手机号 (ChangePhone)
+  - [x] 我的关注 (MyFollows) - **已完成，支持切换到常点的店页面**
+  - [x] 常点的店 (FrequentStores) - **已完成，支持切换到我的关注页面**
+  - [x] 我的客服 (CustomerService) - **已完成**
+  - [x] 设置 (Settings) - **已完成**
+    - [x] 支付设置 (PaymentSettings) - **已完成**
+    - [x] 消息通知设置 (NotificationSettings) - **已完成**
+    - [x] 我的信息 (MyInfo) - **已完成**
+      - [x] 更换手机号 (ChangePhone) - **已完成**
+- [x] 商家详情页面 (StorePage) - **已完成**
 
 ## 数据说明
 
@@ -225,7 +266,7 @@ app/src/main/
 - **收货人**：统一为"于骁"
 - **餐厅地址**：包含川香麻辣烫、老北京炸酱面、湘味轩、粤式早茶、韩式炸鸡等正餐店铺
 - **饮品店铺**：瑞幸咖啡、茶百道、蜜雪冰城、星巴克、喜茶
-- **商品**：各餐厅的特色菜品和饮品，包含规格选项
+- **商品**：**已扩展到40个商品**,包含各餐厅的特色菜品和饮品,支持规格选项(辣度、糖度、杯型等)
 - **优惠券**：各类满减券、折扣券、免配送费券等
 
 ## 如何构建
@@ -304,7 +345,74 @@ app/src/main/res/drawable/
 └── rider_avatar_1.png       # 骑手头像
 ```
 
-**注意**：图片文件添加后需要重新构建项目（Build > Rebuild Project）
+**6. 需要的菜品图片清单** (共40个菜品)
+
+由于products.json已扩展到40个产品,需要以下菜品图片文件。建议使用AI工具(如Midjourney、DALL-E等)生成:
+
+**川香麻辣烫 (rest_001):**
+- `product_malatang.png` - 麻辣烫(大份)
+- `product_tudoufen.png` - 土豆粉
+- `product_hongyouchaoshou.png` - 红油抄手
+- `product_suanlafen.png` - 酸辣粉
+- `product_cola.png` - 可乐
+
+**老北京炸酱面 (rest_002):**
+- `product_zhajiangmian.png` - 老北京炸酱面
+- `product_jingjiangrousi.png` - 京酱肉丝
+- `product_zhaguanchang.png` - 炸灌肠
+- `product_jiroujuan.png` - 老北京鸡肉卷
+
+**湘味轩 (rest_003):**
+- `product_duojiaoyutou.png` - 剁椒鱼头
+- `product_maoxuewang.png` - 毛血旺
+- `product_nongjia_xiaochaorou.png` - 农家小炒肉
+- `product_kouweixia.png` - 口味虾
+- `product_waipocai.png` - 湘西外婆菜
+
+**粤式早茶 (rest_004):**
+- `product_xiajiao.png` - 虾饺
+- `product_shaoe.png` - 烧鹅
+- `product_liushabao.png` - 流沙包
+- `product_chashaobao.png` - 叉烧包
+- `product_changfen.png` - 肠粉
+
+**韩式炸鸡 (rest_005):**
+- `product_friedchicken.png` - 韩式炸鸡全家桶
+- `product_zhajitui.png` - 韩式炸鸡腿
+- `product_zhajichi.png` - 韩式炸鸡翅
+- `product_nian_gao_lamian.png` - 年糕炒拉面
+
+**瑞幸咖啡 (rest_006):**
+- `product_coconut_latte.png` - 生椰拿铁
+- `product_americano.png` - 美式咖啡
+- `product_hounai_latte.png` - 厚乳拿铁
+- `product_yunshi_latte.png` - 陨石拿铁
+
+**茶百道 (rest_007):**
+- `product_yangzhiganlv.png` - 杨枝甘露
+- `product_pearl_milk_tea.png` - 珍珠奶茶
+- `product_yunai_bobo.png` - 芋泥波波奶茶
+- `product_shaoxiancao.png` - 烧仙草
+
+**蜜雪冰城 (rest_008):**
+- `product_lemon_water.png` - 柠檬水
+- `product_icecream_tea.png` - 冰淇淋奶茶
+- `product_icecream_sundae.png` - 冰淇淋圣代
+
+**星巴克 (rest_009):**
+- `product_caramel_macchiato.png` - 焦糖玛奇朵
+- `product_matcha_latte.png` - 抹茶拿铁
+- `product_mocha.png` - 摩卡咖啡
+
+**喜茶 (rest_010):**
+- `product_grape_tea.png` - 多肉葡萄
+- `product_strawberry_cheese.png` - 芝芝莓莓
+- `product_mango_ganlv.png` - 芒芒甘露
+
+**注意**：
+- 图片尺寸建议：512x512或1024x1024像素
+- 图片文件添加后需要重新构建项目（Build > Rebuild Project）
+- 所有图片应放入 `app/src/main/res/drawable/` 目录
 
 ## 构建状态
 
@@ -313,6 +421,93 @@ app/src/main/res/drawable/
 构建时间：约21秒
 
 ## 更新日志
+
+### 2025-10-22 (第十一次更新 - 商品图片集成)
+- ✅ 重命名并集成9张AI生成的商品图片
+  - ✅ prod_001.png - 麻辣烫（大份）
+  - ✅ prod_002.png - 老北京炸酱面
+  - ✅ prod_006.png - 可乐
+  - ✅ prod_019.png - 土豆粉
+  - ✅ prod_020.png - 红油抄手
+  - ✅ prod_021.png - 酸辣粉
+  - ✅ prod_022.png - 京酱肉丝
+  - ✅ prod_023.png - 炸灌肠
+  - ✅ prod_024.png - 老北京鸡肉卷
+- ✅ 更新ImageUtils工具类
+  - ✅ getProductImage方法改为根据productId获取图片
+  - ✅ 添加9个商品的图片映射
+- ✅ 更新ProductImage组件
+  - ✅ 新增productId参数用于精确图片匹配
+  - ✅ 保留productName参数用于contentDescription
+- ✅ 更新所有使用ProductImage的页面
+  - ✅ StorePageScreen.kt - 商家页面商品列表显示真实图片
+  - ✅ ShoppingCartScreen.kt - 购物车商品列表显示真实图片
+  - ✅ CheckoutScreen.kt - 结算页面商品列表显示真实图片
+- ✅ 所有修改已通过构建测试(BUILD SUCCESSFUL in 35s)
+- 📝 目前已有9个商品图片，还需31个商品图片(详见菜品图片需求清单)
+
+### 2025-10-22 (第十次更新 - 菜品数据扩展与购物车/结算动态化)
+- ✅ 扩展products.json菜品数据(从18个增加到40个)
+  - ✅ 为每个餐厅添加更多菜品选择
+  - ✅ 包含各类菜系:川菜、北京菜、湘菜、粤菜、韩餐、咖啡、奶茶等
+- ✅ 创建CartManager购物车管理器
+  - ✅ 单例模式管理购物车状态
+  - ✅ 支持在不同页面间共享购物车数据
+  - ✅ 提供商品小计、总数量等计算方法
+- ✅ 重构Checkout结算页面
+  - ✅ 支持动态显示商品(不再写死)
+  - ✅ 根据CartManager数据动态渲染商品列表
+  - ✅ 按商家分组显示订单商品
+  - ✅ 动态计算商品总额、打包费、配送费
+- ✅ 重构ShoppingCart购物车页面
+  - ✅ 从products.json加载真实商品数据
+  - ✅ 支持多商家购物车(川香麻辣烫、老北京炸酱面、湘味轩)
+  - ✅ 点击"一键结算"时将选中商品传递给CartManager
+  - ✅ 只结算选中的商品
+- ✅ 实现完整的数据流
+  - ✅ **StorePage → CartManager → Checkout** (商家页面结算)
+  - ✅ **ShoppingCart → CartManager → Checkout** (购物车结算)
+  - ✅ Checkout页面根据来源显示不同商品
+- ✅ 在README中添加40个菜品图片需求清单
+- ✅ 所有修改已通过构建测试(BUILD SUCCESSFUL in 6s)
+
+### 2025-10-22 (第九次更新 - StorePage商家详情页面实现)
+- ✅ 完成商家详情页面(StorePage)开发
+  - ✅ 顶部导航栏(返回、搜索、聊天、收藏、更多按钮)
+  - ✅ 商家信息头部(图片、名称、评分、月售、配送时间、距离)
+  - ✅ 外送/自取切换按钮
+  - ✅ 优惠券展示区域
+  - ✅ 点餐/评价/商家/好友拼单标签栏
+  - ✅ 左侧菜品分类导航(全部、热销、招牌、优惠等)
+  - ✅ 右侧商品列表展示(招牌菜单独展示、商品图片、价格、折扣)
+  - ✅ 商品数量加减控制
+  - ✅ 底部结算栏(购物车图标、商品数量、总价、去结算按钮)
+  - ✅ 收藏功能(点击后图标变红)
+- ✅ 首页商家卡片添加点击跳转到商家详情页
+- ✅ Messages页面消息卡片添加点击跳转到在线聊天页面
+- ✅ 修复MyFollows和FrequentStores页面标签切换问题(点击标签正确导航到对应页面)
+- ✅ 添加ProductImage组件用于商品图片展示
+- ✅ ImageUtils新增getProductImage方法
+- ✅ 所有修改已通过构建测试(BUILD SUCCESSFUL)
+
+### 2025-10-21 (第八次更新 - Settings及其子页面完整实现)
+- ✅ 完成设置(Settings)页面开发(用户信息区域、设置选项列表、跳转到MyInfo)
+- ✅ 完成支付设置(PaymentSettings)页面开发(支付宝免密支付、余额免密支付、开关控制)
+- ✅ 完成消息通知设置(NotificationSettings)页面开发(系统通知、应用内通知、聊天动态、平台消息、消息管理)
+- ✅ 完成我的信息(MyInfo)页面开发(基础信息、账号绑定、跳转到收货地址和更换手机号)
+- ✅ 完成更换手机号(ChangePhone)页面开发(系统提示、历史手机号显示、修改和验证按钮)
+- ✅ 优化FrequentStores筛选栏(自定义FilterButton组件，支持下拉箭头和高亮样式)
+- ✅ Profile页面设置按钮添加导航跳转到Settings
+- ✅ Settings页面各选项添加导航跳转
+- ✅ 所有修改已通过构建测试(BUILD SUCCESSFUL)
+
+### 2025-10-21 (第七次更新 - Profile子页面继续完善)
+- ✅ 完成我的关注(MyFollows)页面开发(关注/常点标签切换、关注店铺列表、超出配送范围提示、店铺删除功能)
+- ✅ 完成常点的店(FrequentStores)页面开发(关注/常点标签切换、筛选栏、常点店铺列表、常点商品展示、满意度调查)
+- ✅ 完成我的客服(CustomerService)页面开发(智能客服横幅、订单服务卡片、功能图标网格、热门问题列表、在线客服按钮)
+- ✅ Profile页面"我的关注"和"常点的店"添加导航跳转
+- ✅ Profile页面"我的客服"添加导航跳转
+- ✅ 所有修改已通过构建测试(BUILD SUCCESSFUL)
 
 ### 2025-10-20 (第六次更新 - 商家图片集成)
 - ✅ 添加11张商家图片资源(川香麻辣烫、老北京炸酱面、湘味轩、粤式早茶、韩式炸鸡、瑞幸咖啡、茶百道、蜜雪冰城、星巴克、喜茶、用户头像)
