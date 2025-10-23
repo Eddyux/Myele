@@ -81,6 +81,45 @@ object ImageUtils {
             "prod_022" -> R.drawable.prod_022  // 京酱肉丝
             "prod_023" -> R.drawable.prod_023  // 炸灌肠
             "prod_024" -> R.drawable.prod_024  // 老北京鸡肉卷
+            // 韩式炸鸡商品
+            "prod_005" -> R.drawable.hanshi_zhaji_1  // 韩式炸鸡全家桶
+            "prod_031" -> R.drawable.hanshi_zhaji_2  // 韩式炸鸡腿
+            "prod_032" -> R.drawable.hanshi_zhaji_3  // 韩式炸鸡翅
+            "prod_033" -> R.drawable.hanshi_zhaji_4  // 年糕炒拉面
+            // 瑞幸咖啡商品
+            "prod_009" -> R.drawable.ruixin_1  // 生椰拿铁
+            "prod_010" -> R.drawable.ruixin_2  // 美式咖啡
+            "prod_034" -> R.drawable.ruixin_3  // 厚乳拿铁
+            "prod_035" -> R.drawable.ruixin_4  // 陨石拿铁
+            // 湘味轩商品
+            "prod_003" -> R.drawable.xiangweixuan_1  // 剁椒鱼头
+            "prod_008" -> R.drawable.xiangweixuan_2  // 毛血旺
+            "prod_025" -> R.drawable.xiangweixuan_3  // 农家小炒肉
+            "prod_026" -> R.drawable.xiangweixuan_4  // 口味虾
+            "prod_027" -> R.drawable.xiangweixuan_5  // 湘西外婆菜
+            // 粤式早茶商品
+            "prod_004" -> R.drawable.yueshi_zaocha_1  // 虾饺
+            "prod_007" -> R.drawable.yueshi_zaocha_2  // 烧鹅
+            "prod_028" -> R.drawable.yueshi_zaocha_3  // 流沙包
+            "prod_029" -> R.drawable.yueshi_zaocha_4  // 叉烧包
+            "prod_030" -> R.drawable.yueshi_zaocha_5  // 肠粉
+            // 茶百道商品
+            "prod_011" -> R.drawable.chabaidao_1  // 杨枝甘露
+            "prod_012" -> R.drawable.chabaidao_2  // 珍珠奶茶
+            "prod_036" -> R.drawable.chabaidao_3  // 芋泥波波奶茶
+            "prod_037" -> R.drawable.chabaidao_4  // 烧仙草
+            // 蜜雪冰城商品
+            "prod_013" -> R.drawable.mixuebingc_1  // 柠檬水
+            "prod_014" -> R.drawable.mixuebingc_2  // 冰淇淋奶茶
+            "prod_038" -> R.drawable.mixuebingc_3  // 冰淇淋圣代
+            // 星巴克商品
+            "prod_015" -> R.drawable.xingbake_1  // 焦糖玛奇朵
+            "prod_016" -> R.drawable.xingbake_2  // 抹茶拿铁
+            "prod_039" -> R.drawable.xingbake_3  // 摩卡咖啡
+            // 喜茶商品
+            "prod_017" -> R.drawable.xicha_1  // 多肉葡萄
+            "prod_018" -> R.drawable.xicha_2  // 芝芝莓莓
+            "prod_040" -> R.drawable.xicha  // 芒芒甘露
             else -> 0 // 返回0表示没有对应的图片，显示默认图标
         }
     }

@@ -422,6 +422,28 @@ app/src/main/res/drawable/
 
 ## 更新日志
 
+### 2025-10-23 (第十二次更新 - 商品图片完整配置)
+- ✅ 为8个商家添加31张真实商品图片
+  - ✅ 韩式炸鸡：4张 (hanshi_zhaji_1~4.png)
+  - ✅ 瑞幸咖啡：4张 (ruixin_1~4.png)
+  - ✅ 湘味轩：5张 (xiangweixuan_1~5.png)
+  - ✅ 粤式早茶：5张 (yueshi_zaocha_1~5.png)
+  - ✅ 茶百道：4张 (chabaidao_1~4.png)
+  - ✅ 蜜雪冰城：3张 (mixuebingc_1~3.png)
+  - ✅ 星巴克：3张 (xingbake_1~3.png)
+  - ✅ 喜茶：3张 (xicha_1~2.png, xicha.png)
+- ✅ 更新ImageUtils.kt将图片关联到原有商品
+  - ✅ prod_005,031,032,033 (韩式炸鸡) → hanshi_zhaji图片
+  - ✅ prod_009,010,034,035 (瑞幸咖啡) → ruixin图片
+  - ✅ prod_003,008,025,026,027 (湘味轩) → xiangweixuan图片
+  - ✅ prod_004,007,028,029,030 (粤式早茶) → yueshi_zaocha图片
+  - ✅ prod_011,012,036,037 (茶百道) → chabaidao图片
+  - ✅ prod_013,014,038 (蜜雪冰城) → mixuebingc图片
+  - ✅ prod_015,016,039 (星巴克) → xingbake图片
+  - ✅ prod_017,018,040 (喜茶) → xicha图片
+- ✅ 所有图片文件已重命名为符合Android资源命名规范
+- ✅ 共40个商品，已全部配置真实图片
+
 ### 2025-10-22 (第十一次更新 - 商品图片集成)
 - ✅ 重命名并集成9张AI生成的商品图片
   - ✅ prod_001.png - 麻辣烫（大份）
@@ -444,7 +466,6 @@ app/src/main/res/drawable/
   - ✅ ShoppingCartScreen.kt - 购物车商品列表显示真实图片
   - ✅ CheckoutScreen.kt - 结算页面商品列表显示真实图片
 - ✅ 所有修改已通过构建测试(BUILD SUCCESSFUL in 35s)
-- 📝 目前已有9个商品图片，还需31个商品图片(详见菜品图片需求清单)
 
 ### 2025-10-22 (第十次更新 - 菜品数据扩展与购物车/结算动态化)
 - ✅ 扩展products.json菜品数据(从18个增加到40个)

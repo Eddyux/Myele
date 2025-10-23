@@ -21,6 +21,7 @@ import com.example.myele.data.DataRepository
 import com.example.myele.model.Order
 import com.example.myele.model.OrderStatus
 import com.example.myele.navigation.Screen
+import com.example.myele.ui.components.ProductImage
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -248,19 +249,12 @@ fun OrderCard(order: Order, navController: NavController) {
                 ) {
                     Row(modifier = Modifier.weight(1f)) {
                         // 商品图片
-                        Box(
-                            modifier = Modifier
-                                .size(48.dp)
-                                .background(Color.LightGray, RoundedCornerShape(4.dp)),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Restaurant,
-                                contentDescription = null,
-                                tint = Color.White,
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
+                        ProductImage(
+                            productId = item.productId,
+                            productName = item.productName,
+                            size = 48.dp,
+                            cornerRadius = 4.dp
+                        )
 
                         Spacer(modifier = Modifier.width(8.dp))
 

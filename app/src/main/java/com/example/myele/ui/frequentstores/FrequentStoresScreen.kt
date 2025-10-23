@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Restaurant
+import com.example.myele.navigation.Screen
 import com.example.myele.ui.components.RestaurantImage
 
 /**
@@ -179,7 +180,12 @@ fun FrequentStoresScreen(navController: NavController, repository: DataRepositor
             } else {
                 // 常点标签 - 显示常点的店铺列表
                 items(frequentRestaurants) { restaurant ->
-                    FrequentStoreCard(restaurant)
+                    FrequentStoreCard(
+                        restaurant = restaurant,
+                        onClick = {
+                            navController.navigate(Screen.StorePage.createRoute(restaurant.restaurantId))
+                        }
+                    )
                 }
             }
 
@@ -207,12 +213,15 @@ fun FrequentStoresScreen(navController: NavController, repository: DataRepositor
 }
 
 @Composable
-fun FrequentStoreCard(restaurant: Restaurant) {
+fun FrequentStoreCard(
+    restaurant: Restaurant,
+    onClick: () -> Unit = {}
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
-            .clickable { /* TODO: 跳转到餐厅详情 */ },
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {

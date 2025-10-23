@@ -18,6 +18,7 @@ import com.example.myele.ui.search.SearchScreen
 import com.example.myele.ui.searchresult.SearchResultScreen
 import com.example.myele.ui.takeout.TakeoutScreen
 import com.example.myele.ui.messages.MessagesScreen
+import com.example.myele.ui.messagedetail.MessageDetailScreen
 import com.example.myele.ui.shoppingcart.ShoppingCartScreen
 import com.example.myele.ui.profile.ProfileScreen
 import com.example.myele.ui.checkout.CheckoutScreen
@@ -82,6 +83,14 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(Screen.Messages.route) {
             MessagesScreen(navController)
+        }
+
+        composable(
+            route = Screen.MessageDetail.route,
+            arguments = listOf(navArgument("riderName") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val riderName = backStackEntry.arguments?.getString("riderName") ?: "骑手"
+            MessageDetailScreen(navController, riderName)
         }
 
         composable(Screen.ShoppingCart.route) {

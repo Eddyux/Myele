@@ -1,11 +1,9 @@
-package com.example.myele.ui.onlinechat
+package com.example.myele.ui.messagedetail
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -13,7 +11,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -21,22 +18,31 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.ui.components.RiderAvatar
 
-data class ChatMsg(
+data class ChatMessage(
     val id: String,
     val content: String,
     val time: String,
     val isFromRider: Boolean
 )
 
+/**
+ * 消息详情页面
+ * 从Messages页面点击骑手消息进入
+ * 显示与骑手的聊天详情
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OnlineChatScreen(navController: NavController, riderName: String = "周丹奎") {
+fun MessageDetailScreen(
+    navController: NavController,
+    riderName: String = "张三"
+) {
     var messageText by remember { mutableStateOf("") }
     var messages by remember {
         mutableStateOf(
             listOf(
-                ChatMsg("1", "您好，我是骑手$riderName", "14:30", true),
-                ChatMsg("2", "已在配送途中", "14:31", true)
+                ChatMessage("1", "您的订单已送达", "15:30", true),
+                ChatMessage("2", "好的，谢谢", "15:31", false),
+                ChatMessage("3", "祝您用餐愉快", "15:31", true)
             )
         )
     }
@@ -118,7 +124,7 @@ fun OnlineChatScreen(navController: NavController, riderName: String = "周丹�
                         IconButton(
                             onClick = {
                                 if (messageText.isNotBlank()) {
-                                    messages = messages + ChatMsg(
+                                    messages = messages + ChatMessage(
                                         id = (messages.size + 1).toString(),
                                         content = messageText,
                                         time = "刚刚",
@@ -134,48 +140,37 @@ fun OnlineChatScreen(navController: NavController, riderName: String = "周丹�
                 }
             }
         }
-    ) { paddingValues ->
+    ) { padding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
                 .background(Color(0xFFF5F5F5))
-                .padding(16.dp)
+                .padding(padding)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            // 骑手头像和订单图片
+            // 顶部骑手信息
             item {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp),
-                    verticalAlignment = Alignment.Top
+                    horizontalArrangement = Arrangement.Start,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // 骑手头像
-                    RiderAvatar(
-                        size = 48.dp
-                    )
-
+                    RiderAvatar(size = 60.dp)
                     Spacer(modifier = Modifier.width(12.dp))
-
-                    // 订单商品图片
-                    Surface(
-                        modifier = Modifier
-                            .width(160.dp)
-                            .height(200.dp),
-                        shape = RoundedCornerShape(8.dp),
-                        color = Color.LightGray
-                    ) {
-                        Box(
-                            modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Image,
-                                contentDescription = "订单图片",
-                                tint = Color.White,
-                                modifier = Modifier.size(64.dp)
-                            )
-                        }
+                    Column {
+                        Text(
+                            text = "骑手$riderName",
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "配送中",
+                            fontSize = 14.sp,
+                            color = Color.Gray
+                        )
                     }
                 }
             }
@@ -191,25 +186,22 @@ fun OnlineChatScreen(navController: NavController, riderName: String = "周丹�
 @Composable
 fun QuickActionChip(text: String) {
     Surface(
-        modifier = Modifier.clickable { },
         shape = RoundedCornerShape(16.dp),
-        color = Color(0xFFF5F5F5)
+        color = Color(0xFFF0F0F0)
     ) {
         Text(
             text = text,
-            fontSize = 13.sp,
-            color = Color.Black,
-            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+            fontSize = 12.sp,
+            color = Color.Gray
         )
     }
 }
 
 @Composable
-fun MessageBubble(message: ChatMsg) {
+fun MessageBubble(message: ChatMessage) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 6.dp),
+        modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = if (message.isFromRider) Arrangement.Start else Arrangement.End
     ) {
         if (message.isFromRider) {

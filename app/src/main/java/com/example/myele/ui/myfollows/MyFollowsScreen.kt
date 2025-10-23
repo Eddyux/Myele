@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Restaurant
+import com.example.myele.navigation.Screen
 import com.example.myele.ui.components.RestaurantImage
 
 /**
@@ -112,7 +113,12 @@ fun MyFollowsScreen(navController: NavController, repository: DataRepository) {
 
             // 关注的店铺列表
             items(followedRestaurants) { restaurant ->
-                FollowedRestaurantCard(restaurant)
+                FollowedRestaurantCard(
+                    restaurant = restaurant,
+                    onClick = {
+                        navController.navigate(Screen.StorePage.createRoute(restaurant.restaurantId))
+                    }
+                )
             }
 
             // 没有更多了
@@ -132,11 +138,15 @@ fun MyFollowsScreen(navController: NavController, repository: DataRepository) {
 }
 
 @Composable
-fun FollowedRestaurantCard(restaurant: Restaurant) {
+fun FollowedRestaurantCard(
+    restaurant: Restaurant,
+    onClick: () -> Unit = {}
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {

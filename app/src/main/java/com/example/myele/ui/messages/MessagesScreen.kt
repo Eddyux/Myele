@@ -19,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.myele.ui.components.RiderAvatar
 
 data class MessageItem(
     val id: String,
@@ -69,7 +70,9 @@ fun MessagesScreen(navController: NavController) {
                 MessageCard(
                     message = message,
                     onClick = {
-                        navController.navigate(com.example.myele.navigation.Screen.OnlineChat.route)
+                        // 提取骑手名字（去掉"骑手·"前缀）
+                        val riderName = message.title.removePrefix("骑手·")
+                        navController.navigate(com.example.myele.navigation.Screen.MessageDetail.createRoute(riderName))
                     }
                 )
             }
@@ -194,20 +197,7 @@ fun MessageCard(message: MessageItem, onClick: () -> Unit = {}) {
                 .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(
-                modifier = Modifier
-                    .size(48.dp)
-                    .clip(CircleShape)
-                    .background(Color.LightGray),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                    tint = Color.White,
-                    modifier = Modifier.size(28.dp)
-                )
-            }
+            RiderAvatar(size = 48.dp)
 
             Spacer(modifier = Modifier.width(12.dp))
 
