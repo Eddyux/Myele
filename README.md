@@ -295,43 +295,7 @@ app/src/main/
 - 推荐格式：PNG、JPG、WebP
 - 命名规范：使用小写字母和下划线，如 `user_avatar.png`、`restaurant_logo_1.png`
 
-**2. 图片使用位置说明**
 
-| 图片类型 | 当前代码位置 | 替换方法 |
-|---------|------------|---------|
-| **用户头像** | `ProfileScreen.kt:96-109` | 将 `Icon(Icons.Default.Person)` 替换为 `Image(painter = painterResource(R.drawable.user_avatar))` |
-| **商家图片** | `HomeScreen.kt` 商家卡片<br>`SearchResultScreen.kt` 餐厅列表<br>`TakeoutScreen.kt` 餐厅列表 | 将占位符 `Box` 替换为 `Image(painter = painterResource(R.drawable.restaurant_xxx))` |
-| **商品图片** | `ShoppingCartScreen.kt:274-287`<br>`CheckoutScreen.kt` 商品列表 | 将 `Icon(Icons.Default.Restaurant)` 替换为 `Image(painter = painterResource(R.drawable.product_xxx))` |
-| **骑手头像** | `MessagesScreen.kt` 聊天列表 | 将占位符替换为 `Image(painter = painterResource(R.drawable.rider_xxx))` |
-
-**3. 代码替换示例**
-
-当前占位符代码：
-```kotlin
-Box(
-    modifier = Modifier.size(60.dp).clip(CircleShape).background(Color.LightGray),
-    contentAlignment = Alignment.Center
-) {
-    Icon(imageVector = Icons.Default.Person, contentDescription = "头像")
-}
-```
-
-替换为真实图片：
-```kotlin
-Image(
-    painter = painterResource(id = R.drawable.user_avatar),
-    contentDescription = "用户头像",
-    modifier = Modifier.size(60.dp).clip(CircleShape),
-    contentScale = ContentScale.Crop
-)
-```
-
-**4. 需要添加的导入**
-```kotlin
-import androidx.compose.foundation.Image
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.layout.ContentScale
-```
 
 **5. 图片资源目录结构建议**
 ```
@@ -345,74 +309,89 @@ app/src/main/res/drawable/
 └── rider_avatar_1.png       # 骑手头像
 ```
 
-**6. 需要的菜品图片清单** (共40个菜品)
+**6. 菜品图片清单及映射关系** (共40个菜品)
 
-由于products.json已扩展到40个产品,需要以下菜品图片文件。建议使用AI工具(如Midjourney、DALL-E等)生成:
+所有图片已放置在 `app/src/main/res/drawable/` 目录下：
 
 **川香麻辣烫 (rest_001):**
-- `product_malatang.png` - 麻辣烫(大份)
-- `product_tudoufen.png` - 土豆粉
-- `product_hongyouchaoshou.png` - 红油抄手
-- `product_suanlafen.png` - 酸辣粉
-- `product_cola.png` - 可乐
+- `prod_001.png` → 麻辣烫(大份) [prod_001]
+- `prod_006.png` → 可乐 [prod_006]
+- `prod_019.png` → 土豆粉 [prod_019]
+- `prod_020.png` → 红油抄手 [prod_020]
+- `prod_021.png` → 酸辣粉 [prod_021]
 
 **老北京炸酱面 (rest_002):**
-- `product_zhajiangmian.png` - 老北京炸酱面
-- `product_jingjiangrousi.png` - 京酱肉丝
-- `product_zhaguanchang.png` - 炸灌肠
-- `product_jiroujuan.png` - 老北京鸡肉卷
+- `prod_002.png` → 老北京炸酱面 [prod_002]
+- `prod_022.png` → 京酱肉丝 [prod_022]
+- `prod_023.png` → 炸灌肠 [prod_023]
+- `prod_024.png` → 老北京鸡肉卷 [prod_024]
 
 **湘味轩 (rest_003):**
-- `product_duojiaoyutou.png` - 剁椒鱼头
-- `product_maoxuewang.png` - 毛血旺
-- `product_nongjia_xiaochaorou.png` - 农家小炒肉
-- `product_kouweixia.png` - 口味虾
-- `product_waipocai.png` - 湘西外婆菜
+- `xiangweixuan_1.png` → 口味虾 [prod_026]
+- `xiangweixuan_2.png` → 毛血旺 [prod_008]
+- `xiangweixuan_3.png` → 湘西外婆菜 [prod_027]
+- `xiangweixuan_4.png` → 剁椒鱼头 [prod_003]
+- `xiangweixuan_5.png` → 农家小炒肉 [prod_025]
 
 **粤式早茶 (rest_004):**
-- `product_xiajiao.png` - 虾饺
-- `product_shaoe.png` - 烧鹅
-- `product_liushabao.png` - 流沙包
-- `product_chashaobao.png` - 叉烧包
-- `product_changfen.png` - 肠粉
+- `yueshi_zaocha_1.png` → 虾饺 [prod_004]
+- `yueshi_zaocha_2.png` → 烧鹅 [prod_007]
+- `yueshi_zaocha_3.png` → 流沙包 [prod_028]
+- `yueshi_zaocha_4.png` → 叉烧包 [prod_029]
+- `yueshi_zaocha_5.png` → 肠粉 [prod_030]
 
 **韩式炸鸡 (rest_005):**
-- `product_friedchicken.png` - 韩式炸鸡全家桶
-- `product_zhajitui.png` - 韩式炸鸡腿
-- `product_zhajichi.png` - 韩式炸鸡翅
-- `product_nian_gao_lamian.png` - 年糕炒拉面
+- `hanshi_zhaji_1.png` → 韩式炸鸡全家桶 [prod_005]
+- `hanshi_zhaji_2.png` → 韩式炸鸡腿 [prod_031]
+- `hanshi_zhaji_3.png` → 韩式炸鸡翅 [prod_032]
+- `hanshi_zhaji_4.png` → 年糕炒拉面 [prod_033]
 
 **瑞幸咖啡 (rest_006):**
-- `product_coconut_latte.png` - 生椰拿铁
-- `product_americano.png` - 美式咖啡
-- `product_hounai_latte.png` - 厚乳拿铁
-- `product_yunshi_latte.png` - 陨石拿铁
+- `ruixin_1.png` → 生椰拿铁 [prod_009]
+- `ruixin_2.png` → 美式咖啡 [prod_010]
+- `ruixin_3.png` → 厚乳拿铁 [prod_034]
+- `ruixin_4.png` → 陨石拿铁 [prod_035]
 
 **茶百道 (rest_007):**
-- `product_yangzhiganlv.png` - 杨枝甘露
-- `product_pearl_milk_tea.png` - 珍珠奶茶
-- `product_yunai_bobo.png` - 芋泥波波奶茶
-- `product_shaoxiancao.png` - 烧仙草
+- `chabaidao_1.png` → 杨枝甘露 [prod_011]
+- `chabaidao_2.png` → 珍珠奶茶 [prod_012]
+- `chabaidao_3.png` → 芋泥波波奶茶 [prod_036]
+- `chabaidao_4.png` → 烧仙草 [prod_037]
 
 **蜜雪冰城 (rest_008):**
-- `product_lemon_water.png` - 柠檬水
-- `product_icecream_tea.png` - 冰淇淋奶茶
-- `product_icecream_sundae.png` - 冰淇淋圣代
+- `mixuebingc_1.png` → 柠檬水 [prod_013]
+- `mixuebingc_2.png` → 冰淇淋奶茶 [prod_014]
+- `mixuebingc_3.png` → 冰淇淋圣代 [prod_038]
 
 **星巴克 (rest_009):**
-- `product_caramel_macchiato.png` - 焦糖玛奇朵
-- `product_matcha_latte.png` - 抹茶拿铁
-- `product_mocha.png` - 摩卡咖啡
+- `xingbake_1.png` → 焦糖玛奇朵 [prod_015]
+- `xingbake_2.png` → 抹茶拿铁 [prod_016]
+- `xingbake_3.png` → 摩卡咖啡 [prod_039]
 
 **喜茶 (rest_010):**
-- `product_grape_tea.png` - 多肉葡萄
-- `product_strawberry_cheese.png` - 芝芝莓莓
-- `product_mango_ganlv.png` - 芒芒甘露
+- `xicha_1.png` → 多肉葡萄 [prod_017]
+- `xicha_2.png` → 芝芝莓莓 [prod_018]
+- `xicha.png` → 芒芒甘露 [prod_040]
+
+**其他图片资源:**
+- `user_avatar.png` - 用户头像
+- `rider_avatar.png` - 骑手头像
+- `hot_deal.png`, `hot_deal_1.png` ~ `hot_deal_4.png` - 爆品团商品图片
+- `chuanxiang_malatang.png` - 川香麻辣烫商家Logo
+- `laobeijing_zhajangmian.png` - 老北京炸酱面商家Logo
+- `xiangweixuan.png` - 湘味轩商家Logo
+- `yueshi_zaocha.png` - 粤式早茶商家Logo
+- `hanshi_zhaji.png` - 韩式炸鸡商家Logo
+- `luckin_coffee.png` - 瑞幸咖啡商家Logo
+- `chabaidao.png` - 茶百道商家Logo
+- `mixue.png` - 蜜雪冰城商家Logo
+- `starbucks.png` - 星巴克商家Logo
+- `heytea.png` - 喜茶商家Logo
 
 **注意**：
-- 图片尺寸建议：512x512或1024x1024像素
-- 图片文件添加后需要重新构建项目（Build > Rebuild Project）
-- 所有图片应放入 `app/src/main/res/drawable/` 目录
+- 所有图片已配置在ImageUtils.kt中
+- 图片映射关系通过productId精确匹配
+- 图片文件添加或修改后需要重新构建项目（Build > Rebuild Project）
 
 ## 构建状态
 
@@ -421,6 +400,16 @@ app/src/main/res/drawable/
 构建时间：约21秒
 
 ## 更新日志
+
+### 2025-10-24 (第十三次更新 - 湘味轩菜品图片调换)
+- ✅ 调换湘味轩菜品图片映射关系
+  - ✅ 剁椒鱼头 [prod_003] ←→ 口味虾 [prod_026] 图片互换
+  - ✅ 农家小炒肉 [prod_025] ←→ 湘西外婆菜 [prod_027] 图片互换
+- ✅ 更新ImageUtils.kt中湘味轩商品的图片映射
+- ✅ 更新README文档，添加完整的菜品图片清单及映射关系
+- ✅ 包含所有40个菜品对应的图片文件名和商品ID
+- ✅ 北京烤鸭和川香炸酱面店的图片映射保持不变
+- ✅ 所有修改已通过构建测试
 
 ### 2025-10-23 (第十二次更新 - 商品图片完整配置)
 - ✅ 为8个商家添加31张真实商品图片

@@ -48,6 +48,7 @@ data class Restaurant(
     val distance: Double,                     // 距离（公里）
     val minDeliveryAmount: Double,            // 起送价
     val deliveryFee: Double,                  // 配送费
+    val averagePrice: Double,                 // 人均价
     val cuisineType: String,                  // 菜系类型
     val features: List<RestaurantFeature> = emptyList(), // 商家特色
     val products: List<Product> = emptyList(), // 商品列表

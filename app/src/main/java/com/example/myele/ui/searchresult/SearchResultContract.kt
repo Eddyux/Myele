@@ -21,8 +21,9 @@ interface SearchResultContract {
 }
 
 enum class SortType {
-    COMPREHENSIVE,  // 综合排序
-    SALES,          // 销量优先
-    SPEED,          // 速度优先
-    FILTER          // 筛选
+    COMPREHENSIVE,      // 综合排序
+    PRICE_LOW_TO_HIGH, // 人均价低到高
+    DISTANCE,          // 距离优先
+    RATING,            // 商家好评优先
+    MIN_DELIVERY       // 起送低到高
 }

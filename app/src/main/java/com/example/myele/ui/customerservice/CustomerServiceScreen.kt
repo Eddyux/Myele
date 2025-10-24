@@ -59,7 +59,7 @@ fun CustomerServiceScreen(navController: NavController, repository: DataReposito
             )
         },
         bottomBar = {
-            BottomButtons()
+            BottomButtons(navController)
         }
     ) { padding ->
         LazyColumn(
@@ -464,7 +464,7 @@ fun HotQuestions() {
 }
 
 @Composable
-fun BottomButtons() {
+fun BottomButtons(navController: NavController) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color.White,
@@ -490,7 +490,9 @@ fun BottomButtons() {
             }
 
             Button(
-                onClick = { /* TODO */ },
+                onClick = {
+                    navController.navigate("my_kefu")
+                },
                 modifier = Modifier
                     .weight(1f)
                     .height(48.dp),

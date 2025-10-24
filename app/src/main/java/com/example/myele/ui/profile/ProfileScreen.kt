@@ -475,6 +475,33 @@ fun FunctionItem(item: ProfileMenuItem, navController: NavController) {
 
 @Composable
 fun RecommendedFood() {
+    val restaurants = listOf(
+        RestaurantInfo(
+            name = "金长风荷叶烤鸡",
+            description = "招牌荷叶烤鸡，香嫩入味",
+            deliveryTime = "35分钟",
+            distance = "2.1km",
+            startPrice = "¥28起",
+            imageName = "chicken_restaurant"
+        ),
+        RestaurantInfo(
+            name = "川香麻辣烫",
+            description = "正宗川味，麻辣鲜香",
+            deliveryTime = "25分钟",
+            distance = "1.2km",
+            startPrice = "¥15起",
+            imageName = "malatang_restaurant"
+        ),
+        RestaurantInfo(
+            name = "瑞幸咖啡",
+            description = "精品咖啡，提神醒脑",
+            deliveryTime = "20分钟",
+            distance = "0.8km",
+            startPrice = "¥9.9起",
+            imageName = "coffee_restaurant"
+        )
+    )
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -488,7 +515,7 @@ fun RecommendedFood() {
             modifier = Modifier.padding(bottom = 12.dp)
         )
 
-        repeat(3) {
+        restaurants.forEach { restaurant ->
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -503,29 +530,35 @@ fun RecommendedFood() {
                         .padding(12.dp)
                 ) {
                     RestaurantImage(
-                        restaurantName = "美味餐厅",
+                        restaurantName = restaurant.name,
                         size = 80.dp,
                         cornerRadius = 8.dp
                     )
 
                     Spacer(modifier = Modifier.width(12.dp))
 
-                    Column {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "美味餐厅",
+                            text = restaurant.name,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "30分钟 | 1.5km",
+                            text = restaurant.description,
                             fontSize = 12.sp,
                             color = Color.Gray
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "¥25起",
+                            text = "${restaurant.deliveryTime} | ${restaurant.distance}",
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = restaurant.startPrice,
                             fontSize = 14.sp,
                             color = Color(0xFFFF3366),
                             fontWeight = FontWeight.Bold
@@ -536,3 +569,12 @@ fun RecommendedFood() {
         }
     }
 }
+
+data class RestaurantInfo(
+    val name: String,
+    val description: String,
+    val deliveryTime: String,
+    val distance: String,
+    val startPrice: String,
+    val imageName: String
+)
