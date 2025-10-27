@@ -22,6 +22,9 @@ object ImageUtils {
             "星巴克" -> R.drawable.starbucks
             "喜茶" -> R.drawable.heytea
             "金长风荷叶烤鸡" -> R.drawable.jinchangfeng_heyekaoji
+            "北京烤鸭" -> R.drawable.bjky
+            "美滋滋烤肉拌饭" -> R.drawable.meizizi_krbf
+            "KFC" -> R.drawable.kfc
             else -> 0 // 返回0表示没有对应的图片
         }
     }
