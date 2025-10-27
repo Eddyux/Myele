@@ -107,7 +107,10 @@ fun TakeoutScreen(navController: NavController) {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(restaurants) { restaurant ->
-                        TakeoutRestaurantCard(restaurant = restaurant)
+                        TakeoutRestaurantCard(
+                            restaurant = restaurant,
+                            navController = navController
+                        )
                     }
                 }
             }
@@ -476,7 +479,6 @@ fun SortOption(
 }
 
 // 筛选弹窗
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterDialog(
     onDismiss: () -> Unit,
@@ -486,15 +488,27 @@ fun FilterDialog(
     var selectedFeatures by remember { mutableStateOf(setOf<String>()) }
     var selectedPriceRange by remember { mutableStateOf<String?>(null) }
 
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = Color.White
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable { onDismiss() }
     ) {
-        LazyColumn(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(max = 600.dp)
+                .align(Alignment.TopEnd)
+                .padding(top = 180.dp)
+                .clickable(enabled = false) { },
+            color = Color.White,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 600.dp)
+            ) {
             item {
                 // 优惠活动
                 Text(
@@ -685,6 +699,7 @@ fun FilterDialog(
                     }
                 }
             }
+            }
         }
     }
 }
@@ -725,12 +740,14 @@ fun FlowRow(
 }
 
 @Composable
-fun TakeoutRestaurantCard(restaurant: Restaurant) {
+fun TakeoutRestaurantCard(restaurant: Restaurant, navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp)
-            .clickable { /* TODO */ },
+            .clickable {
+                navController.navigate("${com.example.myele.navigation.Screen.StorePage.route}/${restaurant.restaurantId}")
+            },
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {

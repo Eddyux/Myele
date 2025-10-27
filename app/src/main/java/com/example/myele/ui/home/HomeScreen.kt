@@ -142,7 +142,7 @@ fun TopTabBar(tabs: List<String>, selectedTab: Int, onTabSelected: (Int) -> Unit
                     modifier = Modifier.clickable { /* 切换地址 */ }
                 ) {
                     Text(
-                        text = "华中师范大学宝山学...",
+                        text = "华中师范大学元宝山...",
                         fontSize = 12.sp,
                         color = Color.Gray,
                         maxLines = 1,

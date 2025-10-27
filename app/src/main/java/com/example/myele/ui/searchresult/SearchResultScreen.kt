@@ -69,7 +69,8 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
             // 顶部搜索栏
             TopBar(
                 keyword = keyword,
-                onBackClicked = { navController.popBackStack() }
+                onBackClicked = { navController.popBackStack() },
+                navController = navController
             )
 
             // 排序选项
@@ -92,7 +93,10 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
                     modifier = Modifier.fillMaxSize()
                 ) {
                     items(restaurants) { restaurant ->
-                        SearchResultRestaurantCard(restaurant = restaurant)
+                        SearchResultRestaurantCard(
+                            restaurant = restaurant,
+                            navController = navController
+                        )
                     }
 
                     // 底部红包提示
@@ -127,7 +131,7 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
 }
 
 @Composable
-fun TopBar(keyword: String, onBackClicked: () -> Unit) {
+fun TopBar(keyword: String, onBackClicked: () -> Unit, navController: NavController) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color.White
@@ -147,7 +151,12 @@ fun TopBar(keyword: String, onBackClicked: () -> Unit) {
             }
 
             Surface(
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable {
+                        navController.popBackStack()
+                        navController.navigate(com.example.myele.navigation.Screen.Search.route)
+                    },
                 shape = RoundedCornerShape(20.dp),
                 color = Color(0xFFF5F5F5)
             ) {
@@ -246,48 +255,60 @@ fun SortOptions(
     }
 }
 
-// 排序弹窗
-@OptIn(ExperimentalMaterial3Api::class)
+// 排序弹窗 - 从综合排序按钮向下展开
 @Composable
 fun SortDialog(
     selectedSortType: SortType,
     onSortTypeSelected: (SortType) -> Unit,
     onDismiss: () -> Unit
 ) {
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = Color.White
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable { onDismiss() }
     ) {
-        Column(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 32.dp)
+                .align(Alignment.TopStart)
+                .padding(top = 100.dp)
+                .clickable(enabled = false) { },
+            color = Color.White,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
-            SortDialogOption(
-                text = "综合排序",
-                isSelected = selectedSortType == SortType.COMPREHENSIVE,
-                onClick = { onSortTypeSelected(SortType.COMPREHENSIVE) }
-            )
-            SortDialogOption(
-                text = "人均价低到高",
-                isSelected = selectedSortType == SortType.PRICE_LOW_TO_HIGH,
-                onClick = { onSortTypeSelected(SortType.PRICE_LOW_TO_HIGH) }
-            )
-            SortDialogOption(
-                text = "距离优先",
-                isSelected = selectedSortType == SortType.DISTANCE,
-                onClick = { onSortTypeSelected(SortType.DISTANCE) }
-            )
-            SortDialogOption(
-                text = "商家好评优先",
-                isSelected = selectedSortType == SortType.RATING,
-                onClick = { onSortTypeSelected(SortType.RATING) }
-            )
-            SortDialogOption(
-                text = "起送低到高",
-                isSelected = selectedSortType == SortType.MIN_DELIVERY,
-                onClick = { onSortTypeSelected(SortType.MIN_DELIVERY) }
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                SortDialogOption(
+                    text = "综合排序",
+                    isSelected = selectedSortType == SortType.COMPREHENSIVE,
+                    onClick = { onSortTypeSelected(SortType.COMPREHENSIVE) }
+                )
+                SortDialogOption(
+                    text = "人均价低到高",
+                    isSelected = selectedSortType == SortType.PRICE_LOW_TO_HIGH,
+                    onClick = { onSortTypeSelected(SortType.PRICE_LOW_TO_HIGH) }
+                )
+                SortDialogOption(
+                    text = "距离优先",
+                    isSelected = selectedSortType == SortType.DISTANCE,
+                    onClick = { onSortTypeSelected(SortType.DISTANCE) }
+                )
+                SortDialogOption(
+                    text = "商家好评优先",
+                    isSelected = selectedSortType == SortType.RATING,
+                    onClick = { onSortTypeSelected(SortType.RATING) }
+                )
+                SortDialogOption(
+                    text = "起送低到高",
+                    isSelected = selectedSortType == SortType.MIN_DELIVERY,
+                    onClick = { onSortTypeSelected(SortType.MIN_DELIVERY) }
+                )
+            }
         }
     }
 }
@@ -323,7 +344,6 @@ fun SortDialogOption(
 }
 
 // 筛选弹窗
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun FilterDialog(
     onDismiss: () -> Unit,
@@ -333,15 +353,27 @@ fun FilterDialog(
     var selectedFeatures by remember { mutableStateOf(setOf<String>()) }
     var selectedPriceRange by remember { mutableStateOf<String?>(null) }
 
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = Color.White
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable { onDismiss() }
     ) {
-        LazyColumn(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(max = 600.dp)
+                .align(Alignment.TopEnd)
+                .padding(top = 120.dp)
+                .clickable(enabled = false) { },
+            color = Color.White,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 600.dp)
+            ) {
             item {
                 // 优惠活动
                 Text(
@@ -532,6 +564,7 @@ fun FilterDialog(
                     }
                 }
             }
+            }
         }
     }
 }
@@ -572,12 +605,14 @@ fun FlowRow(
 }
 
 @Composable
-fun SearchResultRestaurantCard(restaurant: Restaurant) {
+fun SearchResultRestaurantCard(restaurant: Restaurant, navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp)
-            .clickable { /* TODO */ },
+            .clickable {
+                navController.navigate(com.example.myele.navigation.Screen.StorePage.createRoute(restaurant.restaurantId))
+            },
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {
@@ -722,11 +757,13 @@ fun SearchResultRestaurantCard(restaurant: Restaurant) {
             Spacer(modifier = Modifier.height(8.dp))
 
             // 商品列表
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                items(3) { _ ->
-                    ProductItem()
+            if (restaurant.products.isNotEmpty()) {
+                LazyRow(
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    items(restaurant.products.take(3)) { product ->
+                        ProductItem(product)
+                    }
                 }
             }
         }
@@ -734,34 +771,30 @@ fun SearchResultRestaurantCard(restaurant: Restaurant) {
 }
 
 @Composable
-fun ProductItem() {
+fun ProductItem(product: com.example.myele.model.Product) {
     Column(
         modifier = Modifier.width(80.dp)
     ) {
-        Box(
-            modifier = Modifier
-                .size(80.dp)
-                .clip(RoundedCornerShape(8.dp))
-                .background(Color.LightGray),
-            contentAlignment = Alignment.Center
-        ) {
-            Icon(
-                imageVector = Icons.Default.LocalDrink,
-                contentDescription = null,
-                tint = Color.White,
-                modifier = Modifier.size(32.dp)
-            )
-        }
+        com.example.myele.ui.components.ProductImage(
+            productId = product.productId,
+            productName = product.name,
+            size = 80.dp,
+            cornerRadius = 8.dp
+        )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
-            text = "双拼奶茶",
+            text = product.name,
             fontSize = 12.sp,
             color = Color.Black,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis
         )
         Text(
-            text = "¥14 起",
+            text = if (product.originalPrice != null && product.originalPrice > product.price) {
+                "¥${product.price}"
+            } else {
+                "¥${product.price} 起"
+            },
             fontSize = 12.sp,
             color = Color(0xFFFF6B00),
             fontWeight = FontWeight.Bold

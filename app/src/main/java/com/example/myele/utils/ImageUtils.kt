@@ -21,6 +21,7 @@ object ImageUtils {
             "蜜雪冰城" -> R.drawable.mixue
             "星巴克" -> R.drawable.starbucks
             "喜茶" -> R.drawable.heytea
+            "金长风荷叶烤鸡" -> R.drawable.jinchangfeng_heyekaoji
             else -> 0 // 返回0表示没有对应的图片
         }
     }

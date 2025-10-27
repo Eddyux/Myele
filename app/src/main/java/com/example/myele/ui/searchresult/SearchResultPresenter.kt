@@ -3,8 +3,11 @@ package com.example.myele.ui.searchresult
 import android.content.Context
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Restaurant
+import com.example.myele.model.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -18,19 +21,35 @@ class SearchResultPresenter(
 
     private val repository = DataRepository(context)
     private var allRestaurants = listOf<Restaurant>()
+    private var allProducts = listOf<Product>()
     private var currentSortType = SortType.COMPREHENSIVE
+    private val presenterScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onViewCreated(keyword: String) {
         view.showLoading()
-        CoroutineScope(Dispatchers.IO).launch {
-            val restaurants = repository.loadRestaurants()
-            // 根据关键词过滤餐厅
-            allRestaurants = restaurants.filter { restaurant ->
-                matchesKeyword(restaurant, keyword)
-            }
-            withContext(Dispatchers.Main) {
+        presenterScope.launch {
+            try {
+                val restaurants = withContext(Dispatchers.IO) {
+                    repository.loadRestaurants()
+                }
+                val products = withContext(Dispatchers.IO) {
+                    repository.loadProducts()
+                }
+                allProducts = products
+
+                // 根据关键词过滤餐厅，并为每个餐厅关联产品
+                allRestaurants = restaurants.filter { restaurant ->
+                    matchesKeyword(restaurant, keyword)
+                }.map { restaurant ->
+                    val restaurantProducts = allProducts.filter { it.restaurantId == restaurant.restaurantId }
+                    restaurant.copy(products = restaurantProducts.take(3))
+                }
+
                 view.hideLoading()
                 sortAndUpdateRestaurants(currentSortType)
+            } catch (e: Exception) {
+                view.hideLoading()
+                e.printStackTrace()
             }
         }
     }
@@ -72,7 +91,8 @@ class SearchResultPresenter(
     }
 
     override fun onDestroy() {
-        // 清理资源
+        // 清理资源，取消所有协程
+        presenterScope.cancel()
     }
 
     private fun sortAndUpdateRestaurants(sortType: SortType) {

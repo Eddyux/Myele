@@ -387,6 +387,7 @@ app/src/main/res/drawable/
 - `mixue.png` - 蜜雪冰城商家Logo
 - `starbucks.png` - 星巴克商家Logo
 - `heytea.png` - 喜茶商家Logo
+- `jinchangfeng_heyekaoji.png` - 金长风荷叶烤鸡商家Logo
 
 **注意**：
 - 所有图片已配置在ImageUtils.kt中
@@ -395,11 +396,50 @@ app/src/main/res/drawable/
 
 ## 构建状态
 
-✅ 最新构建：成功 (BUILD SUCCESSFUL)
+✅ 最新构建：成功 (Debug BUILD SUCCESSFUL in 12s)
 
-构建时间：约21秒
+注意：Release构建存在部分图片格式问题，不影响Debug开发和测试
 
 ## 更新日志
+
+### 2025-10-27 (第十五次更新 - Bug修复)
+- ✅ 修复Profile页面荷叶鸡商家图片引用
+  - ✅ 在ImageUtils中添加"金长风荷叶烤鸡"到jinchangfeng_heyekaoji图片的映射
+- ✅ 修复SearchResult页面跳转商家页面闪退问题
+  - ✅ 修正导航路由调用方式，使用createRoute方法而非直接拼接route模板
+  - ✅ SearchResultPresenter使用正确的协程生命周期管理
+  - ✅ 使用SupervisorJob和主线程Dispatcher
+  - ✅ 在onDestroy中取消协程scope，避免内存泄漏
+  - ✅ 添加异常处理机制
+- ✅ 修改综合排序功能为从按钮向下展开
+  - ✅ 将SortDialog从ModalBottomSheet改为Box+Surface实现
+  - ✅ 与筛选弹窗保持一致的交互方式
+  - ✅ 从综合排序按钮位置向下展开，而非从底部弹出
+- ✅ 所有修改已通过构建测试 (Debug BUILD SUCCESSFUL in 48s)
+
+### 2025-10-27 (第十四次更新 - 搜索与导航功能优化)
+- ✅ 实现智能搜索功能
+  - ✅ 支持拼音搜索 (如搜索"mixue"可找到"蜜雪冰城")
+  - ✅ 支持拼音缩写 (如搜索"mxbc"可找到"蜜雪冰城")
+  - ✅ 支持部分拼音匹配 (如搜索"mi"、"mix"均可找到"蜜雪冰城")
+  - ✅ 已为所有商家配置搜索关键词 (瑞幸、茶百道、星巴克、喜茶、川香麻辣烫等)
+- ✅ 优化筛选UI
+  - ✅ 筛选框改为从筛选按钮位置向下展开（而非从底部弹出）
+  - ✅ SearchResultScreen和TakeoutScreen均已更新
+  - ✅ 使用Box+Surface实现下拉效果，带半透明背景
+- ✅ 搜索结果页面增强
+  - ✅ 显示商家的真实商品图片（从products.json加载）
+  - ✅ 每个商家显示最多3个商品
+  - ✅ 商品图片使用ProductImage组件，支持动态加载
+  - ✅ 搜索框可点击，点击后返回搜索页面重新搜索
+- ✅ 导航功能完善
+  - ✅ 外卖页面商家卡片可点击进入商家详情页
+  - ✅ 搜索结果页面商家卡片可点击进入商家详情页
+  - ✅ 导航使用餐厅ID参数，确保显示正确的商家信息
+- ✅ 首页地址显示修正
+  - ✅ 地址文本从"华中师范大学宝山学..."改为"华中师范大学元宝山..."
+  - ✅ 与用户地址数据保持一致
+- ✅ 所有修改已通过构建测试 (BUILD SUCCESSFUL in 48s)
 
 ### 2025-10-24 (第十三次更新 - 湘味轩菜品图片调换)
 - ✅ 调换湘味轩菜品图片映射关系
