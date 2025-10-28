@@ -367,6 +367,8 @@ fun PendingReviewCard(order: Order) {
 
 @Composable
 fun CompletedReviewCard(review: Review, order: Order) {
+    var showDeleteDialog by remember { mutableStateOf(false) }
+
     Surface(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(12.dp),
@@ -518,17 +520,8 @@ fun CompletedReviewCard(review: Review, order: Order) {
                     .padding(top = 12.dp),
                 horizontalArrangement = Arrangement.End
             ) {
-                TextButton(onClick = { }) {
-                    Icon(
-                        imageVector = Icons.Default.Edit,
-                        contentDescription = null,
-                        modifier = Modifier.size(16.dp)
-                    )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("修改", fontSize = 13.sp)
-                }
                 if (review.canDelete) {
-                    TextButton(onClick = { }) {
+                    TextButton(onClick = { showDeleteDialog = true }) {
                         Icon(
                             imageVector = Icons.Default.Delete,
                             contentDescription = null,
@@ -538,6 +531,117 @@ fun CompletedReviewCard(review: Review, order: Order) {
                         Text("删除", fontSize = 13.sp)
                     }
                 }
+            }
+        }
+    }
+
+    // 删除确认弹窗
+    if (showDeleteDialog) {
+        DeleteReviewDialog(
+            onDismiss = { showDeleteDialog = false },
+            onDelete = {
+                // TODO: 执行删除逻辑
+                showDeleteDialog = false
+            },
+            onAnonymous = {
+                // TODO: 设为匿名
+                showDeleteDialog = false
+            }
+        )
+    }
+}
+
+@Composable
+fun DeleteReviewDialog(
+    onDismiss: () -> Unit,
+    onDelete: () -> Unit,
+    onAnonymous: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.5f))
+            .clickable(enabled = false) { },
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(horizontal = 32.dp)
+        ) {
+            // 主弹窗卡片
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                shape = RoundedCornerShape(16.dp),
+                color = Color.White
+            ) {
+                Column(
+                    modifier = Modifier.padding(24.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "删除评价不可恢复",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Black
+                    )
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Text(
+                        text = "不想让别人看到可以设为匿名哦",
+                        fontSize = 14.sp,
+                        color = Color.Gray,
+                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                    )
+
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        // 删除按钮
+                        OutlinedButton(
+                            onClick = onDelete,
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(24.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                contentColor = Color.Black
+                            )
+                        ) {
+                            Text("删除", fontSize = 16.sp)
+                        }
+
+                        // 设为匿名按钮
+                        Button(
+                            onClick = onAnonymous,
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(24.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF00BFFF)
+                            )
+                        ) {
+                            Text("设为匿名", fontSize = 16.sp)
+                        }
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            // 关闭按钮
+            IconButton(
+                onClick = onDismiss,
+                modifier = Modifier
+                    .size(48.dp)
+                    .background(Color.Transparent, CircleShape)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Close,
+                    contentDescription = "关闭",
+                    tint = Color.White,
+                    modifier = Modifier.size(32.dp)
+                )
             }
         }
     }

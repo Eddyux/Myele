@@ -19,17 +19,21 @@ import com.example.myele.ui.searchresult.SearchResultScreen
 import com.example.myele.ui.takeout.TakeoutScreen
 import com.example.myele.ui.messages.MessagesScreen
 import com.example.myele.ui.messagedetail.MessageDetailScreen
+import com.example.myele.ui.merchantchat.MerchantChatScreen
 import com.example.myele.ui.shoppingcart.ShoppingCartScreen
 import com.example.myele.ui.profile.ProfileScreen
 import com.example.myele.ui.checkout.CheckoutScreen
+import com.example.myele.ui.paymentsuccess.PaymentSuccessScreen
 import com.example.myele.ui.foodiecard.FoodieCardScreen
 import com.example.myele.ui.myorders.MyOrdersScreen
 import com.example.myele.ui.orderdetail.OrderDetailScreen
+import com.example.myele.ui.foodinsurance.FoodInsuranceScreen
 import com.example.myele.ui.onlinechat.OnlineChatScreen
 import com.example.myele.ui.coupons.CouponsScreen
 import com.example.myele.ui.reviews.ReviewsScreen
 import com.example.myele.ui.mybills.MyBillsScreen
 import com.example.myele.ui.myaddresses.MyAddressesScreen
+import com.example.myele.ui.myaddresses.AddressEditScreen
 import com.example.myele.ui.myfollows.MyFollowsScreen
 import com.example.myele.ui.frequentstores.FrequentStoresScreen
 import com.example.myele.ui.customerservice.CustomerServiceScreen
@@ -71,7 +75,21 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
         }
 
         composable(Screen.Checkout.route) {
-            CheckoutScreen(navController)
+            CheckoutScreen(navController, repository)
+        }
+
+        composable(
+            route = Screen.PaymentSuccess.route,
+            arguments = listOf(
+                navArgument("orderId") { type = NavType.StringType },
+                navArgument("amount") { type = NavType.StringType },
+                navArgument("paymentMethod") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId") ?: ""
+            val amount = backStackEntry.arguments?.getString("amount")?.toDoubleOrNull() ?: 0.0
+            val paymentMethod = backStackEntry.arguments?.getString("paymentMethod") ?: "微信支付"
+            PaymentSuccessScreen(navController, orderId, amount, paymentMethod)
         }
 
         composable(
@@ -92,6 +110,10 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
         ) { backStackEntry ->
             val riderName = backStackEntry.arguments?.getString("riderName") ?: "骑手"
             MessageDetailScreen(navController, riderName)
+        }
+
+        composable(Screen.MerchantChat.route) {
+            MerchantChatScreen(navController)
         }
 
         composable(Screen.ShoppingCart.route) {
@@ -119,6 +141,14 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
             OrderDetailScreen(navController, repository, orderId)
         }
 
+        composable(
+            route = Screen.FoodInsurance.route,
+            arguments = listOf(navArgument("orderId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val orderId = backStackEntry.arguments?.getString("orderId") ?: ""
+            FoodInsuranceScreen(navController, repository, orderId)
+        }
+
         composable(Screen.OnlineChat.route) {
             OnlineChatScreen(navController)
         }
@@ -137,6 +167,19 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(Screen.MyAddresses.route) {
             MyAddressesScreen(navController, repository)
+        }
+
+        composable(
+            route = Screen.AddressEdit.route,
+            arguments = listOf(
+                navArgument("addressId") {
+                    type = NavType.StringType
+                    nullable = true
+                }
+            )
+        ) { backStackEntry ->
+            val addressId = backStackEntry.arguments?.getString("addressId")
+            AddressEditScreen(navController, repository, addressId)
         }
 
         composable(Screen.MyFollows.route) {

@@ -1,5 +1,6 @@
 package com.example.myele.ui.checkout
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,9 +22,13 @@ import com.example.myele.data.CartManager
 import com.example.myele.ui.components.ProductImage
 
 @Composable
-fun CheckoutScreen(navController: NavController) {
+fun CheckoutScreen(navController: NavController, repository: com.example.myele.data.DataRepository) {
     var deliveryMethod by remember { mutableStateOf("外卖配送") }
     var deliveryTime by remember { mutableStateOf("立即送出") }
+    var showCouponDialog by remember { mutableStateOf(false) }
+    var selectedCoupon by remember { mutableStateOf<com.example.myele.model.Coupon?>(null) }
+    var paymentMethod by remember { mutableStateOf("微信支付") }
+    var showPaymentDialog by remember { mutableStateOf(false) }
 
     // Get checkout products from CartManager
     val checkoutProducts = remember { CartManager.getCheckoutProducts() }
@@ -33,6 +38,27 @@ fun CheckoutScreen(navController: NavController) {
     val productsByRestaurant = remember {
         checkoutProducts.groupBy { it.first.restaurantName }
     }
+
+    // Get restaurant IDs from products
+    val restaurantIds = remember {
+        checkoutProducts.map { it.first.restaurantId }.distinct()
+    }
+
+    // Load available coupons
+    val allCoupons = remember { repository.getCoupons() }
+    val availableCoupons = remember(subtotal, restaurantIds) {
+        allCoupons.filter { coupon ->
+            coupon.status == com.example.myele.model.CouponStatus.AVAILABLE &&
+            (coupon.applicableRestaurants.isEmpty() ||
+             restaurantIds.any { it in coupon.applicableRestaurants }) &&
+            (coupon.minOrderAmount == null || subtotal >= (coupon.minOrderAmount ?: 0.0))
+        }.sortedByDescending {
+            it.calculateDiscount(subtotal)
+        }
+    }
+
+    // Calculate discount
+    val couponDiscount = selectedCoupon?.calculateDiscount(subtotal) ?: 0.0
 
     Column(
         modifier = Modifier
@@ -78,9 +104,20 @@ fun CheckoutScreen(navController: NavController) {
                 }
             }
 
+            // 优惠券选择
+            item {
+                CouponSelectionSection(
+                    selectedCoupon = selectedCoupon,
+                    onClick = { showCouponDialog = true }
+                )
+            }
+
             // 订单费用明细
             item {
-                OrderFeesSection(subtotal = subtotal)
+                OrderFeesSection(
+                    subtotal = subtotal,
+                    couponDiscount = couponDiscount
+                )
             }
 
             // 备注和餐具
@@ -90,12 +127,57 @@ fun CheckoutScreen(navController: NavController) {
 
             // 支付方式
             item {
-                PaymentMethodSection()
+                PaymentMethodSection(
+                    selectedMethod = paymentMethod,
+                    onClick = { showPaymentDialog = true }
+                )
             }
         }
 
         // 底部提交订单
-        BottomSubmitBar(total = subtotal + 2.0 + 5.0)
+        BottomSubmitBar(
+            total = subtotal + 2.0 + 5.0 - couponDiscount,
+            onSubmit = {
+                // 创建订单并导航到支付成功页面
+                val orderId = "order_${System.currentTimeMillis()}"
+                val totalAmount = subtotal + 2.0 + 5.0 - couponDiscount
+
+                // 导航到支付成功页面
+                navController.navigate(
+                    com.example.myele.navigation.Screen.PaymentSuccess.createRoute(
+                        orderId = orderId,
+                        amount = totalAmount,
+                        paymentMethod = paymentMethod
+                    )
+                )
+            }
+        )
+    }
+
+    // 优惠券选择弹窗
+    if (showCouponDialog) {
+        CouponSelectionDialog(
+            availableCoupons = availableCoupons,
+            selectedCoupon = selectedCoupon,
+            subtotal = subtotal,
+            onCouponSelected = { coupon ->
+                selectedCoupon = coupon
+                showCouponDialog = false
+            },
+            onDismiss = { showCouponDialog = false }
+        )
+    }
+
+    // 支付方式选择弹窗
+    if (showPaymentDialog) {
+        PaymentMethodDialog(
+            selectedMethod = paymentMethod,
+            onMethodSelected = { method ->
+                paymentMethod = method
+                showPaymentDialog = false
+            },
+            onDismiss = { showPaymentDialog = false }
+        )
     }
 }
 
@@ -297,10 +379,10 @@ fun OrderItemsSection(
 }
 
 @Composable
-fun OrderFeesSection(subtotal: Double) {
+fun OrderFeesSection(subtotal: Double, couponDiscount: Double) {
     val packagingFee = 2.0
     val deliveryFee = 5.0
-    val total = subtotal + packagingFee + deliveryFee
+    val total = subtotal + packagingFee + deliveryFee - couponDiscount
 
     Surface(
         modifier = Modifier
@@ -313,6 +395,9 @@ fun OrderFeesSection(subtotal: Double) {
             FeeItem("商品总额", "¥%.1f".format(subtotal))
             FeeItem("打包费", "¥%.1f".format(packagingFee))
             FeeItem("配送费", "¥%.1f".format(deliveryFee))
+            if (couponDiscount > 0) {
+                FeeItem("优惠券", "-¥%.1f".format(couponDiscount), Color(0xFFFF3366))
+            }
             Divider(modifier = Modifier.padding(vertical = 8.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -331,7 +416,7 @@ fun OrderFeesSection(subtotal: Double) {
 }
 
 @Composable
-fun FeeItem(label: String, value: String) {
+fun FeeItem(label: String, value: String, valueColor: Color = Color.Black) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -339,7 +424,7 @@ fun FeeItem(label: String, value: String) {
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(label, fontSize = 14.sp, color = Color.Gray)
-        Text(value, fontSize = 14.sp, color = Color.Black)
+        Text(value, fontSize = 14.sp, color = valueColor)
     }
 }
 
@@ -384,11 +469,12 @@ fun OptionItem(label: String, value: String) {
 }
 
 @Composable
-fun PaymentMethodSection() {
+fun PaymentMethodSection(selectedMethod: String, onClick: () -> Unit) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {
@@ -401,7 +487,7 @@ fun PaymentMethodSection() {
         ) {
             Text("支付方式", fontSize = 14.sp, color = Color.Black)
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("支付宝", fontSize = 14.sp, color = Color(0xFF00BFFF))
+                Text(selectedMethod, fontSize = 14.sp, color = Color(0xFF00BFFF))
                 Icon(
                     imageVector = Icons.Default.ChevronRight,
                     contentDescription = null,
@@ -413,7 +499,7 @@ fun PaymentMethodSection() {
 }
 
 @Composable
-fun BottomSubmitBar(total: Double) {
+fun BottomSubmitBar(total: Double, onSubmit: () -> Unit) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color.White,
@@ -437,11 +523,385 @@ fun BottomSubmitBar(total: Double) {
             }
 
             Button(
-                onClick = { /* TODO: Submit order */ },
+                onClick = onSubmit,
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFFF3366)),
                 modifier = Modifier.height(48.dp)
             ) {
                 Text("提交订单", fontSize = 16.sp)
+            }
+        }
+    }
+}
+
+@Composable
+fun CouponSelectionSection(
+    selectedCoupon: com.example.myele.model.Coupon?,
+    onClick: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(8.dp),
+        color = Color.White
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = Icons.Default.CardGiftcard,
+                    contentDescription = null,
+                    tint = Color(0xFFFF3366),
+                    modifier = Modifier.size(20.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("店铺活动/券", fontSize = 14.sp, color = Color.Black)
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (selectedCoupon != null) {
+                    val discountAmount = when (selectedCoupon.type) {
+                        com.example.myele.model.CouponType.REDUCTION -> selectedCoupon.discountAmount ?: 0.0
+                        com.example.myele.model.CouponType.DISCOUNT -> {
+                            // 计算实际折扣金额而不是显示折扣率
+                            val subtotal = CartManager.getSubtotal()
+                            selectedCoupon.calculateDiscount(subtotal)
+                        }
+                        else -> 0.0
+                    }
+                    Text(
+                        text = "-¥%.0f".format(discountAmount),
+                        fontSize = 14.sp,
+                        color = Color(0xFFFF3366),
+                        fontWeight = FontWeight.Bold
+                    )
+                } else {
+                    Text("请选择", fontSize = 14.sp, color = Color.Gray)
+                }
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(
+                    imageVector = Icons.Default.ChevronRight,
+                    contentDescription = null,
+                    tint = Color.Gray
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun CouponSelectionDialog(
+    availableCoupons: List<com.example.myele.model.Coupon>,
+    selectedCoupon: com.example.myele.model.Coupon?,
+    subtotal: Double,
+    onCouponSelected: (com.example.myele.model.Coupon?) -> Unit,
+    onDismiss: () -> Unit
+) {
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDismiss,
+        containerColor = Color(0xFFF5F5F5),
+        title = {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                IconButton(onClick = onDismiss) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                }
+                Text("选择饿了么红包", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text("兑换码", fontSize = 14.sp, color = Color(0xFF00BFFF))
+            }
+        },
+        text = {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 500.dp)
+            ) {
+                item {
+                    Text(
+                        "饿了么红包  可选1张",
+                        fontSize = 14.sp,
+                        color = Color.Gray,
+                        modifier = Modifier.padding(vertical = 8.dp)
+                    )
+                }
+
+                items(availableCoupons.size) { index ->
+                    val coupon = availableCoupons[index]
+                    CouponItem(
+                        coupon = coupon,
+                        isSelected = coupon.couponId == selectedCoupon?.couponId,
+                        subtotal = subtotal,
+                        isRecommended = index == 0,
+                        onSelect = { onCouponSelected(coupon) }
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                }
+
+                // 不想爆涨选项
+                item {
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onCouponSelected(null) },
+                        shape = RoundedCornerShape(8.dp),
+                        color = Color.White
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text("不想爆涨？可直接使用", fontSize = 14.sp, color = Color.Gray)
+                            RadioButton(
+                                selected = selectedCoupon == null,
+                                onClick = { onCouponSelected(null) }
+                            )
+                        }
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = { onDismiss() },
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text(
+                    text = if (selectedCoupon != null) {
+                        "已选1张，可减 ¥%.0f".format(selectedCoupon.calculateDiscount(subtotal))
+                    } else {
+                        "确定"
+                    },
+                    fontSize = 16.sp
+                )
+            }
+        }
+    )
+}
+
+@Composable
+fun PaymentMethodDialog(
+    selectedMethod: String,
+    onMethodSelected: (String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDismiss,
+        containerColor = Color.White,
+        title = {
+            Text("选择支付方式", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+        },
+        text = {
+            Column(
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                listOf("微信支付", "支付宝").forEach { method ->
+                    Surface(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onMethodSelected(method) },
+                        color = if (selectedMethod == method) Color(0xFFF0F8FF) else Color.White
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = method,
+                                fontSize = 16.sp,
+                                color = Color.Black
+                            )
+                            if (selectedMethod == method) {
+                                Icon(
+                                    imageVector = Icons.Default.Check,
+                                    contentDescription = null,
+                                    tint = Color(0xFF00BFFF)
+                                )
+                            }
+                        }
+                    }
+                    if (method != "支付宝") {
+                        Divider()
+                    }
+                }
+            }
+        },
+        confirmButton = {
+            Button(
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF))
+            ) {
+                Text("确定")
+            }
+        }
+    )
+}
+
+@Composable
+fun CouponItem(
+    coupon: com.example.myele.model.Coupon,
+    isSelected: Boolean,
+    subtotal: Double,
+    isRecommended: Boolean,
+    onSelect: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onSelect),
+        shape = RoundedCornerShape(8.dp),
+        color = Color.White,
+        border = if (isSelected) BorderStroke(2.dp, Color(0xFF00BFFF)) else null
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // 左侧金额
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                modifier = Modifier.width(80.dp)
+            ) {
+                when (coupon.type) {
+                    com.example.myele.model.CouponType.REDUCTION -> {
+                        Text(
+                            text = "¥${coupon.discountAmount?.toInt() ?: 0}",
+                            fontSize = 32.sp,
+                            color = Color(0xFFFF3366),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "满${coupon.minOrderAmount?.toInt() ?: 0}可用",
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                    }
+                    com.example.myele.model.CouponType.DISCOUNT -> {
+                        val discountPercent = ((1 - (coupon.discountRate ?: 1.0)) * 10).toInt()
+                        Text(
+                            text = "${discountPercent}折",
+                            fontSize = 28.sp,
+                            color = Color(0xFFFF3366),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "满${coupon.minOrderAmount?.toInt() ?: 0}可用",
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                    }
+                    com.example.myele.model.CouponType.DELIVERY_FREE -> {
+                        Text(
+                            text = "免配送",
+                            fontSize = 24.sp,
+                            color = Color(0xFFFF3366),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "全场可用",
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                    }
+                    com.example.myele.model.CouponType.SPECIAL -> {
+                        Text(
+                            text = "特价",
+                            fontSize = 28.sp,
+                            color = Color(0xFFFF3366),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = coupon.description ?: "",
+                            fontSize = 12.sp,
+                            color = Color.Gray,
+                            maxLines = 2
+                        )
+                    }
+                    else -> {
+                        Text(
+                            text = "¥${coupon.discountAmount?.toInt() ?: 0}",
+                            fontSize = 32.sp,
+                            color = Color(0xFFFF3366),
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "满${coupon.minOrderAmount?.toInt() ?: 0}可用",
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                    }
+                }
+            }
+
+            Spacer(modifier = Modifier.width(16.dp))
+
+            // 中间信息
+            Column(
+                modifier = Modifier.weight(1f)
+            ) {
+                Text(
+                    text = coupon.name,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+                val validUntil = java.text.SimpleDateFormat("今日HH:mm到期", java.util.Locale.CHINA)
+                    .format(coupon.validUntil)
+                Text(
+                    text = validUntil,
+                    fontSize = 12.sp,
+                    color = Color(0xFFFF3366)
+                )
+                if (coupon.description != null) {
+                    Spacer(modifier = Modifier.height(4.dp))
+                    Text(
+                        text = coupon.description,
+                        fontSize = 12.sp,
+                        color = Color.Gray
+                    )
+                }
+            }
+
+            // 右侧选择按钮和推荐标签
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                if (isRecommended) {
+                    Surface(
+                        shape = RoundedCornerShape(4.dp),
+                        color = Color(0xFFFF9800)
+                    ) {
+                        Text(
+                            "推荐",
+                            fontSize = 10.sp,
+                            color = Color.White,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                }
+                RadioButton(
+                    selected = isSelected,
+                    onClick = onSelect,
+                    colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF00BFFF))
+                )
             }
         }
     }

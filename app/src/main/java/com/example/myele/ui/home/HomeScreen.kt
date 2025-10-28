@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -29,17 +30,39 @@ import com.example.myele.data.DataRepository
 import com.example.myele.model.Restaurant
 import com.example.myele.ui.components.RestaurantImage
 import com.example.myele.ui.components.HotDealImage
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.delay
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.ui.window.DialogProperties
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import com.google.accompanist.swiperefresh.SwipeRefresh
+import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
     val context = LocalContext.current
     val repository = remember { DataRepository(context) }
+    val coroutineScope = rememberCoroutineScope()
 
     var restaurants by remember { mutableStateOf<List<Restaurant>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var selectedTab by remember { mutableStateOf(0) }
+    var isRefreshing by remember { mutableStateOf(false) }
+    var showFilterDialog by remember { mutableStateOf(false) }
 
     val tabs = listOf("常点", "推荐", "常用")
+
+    // 刷新函数
+    fun refreshData() {
+        coroutineScope.launch {
+            isRefreshing = true
+            delay(1000)
+            restaurants = repository.loadRestaurants()
+            isRefreshing = false
+        }
+    }
 
     LaunchedEffect(Unit) {
         isLoading = true
@@ -56,18 +79,25 @@ fun HomeScreen(navController: NavController) {
         TopTabBar(
             tabs = tabs,
             selectedTab = selectedTab,
-            onTabSelected = { selectedTab = it }
+            onTabSelected = { selectedTab = it },
+            onRefresh = { refreshData() },
+            isRefreshing = isRefreshing
         )
 
         // 搜索栏
         SearchBar(onSearchClick = { navController.navigate(com.example.myele.navigation.Screen.Search.route) })
 
-        // 内容区域
-        LazyColumn(
+        // 内容区域 - 添加下拉刷新
+        SwipeRefresh(
+            state = rememberSwipeRefreshState(isRefreshing),
+            onRefresh = { refreshData() },
             modifier = Modifier
                 .fillMaxSize()
                 .weight(1f)
         ) {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
             // 广告横幅
             item {
                 PromotionBanner()
@@ -85,7 +115,7 @@ fun HomeScreen(navController: NavController) {
 
             // 功能按钮行
             item {
-                FunctionButtons()
+                FunctionButtons(onFilterClick = { showFilterDialog = true })
             }
 
             // 商家列表
@@ -103,12 +133,27 @@ fun HomeScreen(navController: NavController) {
                     RestaurantList(restaurants = restaurants, navController = navController)
                 }
             }
+            }
+        }
+
+        // 筛选弹窗
+        if (showFilterDialog) {
+            HomeFilterDialog(
+                onDismiss = { showFilterDialog = false },
+                onConfirm = { showFilterDialog = false }
+            )
         }
     }
 }
 
 @Composable
-fun TopTabBar(tabs: List<String>, selectedTab: Int, onTabSelected: (Int) -> Unit) {
+fun TopTabBar(
+    tabs: List<String>,
+    selectedTab: Int,
+    onTabSelected: (Int) -> Unit,
+    onRefresh: () -> Unit = {},
+    isRefreshing: Boolean = false
+) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
         color = Color.White
@@ -136,24 +181,51 @@ fun TopTabBar(tabs: List<String>, selectedTab: Int, onTabSelected: (Int) -> Unit
                     }
                 }
 
-                // 地址显示
+                // 地址显示和刷新按钮
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.clickable { /* 切换地址 */ }
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = "华中师范大学元宝山...",
-                        fontSize = 12.sp,
-                        color = Color.Gray,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = null,
-                        tint = Color.Gray,
-                        modifier = Modifier.size(16.dp)
-                    )
+                    // 刷新按钮
+                    IconButton(
+                        onClick = onRefresh,
+                        enabled = !isRefreshing,
+                        modifier = Modifier.size(32.dp)
+                    ) {
+                        if (isRefreshing) {
+                            CircularProgressIndicator(
+                                modifier = Modifier.size(16.dp),
+                                strokeWidth = 2.dp,
+                                color = Color.Gray
+                            )
+                        } else {
+                            Icon(
+                                imageVector = Icons.Default.Refresh,
+                                contentDescription = "刷新",
+                                tint = Color.Gray,
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
+                    }
+
+                    // 地址显示
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier.clickable { /* 切换地址 */ }
+                    ) {
+                        Text(
+                            text = "华中师范大学元宝山...",
+                            fontSize = 12.sp,
+                            color = Color.Gray,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        Icon(
+                            imageVector = Icons.Default.ArrowDropDown,
+                            contentDescription = null,
+                            tint = Color.Gray,
+                            modifier = Modifier.size(16.dp)
+                        )
+                    }
                 }
             }
         }
@@ -386,7 +458,7 @@ fun ProductCard(imageIndex: Int = 0) {
 }
 
 @Composable
-fun FunctionButtons() {
+fun FunctionButtons(onFilterClick: () -> Unit = {}) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -405,9 +477,11 @@ fun FunctionButtons() {
             FunctionButton("学生特价", Icons.Default.School)
             Icon(
                 imageVector = Icons.Default.Menu,
-                contentDescription = null,
+                contentDescription = "筛选",
                 tint = Color.Gray,
-                modifier = Modifier.size(20.dp)
+                modifier = Modifier
+                    .size(20.dp)
+                    .clickable { onFilterClick() }
             )
         }
     }
@@ -550,5 +624,244 @@ fun RestaurantCard(restaurant: Restaurant, navController: NavController) {
                 }
             }
         }
+    }
+}
+
+// 首页筛选弹窗
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun HomeFilterDialog(
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+) {
+    var selectedPromotions by remember { mutableStateOf(setOf<String>()) }
+    var selectedFeatures by remember { mutableStateOf(setOf<String>()) }
+    var selectedPriceRange by remember { mutableStateOf<String?>(null) }
+
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable { onDismiss() }
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.TopEnd)
+                .padding(top = 180.dp)
+                .clickable(enabled = false) { },
+            color = Color.White,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+        ) {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .heightIn(max = 600.dp)
+            ) {
+            item {
+                // 优惠活动
+                Text(
+                    text = "优惠活动",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+                )
+            }
+
+            item {
+                HomeFlowRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                ) {
+                    listOf("首次光顾减", "满减优惠", "下单返红包", "配送费优惠", "特价商品", "0元起送").forEach { promotion ->
+                        HomeFilterChip(
+                            text = promotion,
+                            isSelected = promotion in selectedPromotions,
+                            onClick = {
+                                selectedPromotions = if (promotion in selectedPromotions) {
+                                    selectedPromotions - promotion
+                                } else {
+                                    selectedPromotions + promotion
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+                // 商家特色
+                Text(
+                    text = "商家特色",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+                )
+            }
+
+            item {
+                HomeFlowRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp)
+                ) {
+                    listOf("蜂鸟准时达", "到店自取", "品牌商家", "新店", "食无忧", "跨天预订", "线上开票", "慢必赔").forEach { feature ->
+                        HomeFilterChip(
+                            text = feature,
+                            isSelected = feature in selectedFeatures,
+                            onClick = {
+                                selectedFeatures = if (feature in selectedFeatures) {
+                                    selectedFeatures - feature
+                                } else {
+                                    selectedFeatures + feature
+                                }
+                            }
+                        )
+                    }
+                }
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+                // 价格筛选
+                Text(
+                    text = "价格筛选",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)
+                )
+            }
+
+            item {
+                HomePriceRangeSlider()
+            }
+
+            item {
+                Spacer(modifier = Modifier.height(24.dp))
+                // 底部按钮
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Button(
+                        onClick = {
+                            selectedPromotions = setOf()
+                            selectedFeatures = setOf()
+                            selectedPriceRange = null
+                        },
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFFE3F2FD)
+                        ),
+                        shape = RoundedCornerShape(24.dp)
+                    ) {
+                        Text(
+                            text = "清空",
+                            color = Color(0xFF00BFFF),
+                            fontSize = 16.sp
+                        )
+                    }
+                    Button(
+                        onClick = onConfirm,
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = Color(0xFF00BFFF)
+                        ),
+                        shape = RoundedCornerShape(24.dp)
+                    ) {
+                        Text(
+                            text = "查看(已选${selectedPromotions.size + selectedFeatures.size + if (selectedPriceRange != null) 1 else 0})",
+                            color = Color.White,
+                            fontSize = 16.sp
+                        )
+                    }
+                }
+            }
+            }
+        }
+    }
+}
+
+@Composable
+fun HomeFilterChip(
+    text: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    Surface(
+        modifier = Modifier
+            .padding(end = 8.dp, bottom = 8.dp)
+            .clickable { onClick() },
+        shape = RoundedCornerShape(16.dp),
+        color = if (isSelected) Color(0xFFE3F2FD) else Color(0xFFF5F5F5)
+    ) {
+        Text(
+            text = text,
+            fontSize = 14.sp,
+            color = if (isSelected) Color(0xFF00BFFF) else Color.Black,
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        )
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+fun HomeFlowRow(
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit
+) {
+    androidx.compose.foundation.layout.FlowRow(
+        modifier = modifier
+    ) {
+        content()
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun HomePriceRangeSlider() {
+    var sliderPosition by remember { mutableStateOf(0f..120f) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "¥${sliderPosition.start.toInt()}",
+                fontSize = 14.sp,
+                color = Color(0xFF00BFFF),
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = if (sliderPosition.endInclusive >= 120f) "¥120+" else "¥${sliderPosition.endInclusive.toInt()}",
+                fontSize = 14.sp,
+                color = Color(0xFF00BFFF),
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        RangeSlider(
+            value = sliderPosition,
+            onValueChange = { sliderPosition = it },
+            valueRange = 0f..120f,
+            colors = SliderDefaults.colors(
+                thumbColor = Color(0xFF00BFFF),
+                activeTrackColor = Color(0xFF00BFFF),
+                inactiveTrackColor = Color(0xFFE0E0E0)
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }

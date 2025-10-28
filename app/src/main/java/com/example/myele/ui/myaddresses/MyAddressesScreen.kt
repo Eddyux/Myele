@@ -1,7 +1,9 @@
 package com.example.myele.ui.myaddresses
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -24,6 +26,8 @@ import com.example.myele.model.Address
 @Composable
 fun MyAddressesScreen(navController: NavController, repository: DataRepository) {
     val addresses = remember { repository.getAddresses() }
+    var addressToDelete by remember { mutableStateOf<Address?>(null) }
+    var showDeleteDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -35,7 +39,9 @@ fun MyAddressesScreen(navController: NavController, repository: DataRepository) 
                     }
                 },
                 actions = {
-                    TextButton(onClick = { }) {
+                    TextButton(onClick = {
+                        navController.navigate(com.example.myele.navigation.Screen.AddressEdit.createRoute())
+                    }) {
                         Text("新增地址", fontSize = 15.sp, color = Color(0xFF00BFFF))
                     }
                 },
@@ -54,18 +60,50 @@ fun MyAddressesScreen(navController: NavController, repository: DataRepository) 
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(addresses.size) { index ->
-                AddressCard(addresses[index])
+                AddressCard(
+                    address = addresses[index],
+                    onEdit = {
+                        navController.navigate(com.example.myele.navigation.Screen.AddressEdit.createRoute(addresses[index].addressId))
+                    },
+                    onLongPress = {
+                        addressToDelete = addresses[index]
+                        showDeleteDialog = true
+                    }
+                )
             }
+        }
+
+        // 删除地址确认弹窗
+        if (showDeleteDialog && addressToDelete != null) {
+            AddressDeleteDialog(
+                onDismiss = {
+                    showDeleteDialog = false
+                    addressToDelete = null
+                },
+                onConfirm = {
+                    // TODO: 删除地址逻辑
+                    showDeleteDialog = false
+                    addressToDelete = null
+                }
+            )
         }
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun AddressCard(address: Address) {
+fun AddressCard(
+    address: Address,
+    onEdit: () -> Unit = {},
+    onLongPress: () -> Unit = {}
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { },
+            .combinedClickable(
+                onClick = { },
+                onLongClick = onLongPress
+            ),
         shape = RoundedCornerShape(12.dp),
         color = Color.White
     ) {
@@ -148,7 +186,7 @@ fun AddressCard(address: Address) {
             Spacer(modifier = Modifier.width(12.dp))
 
             // 编辑按钮
-            IconButton(onClick = { }) {
+            IconButton(onClick = onEdit) {
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "编辑",
@@ -157,4 +195,42 @@ fun AddressCard(address: Address) {
             }
         }
     }
+}
+
+@Composable
+fun AddressDeleteDialog(
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "确认删除此地址？",
+                fontSize = 16.sp,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        text = null,
+        confirmButton = {
+            Button(
+                onClick = onConfirm,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                modifier = Modifier.fillMaxWidth(0.45f)
+            ) {
+                Text("确认", color = Color.White, fontSize = 16.sp)
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss,
+                modifier = Modifier.fillMaxWidth(0.45f)
+            ) {
+                Text("取消", color = Color.Gray, fontSize = 16.sp)
+            }
+        },
+        containerColor = Color.White,
+        shape = RoundedCornerShape(12.dp)
+    )
 }

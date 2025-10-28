@@ -228,6 +228,8 @@ fun SearchHistory(
     onHistoryItemClick: (String) -> Unit,
     onClearClick: () -> Unit
 ) {
+    var showClearDialog by remember { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -244,7 +246,7 @@ fun SearchHistory(
                 fontWeight = FontWeight.Bold,
                 color = Color.Black
             )
-            IconButton(onClick = onClearClick) {
+            IconButton(onClick = { showClearDialog = true }) {
                 Icon(
                     imageVector = Icons.Default.Delete,
                     contentDescription = "清空",
@@ -274,6 +276,47 @@ fun SearchHistory(
             }
         }
     }
+
+    // 清除历史确认弹窗
+    if (showClearDialog) {
+        ClearHistoryDialog(
+            onDismiss = { showClearDialog = false },
+            onConfirm = {
+                onClearClick()
+                showClearDialog = false
+            }
+        )
+    }
+}
+
+@Composable
+fun ClearHistoryDialog(
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit
+) {
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "确认删除全部历史记录？",
+                fontSize = 16.sp,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        confirmButton = {
+            TextButton(onClick = onConfirm) {
+                Text("删除", color = Color(0xFF00BFFF), fontSize = 16.sp)
+            }
+        },
+        dismissButton = {
+            TextButton(onClick = onDismiss) {
+                Text("取消", color = Color.Gray, fontSize = 16.sp)
+            }
+        },
+        containerColor = Color.White,
+        shape = RoundedCornerShape(12.dp)
+    )
 }
 
 @Composable

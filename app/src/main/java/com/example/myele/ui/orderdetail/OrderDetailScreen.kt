@@ -34,6 +34,8 @@ fun OrderDetailScreen(
     // 从repository获取订单详情
     val order = remember { repository.getOrders().find { it.orderId == orderId } }
     var showContactBottomSheet by remember { mutableStateOf(false) }
+    var showContactMerchantBottomSheet by remember { mutableStateOf(false) }
+    var showCancelOrderSheet by remember { mutableStateOf(false) }
 
     if (order == null) {
         Box(
@@ -84,7 +86,7 @@ fun OrderDetailScreen(
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(24.dp)
+                            .padding(16.dp)
                     ) {
                         Text(
                             text = when (order.status) {
@@ -93,11 +95,11 @@ fun OrderDetailScreen(
                                 OrderStatus.PREPARING -> "商家正在制作"
                                 else -> "订单处理中"
                             },
-                            fontSize = 22.sp,
+                            fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.White
                         )
-                        Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
                         Text(
                             text = if (order.status == OrderStatus.COMPLETED) "感谢信任,期待再次光临" else "预计${order.deliveryTime?.let { SimpleDateFormat("HH:mm", Locale.getDefault()).format(it) } ?: "30分钟"}送达",
                             fontSize = 14.sp,
@@ -113,53 +115,93 @@ fun OrderDetailScreen(
                     modifier = Modifier.fillMaxWidth(),
                     color = Color.White
                 ) {
-                    Row(
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
-                        horizontalArrangement = Arrangement.SpaceEvenly
+                            .padding(16.dp)
                     ) {
-                        ActionButton("申请售后", Icons.Default.Refresh)
-                        ActionButton("联系商家", Icons.Default.Phone)
-                        ActionButton("联系骑士", Icons.Default.DeliveryDining) {
-                            showContactBottomSheet = true
+                        // 第一行：申请售后、联系商家、联系骑士
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            ActionButton("申请售后", Icons.Default.Refresh)
+                            ActionButton("联系商家", Icons.Default.Phone) {
+                                showContactMerchantBottomSheet = true
+                            }
+                            ActionButton("联系骑士", Icons.Default.DeliveryDining) {
+                                showContactBottomSheet = true
+                            }
+                        }
+
+                        // 待接单状态显示取消订单按钮
+                        if (order.status == OrderStatus.PENDING_ACCEPT) {
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.Center
+                            ) {
+                                ActionButton("取消订单", Icons.Default.Cancel) {
+                                    showCancelOrderSheet = true
+                                }
+                            }
                         }
                     }
                 }
             }
 
-            // 食无忧理赔
-            if (order.canApplyInsurance) {
-                item {
-                    Surface(
+            // 食无忧理赔进入栏（所有订单都显示）
+            item {
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                        .clickable {
+                            navController.navigate(Screen.FoodInsurance.createRoute(order.orderId))
+                        },
+                    shape = RoundedCornerShape(12.dp),
+                    color = Color.White
+                ) {
+                    Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(16.dp),
-                        shape = RoundedCornerShape(12.dp),
-                        color = Color.White
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Icon(
+                                imageVector = Icons.Default.Shield,
+                                contentDescription = null,
+                                tint = Color(0xFF00BFFF),
+                                modifier = Modifier.size(24.dp)
+                            )
+                            Spacer(modifier = Modifier.width(12.dp))
                             Column {
                                 Text(
                                     text = "食无忧理赔申请",
-                                    fontSize = 16.sp,
-                                    fontWeight = FontWeight.Bold
+                                    fontSize = 15.sp,
+                                    fontWeight = FontWeight.Medium
                                 )
+                                Spacer(modifier = Modifier.height(2.dp))
                                 Text(
-                                    text = "如有异物质量或引起就医,可申请理赔",
+                                    text = "食物变质、存在异物或致病就医可申请",
                                     fontSize = 12.sp,
                                     color = Color.Gray
                                 )
                             }
-                            TextButton(onClick = { }) {
-                                Text("去申请", color = Color(0xFF00BFFF))
+                        }
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            TextButton(onClick = {
+                                navController.navigate(Screen.FoodInsurance.createRoute(order.orderId))
+                            }) {
+                                Text("去申请", color = Color(0xFF00BFFF), fontSize = 14.sp)
                             }
+                            Icon(
+                                imageVector = Icons.Default.ChevronRight,
+                                contentDescription = null,
+                                tint = Color.Gray
+                            )
                         }
                     }
                 }
@@ -379,6 +421,88 @@ fun OrderDetailScreen(
             }
         }
     }
+
+    // 联系商家底部弹窗
+    if (showContactMerchantBottomSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showContactMerchantBottomSheet = false }
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            ) {
+                TextButton(
+                    onClick = {
+                        showContactMerchantBottomSheet = false
+                        navController.navigate(Screen.MerchantChat.route)
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("在线联系", fontSize = 16.sp)
+                }
+                Divider()
+                TextButton(
+                    onClick = { showContactMerchantBottomSheet = false },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("电话联系", fontSize = 16.sp)
+                }
+            }
+        }
+    }
+
+    // 取消订单底部弹窗
+    if (showCancelOrderSheet) {
+        ModalBottomSheet(
+            onDismissRequest = { showCancelOrderSheet = false }
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp)
+            ) {
+                Text(
+                    text = "选择取消原因",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                val cancelReasons = listOf(
+                    "不想等了",
+                    "点错了",
+                    "商家不接单",
+                    "配送时间太长",
+                    "其他原因"
+                )
+
+                cancelReasons.forEach { reason ->
+                    TextButton(
+                        onClick = {
+                            // TODO: 执行取消订单逻辑
+                            showCancelOrderSheet = false
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(reason, fontSize = 16.sp, color = Color.Black)
+                    }
+                    if (reason != cancelReasons.last()) {
+                        Divider()
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                TextButton(
+                    onClick = { showCancelOrderSheet = false },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("暂不取消", fontSize = 16.sp, color = Color.Gray)
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -448,3 +572,4 @@ fun InfoRow(label: String, value: String, showArrow: Boolean = false, showCopy: 
         }
     }
 }
+
