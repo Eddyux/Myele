@@ -63,7 +63,7 @@ data class Coupon(
     /**
      * 计算优惠金额
      */
-    fun calculateDiscount(orderAmount: Double): Double {
+    fun calculateDiscount(orderAmount: Double, deliveryFee: Double = 0.0): Double {
         return when (type) {
             CouponType.REDUCTION -> discountAmount ?: 0.0
             CouponType.DISCOUNT -> {
@@ -74,7 +74,7 @@ data class Coupon(
                     discount
                 }
             }
-            CouponType.DELIVERY_FREE -> 0.0 // 配送费在其他地方处理
+            CouponType.DELIVERY_FREE -> deliveryFee // 返回配送费作为优惠金额
             else -> 0.0
         }
     }

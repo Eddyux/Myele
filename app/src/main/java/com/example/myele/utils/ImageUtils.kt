@@ -10,22 +10,31 @@ object ImageUtils {
      * 根据餐厅名称获取对应的图片资源ID
      */
     fun getRestaurantImage(restaurantName: String): Int {
-        return when (restaurantName) {
-            "川香麻辣烫" -> R.drawable.chuanxiang_malatang
-            "老北京炸酱面" -> R.drawable.laobeijing_zhajangmian
-            "湘味轩" -> R.drawable.xiangweixuan
-            "粤式早茶" -> R.drawable.yueshi_zaocha
-            "韩式炸鸡" -> R.drawable.hanshi_zhaji
-            "瑞幸咖啡" -> R.drawable.luckin_coffee
-            "茶百道" -> R.drawable.chabaidao
-            "蜜雪冰城" -> R.drawable.mixue
-            "星巴克" -> R.drawable.starbucks
-            "喜茶" -> R.drawable.heytea
-            "金长风荷叶烤鸡" -> R.drawable.jinchangfeng_heyekaoji
-            "北京烤鸭" -> R.drawable.bjky
-            "美滋滋烤肉拌饭" -> R.drawable.meizizi_krbf
-            "KFC" -> R.drawable.kfc
-            else -> 0 // 返回0表示没有对应的图片
+        return when {
+            restaurantName.contains("川香麻辣烫") -> R.drawable.chuanxiang_malatang
+            restaurantName.contains("老北京炸酱面") -> R.drawable.laobeijing_zhajangmian
+            restaurantName.contains("湘味轩") -> R.drawable.xiangweixuan
+            restaurantName.contains("粤式早茶") -> R.drawable.yueshi_zaocha
+            restaurantName.contains("韩式炸鸡") -> R.drawable.hanshi_zhaji
+            restaurantName.contains("瑞幸咖啡") -> R.drawable.luckin_coffee
+            restaurantName.contains("茶百道") -> R.drawable.chabaidao
+            restaurantName.contains("蜜雪冰城") -> R.drawable.mixue
+            restaurantName.contains("星巴克") -> R.drawable.starbucks
+            restaurantName.contains("喜茶") -> R.drawable.heytea
+            restaurantName.contains("金长风荷叶烤鸡") -> R.drawable.jinchangfeng_heyekaoji
+            restaurantName.contains("北京烤鸭") -> R.drawable.bjky
+            restaurantName.contains("美滋滋烤肉拌饭") -> R.drawable.meizizi_krbf
+            restaurantName.contains("肯德基") || restaurantName.contains("KFC") -> R.drawable.kfc
+            restaurantName.contains("CoCo") || restaurantName.contains("coco") -> R.drawable.tongyong
+            restaurantName.contains("麦当劳") -> R.drawable.tongyong
+            restaurantName.contains("必胜客") -> R.drawable.tongyong
+            restaurantName.contains("海底捞") -> R.drawable.tongyong
+            restaurantName.contains("西贝") -> R.drawable.tongyong
+            restaurantName.contains("外婆家") -> R.drawable.tongyong
+            restaurantName.contains("黄焖鸡") -> R.drawable.tongyong
+            restaurantName.contains("沙县") -> R.drawable.tongyong
+            restaurantName.contains("兰州拉面") -> R.drawable.tongyong
+            else -> R.drawable.tongyong // 默认返回通用图片
         }
     }
 
@@ -124,7 +133,7 @@ object ImageUtils {
             "prod_017" -> R.drawable.xicha  // 多肉葡萄
             "prod_018" -> R.drawable.xicha_1  // 芝芝莓莓
             "prod_040" -> R.drawable.xicha_2 // 芒芒甘露
-            else -> 0 // 返回0表示没有对应的图片，显示默认图标
+            else -> R.drawable.tongyong // 默认返回通用图片tongyong.png
         }
     }
 }

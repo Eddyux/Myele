@@ -47,7 +47,8 @@ fun MyAddressesScreen(navController: NavController, repository: DataRepository) 
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
@@ -56,7 +57,7 @@ fun MyAddressesScreen(navController: NavController, repository: DataRepository) 
                 .fillMaxSize()
                 .padding(paddingValues)
                 .background(Color(0xFFF5F5F5)),
-            contentPadding = PaddingValues(16.dp),
+            contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             items(addresses.size) { index ->

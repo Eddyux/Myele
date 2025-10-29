@@ -36,7 +36,8 @@ fun ChangePhoneScreen(navController: NavController) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { padding ->

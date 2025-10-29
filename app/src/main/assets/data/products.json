@@ -32,7 +32,11 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["辣", "招牌", "热销"]
+    "tags": [
+      "辣",
+      "招牌",
+      "热销"
+    ]
   },
   {
     "productId": "prod_002",
@@ -61,7 +65,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "传统"]
+    "tags": [
+      "招牌",
+      "传统"
+    ]
   },
   {
     "productId": "prod_003",
@@ -77,7 +84,11 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["辣", "招牌", "湘菜"]
+    "tags": [
+      "辣",
+      "招牌",
+      "湘菜"
+    ]
   },
   {
     "productId": "prod_004",
@@ -106,7 +117,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "早茶"]
+    "tags": [
+      "招牌",
+      "早茶"
+    ]
   },
   {
     "productId": "prod_005",
@@ -141,7 +155,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["套餐", "热销"]
+    "tags": [
+      "套餐",
+      "热销"
+    ]
   },
   {
     "productId": "prod_006",
@@ -176,7 +193,9 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["饮品"]
+    "tags": [
+      "饮品"
+    ]
   },
   {
     "productId": "prod_007",
@@ -192,7 +211,10 @@
     "category": "MAIN_DISH",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "粤菜"]
+    "tags": [
+      "招牌",
+      "粤菜"
+    ]
   },
   {
     "productId": "prod_008",
@@ -208,7 +230,10 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["辣", "热销"]
+    "tags": [
+      "辣",
+      "热销"
+    ]
   },
   {
     "productId": "prod_009",
@@ -237,7 +262,11 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "热销", "新品"]
+    "tags": [
+      "招牌",
+      "热销",
+      "新品"
+    ]
   },
   {
     "productId": "prod_010",
@@ -266,7 +295,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["经典", "热销"]
+    "tags": [
+      "经典",
+      "热销"
+    ]
   },
   {
     "productId": "prod_011",
@@ -301,7 +333,11 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "水果茶", "热销"]
+    "tags": [
+      "招牌",
+      "水果茶",
+      "热销"
+    ]
   },
   {
     "productId": "prod_012",
@@ -330,7 +366,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["经典", "珍珠"]
+    "tags": [
+      "经典",
+      "珍珠"
+    ]
   },
   {
     "productId": "prod_013",
@@ -359,7 +398,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["超值", "热销"]
+    "tags": [
+      "超值",
+      "热销"
+    ]
   },
   {
     "productId": "prod_014",
@@ -375,7 +417,10 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "冰淇淋"]
+    "tags": [
+      "招牌",
+      "冰淇淋"
+    ]
   },
   {
     "productId": "prod_015",
@@ -410,7 +455,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "咖啡"]
+    "tags": [
+      "招牌",
+      "咖啡"
+    ]
   },
   {
     "productId": "prod_016",
@@ -439,7 +487,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["抹茶", "奶茶"]
+    "tags": [
+      "抹茶",
+      "奶茶"
+    ]
   },
   {
     "productId": "prod_017",
@@ -474,7 +525,11 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "水果茶", "热销"]
+    "tags": [
+      "招牌",
+      "水果茶",
+      "热销"
+    ]
   },
   {
     "productId": "prod_018",
@@ -503,7 +558,11 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["招牌", "芝士", "草莓"]
+    "tags": [
+      "招牌",
+      "芝士",
+      "草莓"
+    ]
   },
   {
     "productId": "prod_019",
@@ -519,7 +578,10 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["热销", "粉面"]
+    "tags": [
+      "热销",
+      "粉面"
+    ]
   },
   {
     "productId": "prod_020",
@@ -535,7 +597,10 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "川菜"]
+    "tags": [
+      "招牌",
+      "川菜"
+    ]
   },
   {
     "productId": "prod_021",
@@ -551,7 +616,10 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["酸辣", "热销"]
+    "tags": [
+      "酸辣",
+      "热销"
+    ]
   },
   {
     "productId": "prod_022",
@@ -567,7 +635,10 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "北京菜"]
+    "tags": [
+      "招牌",
+      "北京菜"
+    ]
   },
   {
     "productId": "prod_023",
@@ -583,7 +654,10 @@
     "category": "SIDE_DISH",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["小吃", "传统"]
+    "tags": [
+      "小吃",
+      "传统"
+    ]
   },
   {
     "productId": "prod_024",
@@ -599,7 +673,10 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["热销", "快餐"]
+    "tags": [
+      "热销",
+      "快餐"
+    ]
   },
   {
     "productId": "prod_025",
@@ -615,7 +692,11 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["湘菜", "辣", "热销"]
+    "tags": [
+      "湘菜",
+      "辣",
+      "热销"
+    ]
   },
   {
     "productId": "prod_026",
@@ -631,7 +712,11 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "湘菜", "辣"]
+    "tags": [
+      "招牌",
+      "湘菜",
+      "辣"
+    ]
   },
   {
     "productId": "prod_027",
@@ -647,7 +732,10 @@
     "category": "SIDE_DISH",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["下饭", "小菜"]
+    "tags": [
+      "下饭",
+      "小菜"
+    ]
   },
   {
     "productId": "prod_028",
@@ -663,7 +751,11 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "早茶", "点心"]
+    "tags": [
+      "招牌",
+      "早茶",
+      "点心"
+    ]
   },
   {
     "productId": "prod_029",
@@ -679,7 +771,10 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["早茶", "点心"]
+    "tags": [
+      "早茶",
+      "点心"
+    ]
   },
   {
     "productId": "prod_030",
@@ -708,7 +803,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["早茶", "热销"]
+    "tags": [
+      "早茶",
+      "热销"
+    ]
   },
   {
     "productId": "prod_031",
@@ -737,7 +835,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["热销", "炸鸡"]
+    "tags": [
+      "热销",
+      "炸鸡"
+    ]
   },
   {
     "productId": "prod_032",
@@ -753,7 +854,10 @@
     "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["热销", "炸鸡"]
+    "tags": [
+      "热销",
+      "炸鸡"
+    ]
   },
   {
     "productId": "prod_033",
@@ -769,7 +873,10 @@
     "category": "MAIN_DISH",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["韩餐", "主食"]
+    "tags": [
+      "韩餐",
+      "主食"
+    ]
   },
   {
     "productId": "prod_034",
@@ -798,7 +905,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["热销", "咖啡"]
+    "tags": [
+      "热销",
+      "咖啡"
+    ]
   },
   {
     "productId": "prod_035",
@@ -814,7 +924,11 @@
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["招牌", "咖啡", "巧克力"]
+    "tags": [
+      "招牌",
+      "咖啡",
+      "巧克力"
+    ]
   },
   {
     "productId": "prod_036",
@@ -843,7 +957,11 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["热销", "奶茶", "芋泥"]
+    "tags": [
+      "热销",
+      "奶茶",
+      "芋泥"
+    ]
   },
   {
     "productId": "prod_037",
@@ -859,7 +977,10 @@
     "category": "BEVERAGE",
     "specifications": [],
     "isAvailable": true,
-    "tags": ["甜品", "消暑"]
+    "tags": [
+      "甜品",
+      "消暑"
+    ]
   },
   {
     "productId": "prod_038",
@@ -888,7 +1009,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["甜品", "超值"]
+    "tags": [
+      "甜品",
+      "超值"
+    ]
   },
   {
     "productId": "prod_039",
@@ -917,7 +1041,10 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["咖啡", "巧克力"]
+    "tags": [
+      "咖啡",
+      "巧克力"
+    ]
   },
   {
     "productId": "prod_040",
@@ -946,6 +1073,7147 @@
       }
     ],
     "isAvailable": true,
-    "tags": ["热销", "水果茶", "芒果"]
+    "tags": [
+      "热销",
+      "水果茶",
+      "芒果"
+    ]
+  },
+  {
+    "productId": "prod_041",
+    "name": "夫妻肺片",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "麻辣鲜香，回味无穷",
+    "price": 37.0,
+    "originalPrice": 50.0,
+    "monthSales": 4350,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "川菜",
+      "下饭",
+      "辣"
+    ]
+  },
+  {
+    "productId": "prod_042",
+    "name": "水煮鱼",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "经典川菜，麻辣过瘾",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 4593,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "川菜",
+      "辣"
+    ]
+  },
+  {
+    "productId": "prod_043",
+    "name": "回锅肉",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "经典川菜，麻辣过瘾",
+    "price": 22.0,
+    "originalPrice": 37.0,
+    "monthSales": 3423,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "下饭",
+      "麻"
+    ]
+  },
+  {
+    "productId": "prod_044",
+    "name": "宫保鸡丁",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "经典川菜，麻辣过瘾",
+    "price": 31.0,
+    "originalPrice": null,
+    "monthSales": 673,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "下饭",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_045",
+    "name": "鱼香肉丝",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "麻辣鲜香，回味无穷",
+    "price": 13.0,
+    "originalPrice": null,
+    "monthSales": 4048,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "下饭",
+      "麻",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_046",
+    "name": "麻婆豆腐",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "经典川菜，麻辣过瘾",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 4621,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "麻",
+      "川菜",
+      "辣"
+    ]
+  },
+  {
+    "productId": "prod_047",
+    "name": "担担面",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "地道川味，香辣可口",
+    "price": 13.0,
+    "originalPrice": 28.0,
+    "monthSales": 2734,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "川菜",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_048",
+    "name": "钟水饺",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "地道川味，香辣可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 675,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "川菜",
+      "辣",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_049",
+    "name": "龙抄手",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "麻辣鲜香，回味无穷",
+    "price": 37.0,
+    "originalPrice": 45.0,
+    "monthSales": 565,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "下饭",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_050",
+    "name": "冒菜",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "地道川味，香辣可口",
+    "price": 34.0,
+    "originalPrice": 48.0,
+    "monthSales": 4129,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "辣",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_051",
+    "name": "北京烤鸭",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "传统北京味道",
+    "price": 10.0,
+    "originalPrice": null,
+    "monthSales": 1579,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "老北京",
+      "传统",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_052",
+    "name": "爆肚",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "传统北京味道",
+    "price": 21.0,
+    "originalPrice": 26.0,
+    "monthSales": 3181,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "老北京",
+      "特色",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_053",
+    "name": "豆汁儿",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "老北京风味",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 3077,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "传统"
+    ]
+  },
+  {
+    "productId": "prod_054",
+    "name": "驴打滚",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "京味十足，地道美味",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 1385,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "传统",
+      "老北京",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_055",
+    "name": "卤煮火烧",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "京味十足，地道美味",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 2936,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "传统",
+      "老北京",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_056",
+    "name": "糖葫芦",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "京味十足，地道美味",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 2984,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "老北京",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_057",
+    "name": "褡裢火烧",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "老北京风味",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 4340,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "传统",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_058",
+    "name": "门钉肉饼",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "老北京风味",
+    "price": 33.0,
+    "originalPrice": null,
+    "monthSales": 3850,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "传统",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_059",
+    "name": "羊蝎子",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "老北京风味",
+    "price": 24.0,
+    "originalPrice": 38.0,
+    "monthSales": 3044,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "老北京",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_060",
+    "name": "豌豆黄",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "传统北京味道",
+    "price": 29.0,
+    "originalPrice": null,
+    "monthSales": 3320,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "特色",
+      "老北京"
+    ]
+  },
+  {
+    "productId": "prod_061",
+    "name": "艾窝窝",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "老北京风味",
+    "price": 13.0,
+    "originalPrice": null,
+    "monthSales": 2165,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "老北京",
+      "热销",
+      "传统"
+    ]
+  },
+  {
+    "productId": "prod_062",
+    "name": "酸菜鱼",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "辣而不燥，鲜香美味",
+    "price": 56.0,
+    "originalPrice": null,
+    "monthSales": 3097,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "湘菜",
+      "下饭",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_063",
+    "name": "辣椒炒肉",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "正宗湘味，辣得过瘾",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 448,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "经典",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_064",
+    "name": "外婆菜",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "正宗湘味，辣得过瘾",
+    "price": 62.0,
+    "originalPrice": 68.0,
+    "monthSales": 2741,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "辣",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_065",
+    "name": "剁椒鸡",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "正宗湘味，辣得过瘾",
+    "price": 55.0,
+    "originalPrice": null,
+    "monthSales": 4605,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "下饭",
+      "经典",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_066",
+    "name": "干锅肥肠",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "湘菜经典，香辣可口",
+    "price": 54.0,
+    "originalPrice": 65.0,
+    "monthSales": 3163,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "湘菜"
+    ]
+  },
+  {
+    "productId": "prod_067",
+    "name": "腊味合蒸",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "湘菜经典，香辣可口",
+    "price": 34.0,
+    "originalPrice": null,
+    "monthSales": 3019,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "招牌",
+      "湘菜"
+    ]
+  },
+  {
+    "productId": "prod_068",
+    "name": "东安鸡",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "湘菜经典，香辣可口",
+    "price": 37.0,
+    "originalPrice": null,
+    "monthSales": 2085,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "经典",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_069",
+    "name": "湘西土匪鸭",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "辣而不燥，鲜香美味",
+    "price": 56.0,
+    "originalPrice": null,
+    "monthSales": 1699,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "辣",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_070",
+    "name": "手撕包菜",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "正宗湘味，辣得过瘾",
+    "price": 36.0,
+    "originalPrice": 41.0,
+    "monthSales": 4729,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "下饭",
+      "热销",
+      "湘菜"
+    ]
+  },
+  {
+    "productId": "prod_071",
+    "name": "糖醋排骨",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "辣而不燥，鲜香美味",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 2186,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "湘菜",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_072",
+    "name": "白切鸡",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "鲜嫩可口，原汁原味",
+    "price": 33.0,
+    "originalPrice": null,
+    "monthSales": 3498,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "早茶",
+      "点心"
+    ]
+  },
+  {
+    "productId": "prod_073",
+    "name": "糯米鸡",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "粤式经典，清淡鲜美",
+    "price": 38.0,
+    "originalPrice": null,
+    "monthSales": 3417,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "早茶",
+      "招牌",
+      "清淡"
+    ]
+  },
+  {
+    "productId": "prod_074",
+    "name": "凤爪",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "粤式经典，清淡鲜美",
+    "price": 58.0,
+    "originalPrice": null,
+    "monthSales": 343,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "点心",
+      "粤菜"
+    ]
+  },
+  {
+    "productId": "prod_075",
+    "name": "排骨",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "鲜嫩可口，原汁原味",
+    "price": 55.0,
+    "originalPrice": null,
+    "monthSales": 2251,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "早茶",
+      "粤菜",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_076",
+    "name": "烧麦",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "粤式经典，清淡鲜美",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 2228,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "早茶",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_077",
+    "name": "蛋挞",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "粤式经典，清淡鲜美",
+    "price": 24.0,
+    "originalPrice": 32.0,
+    "monthSales": 3163,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "早茶",
+      "粤菜"
+    ]
+  },
+  {
+    "productId": "prod_078",
+    "name": "萝卜糕",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "皮薄馅大，鲜香美味",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 3605,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "早茶",
+      "粤菜",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_079",
+    "name": "马拉糕",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "鲜嫩可口，原汁原味",
+    "price": 49.0,
+    "originalPrice": null,
+    "monthSales": 1460,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "招牌",
+      "早茶"
+    ]
+  },
+  {
+    "productId": "prod_080",
+    "name": "奶黄包",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "粤式经典，清淡鲜美",
+    "price": 34.0,
+    "originalPrice": null,
+    "monthSales": 3543,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "招牌",
+      "粤菜"
+    ]
+  },
+  {
+    "productId": "prod_081",
+    "name": "皮蛋瘦肉粥",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "鲜嫩可口，原汁原味",
+    "price": 38.0,
+    "originalPrice": null,
+    "monthSales": 244,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "早茶",
+      "点心"
+    ]
+  },
+  {
+    "productId": "prod_082",
+    "name": "石锅拌饭",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩餐经典，美味可口",
+    "price": 71.0,
+    "originalPrice": null,
+    "monthSales": 2070,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_083",
+    "name": "部队锅",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "正宗韩式风味",
+    "price": 75.0,
+    "originalPrice": null,
+    "monthSales": 4406,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_084",
+    "name": "泡菜锅",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩餐经典，美味可口",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 4235,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_085",
+    "name": "韩式烤肉",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩式特色，回味无穷",
+    "price": 70.0,
+    "originalPrice": null,
+    "monthSales": 500,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "韩餐",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_086",
+    "name": "冷面",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩式特色，回味无穷",
+    "price": 85.0,
+    "originalPrice": null,
+    "monthSales": 4479,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "韩餐",
+      "热销",
+      "人气"
+    ]
+  },
+  {
+    "productId": "prod_087",
+    "name": "炸酱面",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩餐经典，美味可口",
+    "price": 79.0,
+    "originalPrice": 87.0,
+    "monthSales": 4690,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "人气"
+    ]
+  },
+  {
+    "productId": "prod_088",
+    "name": "辣炒年糕",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "正宗韩式风味",
+    "price": 77.0,
+    "originalPrice": 91.0,
+    "monthSales": 2743,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "人气"
+    ]
+  },
+  {
+    "productId": "prod_089",
+    "name": "紫菜包饭",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩式特色，回味无穷",
+    "price": 92.0,
+    "originalPrice": null,
+    "monthSales": 4975,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "招牌",
+      "人气"
+    ]
+  },
+  {
+    "productId": "prod_090",
+    "name": "芝士热狗",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩餐经典，美味可口",
+    "price": 66.0,
+    "originalPrice": null,
+    "monthSales": 3519,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "韩餐",
+      "人气",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_091",
+    "name": "鱼饼串",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩式特色，回味无穷",
+    "price": 33.0,
+    "originalPrice": null,
+    "monthSales": 625,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "韩餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_092",
+    "name": "韩式炸猪排",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "韩餐经典，美味可口",
+    "price": 75.0,
+    "originalPrice": 85.0,
+    "monthSales": 3602,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "人气",
+      "招牌",
+      "韩餐"
+    ]
+  },
+  {
+    "productId": "prod_093",
+    "name": "卡布奇诺",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 3362,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "提神",
+      "经典",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_094",
+    "name": "拿铁咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 2402,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_094_1",
+        "name": "中杯",
+        "price": 19,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_094_2",
+        "name": "大杯",
+        "price": 22,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "新品",
+      "经典",
+      "咖啡"
+    ]
+  },
+  {
+    "productId": "prod_095",
+    "name": "美式咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "经典咖啡，品质保证",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 3625,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "新品",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_096",
+    "name": "摩卡咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 26.0,
+    "originalPrice": null,
+    "monthSales": 918,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "新品",
+      "提神"
+    ]
+  },
+  {
+    "productId": "prod_097",
+    "name": "浓缩咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "经典咖啡，品质保证",
+    "price": 24.0,
+    "originalPrice": 32.0,
+    "monthSales": 2056,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "经典",
+      "新品"
+    ]
+  },
+  {
+    "productId": "prod_098",
+    "name": "白咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 4162,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "招牌",
+      "提神"
+    ]
+  },
+  {
+    "productId": "prod_099",
+    "name": "冰美式",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "经典咖啡，品质保证",
+    "price": 16.0,
+    "originalPrice": 28.0,
+    "monthSales": 3592,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_099_1",
+        "name": "中杯",
+        "price": 16,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_099_2",
+        "name": "大杯",
+        "price": 19,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "咖啡",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_100",
+    "name": "冷萃咖啡",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "经典咖啡，品质保证",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 3444,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "热销",
+      "新品"
+    ]
+  },
+  {
+    "productId": "prod_101",
+    "name": "气泡美式",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 16.0,
+    "originalPrice": 26.0,
+    "monthSales": 2470,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "咖啡",
+      "提神"
+    ]
+  },
+  {
+    "productId": "prod_102",
+    "name": "椰云拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 27.0,
+    "originalPrice": 35.0,
+    "monthSales": 2690,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_102_1",
+        "name": "中杯",
+        "price": 27,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_102_2",
+        "name": "大杯",
+        "price": 30,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "提神",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_103",
+    "name": "丝绒拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "经典咖啡，品质保证",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 719,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_103_1",
+        "name": "标准糖",
+        "price": 16,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_103_2",
+        "name": "少糖",
+        "price": 16,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "经典",
+      "咖啡"
+    ]
+  },
+  {
+    "productId": "prod_104",
+    "name": "波霸奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 3572,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_104_1",
+        "name": "中杯",
+        "price": 15,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_104_2",
+        "name": "大杯",
+        "price": 18,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "奶茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_105",
+    "name": "红豆奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "口感丝滑，料足味美",
+    "price": 13.0,
+    "originalPrice": null,
+    "monthSales": 1464,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_105_1",
+        "name": "标准糖",
+        "price": 13,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_105_2",
+        "name": "少糖",
+        "price": 13,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_105_3",
+        "name": "无糖",
+        "price": 13,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "甜品",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_106",
+    "name": "布丁奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 14.0,
+    "originalPrice": 25.0,
+    "monthSales": 4140,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "水果茶",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_107",
+    "name": "椰果奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 3709,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_107_1",
+        "name": "标准糖",
+        "price": 15,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_107_2",
+        "name": "少糖",
+        "price": 15,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_107_3",
+        "name": "无糖",
+        "price": 15,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶盖",
+      "奶茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_108",
+    "name": "芋圆奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "香甜可口，回味无穷",
+    "price": 21.0,
+    "originalPrice": 34.0,
+    "monthSales": 386,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "水果茶",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_109",
+    "name": "仙草奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "口感丝滑，料足味美",
+    "price": 13.0,
+    "originalPrice": 19.0,
+    "monthSales": 4233,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_109_1",
+        "name": "中杯",
+        "price": 13,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_109_2",
+        "name": "大杯",
+        "price": 16,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "热销",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_110",
+    "name": "柠檬茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "口感丝滑，料足味美",
+    "price": 11.0,
+    "originalPrice": null,
+    "monthSales": 3150,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "奶盖",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_111",
+    "name": "水果茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 21.0,
+    "originalPrice": null,
+    "monthSales": 1212,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_111_1",
+        "name": "标准糖",
+        "price": 21,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_111_2",
+        "name": "少糖",
+        "price": 21,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶盖",
+      "奶茶",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_112",
+    "name": "奶盖茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 17.0,
+    "originalPrice": 30.0,
+    "monthSales": 2714,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_112_1",
+        "name": "中杯",
+        "price": 17,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_112_2",
+        "name": "大杯",
+        "price": 20,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "奶盖",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_113",
+    "name": "芝士奶盖",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 21.0,
+    "originalPrice": 29.0,
+    "monthSales": 1191,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "水果茶",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_114",
+    "name": "四季春茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "茶香浓郁，甜度适中",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 3051,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "水果茶",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_115",
+    "name": "波霸奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "口感丝滑，料足味美",
+    "price": 9.0,
+    "originalPrice": null,
+    "monthSales": 4957,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_115_1",
+        "name": "标准糖",
+        "price": 9,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_115_2",
+        "name": "少糖",
+        "price": 9,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "热销",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_116",
+    "name": "红豆奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "口感丝滑，料足味美",
+    "price": 4.0,
+    "originalPrice": null,
+    "monthSales": 2801,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "奶茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_117",
+    "name": "布丁奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "香甜可口，回味无穷",
+    "price": 9.0,
+    "originalPrice": null,
+    "monthSales": 1429,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "水果茶",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_118",
+    "name": "椰果奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "茶香浓郁，甜度适中",
+    "price": 7.0,
+    "originalPrice": 21.0,
+    "monthSales": 1032,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "奶茶",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_119",
+    "name": "芋圆奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "茶香浓郁，甜度适中",
+    "price": 9.0,
+    "originalPrice": null,
+    "monthSales": 1133,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_119_1",
+        "name": "标准糖",
+        "price": 9,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_119_2",
+        "name": "少糖",
+        "price": 9,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_119_3",
+        "name": "无糖",
+        "price": 9,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "奶盖",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_120",
+    "name": "仙草奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "香甜可口，回味无穷",
+    "price": 8.0,
+    "originalPrice": 20.0,
+    "monthSales": 2799,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "甜品",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_121",
+    "name": "柠檬茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "茶香浓郁，甜度适中",
+    "price": 6.0,
+    "originalPrice": 17.0,
+    "monthSales": 1288,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_121_1",
+        "name": "标准糖",
+        "price": 6,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_121_2",
+        "name": "少糖",
+        "price": 6,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "奶盖",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_122",
+    "name": "水果茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "口感丝滑，料足味美",
+    "price": 8.0,
+    "originalPrice": null,
+    "monthSales": 2599,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_122_1",
+        "name": "中杯",
+        "price": 8,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_122_2",
+        "name": "大杯",
+        "price": 11,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "奶茶",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_123",
+    "name": "奶盖茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "茶香浓郁，甜度适中",
+    "price": 10.0,
+    "originalPrice": 25.0,
+    "monthSales": 3603,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "水果茶",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_124",
+    "name": "芝士奶盖",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "茶香浓郁，甜度适中",
+    "price": 3.0,
+    "originalPrice": null,
+    "monthSales": 3181,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_124_1",
+        "name": "中杯",
+        "price": 3,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_124_2",
+        "name": "大杯",
+        "price": 6,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "招牌",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_125",
+    "name": "四季春茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "口感丝滑，料足味美",
+    "price": 3.0,
+    "originalPrice": 9.0,
+    "monthSales": 2667,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶盖",
+      "甜品",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_126",
+    "name": "乌龙茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "口感丝滑，料足味美",
+    "price": 8.0,
+    "originalPrice": null,
+    "monthSales": 1272,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶盖",
+      "奶茶",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_127",
+    "name": "卡布奇诺",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "经典咖啡，品质保证",
+    "price": 39.0,
+    "originalPrice": null,
+    "monthSales": 576,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "新品",
+      "热销",
+      "咖啡"
+    ]
+  },
+  {
+    "productId": "prod_128",
+    "name": "拿铁咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 47.0,
+    "originalPrice": null,
+    "monthSales": 1890,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_128_1",
+        "name": "中杯",
+        "price": 47,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_128_2",
+        "name": "大杯",
+        "price": 50,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_129",
+    "name": "美式咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 44.0,
+    "originalPrice": null,
+    "monthSales": 493,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_129_1",
+        "name": "标准糖",
+        "price": 44,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_129_2",
+        "name": "少糖",
+        "price": 44,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_129_3",
+        "name": "无糖",
+        "price": 44,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "提神"
+    ]
+  },
+  {
+    "productId": "prod_130",
+    "name": "摩卡咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 40.0,
+    "originalPrice": 50.0,
+    "monthSales": 4331,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_130_1",
+        "name": "标准糖",
+        "price": 40,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_130_2",
+        "name": "少糖",
+        "price": 40,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_130_3",
+        "name": "无糖",
+        "price": 40,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "提神",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_131",
+    "name": "浓缩咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 46.0,
+    "originalPrice": null,
+    "monthSales": 1014,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_131_1",
+        "name": "标准糖",
+        "price": 46,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_131_2",
+        "name": "少糖",
+        "price": 46,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "热销",
+      "提神"
+    ]
+  },
+  {
+    "productId": "prod_132",
+    "name": "白咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 42.0,
+    "originalPrice": null,
+    "monthSales": 4127,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "热销",
+      "新品"
+    ]
+  },
+  {
+    "productId": "prod_133",
+    "name": "冰美式",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "经典咖啡，品质保证",
+    "price": 30.0,
+    "originalPrice": null,
+    "monthSales": 663,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_133_1",
+        "name": "标准糖",
+        "price": 30,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_133_2",
+        "name": "少糖",
+        "price": 30,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "提神",
+      "咖啡",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_134",
+    "name": "冷萃咖啡",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "咖啡香浓，口感顺滑",
+    "price": 33.0,
+    "originalPrice": 43.0,
+    "monthSales": 2360,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_134_1",
+        "name": "中杯",
+        "price": 33,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_134_2",
+        "name": "大杯",
+        "price": 36,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "新品",
+      "咖啡",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_135",
+    "name": "气泡美式",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 32.0,
+    "originalPrice": 46.0,
+    "monthSales": 1419,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "新品",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_136",
+    "name": "椰云拿铁",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "经典咖啡，品质保证",
+    "price": 37.0,
+    "originalPrice": null,
+    "monthSales": 3633,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_136_1",
+        "name": "标准糖",
+        "price": 37,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_136_2",
+        "name": "少糖",
+        "price": 37,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "新品",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_137",
+    "name": "丝绒拿铁",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "香醇浓郁，提神醒脑",
+    "price": 46.0,
+    "originalPrice": 57.0,
+    "monthSales": 2858,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_137_1",
+        "name": "标准糖",
+        "price": 46,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_137_2",
+        "name": "少糖",
+        "price": 46,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_137_3",
+        "name": "无糖",
+        "price": 46,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "提神",
+      "咖啡",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_138",
+    "name": "燕麦拿铁",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "经典咖啡，品质保证",
+    "price": 39.0,
+    "originalPrice": null,
+    "monthSales": 1745,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_138_1",
+        "name": "标准糖",
+        "price": 39,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_138_2",
+        "name": "少糖",
+        "price": 39,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_138_3",
+        "name": "无糖",
+        "price": 39,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "咖啡",
+      "提神"
+    ]
+  },
+  {
+    "productId": "prod_139",
+    "name": "波霸奶茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "口感丝滑，料足味美",
+    "price": 18.0,
+    "originalPrice": 30.0,
+    "monthSales": 4423,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "招牌",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_140",
+    "name": "红豆奶茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "口感丝滑，料足味美",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 2980,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "奶茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_141",
+    "name": "布丁奶茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "香甜可口，回味无穷",
+    "price": 21.0,
+    "originalPrice": null,
+    "monthSales": 4963,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "甜品",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_142",
+    "name": "椰果奶茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "香甜可口，回味无穷",
+    "price": 26.0,
+    "originalPrice": null,
+    "monthSales": 3824,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "奶盖",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_143",
+    "name": "芋圆奶茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "口感丝滑，料足味美",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 575,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "热销",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_144",
+    "name": "仙草奶茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "口感丝滑，料足味美",
+    "price": 31.0,
+    "originalPrice": null,
+    "monthSales": 4074,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_144_1",
+        "name": "标准糖",
+        "price": 31,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_144_2",
+        "name": "少糖",
+        "price": 31,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "奶盖",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_145",
+    "name": "柠檬茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "口感丝滑，料足味美",
+    "price": 31.0,
+    "originalPrice": null,
+    "monthSales": 689,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_145_1",
+        "name": "标准糖",
+        "price": 31,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_145_2",
+        "name": "少糖",
+        "price": 31,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_145_3",
+        "name": "无糖",
+        "price": 31,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "水果茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_146",
+    "name": "水果茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "香甜可口，回味无穷",
+    "price": 19.0,
+    "originalPrice": 31.0,
+    "monthSales": 2475,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "奶茶",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_147",
+    "name": "奶盖茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "茶香浓郁，甜度适中",
+    "price": 29.0,
+    "originalPrice": null,
+    "monthSales": 217,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_147_1",
+        "name": "标准糖",
+        "price": 29,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_147_2",
+        "name": "少糖",
+        "price": 29,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_147_3",
+        "name": "无糖",
+        "price": 29,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "水果茶",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_148",
+    "name": "芝士奶盖",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "口感丝滑，料足味美",
+    "price": 30.0,
+    "originalPrice": 40.0,
+    "monthSales": 2042,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "水果茶",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_149",
+    "name": "四季春茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "香甜可口，回味无穷",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 3592,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_149_1",
+        "name": "标准糖",
+        "price": 27,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_149_2",
+        "name": "少糖",
+        "price": 27,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_149_3",
+        "name": "无糖",
+        "price": 27,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "甜品",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_150",
+    "name": "乌龙茶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "香甜可口，回味无穷",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 4366,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "水果茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_151",
+    "name": "波霸奶茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "口感丝滑，料足味美",
+    "price": 14.0,
+    "originalPrice": 27.0,
+    "monthSales": 2568,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶盖",
+      "甜品",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_152",
+    "name": "红豆奶茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 2638,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_152_1",
+        "name": "标准糖",
+        "price": 20,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_152_2",
+        "name": "少糖",
+        "price": 20,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_152_3",
+        "name": "无糖",
+        "price": 20,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "招牌",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_153",
+    "name": "布丁奶茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "茶香浓郁，甜度适中",
+    "price": 14.0,
+    "originalPrice": null,
+    "monthSales": 1926,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "奶盖",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_154",
+    "name": "椰果奶茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 17.0,
+    "originalPrice": 28.0,
+    "monthSales": 2575,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_155",
+    "name": "芋圆奶茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "口感丝滑，料足味美",
+    "price": 10.0,
+    "originalPrice": null,
+    "monthSales": 3756,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_155_1",
+        "name": "标准糖",
+        "price": 10,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_155_2",
+        "name": "少糖",
+        "price": 10,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "水果茶",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_156",
+    "name": "仙草奶茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 10.0,
+    "originalPrice": null,
+    "monthSales": 1211,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "水果茶",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_157",
+    "name": "柠檬茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "口感丝滑，料足味美",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 4024,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_157_1",
+        "name": "中杯",
+        "price": 18,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_157_2",
+        "name": "大杯",
+        "price": 21,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "奶茶",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_158",
+    "name": "水果茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "茶香浓郁，甜度适中",
+    "price": 10.0,
+    "originalPrice": null,
+    "monthSales": 884,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_158_1",
+        "name": "标准糖",
+        "price": 10,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_158_2",
+        "name": "少糖",
+        "price": 10,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "奶盖",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_159",
+    "name": "奶盖茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "茶香浓郁，甜度适中",
+    "price": 10.0,
+    "originalPrice": 25.0,
+    "monthSales": 1302,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_159_1",
+        "name": "标准糖",
+        "price": 10,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_159_2",
+        "name": "少糖",
+        "price": 10,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "招牌",
+      "水果茶"
+    ]
+  },
+  {
+    "productId": "prod_160",
+    "name": "芝士奶盖",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 14.0,
+    "originalPrice": 19.0,
+    "monthSales": 3247,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_160_1",
+        "name": "中杯",
+        "price": 14,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_160_2",
+        "name": "大杯",
+        "price": 17,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "奶盖",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_161",
+    "name": "四季春茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 17.0,
+    "originalPrice": 32.0,
+    "monthSales": 4244,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_161_1",
+        "name": "标准糖",
+        "price": 17,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_161_2",
+        "name": "少糖",
+        "price": 17,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "甜品",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_162",
+    "name": "乌龙茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 13.0,
+    "originalPrice": null,
+    "monthSales": 652,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_162_1",
+        "name": "标准糖",
+        "price": 13,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_162_2",
+        "name": "少糖",
+        "price": 13,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_162_3",
+        "name": "无糖",
+        "price": 13,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶盖",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_163",
+    "name": "桂花乌龙",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 11.0,
+    "originalPrice": null,
+    "monthSales": 3520,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_163_1",
+        "name": "标准糖",
+        "price": 11,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_163_2",
+        "name": "少糖",
+        "price": 11,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_163_3",
+        "name": "无糖",
+        "price": 11,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "奶盖",
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_164",
+    "name": "茉莉绿茶",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "香甜可口，回味无穷",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 1776,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_164_1",
+        "name": "中杯",
+        "price": 20,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_164_2",
+        "name": "大杯",
+        "price": 23,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "招牌",
+      "奶盖"
+    ]
+  },
+  {
+    "productId": "prod_165",
+    "name": "红茶拿铁",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "口感丝滑，料足味美",
+    "price": 10.0,
+    "originalPrice": null,
+    "monthSales": 2032,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "奶茶",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_166",
+    "name": "汉堡",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 1730,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_166_1",
+        "name": "小份",
+        "price": 29,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_166_2",
+        "name": "大份",
+        "price": 32,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "儿童最爱",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_167",
+    "name": "炸鸡",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 22.0,
+    "originalPrice": 31.0,
+    "monthSales": 2894,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "儿童最爱",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_168",
+    "name": "薯条",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "快餐首选，口感极佳",
+    "price": 29.0,
+    "originalPrice": null,
+    "monthSales": 4191,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "儿童最爱",
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_169",
+    "name": "鸡块",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "快餐首选，口感极佳",
+    "price": 60.0,
+    "originalPrice": 73.0,
+    "monthSales": 2479,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "热销",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_170",
+    "name": "鸡翅",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "经典美式风味",
+    "price": 13.0,
+    "originalPrice": 19.0,
+    "monthSales": 2973,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_170_1",
+        "name": "小份",
+        "price": 10,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_170_2",
+        "name": "大份",
+        "price": 13,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "套餐",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_171",
+    "name": "可乐",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 481,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_171_1",
+        "name": "小份",
+        "price": 29,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_171_2",
+        "name": "大份",
+        "price": 32,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "快餐",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_172",
+    "name": "奶昔",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 29.0,
+    "originalPrice": null,
+    "monthSales": 3506,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_172_1",
+        "name": "小份",
+        "price": 26,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_172_2",
+        "name": "大份",
+        "price": 29,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "快餐",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_173",
+    "name": "圣代",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 14.0,
+    "originalPrice": null,
+    "monthSales": 2417,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_173_1",
+        "name": "小份",
+        "price": 11,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_173_2",
+        "name": "大份",
+        "price": 14,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "快餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_174",
+    "name": "派",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "经典美式风味",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 4225,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "套餐",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_175",
+    "name": "汉堡套餐",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "快餐首选，口感极佳",
+    "price": 67.0,
+    "originalPrice": 77.0,
+    "monthSales": 3843,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "套餐",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_176",
+    "name": "早餐套餐",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 37.0,
+    "originalPrice": null,
+    "monthSales": 381,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_176_1",
+        "name": "小份",
+        "price": 34,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_176_2",
+        "name": "大份",
+        "price": 37,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "经典",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_177",
+    "name": "儿童套餐",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 34.0,
+    "originalPrice": null,
+    "monthSales": 1476,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "经典",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_178",
+    "name": "麦乐鸡",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "快餐首选，口感极佳",
+    "price": 57.0,
+    "originalPrice": 72.0,
+    "monthSales": 2901,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "热销",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_179",
+    "name": "麦辣鸡翅",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "酥脆可口，美味满分",
+    "price": 49.0,
+    "originalPrice": null,
+    "monthSales": 412,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_179_1",
+        "name": "小份",
+        "price": 46,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_179_2",
+        "name": "大份",
+        "price": 49,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "套餐",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_180",
+    "name": "玉米杯",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "快餐首选，口感极佳",
+    "price": 60.0,
+    "originalPrice": 71.0,
+    "monthSales": 3616,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "套餐",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_181",
+    "name": "汉堡",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "酥脆可口，美味满分",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 3160,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "热销",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_182",
+    "name": "炸鸡",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "酥脆可口，美味满分",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 693,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_182_1",
+        "name": "小份",
+        "price": 9,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_182_2",
+        "name": "大份",
+        "price": 12,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "儿童最爱",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_183",
+    "name": "薯条",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "酥脆可口，美味满分",
+    "price": 56.0,
+    "originalPrice": null,
+    "monthSales": 460,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "热销",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_184",
+    "name": "鸡块",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 46.0,
+    "originalPrice": null,
+    "monthSales": 2981,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_184_1",
+        "name": "小份",
+        "price": 43,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_184_2",
+        "name": "大份",
+        "price": 46,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "儿童最爱",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_185",
+    "name": "鸡翅",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "快餐首选，口感极佳",
+    "price": 54.0,
+    "originalPrice": null,
+    "monthSales": 3694,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "热销",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_186",
+    "name": "可乐",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 38.0,
+    "originalPrice": null,
+    "monthSales": 3493,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "经典",
+      "儿童最爱"
+    ]
+  },
+  {
+    "productId": "prod_187",
+    "name": "奶昔",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "快餐首选，口感极佳",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 3684,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "套餐",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_188",
+    "name": "圣代",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 45.0,
+    "originalPrice": 57.0,
+    "monthSales": 3335,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "热销",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_189",
+    "name": "派",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "酥脆可口，美味满分",
+    "price": 44.0,
+    "originalPrice": null,
+    "monthSales": 276,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "套餐",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_190",
+    "name": "汉堡套餐",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "酥脆可口，美味满分",
+    "price": 28.0,
+    "originalPrice": 39.0,
+    "monthSales": 3526,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "儿童最爱",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_191",
+    "name": "早餐套餐",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 47.0,
+    "originalPrice": null,
+    "monthSales": 3561,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_191_1",
+        "name": "小份",
+        "price": 44,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_191_2",
+        "name": "大份",
+        "price": 47,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "经典",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_192",
+    "name": "儿童套餐",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "酥脆可口，美味满分",
+    "price": 43.0,
+    "originalPrice": null,
+    "monthSales": 3016,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "经典",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_193",
+    "name": "麦乐鸡",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 41.0,
+    "originalPrice": null,
+    "monthSales": 4252,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_193_1",
+        "name": "小份",
+        "price": 38,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_193_2",
+        "name": "大份",
+        "price": 41,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "儿童最爱",
+      "快餐",
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_194",
+    "name": "麦辣鸡翅",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 31.0,
+    "originalPrice": null,
+    "monthSales": 1545,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "儿童最爱",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_195",
+    "name": "玉米杯",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "经典美式风味",
+    "price": 62.0,
+    "originalPrice": null,
+    "monthSales": 3334,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "儿童最爱",
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_196",
+    "name": "披萨",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "精选食材，品质保证",
+    "price": 35.0,
+    "originalPrice": 41.0,
+    "monthSales": 3913,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "精品",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_197",
+    "name": "意大利面",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "西式经典，精致美味",
+    "price": 33.0,
+    "originalPrice": null,
+    "monthSales": 2550,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "精品",
+      "西餐"
+    ]
+  },
+  {
+    "productId": "prod_198",
+    "name": "焗饭",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 121.0,
+    "originalPrice": 133.0,
+    "monthSales": 772,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "精品",
+      "招牌",
+      "西餐"
+    ]
+  },
+  {
+    "productId": "prod_199",
+    "name": "牛排",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "精选食材，品质保证",
+    "price": 116.0,
+    "originalPrice": 128.0,
+    "monthSales": 1613,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "精品",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_200",
+    "name": "沙拉",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 51.0,
+    "originalPrice": null,
+    "monthSales": 3914,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "西餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_201",
+    "name": "浓汤",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "精选食材，品质保证",
+    "price": 50.0,
+    "originalPrice": null,
+    "monthSales": 784,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "热销",
+      "精品"
+    ]
+  },
+  {
+    "productId": "prod_202",
+    "name": "烤翅",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 77.0,
+    "originalPrice": 84.0,
+    "monthSales": 4987,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "特色",
+      "精品"
+    ]
+  },
+  {
+    "productId": "prod_203",
+    "name": "烤鸡",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 103.0,
+    "originalPrice": null,
+    "monthSales": 1382,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_204",
+    "name": "芝士蛋糕",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "西式经典，精致美味",
+    "price": 48.0,
+    "originalPrice": 59.0,
+    "monthSales": 4285,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "特色",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_205",
+    "name": "提拉米苏",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "西式经典，精致美味",
+    "price": 58.0,
+    "originalPrice": 69.0,
+    "monthSales": 4738,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "西餐",
+      "精品",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_206",
+    "name": "海鲜拼盘",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 97.0,
+    "originalPrice": null,
+    "monthSales": 345,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "西餐",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_207",
+    "name": "羊排",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 128.0,
+    "originalPrice": null,
+    "monthSales": 4407,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "西餐",
+      "精品"
+    ]
+  },
+  {
+    "productId": "prod_208",
+    "name": "鹅肝",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "精选食材，品质保证",
+    "price": 34.0,
+    "originalPrice": null,
+    "monthSales": 4960,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "精品",
+      "特色",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_209",
+    "name": "法式焗蜗牛",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "口感丰富，回味无穷",
+    "price": 87.0,
+    "originalPrice": 98.0,
+    "monthSales": 3846,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "精品",
+      "特色",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_210",
+    "name": "奶油蘑菇汤",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "精选食材，品质保证",
+    "price": 77.0,
+    "originalPrice": 85.0,
+    "monthSales": 4612,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "西餐",
+      "招牌",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_211",
+    "name": "牛肉卷",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 69.0,
+    "originalPrice": 75.0,
+    "monthSales": 2743,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_211_1",
+        "name": "一份",
+        "price": 69,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_211_2",
+        "name": "双份",
+        "price": 124.2,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "新鲜",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_212",
+    "name": "羊肉卷",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "必点招牌，鲜嫩美味",
+    "price": 72.0,
+    "originalPrice": 83.0,
+    "monthSales": 3134,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_212_1",
+        "name": "一份",
+        "price": 72,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_212_2",
+        "name": "双份",
+        "price": 129.6,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "火锅",
+      "热销",
+      "新鲜"
+    ]
+  },
+  {
+    "productId": "prod_213",
+    "name": "毛肚",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 86.0,
+    "originalPrice": null,
+    "monthSales": 2487,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "火锅",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_214",
+    "name": "鸭肠",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "新鲜食材，口感极佳",
+    "price": 88.0,
+    "originalPrice": null,
+    "monthSales": 1066,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_214_1",
+        "name": "一份",
+        "price": 88,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_214_2",
+        "name": "双份",
+        "price": 158.4,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "招牌",
+      "火锅"
+    ]
+  },
+  {
+    "productId": "prod_215",
+    "name": "虾滑",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 4068,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_215_1",
+        "name": "一份",
+        "price": 32,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_215_2",
+        "name": "双份",
+        "price": 57.6,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "必点",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_216",
+    "name": "牛百叶",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 74.0,
+    "originalPrice": 86.0,
+    "monthSales": 3983,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "新鲜",
+      "招牌",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_217",
+    "name": "午餐肉",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "必点招牌，鲜嫩美味",
+    "price": 67.0,
+    "originalPrice": 79.0,
+    "monthSales": 3405,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_217_1",
+        "name": "一份",
+        "price": 67,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_217_2",
+        "name": "双份",
+        "price": 120.60000000000001,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "必点",
+      "热销",
+      "新鲜"
+    ]
+  },
+  {
+    "productId": "prod_218",
+    "name": "嫩牛肉",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 30.0,
+    "originalPrice": null,
+    "monthSales": 559,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_218_1",
+        "name": "一份",
+        "price": 30,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_218_2",
+        "name": "双份",
+        "price": 54.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "火锅",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_219",
+    "name": "肥牛",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "必点招牌，鲜嫩美味",
+    "price": 30.0,
+    "originalPrice": null,
+    "monthSales": 1907,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [
+      {
+        "specId": "spec_219_1",
+        "name": "一份",
+        "price": 30,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_219_2",
+        "name": "双份",
+        "price": 54.0,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "火锅",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_220",
+    "name": "千层肚",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "必点招牌，鲜嫩美味",
+    "price": 66.0,
+    "originalPrice": null,
+    "monthSales": 1321,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "必点",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_221",
+    "name": "鹅肠",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 67.0,
+    "originalPrice": null,
+    "monthSales": 570,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_221_1",
+        "name": "一份",
+        "price": 67,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_221_2",
+        "name": "双份",
+        "price": 120.60000000000001,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "火锅",
+      "热销",
+      "新鲜"
+    ]
+  },
+  {
+    "productId": "prod_222",
+    "name": "黄喉",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 69.0,
+    "originalPrice": null,
+    "monthSales": 1389,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [
+      {
+        "specId": "spec_222_1",
+        "name": "一份",
+        "price": 69,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_222_2",
+        "name": "双份",
+        "price": 124.2,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "火锅",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_223",
+    "name": "脑花",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "新鲜食材，口感极佳",
+    "price": 39.0,
+    "originalPrice": null,
+    "monthSales": 3638,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [
+      {
+        "specId": "spec_223_1",
+        "name": "一份",
+        "price": 39,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_223_2",
+        "name": "双份",
+        "price": 70.2,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "必点",
+      "热销",
+      "新鲜"
+    ]
+  },
+  {
+    "productId": "prod_224",
+    "name": "鸭血",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "锅底浓郁，食材新鲜",
+    "price": 37.0,
+    "originalPrice": null,
+    "monthSales": 4321,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "新鲜",
+      "火锅",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_225",
+    "name": "豆腐",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "新鲜食材，口感极佳",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 4938,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [
+      {
+        "specId": "spec_225_1",
+        "name": "一份",
+        "price": 28,
+        "isDefault": true
+      },
+      {
+        "specId": "spec_225_2",
+        "name": "双份",
+        "price": 50.4,
+        "isDefault": false
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "必点",
+      "火锅",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_226",
+    "name": "莜面栲栳栳",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "特色西北菜，味道地道",
+    "price": 41.0,
+    "originalPrice": 55.0,
+    "monthSales": 3082,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "西北菜",
+      "热销",
+      "羊肉"
+    ]
+  },
+  {
+    "productId": "prod_227",
+    "name": "羊杂汤",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "特色西北菜，味道地道",
+    "price": 84.0,
+    "originalPrice": 99.0,
+    "monthSales": 1610,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "羊肉",
+      "特色",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_228",
+    "name": "手抓羊肉",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "特色西北菜，味道地道",
+    "price": 48.0,
+    "originalPrice": null,
+    "monthSales": 2256,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "西北菜",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_229",
+    "name": "烤羊排",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "西北风味，肉质鲜嫩",
+    "price": 81.0,
+    "originalPrice": null,
+    "monthSales": 2823,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "羊肉",
+      "西北菜"
+    ]
+  },
+  {
+    "productId": "prod_230",
+    "name": "大盘鸡",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "分量十足，实惠美味",
+    "price": 83.0,
+    "originalPrice": null,
+    "monthSales": 2189,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "羊肉",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_231",
+    "name": "黄焖羊肉",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "分量十足，实惠美味",
+    "price": 70.0,
+    "originalPrice": 75.0,
+    "monthSales": 2661,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "羊肉",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_232",
+    "name": "炖羊肉",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "西北风味，肉质鲜嫩",
+    "price": 61.0,
+    "originalPrice": 66.0,
+    "monthSales": 2675,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "西北菜",
+      "特色",
+      "羊肉"
+    ]
+  },
+  {
+    "productId": "prod_233",
+    "name": "孜然羊肉",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "分量十足，实惠美味",
+    "price": 87.0,
+    "originalPrice": 102.0,
+    "monthSales": 3032,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "西北菜",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_234",
+    "name": "葱爆羊肉",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "特色西北菜，味道地道",
+    "price": 72.0,
+    "originalPrice": null,
+    "monthSales": 4828,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "热销",
+      "西北菜"
+    ]
+  },
+  {
+    "productId": "prod_235",
+    "name": "羊肉串",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "西北风味，肉质鲜嫩",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 4599,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "招牌",
+      "西北菜"
+    ]
+  },
+  {
+    "productId": "prod_236",
+    "name": "羊蝎子",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "西北风味，肉质鲜嫩",
+    "price": 84.0,
+    "originalPrice": 93.0,
+    "monthSales": 2877,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "羊肉",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_237",
+    "name": "西贝莜面村特色菜1",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "西北风味，肉质鲜嫩",
+    "price": 80.0,
+    "originalPrice": null,
+    "monthSales": 2680,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "西北菜",
+      "羊肉",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_238",
+    "name": "西贝莜面村特色菜2",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "分量十足，实惠美味",
+    "price": 59.0,
+    "originalPrice": 71.0,
+    "monthSales": 1464,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "西北菜",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_239",
+    "name": "西贝莜面村特色菜3",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "西北风味，肉质鲜嫩",
+    "price": 80.0,
+    "originalPrice": null,
+    "monthSales": 4314,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "羊肉",
+      "西北菜",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_240",
+    "name": "西贝莜面村特色菜4",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "分量十足，实惠美味",
+    "price": 70.0,
+    "originalPrice": 79.0,
+    "monthSales": 1544,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "招牌",
+      "羊肉"
+    ]
+  },
+  {
+    "productId": "prod_241",
+    "name": "西湖醋鱼",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "清淡不腻，营养丰富",
+    "price": 55.0,
+    "originalPrice": null,
+    "monthSales": 3686,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "清淡",
+      "江浙菜"
+    ]
+  },
+  {
+    "productId": "prod_242",
+    "name": "东坡肉",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "清淡不腻，营养丰富",
+    "price": 40.0,
+    "originalPrice": null,
+    "monthSales": 1621,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "江浙菜",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_243",
+    "name": "龙井虾仁",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "清淡不腻，营养丰富",
+    "price": 52.0,
+    "originalPrice": null,
+    "monthSales": 2352,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "江浙菜",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_244",
+    "name": "松鼠桂鱼",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "江浙经典，鲜美可口",
+    "price": 25.0,
+    "originalPrice": 31.0,
+    "monthSales": 2171,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "江浙菜",
+      "热销",
+      "清淡"
+    ]
+  },
+  {
+    "productId": "prod_245",
+    "name": "叫化鸡",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "传统江浙味，口感细腻",
+    "price": 74.0,
+    "originalPrice": null,
+    "monthSales": 1152,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "清淡",
+      "江浙菜",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_246",
+    "name": "红烧狮子头",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "传统江浙味，口感细腻",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 2754,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "招牌",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_247",
+    "name": "清蒸鲈鱼",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "清淡不腻，营养丰富",
+    "price": 66.0,
+    "originalPrice": null,
+    "monthSales": 2610,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "特色",
+      "清淡"
+    ]
+  },
+  {
+    "productId": "prod_248",
+    "name": "糖醋小排",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "江浙经典，鲜美可口",
+    "price": 50.0,
+    "originalPrice": 55.0,
+    "monthSales": 4580,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "江浙菜",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_249",
+    "name": "盐水鸭",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "江浙经典，鲜美可口",
+    "price": 34.0,
+    "originalPrice": 43.0,
+    "monthSales": 4785,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "江浙菜",
+      "热销",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_250",
+    "name": "蟹粉豆腐",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "传统江浙味，口感细腻",
+    "price": 41.0,
+    "originalPrice": null,
+    "monthSales": 1440,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "清淡",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_251",
+    "name": "油焖春笋",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "传统江浙味，口感细腻",
+    "price": 54.0,
+    "originalPrice": 67.0,
+    "monthSales": 4480,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "清淡",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_252",
+    "name": "外婆家特色菜1",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "传统江浙味，口感细腻",
+    "price": 74.0,
+    "originalPrice": null,
+    "monthSales": 4919,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "招牌",
+      "江浙菜"
+    ]
+  },
+  {
+    "productId": "prod_253",
+    "name": "外婆家特色菜2",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "传统江浙味，口感细腻",
+    "price": 67.0,
+    "originalPrice": null,
+    "monthSales": 3210,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "特色",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_254",
+    "name": "外婆家特色菜3",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "清淡不腻，营养丰富",
+    "price": 29.0,
+    "originalPrice": null,
+    "monthSales": 365,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "清淡",
+      "江浙菜"
+    ]
+  },
+  {
+    "productId": "prod_255",
+    "name": "外婆家特色菜4",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "江浙经典，鲜美可口",
+    "price": 75.0,
+    "originalPrice": null,
+    "monthSales": 2595,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "特色",
+      "江浙菜"
+    ]
+  },
+  {
+    "productId": "prod_256",
+    "name": "黄焖鸡",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 35.0,
+    "originalPrice": 46.0,
+    "monthSales": 3825,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_256_1",
+        "name": "小份",
+        "price": 32,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_256_2",
+        "name": "大份",
+        "price": 35,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "简餐",
+      "快餐",
+      "实惠"
+    ]
+  },
+  {
+    "productId": "prod_257",
+    "name": "盖浇饭",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 1066,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "简餐",
+      "下饭",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_258",
+    "name": "炒饭",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "快捷方便，味道不错",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 2985,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_258_1",
+        "name": "小份",
+        "price": 25,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_258_2",
+        "name": "大份",
+        "price": 28,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "实惠",
+      "快餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_259",
+    "name": "烧饼",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "快捷方便，味道不错",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 2556,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "实惠",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_260",
+    "name": "煎饼",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "简餐首选，实惠美味",
+    "price": 33.0,
+    "originalPrice": null,
+    "monthSales": 4322,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_260_1",
+        "name": "小份",
+        "price": 30,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_260_2",
+        "name": "大份",
+        "price": 33,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "简餐",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_261",
+    "name": "鸡蛋灌饼",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 3379,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_261_1",
+        "name": "小份",
+        "price": 15,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_261_2",
+        "name": "大份",
+        "price": 18,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "热销",
+      "简餐"
+    ]
+  },
+  {
+    "productId": "prod_262",
+    "name": "肉夹馍",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "快捷方便，味道不错",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 1726,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "简餐",
+      "快餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_263",
+    "name": "牛肉饭",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "简餐首选，实惠美味",
+    "price": 30.0,
+    "originalPrice": 36.0,
+    "monthSales": 3696,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "简餐",
+      "实惠",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_264",
+    "name": "鸡肉饭",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 30.0,
+    "originalPrice": 36.0,
+    "monthSales": 4344,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_264_1",
+        "name": "小份",
+        "price": 27,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_264_2",
+        "name": "大份",
+        "price": 30,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "简餐",
+      "快餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_265",
+    "name": "排骨饭",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "快捷方便，味道不错",
+    "price": 17.0,
+    "originalPrice": null,
+    "monthSales": 4450,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_265_1",
+        "name": "小份",
+        "price": 14,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_265_2",
+        "name": "大份",
+        "price": 17,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "简餐",
+      "快餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_266",
+    "name": "红烧肉饭",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "简餐首选，实惠美味",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 4882,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_266_1",
+        "name": "小份",
+        "price": 24,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_266_2",
+        "name": "大份",
+        "price": 27,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "快餐",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_267",
+    "name": "黄焖鸡米饭特色菜1",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 2258,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "快餐",
+      "简餐"
+    ]
+  },
+  {
+    "productId": "prod_268",
+    "name": "黄焖鸡米饭特色菜2",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 1778,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "快餐",
+      "简餐"
+    ]
+  },
+  {
+    "productId": "prod_269",
+    "name": "黄焖鸡米饭特色菜3",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "性价比高，口感极佳",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 4457,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_269_1",
+        "name": "小份",
+        "price": 20,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_269_2",
+        "name": "大份",
+        "price": 23,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "简餐",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_270",
+    "name": "黄焖鸡米饭特色菜4",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "简餐首选，实惠美味",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 4285,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "实惠",
+      "下饭",
+      "简餐"
+    ]
+  },
+  {
+    "productId": "prod_271",
+    "name": "拌面",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 21.0,
+    "originalPrice": null,
+    "monthSales": 1863,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [
+      {
+        "specId": "spec_271_1",
+        "name": "小份",
+        "price": 18,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_271_2",
+        "name": "大份",
+        "price": 21,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "实惠",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_272",
+    "name": "炒粉",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "快餐首选，味道地道",
+    "price": 26.0,
+    "originalPrice": null,
+    "monthSales": 4885,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "实惠",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_273",
+    "name": "云吞",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 2209,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_273_1",
+        "name": "小份",
+        "price": 19,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_273_2",
+        "name": "大份",
+        "price": 22,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "小吃",
+      "经典",
+      "实惠"
+    ]
+  },
+  {
+    "productId": "prod_274",
+    "name": "蒸饺",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "实惠可口，份量十足",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 4951,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "实惠",
+      "经典",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_275",
+    "name": "煎饺",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "实惠可口，份量十足",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 1879,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [
+      {
+        "specId": "spec_275_1",
+        "name": "小份",
+        "price": 17,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_275_2",
+        "name": "大份",
+        "price": 20,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "实惠",
+      "经典",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_276",
+    "name": "小笼包",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 13.0,
+    "originalPrice": 23.0,
+    "monthSales": 3813,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_276_1",
+        "name": "小份",
+        "price": 10,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_276_2",
+        "name": "大份",
+        "price": 13,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "小吃",
+      "实惠",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_277",
+    "name": "炖罐",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 2549,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_277_1",
+        "name": "小份",
+        "price": 12,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_277_2",
+        "name": "大份",
+        "price": 15,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "经典",
+      "实惠"
+    ]
+  },
+  {
+    "productId": "prod_278",
+    "name": "卤味",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "快餐首选，味道地道",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 2314,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_278_1",
+        "name": "小份",
+        "price": 13,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_278_2",
+        "name": "大份",
+        "price": 16,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "快餐",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_279",
+    "name": "凉拌菜",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "快餐首选，味道地道",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 2740,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "小吃",
+      "实惠"
+    ]
+  },
+  {
+    "productId": "prod_280",
+    "name": "蛋炒饭",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "快餐首选，味道地道",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 1653,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "小吃",
+      "实惠"
+    ]
+  },
+  {
+    "productId": "prod_281",
+    "name": "扬州炒饭",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 3916,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_281_1",
+        "name": "小份",
+        "price": 22,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_281_2",
+        "name": "大份",
+        "price": 25,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "小吃",
+      "实惠",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_282",
+    "name": "沙县小吃特色菜1",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 1481,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "经典",
+      "实惠"
+    ]
+  },
+  {
+    "productId": "prod_283",
+    "name": "沙县小吃特色菜2",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "实惠可口，份量十足",
+    "price": 19.0,
+    "originalPrice": 25.0,
+    "monthSales": 3834,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "快餐",
+      "实惠",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_284",
+    "name": "沙县小吃特色菜3",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 9.0,
+    "originalPrice": 24.0,
+    "monthSales": 2680,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [
+      {
+        "specId": "spec_284_1",
+        "name": "小份",
+        "price": 6,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_284_2",
+        "name": "大份",
+        "price": 9,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "实惠",
+      "小吃",
+      "快餐"
+    ]
+  },
+  {
+    "productId": "prod_285",
+    "name": "沙县小吃特色菜4",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "传统小吃，经典美味",
+    "price": 13.0,
+    "originalPrice": 28.0,
+    "monthSales": 3140,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "COMBO",
+    "specifications": [
+      {
+        "specId": "spec_285_1",
+        "name": "小份",
+        "price": 10,
+        "isDefault": false
+      },
+      {
+        "specId": "spec_285_2",
+        "name": "大份",
+        "price": 13,
+        "isDefault": true
+      }
+    ],
+    "isAvailable": true,
+    "tags": [
+      "实惠",
+      "快餐",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_286",
+    "name": "牛肉拉面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "面条劲道，汤鲜味美",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 4349,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "面食",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_287",
+    "name": "羊肉拉面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "面条劲道，汤鲜味美",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 4384,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "主食",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_288",
+    "name": "肥肠面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "面条劲道，汤鲜味美",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 4757,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "经典",
+      "主食"
+    ]
+  },
+  {
+    "productId": "prod_289",
+    "name": "酸辣粉",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "分量足，味道正宗",
+    "price": 21.0,
+    "originalPrice": null,
+    "monthSales": 1272,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "热销",
+      "主食",
+      "面食"
+    ]
+  },
+  {
+    "productId": "prod_290",
+    "name": "刀削面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "面条劲道，汤鲜味美",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 4401,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "热销",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_291",
+    "name": "臊子面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "分量足，味道正宗",
+    "price": 31.0,
+    "originalPrice": 43.0,
+    "monthSales": 461,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "主食",
+      "经典",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_292",
+    "name": "炸酱面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "经典面食，口感极佳",
+    "price": 14.0,
+    "originalPrice": null,
+    "monthSales": 1419,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "热销",
+      "面食"
+    ]
+  },
+  {
+    "productId": "prod_293",
+    "name": "热干面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "分量足，味道正宗",
+    "price": 27.0,
+    "originalPrice": null,
+    "monthSales": 1067,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "主食",
+      "面食"
+    ]
+  },
+  {
+    "productId": "prod_294",
+    "name": "担担面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "经典面食，口感极佳",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 3165,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "主食",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_295",
+    "name": "凉面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "经典面食，口感极佳",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 521,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "面食",
+      "主食"
+    ]
+  },
+  {
+    "productId": "prod_296",
+    "name": "炒面",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "经典面食，口感极佳",
+    "price": 29.0,
+    "originalPrice": null,
+    "monthSales": 1305,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "招牌",
+      "主食"
+    ]
+  },
+  {
+    "productId": "prod_297",
+    "name": "兰州拉面特色菜1",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "面条劲道，汤鲜味美",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 4377,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "面食",
+      "主食",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_298",
+    "name": "兰州拉面特色菜2",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "经典面食，口感极佳",
+    "price": 17.0,
+    "originalPrice": null,
+    "monthSales": 2497,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "面食",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_299",
+    "name": "兰州拉面特色菜3",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "分量足，味道正宗",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 3200,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "面食",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_300",
+    "name": "兰州拉面特色菜4",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "面条劲道，汤鲜味美",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 4560,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "主食",
+      "面食"
+    ]
+  },
+  {
+    "productId": "prod_301",
+    "name": "招牌北京烤鸭（整只）",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "皮酥肉嫩，油而不腻，配荷叶饼",
+    "price": 138.0,
+    "originalPrice": 168.0,
+    "monthSales": 1850,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "烤鸭",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_302",
+    "name": "北京烤鸭（半只）",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "经典北京烤鸭，适合2-3人",
+    "price": 78.0,
+    "originalPrice": 88.0,
+    "monthSales": 2340,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "烤鸭",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_303",
+    "name": "片皮烤鸭套餐",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "烤鸭+荷叶饼+酱料+小菜",
+    "price": 158.0,
+    "originalPrice": null,
+    "monthSales": 1560,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "SET_MEAL",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "超值"
+    ]
+  },
+  {
+    "productId": "prod_304",
+    "name": "鸭架汤",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "鲜美浓郁的鸭骨汤",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 980,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SOUP",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "汤品",
+      "营养"
+    ]
+  },
+  {
+    "productId": "prod_305",
+    "name": "京酱肉丝",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "传统北京风味，配薄饼",
+    "price": 38.0,
+    "originalPrice": 45.0,
+    "monthSales": 1120,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "京味",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_306",
+    "name": "老北京炸酱面",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "地道京味，酱香浓郁",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 1680,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "面食",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_307",
+    "name": "宫保鸡丁",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "鸡肉鲜嫩，花生酥脆",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 890,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "下饭"
+    ]
+  },
+  {
+    "productId": "prod_308",
+    "name": "干炸丸子",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "外酥里嫩，老少皆宜",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 760,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃",
+      "京味"
+    ]
+  },
+  {
+    "productId": "prod_309",
+    "name": "炒肝儿",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "老北京传统小吃",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 650,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃",
+      "传统"
+    ]
+  },
+  {
+    "productId": "prod_310",
+    "name": "驴打滚",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "传统北京甜点",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 520,
+    "rating": 4.4,
+    "imageUrl": "tongyong.png",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜点",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_311",
+    "name": "豆汁儿套餐",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "豆汁+焦圈+咸菜",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 380,
+    "rating": 4.3,
+    "imageUrl": "tongyong.png",
+    "category": "BREAKFAST",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "早餐",
+      "传统"
+    ]
+  },
+  {
+    "productId": "prod_312",
+    "name": "芥末鸭掌",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "开胃爽口，芥末味浓",
+    "price": 35.0,
+    "originalPrice": null,
+    "monthSales": 670,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "凉菜",
+      "开胃"
+    ]
+  },
+  {
+    "productId": "prod_313",
+    "name": "糖醋排骨",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "酸甜适中，排骨软糯",
+    "price": 45.0,
+    "originalPrice": 52.0,
+    "monthSales": 920,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_314",
+    "name": "爆肚",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "新鲜羊肚，脆嫩爽口",
+    "price": 48.0,
+    "originalPrice": null,
+    "monthSales": 540,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "特色",
+      "京味"
+    ]
+  },
+  {
+    "productId": "prod_315",
+    "name": "酸梅汤",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "自制酸梅汤，消暑解腻",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 1450,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_316",
+    "name": "招牌烤肉拌饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "秘制烤肉配石锅拌饭，香气四溢",
+    "price": 32.0,
+    "originalPrice": 38.0,
+    "monthSales": 2850,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "烤肉",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_317",
+    "name": "芝士烤肉拌饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "浓郁芝士搭配烤肉，拉丝满满",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 2340,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "芝士",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_318",
+    "name": "石锅拌饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "传统韩式石锅拌饭，锅巴香脆",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 1980,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "经典",
+      "石锅"
+    ]
+  },
+  {
+    "productId": "prod_319",
+    "name": "部队火锅套餐",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "韩式部队火锅，料足味美",
+    "price": 68.0,
+    "originalPrice": 78.0,
+    "monthSales": 1120,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SET_MEAL",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "火锅",
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_320",
+    "name": "韩式炸鸡",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "外酥里嫩，甜辣酱汁",
+    "price": 38.0,
+    "originalPrice": null,
+    "monthSales": 1650,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "炸鸡",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_321",
+    "name": "泡菜拌饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "酸辣开胃，韩国泡菜",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 1230,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "泡菜",
+      "经典"
+    ]
+  },
+  {
+    "productId": "prod_322",
+    "name": "牛肉拌饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "嫩滑牛肉，营养丰富",
+    "price": 35.0,
+    "originalPrice": null,
+    "monthSales": 1450,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "牛肉",
+      "营养"
+    ]
+  },
+  {
+    "productId": "prod_323",
+    "name": "海鲜拌饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "新鲜海鲜，鲜美可口",
+    "price": 42.0,
+    "originalPrice": 48.0,
+    "monthSales": 890,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "海鲜",
+      "鲜美"
+    ]
+  },
+  {
+    "productId": "prod_324",
+    "name": "韩式辣炒年糕",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "软糯Q弹，甜辣适中",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 1560,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "年糕",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_325",
+    "name": "紫菜包饭",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "经典韩式紫菜包饭",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 980,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "紫菜",
+      "轻食"
+    ]
+  },
+  {
+    "productId": "prod_326",
+    "name": "辣白菜",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "正宗韩国泡菜，开胃下饭",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 1120,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "泡菜",
+      "小菜"
+    ]
+  },
+  {
+    "productId": "prod_327",
+    "name": "海带汤",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "清淡鲜美，营养丰富",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 760,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SOUP",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "汤品",
+      "养生"
+    ]
+  },
+  {
+    "productId": "prod_328",
+    "name": "泡菜汤",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "酸辣开胃，韩式风味",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 680,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SOUP",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "汤品",
+      "泡菜"
+    ]
+  },
+  {
+    "productId": "prod_329",
+    "name": "韩式凉面",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "冰爽凉面，夏日首选",
+    "price": 26.0,
+    "originalPrice": null,
+    "monthSales": 850,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "凉面",
+      "清爽"
+    ]
+  },
+  {
+    "productId": "prod_330",
+    "name": "米酒",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "韩国传统米酒，微甜",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 1340,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品",
+      "米酒"
+    ]
+  },
+  {
+    "productId": "prod_331",
+    "name": "招牌荷叶烤鸡（整只）",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "荷叶包裹，香气四溢，鸡肉鲜嫩",
+    "price": 88.0,
+    "originalPrice": 108.0,
+    "monthSales": 2150,
+    "rating": 4.9,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "招牌",
+      "烤鸡",
+      "必点"
+    ]
+  },
+  {
+    "productId": "prod_332",
+    "name": "荷叶烤鸡（半只）",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "适合1-2人，荷香浓郁",
+    "price": 48.0,
+    "originalPrice": 55.0,
+    "monthSales": 2680,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "烤鸡",
+      "热销"
+    ]
+  },
+  {
+    "productId": "prod_333",
+    "name": "秘制烤鸡翅",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "外酥里嫩，秘制酱料",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 1850,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "鸡翅",
+      "烧烤"
+    ]
+  },
+  {
+    "productId": "prod_334",
+    "name": "烤鸡腿",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "肉质鲜嫩，多汁美味",
+    "price": 22.0,
+    "originalPrice": 28.0,
+    "monthSales": 1560,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "鸡腿",
+      "烧烤"
+    ]
+  },
+  {
+    "productId": "prod_335",
+    "name": "烤全翅",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "整根鸡翅，香辣美味",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 1230,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "鸡翅",
+      "香辣"
+    ]
+  },
+  {
+    "productId": "prod_336",
+    "name": "荷叶烤鸡套餐",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "烤鸡+小菜+米饭+汤",
+    "price": 98.0,
+    "originalPrice": 118.0,
+    "monthSales": 980,
+    "rating": 4.8,
+    "imageUrl": "tongyong.png",
+    "category": "SET_MEAL",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "超值"
+    ]
+  },
+  {
+    "productId": "prod_337",
+    "name": "烤鸡爪",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "胶原蛋白丰富，香辣入味",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 1420,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "鸡爪",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_338",
+    "name": "烤鸡心",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "鲜嫩Q弹，撸串必点",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 920,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "烧烤",
+      "串串"
+    ]
+  },
+  {
+    "productId": "prod_339",
+    "name": "椒盐烤鸡",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "椒盐风味，外酥内嫩",
+    "price": 58.0,
+    "originalPrice": 68.0,
+    "monthSales": 760,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "椒盐",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_340",
+    "name": "香辣烤鸡块",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "麻辣鲜香，下酒好菜",
+    "price": 35.0,
+    "originalPrice": null,
+    "monthSales": 1120,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "香辣",
+      "下酒"
+    ]
+  },
+  {
+    "productId": "prod_341",
+    "name": "烤鸡肉串",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "10串装，嫩滑多汁",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 1680,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "串串",
+      "烧烤"
+    ]
+  },
+  {
+    "productId": "prod_342",
+    "name": "烤鸡软骨",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "脆嫩爽口，越嚼越香",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 850,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "软骨",
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_343",
+    "name": "鸡汤米线",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "鲜美鸡汤，米线滑爽",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 1340,
+    "rating": 4.6,
+    "imageUrl": "tongyong.png",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "米线",
+      "汤品"
+    ]
+  },
+  {
+    "productId": "prod_344",
+    "name": "凉拌鸡丝",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "清爽开胃，夏日必选",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 680,
+    "rating": 4.5,
+    "imageUrl": "tongyong.png",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "凉菜",
+      "开胃"
+    ]
+  },
+  {
+    "productId": "prod_345",
+    "name": "酸梅汁",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "解腻消暑，酸甜可口",
+    "price": 10.0,
+    "originalPrice": null,
+    "monthSales": 1890,
+    "rating": 4.7,
+    "imageUrl": "tongyong.png",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品",
+      "解腻"
+    ]
   }
 ]

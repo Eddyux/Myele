@@ -66,7 +66,8 @@ fun MessageDetailScreen(
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         },
         bottomBar = {
@@ -145,8 +146,8 @@ fun MessageDetailScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
-                .padding(padding)
-                .padding(16.dp),
+                .padding(padding),
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             // 顶部骑手信息

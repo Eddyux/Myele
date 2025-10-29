@@ -60,7 +60,8 @@ fun OnlineChatScreen(navController: NavController, riderName: String = "周丹�
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         },
         bottomBar = {
@@ -139,8 +140,8 @@ fun OnlineChatScreen(navController: NavController, riderName: String = "周丹�
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color(0xFFF5F5F5))
-                .padding(16.dp)
+                .background(Color(0xFFF5F5F5)),
+            contentPadding = PaddingValues(start = 16.dp, end = 16.dp, top = 0.dp, bottom = 16.dp)
         ) {
             // 骑手头像和订单图片
             item {

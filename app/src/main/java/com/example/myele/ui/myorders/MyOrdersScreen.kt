@@ -106,7 +106,8 @@ fun MyOrdersScreen(navController: NavController, repository: DataRepository) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
@@ -141,14 +142,14 @@ fun MyOrdersScreen(navController: NavController, repository: DataRepository) {
             Surface(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp),
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
                 color = Color.White,
                 shape = RoundedCornerShape(8.dp)
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 16.dp, vertical = 12.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(

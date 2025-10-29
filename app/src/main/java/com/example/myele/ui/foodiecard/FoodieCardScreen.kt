@@ -88,7 +88,8 @@ fun FoodieCardScreen(navController: NavController, repository: DataRepository) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
@@ -103,7 +104,7 @@ fun FoodieCardScreen(navController: NavController, repository: DataRepository) {
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 8.dp),
                     shape = RoundedCornerShape(12.dp),
                     color = Color.White
                 ) {

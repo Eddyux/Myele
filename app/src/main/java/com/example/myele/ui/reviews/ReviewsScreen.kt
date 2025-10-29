@@ -58,7 +58,8 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
@@ -214,7 +215,7 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
             // 评价列表
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(16.dp),
+                contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 if (selectedTab == "待评价") {

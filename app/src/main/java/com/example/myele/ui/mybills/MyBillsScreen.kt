@@ -46,7 +46,8 @@ fun MyBillsScreen(navController: NavController, repository: DataRepository) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color(0xFF00BFFF)
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
@@ -89,7 +90,8 @@ fun MyBillsScreen(navController: NavController, repository: DataRepository) {
             }
 
             LazyColumn(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                contentPadding = PaddingValues(start = 0.dp, end = 0.dp, top = 0.dp, bottom = 12.dp)
             ) {
                 // 时间选择
                 item {
@@ -125,7 +127,7 @@ fun MyBillsScreen(navController: NavController, repository: DataRepository) {
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
+                            .padding(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 8.dp),
                         shape = RoundedCornerShape(12.dp),
                         color = Color(0xFF00BFFF)
                     ) {

@@ -56,18 +56,19 @@ fun OrderDetailScreen(
                         Icon(
                             Icons.Default.ArrowBack,
                             contentDescription = "返回",
-                            tint = Color.White
+                            tint = Color.Black
                         )
                     }
                 },
                 actions = {
                     IconButton(onClick = { }) {
-                        Icon(Icons.Default.MoreVert, contentDescription = "更多", tint = Color.White)
+                        Icon(Icons.Default.MoreVert, contentDescription = "更多", tint = Color.Black)
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Transparent
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
@@ -86,7 +87,7 @@ fun OrderDetailScreen(
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
+                            .padding(horizontal = 16.dp, vertical = 12.dp)
                     ) {
                         Text(
                             text = when (order.status) {
@@ -118,7 +119,7 @@ fun OrderDetailScreen(
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
+                            .padding(horizontal = 16.dp, vertical = 12.dp)
                     ) {
                         // 第一行：申请售后、联系商家、联系骑士
                         Row(
@@ -155,7 +156,7 @@ fun OrderDetailScreen(
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp)
+                        .padding(horizontal = 12.dp, vertical = 8.dp)
                         .clickable {
                             navController.navigate(Screen.FoodInsurance.createRoute(order.orderId))
                         },
@@ -165,7 +166,7 @@ fun OrderDetailScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp),
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -212,7 +213,7 @@ fun OrderDetailScreen(
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                     shape = RoundedCornerShape(12.dp),
                     color = Color.White
                 ) {
@@ -350,7 +351,7 @@ fun OrderDetailScreen(
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                     shape = RoundedCornerShape(12.dp),
                     color = Color.White
                 ) {
@@ -377,7 +378,7 @@ fun OrderDetailScreen(
                     onClick = { },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(horizontal = 12.dp, vertical = 8.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.White,
                         contentColor = Color.Black

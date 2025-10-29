@@ -94,7 +94,8 @@ fun FrequentStoresScreen(navController: NavController, repository: DataRepositor
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { padding ->
@@ -102,7 +103,8 @@ fun FrequentStoresScreen(navController: NavController, repository: DataRepositor
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
-                .padding(padding)
+                .padding(padding),
+            contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 12.dp)
         ) {
             // 筛选栏
             item {

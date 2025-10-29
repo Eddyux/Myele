@@ -46,6 +46,7 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
 
     // Load available coupons
     val allCoupons = remember { repository.getCoupons() }
+    val deliveryFee = 5.0 // 配送费
     val availableCoupons = remember(subtotal, restaurantIds) {
         allCoupons.filter { coupon ->
             coupon.status == com.example.myele.model.CouponStatus.AVAILABLE &&
@@ -53,12 +54,12 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
              restaurantIds.any { it in coupon.applicableRestaurants }) &&
             (coupon.minOrderAmount == null || subtotal >= (coupon.minOrderAmount ?: 0.0))
         }.sortedByDescending {
-            it.calculateDiscount(subtotal)
+            it.calculateDiscount(subtotal, deliveryFee)
         }
     }
 
     // Calculate discount
-    val couponDiscount = selectedCoupon?.calculateDiscount(subtotal) ?: 0.0
+    val couponDiscount = selectedCoupon?.calculateDiscount(subtotal, deliveryFee) ?: 0.0
 
     Column(
         modifier = Modifier
@@ -565,15 +566,9 @@ fun CouponSelectionSection(
             }
             Row(verticalAlignment = Alignment.CenterVertically) {
                 if (selectedCoupon != null) {
-                    val discountAmount = when (selectedCoupon.type) {
-                        com.example.myele.model.CouponType.REDUCTION -> selectedCoupon.discountAmount ?: 0.0
-                        com.example.myele.model.CouponType.DISCOUNT -> {
-                            // 计算实际折扣金额而不是显示折扣率
-                            val subtotal = CartManager.getSubtotal()
-                            selectedCoupon.calculateDiscount(subtotal)
-                        }
-                        else -> 0.0
-                    }
+                    val subtotal = CartManager.getSubtotal()
+                    val deliveryFee = 5.0
+                    val discountAmount = selectedCoupon.calculateDiscount(subtotal, deliveryFee)
                     Text(
                         text = "-¥%.0f".format(discountAmount),
                         fontSize = 14.sp,
@@ -679,7 +674,8 @@ fun CouponSelectionDialog(
             ) {
                 Text(
                     text = if (selectedCoupon != null) {
-                        "已选1张，可减 ¥%.0f".format(selectedCoupon.calculateDiscount(subtotal))
+                        val deliveryFee = 5.0
+                        "已选1张，可减 ¥%.0f".format(selectedCoupon.calculateDiscount(subtotal, deliveryFee))
                     } else {
                         "确定"
                     },

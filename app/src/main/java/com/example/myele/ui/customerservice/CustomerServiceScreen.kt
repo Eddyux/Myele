@@ -55,7 +55,8 @@ fun CustomerServiceScreen(navController: NavController, repository: DataReposito
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         },
         bottomBar = {
@@ -66,7 +67,8 @@ fun CustomerServiceScreen(navController: NavController, repository: DataReposito
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
-                .padding(padding)
+                .padding(padding),
+            contentPadding = PaddingValues(start = 0.dp, end = 0.dp, top = 0.dp, bottom = 12.dp)
         ) {
             // 智能客服横幅
             item {

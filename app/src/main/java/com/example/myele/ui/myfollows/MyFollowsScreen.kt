@@ -84,7 +84,8 @@ fun MyFollowsScreen(navController: NavController, repository: DataRepository) {
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.White
-                )
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { padding ->
@@ -92,14 +93,15 @@ fun MyFollowsScreen(navController: NavController, repository: DataRepository) {
             modifier = Modifier
                 .fillMaxSize()
                 .background(Color(0xFFF5F5F5))
-                .padding(padding)
+                .padding(padding),
+            contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 12.dp)
         ) {
             // 筛选提示栏
             item {
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp),
+                        .padding(horizontal = 4.dp, vertical = 8.dp),
                     color = Color(0xFFFFF8E1)
                 ) {
                     Text(
