@@ -115,13 +115,23 @@ fun SearchScreen(navController: NavController) {
 
             // 搜索发现
             item {
-                SearchDiscovery()
+                SearchDiscovery(
+                    stores = recommendedStores,
+                    onStoreClick = { storeName ->
+                        searchText = storeName
+                        presenter.onSearchClicked(storeName)
+                        navController.navigate(com.example.myele.navigation.Screen.SearchResult.createRoute(storeName))
+                    }
+                )
             }
 
             // 专属好店
             if (recommendedStores.isNotEmpty()) {
                 item {
-                    RecommendedStores(stores = recommendedStores)
+                    RecommendedStores(
+                        stores = recommendedStores,
+                        navController = navController
+                    )
                 }
             }
         }
@@ -320,7 +330,10 @@ fun ClearHistoryDialog(
 }
 
 @Composable
-fun SearchDiscovery() {
+fun SearchDiscovery(
+    stores: List<StoreRecommendation>,
+    onStoreClick: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -348,24 +361,20 @@ fun SearchDiscovery() {
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        val discoveries = listOf(
-            "蜜雪冰城奶茶", "coco", "吾饮良品", "一点点",
-            "脆皮鸡拌饭", "🔥 25元超大红包", "荷叶烤鸡"
-        )
-
+        // 显示店铺名称
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(discoveries) { item ->
+            items(stores) { store ->
                 Surface(
                     shape = RoundedCornerShape(16.dp),
-                    color = if (item.contains("红包")) Color(0xFFFFE5E5) else Color(0xFFF5F5F5),
-                    modifier = Modifier.clickable { /* TODO */ }
+                    color = Color(0xFFF5F5F5),
+                    modifier = Modifier.clickable { onStoreClick(store.name) }
                 ) {
                     Text(
-                        text = item,
+                        text = store.name,
                         fontSize = 14.sp,
-                        color = if (item.contains("红包")) Color(0xFFFF3366) else Color.Black,
+                        color = Color.Black,
                         modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
                     )
                 }
@@ -375,7 +384,7 @@ fun SearchDiscovery() {
 }
 
 @Composable
-fun RecommendedStores(stores: List<StoreRecommendation>) {
+fun RecommendedStores(stores: List<StoreRecommendation>, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -390,7 +399,11 @@ fun RecommendedStores(stores: List<StoreRecommendation>) {
         )
 
         stores.forEachIndexed { index, store ->
-            RecommendedStoreItem(store = store, rank = index + 1)
+            RecommendedStoreItem(
+                store = store,
+                rank = index + 1,
+                navController = navController
+            )
             if (index < stores.size - 1) {
                 Spacer(modifier = Modifier.height(12.dp))
             }
@@ -399,11 +412,16 @@ fun RecommendedStores(stores: List<StoreRecommendation>) {
 }
 
 @Composable
-fun RecommendedStoreItem(store: StoreRecommendation, rank: Int) {
+fun RecommendedStoreItem(store: StoreRecommendation, rank: Int, navController: NavController) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { /* TODO */ },
+            .clickable {
+                // 点击跳转到商家页面
+                navController.navigate(
+                    com.example.myele.navigation.Screen.StorePage.createRoute(store.id)
+                )
+            },
         verticalAlignment = Alignment.CenterVertically
     ) {
         // 排名徽章

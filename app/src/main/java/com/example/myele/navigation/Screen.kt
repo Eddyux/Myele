@@ -53,4 +53,9 @@ sealed class Screen(val route: String) {
     object NotificationSettings : Screen("notification_settings")
     object MyInfo : Screen("my_info")
     object ChangePhone : Screen("change_phone")
+
+    // 通用服务页面
+    object ServicePage : Screen("service_page/{serviceName}") {
+        fun createRoute(serviceName: String) = "service_page/$serviceName"
+    }
 }

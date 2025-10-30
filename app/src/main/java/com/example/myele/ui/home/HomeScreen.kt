@@ -98,11 +98,6 @@ fun HomeScreen(navController: NavController) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-            // 广告横幅
-            item {
-                PromotionBanner()
-            }
-
             // 服务入口图标
             item {
                 ServiceIcons(navController)
@@ -319,22 +314,22 @@ fun PromotionBanner() {
 fun ServiceIcons(navController: NavController) {
     val services = listOf(
         ServiceItem("美食外卖", Icons.Default.Restaurant, Color(0xFFFF6B6B), com.example.myele.navigation.Screen.Takeout.route),
-        ServiceItem("超市便利", Icons.Default.ShoppingBag, Color(0xFF4CAF50)),
-        ServiceItem("学生福利", Icons.Default.School, Color(0xFF2196F3)),
-        ServiceItem("水果买菜", Icons.Default.Eco, Color(0xFF8BC34A)),
-        ServiceItem("看病买药", Icons.Default.LocalHospital, Color(0xFFFF9800)),
-        ServiceItem("甜品饮品", Icons.Default.Icecream, Color(0xFFE91E63)),
-        ServiceItem("天天爆红包", Icons.Default.CardGiftcard, Color(0xFFF44336)),
-        ServiceItem("爆品团", Icons.Default.Group, Color(0xFF9C27B0)),
-        ServiceItem("赚吃货豆", Icons.Default.Star, Color(0xFFFF5722)),
-        ServiceItem("0元领水果", Icons.Default.LocalOffer, Color(0xFF00BCD4))
+        ServiceItem("超市便利", Icons.Default.ShoppingBag, Color(0xFF4CAF50), com.example.myele.navigation.Screen.ServicePage.createRoute("超市便利")),
+        ServiceItem("学生福利", Icons.Default.School, Color(0xFF2196F3), com.example.myele.navigation.Screen.ServicePage.createRoute("学生福利")),
+        ServiceItem("水果买菜", Icons.Default.Eco, Color(0xFF8BC34A), com.example.myele.navigation.Screen.ServicePage.createRoute("水果买菜")),
+        ServiceItem("看病买药", Icons.Default.LocalHospital, Color(0xFFFF9800), com.example.myele.navigation.Screen.ServicePage.createRoute("看病买药")),
+        ServiceItem("甜品饮品", Icons.Default.Icecream, Color(0xFFE91E63), com.example.myele.navigation.Screen.ServicePage.createRoute("甜品饮品")),
+        ServiceItem("天天爆红包", Icons.Default.CardGiftcard, Color(0xFFF44336), com.example.myele.navigation.Screen.ServicePage.createRoute("天天爆红包")),
+        ServiceItem("爆品团", Icons.Default.Group, Color(0xFF9C27B0), com.example.myele.navigation.Screen.ServicePage.createRoute("爆品团")),
+        ServiceItem("赚吃货豆", Icons.Default.Star, Color(0xFFFF5722), com.example.myele.navigation.Screen.ServicePage.createRoute("赚吃货豆")),
+        ServiceItem("0元领水果", Icons.Default.LocalOffer, Color(0xFF00BCD4), com.example.myele.navigation.Screen.ServicePage.createRoute("0元领水果"))
     )
 
     LazyVerticalGrid(
         columns = GridCells.Fixed(5),
         modifier = Modifier
             .fillMaxWidth()
-            .height(160.dp)  // 添加明确的高度约束 (2行 * 80dp/行)
+            .height(220.dp)  // 足够的高度确保两排图标完全显示，无需滚动
             .background(Color.White)
             .padding(vertical = 12.dp),
         contentPadding = PaddingValues(horizontal = 8.dp)

@@ -44,6 +44,7 @@ import com.example.myele.ui.notificationsettings.NotificationSettingsScreen
 import com.example.myele.ui.myinfo.MyInfoScreen
 import com.example.myele.ui.changephone.ChangePhoneScreen
 import com.example.myele.ui.storepage.StorePageScreen
+import com.example.myele.ui.servicepage.ServicePageScreen
 
 /**
  * 导航图
@@ -216,6 +217,15 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(Screen.ChangePhone.route) {
             ChangePhoneScreen(navController)
+        }
+
+        // 通用服务页面
+        composable(
+            route = Screen.ServicePage.route,
+            arguments = listOf(navArgument("serviceName") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val serviceName = backStackEntry.arguments?.getString("serviceName") ?: ""
+            ServicePageScreen(navController, serviceName)
         }
     }
 }

@@ -403,47 +403,59 @@ fun SortAndFilter(
 }
 
 // 排序弹窗
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SortDialog(
     selectedSortType: SortType,
     onSortTypeSelected: (SortType) -> Unit,
     onDismiss: () -> Unit
 ) {
-    ModalBottomSheet(
-        onDismissRequest = onDismiss,
-        containerColor = Color.White
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable { onDismiss() }
     ) {
-        Column(
+        Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 32.dp)
+                .align(Alignment.TopStart)
+                .padding(top = 320.dp)
+                .clickable(enabled = false) { },
+            color = Color.White,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
         ) {
-            SortOption(
-                text = "综合排序",
-                isSelected = selectedSortType == SortType.COMPREHENSIVE,
-                onClick = { onSortTypeSelected(SortType.COMPREHENSIVE) }
-            )
-            SortOption(
-                text = "人均价低到高",
-                isSelected = selectedSortType == SortType.PRICE_LOW_TO_HIGH,
-                onClick = { onSortTypeSelected(SortType.PRICE_LOW_TO_HIGH) }
-            )
-            SortOption(
-                text = "距离优先",
-                isSelected = selectedSortType == SortType.DISTANCE,
-                onClick = { onSortTypeSelected(SortType.DISTANCE) }
-            )
-            SortOption(
-                text = "商家好评优先",
-                isSelected = selectedSortType == SortType.RATING,
-                onClick = { onSortTypeSelected(SortType.RATING) }
-            )
-            SortOption(
-                text = "起送低到高",
-                isSelected = selectedSortType == SortType.MIN_DELIVERY,
-                onClick = { onSortTypeSelected(SortType.MIN_DELIVERY) }
-            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                SortOption(
+                    text = "综合排序",
+                    isSelected = selectedSortType == SortType.COMPREHENSIVE,
+                    onClick = { onSortTypeSelected(SortType.COMPREHENSIVE) }
+                )
+                SortOption(
+                    text = "人均价低到高",
+                    isSelected = selectedSortType == SortType.PRICE_LOW_TO_HIGH,
+                    onClick = { onSortTypeSelected(SortType.PRICE_LOW_TO_HIGH) }
+                )
+                SortOption(
+                    text = "距离优先",
+                    isSelected = selectedSortType == SortType.DISTANCE,
+                    onClick = { onSortTypeSelected(SortType.DISTANCE) }
+                )
+                SortOption(
+                    text = "商家好评优先",
+                    isSelected = selectedSortType == SortType.RATING,
+                    onClick = { onSortTypeSelected(SortType.RATING) }
+                )
+                SortOption(
+                    text = "起送低到高",
+                    isSelected = selectedSortType == SortType.MIN_DELIVERY,
+                    onClick = { onSortTypeSelected(SortType.MIN_DELIVERY) }
+                )
+            }
         }
     }
 }
@@ -586,74 +598,7 @@ fun FilterDialog(
             }
 
             item {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    Surface(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(8.dp),
-                        color = Color(0xFFF5F5F5)
-                    ) {
-                        Text(
-                            text = "自定义最低价",
-                            fontSize = 14.sp,
-                            color = Color.Gray,
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp)
-                        )
-                    }
-                    Surface(
-                        modifier = Modifier.weight(1f),
-                        shape = RoundedCornerShape(8.dp),
-                        color = Color(0xFFF5F5F5)
-                    ) {
-                        Text(
-                            text = "自定义最高价",
-                            fontSize = 14.sp,
-                            color = Color.Gray,
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 12.dp)
-                        )
-                    }
-                }
-            }
-
-            item {
-                Spacer(modifier = Modifier.height(12.dp))
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    listOf(
-                        "0-11元" to "3%选择",
-                        "12-18元" to "45%选择",
-                        "19-21元" to "38%选择",
-                        "22-218元" to "14%选择"
-                    ).forEach { (range, percentage) ->
-                        Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .clickable {
-                                    selectedPriceRange = if (selectedPriceRange == range) null else range
-                                }
-                        ) {
-                            Text(
-                                text = range,
-                                fontSize = 14.sp,
-                                color = if (selectedPriceRange == range) Color(0xFF00BFFF) else Color.Black,
-                                fontWeight = if (selectedPriceRange == range) FontWeight.Bold else FontWeight.Normal
-                            )
-                            Text(
-                                text = percentage,
-                                fontSize = 12.sp,
-                                color = Color.Gray
-                            )
-                        }
-                    }
-                }
+                TakeoutPriceRangeSlider()
             }
 
             item {
@@ -851,5 +796,49 @@ fun TakeoutRestaurantCard(restaurant: Restaurant, navController: NavController) 
                 }
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TakeoutPriceRangeSlider() {
+    var sliderPosition by remember { mutableStateOf(0f..120f) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = "¥${sliderPosition.start.toInt()}",
+                fontSize = 14.sp,
+                color = Color(0xFF00BFFF),
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = if (sliderPosition.endInclusive >= 120f) "¥120+" else "¥${sliderPosition.endInclusive.toInt()}",
+                fontSize = 14.sp,
+                color = Color(0xFF00BFFF),
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        RangeSlider(
+            value = sliderPosition,
+            onValueChange = { sliderPosition = it },
+            valueRange = 0f..120f,
+            colors = SliderDefaults.colors(
+                thumbColor = Color(0xFF00BFFF),
+                activeTrackColor = Color(0xFF00BFFF),
+                inactiveTrackColor = Color(0xFFE0E0E0)
+            ),
+            modifier = Modifier.fillMaxWidth()
+        )
     }
 }

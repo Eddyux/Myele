@@ -5,7 +5,7 @@ package com.example.myele.ui.search
  */
 class SearchPresenter(private val view: SearchContract.View) : SearchContract.Presenter {
 
-    private val searchHistory = mutableListOf("备注", "北京烤鸭")
+    private val searchHistory = mutableListOf("coco都可", "北京烤鸭", "蜜雪冰城")
     private val searchSuggestions = listOf("coco都可")
 
     override fun onViewCreated() {

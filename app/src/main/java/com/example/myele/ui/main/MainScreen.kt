@@ -31,9 +31,9 @@ fun MainScreen(navController: NavController, content: @Composable (PaddingValues
     LaunchedEffect(currentRoute) {
         selectedTab = when (currentRoute) {
             Screen.Home.route -> 0
-            Screen.Messages.route -> 2
-            Screen.ShoppingCart.route -> 3
-            Screen.Profile.route -> 4
+            Screen.Messages.route -> 1
+            Screen.ShoppingCart.route -> 2
+            Screen.Profile.route -> 3
             else -> 0
         }
     }
@@ -60,13 +60,13 @@ fun MainScreen(navController: NavController, content: @Composable (PaddingValues
                             0 -> navController.navigate(Screen.Home.route) {
                                 popUpTo(Screen.Home.route) { inclusive = true }
                             }
-                            2 -> navController.navigate(Screen.Messages.route) {
+                            1 -> navController.navigate(Screen.Messages.route) {
                                 popUpTo(Screen.Home.route)
                             }
-                            3 -> navController.navigate(Screen.ShoppingCart.route) {
+                            2 -> navController.navigate(Screen.ShoppingCart.route) {
                                 popUpTo(Screen.Home.route)
                             }
-                            4 -> navController.navigate(Screen.Profile.route) {
+                            3 -> navController.navigate(Screen.Profile.route) {
                                 popUpTo(Screen.Home.route)
                             }
                         }
@@ -100,45 +100,26 @@ fun BottomNavigationBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
                 onClick = { onTabSelected(0) }
             )
 
-            // 价格按钮(第二个位置)
-            Box(
-                modifier = Modifier
-                    .size(56.dp)
-                    .background(Color(0xFF00BFFF), CircleShape)
-                    .clickable { onTabSelected(1) },
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = "¥18.8",
-                        color = Color.White,
-                        fontSize = 12.sp
-                    )
-                }
-            }
-
             BottomNavItem(
                 icon = Icons.Default.Email,
                 label = "消息",
-                selected = selectedTab == 2,
-                onClick = { onTabSelected(2) },
+                selected = selectedTab == 1,
+                onClick = { onTabSelected(1) },
                 badge = 3
             )
 
             BottomNavItem(
                 icon = Icons.Default.ShoppingCart,
                 label = "购物车",
-                selected = selectedTab == 3,
-                onClick = { onTabSelected(3) }
+                selected = selectedTab == 2,
+                onClick = { onTabSelected(2) }
             )
 
             BottomNavItem(
                 icon = Icons.Default.Person,
                 label = "我的",
-                selected = selectedTab == 4,
-                onClick = { onTabSelected(4) }
+                selected = selectedTab == 3,
+                onClick = { onTabSelected(3) }
             )
         }
     }
