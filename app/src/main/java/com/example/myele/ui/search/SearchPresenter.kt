@@ -43,9 +43,9 @@ class SearchPresenter(private val view: SearchContract.View) : SearchContract.Pr
 
     private fun loadRecommendedStores() {
         val stores = listOf(
-            StoreRecommendation("1", "北京烤鸭", null, 275553),
-            StoreRecommendation("2", "美滋滋烤肉拌饭", null, 236389),
-            StoreRecommendation("3", "KFC", null, 189234)
+            StoreRecommendation("rest_021", "北京烤鸭 (华师校园店)", null, 275553),
+            StoreRecommendation("rest_022", "美滋滋烤肉拌饭", null, 236389),
+            StoreRecommendation("rest_013", "肯德基", null, 189234)
         )
         view.updateRecommendedStores(stores)
     }

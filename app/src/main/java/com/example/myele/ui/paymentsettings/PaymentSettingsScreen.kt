@@ -13,6 +13,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.platform.LocalContext
+import com.example.myele.data.DataRepository
 
 /**
  * 支付设置页面
@@ -21,8 +24,14 @@ import androidx.navigation.NavController
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PaymentSettingsScreen(navController: NavController) {
-    var alipayFreePassword by remember { mutableStateOf(false) }
-    var balanceFreePassword by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val repository = DataRepository(context)
+    val prefsManager = repository.getPreferencesManager()
+
+    var alipayFreePassword by remember { mutableStateOf(prefsManager.getAlipayFreePasswordEnabled()) }
+    var balanceFreePassword by remember { mutableStateOf(prefsManager.getBalanceFreePasswordEnabled()) }
+    var showDialog by remember { mutableStateOf(false) }
+    var dialogMessage by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -79,7 +88,12 @@ fun PaymentSettingsScreen(navController: NavController) {
 
                         Switch(
                             checked = alipayFreePassword,
-                            onCheckedChange = { alipayFreePassword = it }
+                            onCheckedChange = { enabled ->
+                                alipayFreePassword = enabled
+                                prefsManager.setAlipayFreePasswordEnabled(enabled)
+                                dialogMessage = if (enabled) "免密支付已开启" else "免密支付已关闭"
+                                showDialog = true
+                            }
                         )
                     }
                 }
@@ -131,7 +145,12 @@ fun PaymentSettingsScreen(navController: NavController) {
 
                         Switch(
                             checked = balanceFreePassword,
-                            onCheckedChange = { balanceFreePassword = it }
+                            onCheckedChange = { enabled ->
+                                balanceFreePassword = enabled
+                                prefsManager.setBalanceFreePasswordEnabled(enabled)
+                                dialogMessage = if (enabled) "余额免密支付已开启" else "余额免密支付已关闭"
+                                showDialog = true
+                            }
                         )
                     }
                 }
@@ -168,5 +187,51 @@ fun PaymentSettingsScreen(navController: NavController) {
                 }
             }
         }
+
+        // 设置成功弹窗
+        if (showDialog) {
+            PaymentSettingDialog(
+                message = dialogMessage,
+                onDismiss = { showDialog = false }
+            )
+        }
     }
+}
+
+@Composable
+fun PaymentSettingDialog(
+    message: String,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "设置成功",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        text = {
+            Text(
+                text = message,
+                fontSize = 14.sp,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("确定", color = Color.White, fontSize = 16.sp)
+            }
+        },
+        containerColor = Color.White,
+        shape = RoundedCornerShape(12.dp)
+    )
 }

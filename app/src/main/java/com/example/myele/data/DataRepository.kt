@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken
  */
 class DataRepository(private val context: Context) {
     private val gson = Gson()
+    private val preferencesManager = PreferencesManager(context)
 
     fun loadRestaurants(): List<Restaurant> {
         return loadJsonData("data/restaurants.json")
@@ -47,11 +48,74 @@ class DataRepository(private val context: Context) {
     fun getRestaurants(): List<Restaurant> = loadRestaurants()
     fun getProducts(): List<Product> = loadProducts()
     fun getCoupons(): List<Coupon> = loadCoupons()
-    fun getAddresses(): List<Address> = loadAddresses()
+
+    /**
+     * 获取地址列表（包含从JSON加载的和用户自定义的，排除已删除的）
+     */
+    fun getAddresses(): List<Address> {
+        val baseAddresses = loadAddresses()
+        val customAddresses = preferencesManager.getCustomAddresses()
+        val deletedIds = preferencesManager.getDeletedAddressIds()
+
+        // 合并基础地址和自定义地址，排除已删除的
+        return (baseAddresses + customAddresses).filter { it.addressId !in deletedIds }
+    }
+
     fun getOrders(): List<Order> = loadOrders()
     fun getUsers(): List<UserProfile> = loadUsers()
     fun getReviews(): List<Review> = loadReviews()
     fun getSearchHistory(): List<SearchHistory> = loadSearchHistory()
+
+    // ============ 地址管理方法 ============
+
+    /**
+     * 添加新地址
+     */
+    fun addAddress(address: Address) {
+        val customAddresses = preferencesManager.getCustomAddresses()
+        customAddresses.add(address)
+        preferencesManager.saveCustomAddresses(customAddresses)
+    }
+
+    /**
+     * 更新地址
+     */
+    fun updateAddress(address: Address) {
+        val customAddresses = preferencesManager.getCustomAddresses()
+        val index = customAddresses.indexOfFirst { it.addressId == address.addressId }
+
+        if (index >= 0) {
+            // 如果在自定义列表中，直接更新
+            customAddresses[index] = address
+        } else {
+            // 如果是原始数据中的地址，添加到自定义列表（覆盖原始数据）
+            customAddresses.add(address)
+        }
+
+        preferencesManager.saveCustomAddresses(customAddresses)
+    }
+
+    /**
+     * 删除地址
+     */
+    fun deleteAddress(addressId: String) {
+        // 从自定义地址列表中移除
+        val customAddresses = preferencesManager.getCustomAddresses()
+        customAddresses.removeIf { it.addressId == addressId }
+        preferencesManager.saveCustomAddresses(customAddresses)
+
+        // 添加到已删除列表（防止原始数据中的地址再次显示）
+        val deletedIds = preferencesManager.getDeletedAddressIds()
+        deletedIds.add(addressId)
+        preferencesManager.saveDeletedAddressIds(deletedIds)
+    }
+
+    /**
+     * 获取PreferencesManager实例
+     */
+    fun getPreferencesManager(): PreferencesManager {
+        return preferencesManager
+    }
 
     private inline fun <reified T> loadJsonData(fileName: String): List<T> {
         return try {

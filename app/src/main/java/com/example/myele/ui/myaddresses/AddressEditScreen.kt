@@ -18,6 +18,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Address
+import com.example.myele.model.AddressType
+import java.util.UUID
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -38,6 +40,7 @@ fun AddressEditScreen(
     var selectedGender by remember { mutableStateOf("先生") }
     var selectedTag by remember { mutableStateOf(existingAddress?.tag ?: "学校") }
     var showDeleteDialog by remember { mutableStateOf(false) }
+    var showSaveSuccessDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -296,8 +299,31 @@ fun AddressEditScreen(
             item {
                 Button(
                     onClick = {
-                        // TODO: 保存地址逻辑
-                        navController.popBackStack()
+                        // 保存地址逻辑
+                        val addressToSave = Address(
+                            addressId = existingAddress?.addressId ?: UUID.randomUUID().toString(),
+                            receiverName = receiverName,
+                            receiverPhone = receiverPhone,
+                            street = address,
+                            detailAddress = detailAddress,
+                            addressType = when (selectedTag) {
+                                "家" -> AddressType.HOME
+                                "公司" -> AddressType.COMPANY
+                                "学校" -> AddressType.SCHOOL
+                                else -> AddressType.OTHER
+                            },
+                            isDefault = false,
+                            tag = selectedTag
+                        )
+
+                        if (isEditMode) {
+                            repository.updateAddress(addressToSave)
+                        } else {
+                            repository.addAddress(addressToSave)
+                        }
+
+                        // 显示保存成功弹窗
+                        showSaveSuccessDialog = true
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -321,8 +347,19 @@ fun AddressEditScreen(
             DeleteAddressDialog(
                 onDismiss = { showDeleteDialog = false },
                 onConfirm = {
-                    // TODO: 删除地址逻辑
+                    // 删除地址逻辑
+                    addressId?.let { repository.deleteAddress(it) }
                     showDeleteDialog = false
+                    navController.popBackStack()
+                }
+            )
+        }
+
+        // 保存成功弹窗
+        if (showSaveSuccessDialog) {
+            SaveSuccessDialog(
+                onDismiss = {
+                    showSaveSuccessDialog = false
                     navController.popBackStack()
                 }
             )
@@ -406,6 +443,43 @@ fun DeleteAddressDialog(
         dismissButton = {
             TextButton(onClick = onDismiss) {
                 Text("取消", color = Color.Gray, fontSize = 16.sp)
+            }
+        },
+        containerColor = Color.White,
+        shape = RoundedCornerShape(12.dp)
+    )
+}
+
+@Composable
+fun SaveSuccessDialog(
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "保存成功",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        text = {
+            Text(
+                text = "地址已成功保存",
+                fontSize = 14.sp,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("确定", color = Color.White, fontSize = 16.sp)
             }
         },
         containerColor = Color.White,

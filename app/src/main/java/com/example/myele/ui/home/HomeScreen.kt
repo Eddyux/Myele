@@ -48,11 +48,11 @@ fun HomeScreen(navController: NavController) {
 
     var restaurants by remember { mutableStateOf<List<Restaurant>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
-    var selectedTab by remember { mutableStateOf(0) }
+    var selectedTab by remember { mutableStateOf(1) } // 默认选中"推荐"（索引1）
     var isRefreshing by remember { mutableStateOf(false) }
     var showFilterDialog by remember { mutableStateOf(false) }
 
-    val tabs = listOf("常点", "推荐", "常用")
+    val tabs = listOf("常点", "推荐")
 
     // 刷新函数
     fun refreshData() {
@@ -87,47 +87,62 @@ fun HomeScreen(navController: NavController) {
         // 搜索栏
         SearchBar(onSearchClick = { navController.navigate(com.example.myele.navigation.Screen.Search.route) })
 
-        // 内容区域 - 添加下拉刷新
-        SwipeRefresh(
-            state = rememberSwipeRefreshState(isRefreshing),
-            onRefresh = { refreshData() },
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(1f)
-        ) {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize()
-            ) {
-            // 服务入口图标
-            item {
-                ServiceIcons(navController)
+        // 内容区域 - 根据选中的标签显示不同内容
+        when (selectedTab) {
+            0 -> {
+                // 常点页面
+                FrequentlyOrderedPage(
+                    restaurants = restaurants,
+                    navController = navController,
+                    isLoading = isLoading,
+                    isRefreshing = isRefreshing,
+                    onRefresh = { refreshData() }
+                )
             }
-
-            // 爆品团推荐
-            item {
-                ProductRecommendation()
-            }
-
-            // 功能按钮行
-            item {
-                FunctionButtons(onFilterClick = { showFilterDialog = true })
-            }
-
-            // 商家列表
-            item {
-                if (isLoading) {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(32.dp),
-                        contentAlignment = Alignment.Center
+            1 -> {
+                // 推荐页面
+                SwipeRefresh(
+                    state = rememberSwipeRefreshState(isRefreshing),
+                    onRefresh = { refreshData() },
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .weight(1f)
+                ) {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize()
                     ) {
-                        CircularProgressIndicator()
+                        // 服务入口图标
+                        item {
+                            ServiceIcons(navController)
+                        }
+
+                        // 爆品团推荐
+                        item {
+                            ProductRecommendation()
+                        }
+
+                        // 功能按钮行
+                        item {
+                            FunctionButtons(onFilterClick = { showFilterDialog = true })
+                        }
+
+                        // 商家列表
+                        item {
+                            if (isLoading) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(32.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    CircularProgressIndicator()
+                                }
+                            } else {
+                                RestaurantList(restaurants = restaurants, navController = navController)
+                            }
+                        }
                     }
-                } else {
-                    RestaurantList(restaurants = restaurants, navController = navController)
                 }
-            }
             }
         }
 
@@ -860,3 +875,102 @@ fun HomePriceRangeSlider() {
         )
     }
 }
+
+// 常点页面
+@Composable
+fun FrequentlyOrderedPage(
+    restaurants: List<Restaurant>,
+    navController: NavController,
+    isLoading: Boolean,
+    isRefreshing: Boolean,
+    onRefresh: () -> Unit
+) {
+    SwipeRefresh(
+        state = rememberSwipeRefreshState(isRefreshing),
+        onRefresh = onRefresh,
+        modifier = Modifier.fillMaxSize()
+    ) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFFF5F5F5))
+        ) {
+            item {
+                // 常点页面标题
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    color = Color.White,
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Favorite,
+                            contentDescription = null,
+                            tint = Color(0xFFFF6B6B),
+                            modifier = Modifier.size(48.dp)
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = "常点商家",
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Black
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "您经常点的商家会显示在这里",
+                            fontSize = 14.sp,
+                            color = Color.Gray
+                        )
+                    }
+                }
+            }
+
+            // 显示常点的商家（这里显示已收藏的商家）
+            item {
+                if (isLoading) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(32.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else {
+                    val frequentRestaurants = restaurants.filter { it.isFavorite }
+                    if (frequentRestaurants.isEmpty()) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(32.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "暂无常点商家",
+                                fontSize = 14.sp,
+                                color = Color.Gray
+                            )
+                        }
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp)
+                        ) {
+                            frequentRestaurants.forEach { restaurant ->
+                                RestaurantCard(restaurant, navController)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

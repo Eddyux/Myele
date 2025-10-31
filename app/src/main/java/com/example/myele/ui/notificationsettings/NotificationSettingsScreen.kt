@@ -1,5 +1,6 @@
 package com.example.myele.ui.notificationsettings
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +17,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.text.style.TextAlign
+import com.example.myele.data.DataRepository
 
 data class NotificationItem(
     val title: String,
@@ -32,8 +37,18 @@ data class NotificationItem(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NotificationSettingsScreen(navController: NavController) {
-    var systemNotificationEnabled by remember { mutableStateOf(true) }
-    var inAppBannerEnabled by remember { mutableStateOf(true) }
+    val context = LocalContext.current
+    val repository = DataRepository(context)
+    val prefsManager = repository.getPreferencesManager()
+
+    var systemNotificationEnabled by remember { mutableStateOf(prefsManager.getSystemNotificationEnabled()) }
+    var inAppBannerEnabled by remember { mutableStateOf(prefsManager.getInAppBannerEnabled()) }
+    var showCloseNotificationDialog by remember { mutableStateOf(false) }
+    var showNotificationDetailScreen by remember { mutableStateOf(false) }
+    var showBannerDialog by remember { mutableStateOf(false) }
+    var bannerDialogMessage by remember { mutableStateOf("") }
+    var showGenericScreen by remember { mutableStateOf(false) }
+    var genericScreenTitle by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -66,11 +81,31 @@ fun NotificationSettingsScreen(navController: NavController) {
             }
 
             item {
-                NotificationRow(
-                    title = "系统消息通知",
-                    subtitle = "已开启",
-                    showArrow = false
-                )
+                Surface(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { showCloseNotificationDialog = true },
+                    color = Color.White
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "系统消息通知",
+                            fontSize = 16.sp,
+                            color = Color.Black
+                        )
+                        Text(
+                            text = if (systemNotificationEnabled) "已开启" else "已关闭",
+                            fontSize = 14.sp,
+                            color = Color.Gray
+                        )
+                    }
+                }
                 Divider(color = Color(0xFFF0F0F0), thickness = 1.dp)
             }
 
@@ -99,7 +134,12 @@ fun NotificationSettingsScreen(navController: NavController) {
 
                         Switch(
                             checked = inAppBannerEnabled,
-                            onCheckedChange = { inAppBannerEnabled = it }
+                            onCheckedChange = { enabled ->
+                                inAppBannerEnabled = enabled
+                                prefsManager.setInAppBannerEnabled(enabled)
+                                bannerDialogMessage = if (enabled) "已打开" else "已关闭"
+                                showBannerDialog = true
+                            }
                         )
                     }
                 }
@@ -115,7 +155,11 @@ fun NotificationSettingsScreen(navController: NavController) {
                 NotificationRow(
                     title = "聊天消息",
                     subtitle = "与骑手、商家、药师等对话内容",
-                    icon = Icons.Default.Chat
+                    icon = Icons.Default.Chat,
+                    onClick = {
+                        genericScreenTitle = "聊天消息"
+                        showGenericScreen = true
+                    }
                 )
                 Divider(color = Color(0xFFF0F0F0), thickness = 1.dp)
             }
@@ -124,7 +168,11 @@ fun NotificationSettingsScreen(navController: NavController) {
                 NotificationRow(
                     title = "消息号",
                     subtitle = "平台官方消息号",
-                    icon = Icons.Default.Notifications
+                    icon = Icons.Default.Notifications,
+                    onClick = {
+                        genericScreenTitle = "消息号"
+                        showGenericScreen = true
+                    }
                 )
                 Divider(color = Color(0xFFF0F0F0), thickness = 1.dp)
             }
@@ -137,7 +185,11 @@ fun NotificationSettingsScreen(navController: NavController) {
             item {
                 NotificationRow(
                     title = "短信通知",
-                    subtitle = "优惠福利、平台活动等短信通知"
+                    subtitle = "优惠福利、平台活动等短信通知",
+                    onClick = {
+                        genericScreenTitle = "短信通知"
+                        showGenericScreen = true
+                    }
                 )
                 Divider(color = Color(0xFFF0F0F0), thickness = 1.dp)
             }
@@ -158,7 +210,11 @@ fun NotificationSettingsScreen(navController: NavController) {
                 NotificationRow(
                     title = item.title,
                     subtitle = item.subtitle,
-                    icon = item.icon
+                    icon = item.icon,
+                    onClick = {
+                        genericScreenTitle = item.title
+                        showGenericScreen = true
+                    }
                 )
                 if (item != platformItems.last()) {
                     Divider(color = Color(0xFFF0F0F0), thickness = 1.dp)
@@ -174,7 +230,11 @@ fun NotificationSettingsScreen(navController: NavController) {
             item {
                 NotificationRow(
                     title = "订阅消息管理",
-                    subtitle = null
+                    subtitle = null,
+                    onClick = {
+                        genericScreenTitle = "订阅消息管理"
+                        showGenericScreen = true
+                    }
                 )
                 Divider(color = Color(0xFFF0F0F0), thickness = 1.dp)
             }
@@ -182,9 +242,55 @@ fun NotificationSettingsScreen(navController: NavController) {
             item {
                 NotificationRow(
                     title = "清空消息列表",
-                    subtitle = null
+                    subtitle = null,
+                    onClick = {
+                        genericScreenTitle = "清空消息列表"
+                        showGenericScreen = true
+                    }
                 )
             }
+        }
+
+        // 关闭通知确认弹窗
+        if (showCloseNotificationDialog) {
+            CloseNotificationDialog(
+                onDismiss = { showCloseNotificationDialog = false },
+                onClose = {
+                    showCloseNotificationDialog = false
+                    showNotificationDetailScreen = true
+                },
+                onKeep = {
+                    showCloseNotificationDialog = false
+                }
+            )
+        }
+
+        // 通知详情页面
+        if (showNotificationDetailScreen) {
+            NotificationDetailScreen(
+                systemNotificationEnabled = systemNotificationEnabled,
+                onBack = { showNotificationDetailScreen = false },
+                onToggle = { enabled ->
+                    systemNotificationEnabled = enabled
+                    prefsManager.setSystemNotificationEnabled(enabled)
+                }
+            )
+        }
+
+        // 横幅通知弹窗
+        if (showBannerDialog) {
+            SimpleMessageDialog(
+                message = bannerDialogMessage,
+                onDismiss = { showBannerDialog = false }
+            )
+        }
+
+        // 通用页面
+        if (showGenericScreen) {
+            GenericNotificationScreen(
+                title = genericScreenTitle,
+                onBack = { showGenericScreen = false }
+            )
         }
     }
 }
@@ -209,12 +315,13 @@ fun NotificationRow(
     title: String,
     subtitle: String?,
     icon: ImageVector? = null,
-    showArrow: Boolean = true
+    showArrow: Boolean = true,
+    onClick: () -> Unit = {}
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable { /* TODO */ },
+            .clickable { onClick() },
         color = Color.White
     ) {
         Row(
@@ -256,6 +363,202 @@ fun NotificationRow(
                     tint = Color.Gray
                 )
             }
+        }
+    }
+}
+
+@Composable
+fun CloseNotificationDialog(
+    onDismiss: () -> Unit,
+    onClose: () -> Unit,
+    onKeep: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        title = {
+            Text(
+                text = "是否关闭通知",
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        text = {
+            Column {
+                Text(
+                    text = "关闭后将不再接收系统推送通知",
+                    fontSize = 14.sp,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    TextButton(
+                        onClick = onClose,
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("关闭", color = Color.Gray, fontSize = 16.sp)
+                    }
+                    Button(
+                        onClick = onKeep,
+                        colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                        modifier = Modifier.weight(1f)
+                    ) {
+                        Text("保留重要通知", color = Color.White, fontSize = 14.sp)
+                    }
+                }
+            }
+        },
+        confirmButton = {},
+        containerColor = Color.White,
+        shape = RoundedCornerShape(12.dp)
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NotificationDetailScreen(
+    systemNotificationEnabled: Boolean,
+    onBack: () -> Unit,
+    onToggle: (Boolean) -> Unit
+) {
+    var enabled by remember { mutableStateOf(systemNotificationEnabled) }
+    var showDialog by remember { mutableStateOf(false) }
+    var dialogMessage by remember { mutableStateOf("") }
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("系统消息通知") },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "返回"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.White
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
+            )
+        }
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+        ) {
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = Color.White
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "允许通知",
+                        fontSize = 16.sp,
+                        color = Color.Black
+                    )
+
+                    Switch(
+                        checked = enabled,
+                        onCheckedChange = { newEnabled ->
+                            enabled = newEnabled
+                            onToggle(newEnabled)
+                            dialogMessage = if (newEnabled) "已打开" else "关闭成功"
+                            showDialog = true
+                        }
+                    )
+                }
+            }
+        }
+
+        if (showDialog) {
+            SimpleMessageDialog(
+                message = dialogMessage,
+                onDismiss = { showDialog = false }
+            )
+        }
+    }
+}
+
+@Composable
+fun SimpleMessageDialog(
+    message: String,
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        text = {
+            Text(
+                text = message,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+        },
+        confirmButton = {
+            Button(
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("确定", color = Color.White, fontSize = 16.sp)
+            }
+        },
+        containerColor = Color.White,
+        shape = RoundedCornerShape(12.dp)
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun GenericNotificationScreen(
+    title: String,
+    onBack: () -> Unit
+) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(title) },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "返回"
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = Color.White
+                ),
+                windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
+            )
+        }
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(Color(0xFFF5F5F5)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = title,
+                fontSize = 16.sp,
+                color = Color.Gray
+            )
         }
     }
 }
