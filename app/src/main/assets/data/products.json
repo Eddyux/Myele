@@ -72,22 +72,21 @@
   },
   {
     "productId": "prod_003",
-    "name": "剁椒鱼头",
+    "name": "湘式小炒肉",
     "restaurantId": "rest_003",
     "restaurantName": "湘味轩",
-    "description": "鲜嫩鱼肉，剁椒香辣",
-    "price": 68.0,
-    "originalPrice": 78.0,
-    "monthSales": 620,
+    "description": "肉片鲜嫩，香辣下饭",
+    "price": 38.0,
+    "originalPrice": null,
+    "monthSales": 2200,
     "rating": 4.9,
     "imageUrl": "https://example.com/products/duojiaoyutou.jpg",
-    "category": "SIGNATURE",
+    "category": "HOT_SALE",
     "specifications": [],
     "isAvailable": true,
     "tags": [
       "辣",
-      "招牌",
-      "湘菜"
+      "肉类"
     ]
   },
   {
@@ -237,16 +236,16 @@
   },
   {
     "productId": "prod_009",
-    "name": "生椰拿铁",
+    "name": "瑞纳冰",
     "restaurantId": "rest_006",
     "restaurantName": "瑞幸咖啡",
-    "description": "椰香浓郁，咖啡香醇",
-    "price": 19.9,
-    "originalPrice": 24.0,
-    "monthSales": 3280,
+    "description": "冰爽提神，清凉解渴",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 2350,
     "rating": 4.8,
     "imageUrl": "https://example.com/products/coconut_latte.jpg",
-    "category": "HOT_SALE",
+    "category": "BEVERAGE",
     "specifications": [
       {
         "specId": "spec_009_1",
@@ -263,23 +262,22 @@
     ],
     "isAvailable": true,
     "tags": [
-      "招牌",
-      "热销",
-      "新品"
+      "咖啡",
+      "冰饮"
     ]
   },
   {
     "productId": "prod_010",
-    "name": "美式咖啡",
+    "name": "摩卡可可碎碎冰",
     "restaurantId": "rest_006",
     "restaurantName": "瑞幸咖啡",
-    "description": "经典美式，提神醒脑",
-    "price": 9.9,
-    "originalPrice": 15.0,
-    "monthSales": 4560,
+    "description": "巧克力浓郁，冰爽可口",
+    "price": 22.0,
+    "originalPrice": 28.0,
+    "monthSales": 2150,
     "rating": 4.6,
     "imageUrl": "https://example.com/products/americano.jpg",
-    "category": "HOT_SALE",
+    "category": "NEW_ARRIVAL",
     "specifications": [
       {
         "specId": "spec_010_1",
@@ -296,22 +294,22 @@
     ],
     "isAvailable": true,
     "tags": [
-      "经典",
-      "热销"
+      "咖啡",
+      "巧克力"
     ]
   },
   {
     "productId": "prod_011",
-    "name": "杨枝甘露",
+    "name": "葡萄柚柚茶",
     "restaurantId": "rest_007",
     "restaurantName": "茶百道",
-    "description": "芒果西柚，清新解腻",
+    "description": "葡萄清甜，柚子酸爽",
     "price": 16.0,
     "originalPrice": null,
-    "monthSales": 2850,
+    "monthSales": 3900,
     "rating": 4.7,
     "imageUrl": "https://example.com/products/yangzhiganlv.jpg",
-    "category": "HOT_SALE",
+    "category": "BEVERAGE",
     "specifications": [
       {
         "specId": "spec_011_1",
@@ -334,9 +332,9 @@
     ],
     "isAvailable": true,
     "tags": [
-      "招牌",
       "水果茶",
-      "热销"
+      "葡萄",
+      "柚子"
     ]
   },
   {
@@ -424,16 +422,16 @@
   },
   {
     "productId": "prod_015",
-    "name": "焦糖玛奇朵",
+    "name": "香草拿铁",
     "restaurantId": "rest_009",
     "restaurantName": "星巴克",
-    "description": "焦糖与浓缩咖啡的完美结合",
-    "price": 36.0,
+    "description": "香草清甜，咖啡醇香",
+    "price": 33.0,
     "originalPrice": null,
-    "monthSales": 1850,
+    "monthSales": 1350,
     "rating": 4.8,
     "imageUrl": "https://example.com/products/caramel_macchiato.jpg",
-    "category": "SIGNATURE",
+    "category": "BEVERAGE",
     "specifications": [
       {
         "specId": "spec_015_1",
@@ -456,22 +454,22 @@
     ],
     "isAvailable": true,
     "tags": [
-      "招牌",
-      "咖啡"
+      "咖啡",
+      "香草"
     ]
   },
   {
     "productId": "prod_016",
-    "name": "抹茶拿铁",
+    "name": "榛果拿铁",
     "restaurantId": "rest_009",
     "restaurantName": "星巴克",
-    "description": "日式抹茶，香浓顺滑",
+    "description": "榛果香浓，回味悠长",
     "price": 34.0,
     "originalPrice": null,
-    "monthSales": 1620,
+    "monthSales": 1280,
     "rating": 4.7,
     "imageUrl": "https://example.com/products/matcha_latte.jpg",
-    "category": "BEVERAGE",
+    "category": "SIGNATURE",
     "specifications": [
       {
         "specId": "spec_016_1",
@@ -488,19 +486,19 @@
     ],
     "isAvailable": true,
     "tags": [
-      "抹茶",
-      "奶茶"
+      "咖啡",
+      "榛果"
     ]
   },
   {
     "productId": "prod_017",
-    "name": "多肉葡萄",
+    "name": "芝芝桃桃",
     "restaurantId": "rest_010",
     "restaurantName": "喜茶",
-    "description": "满杯葡萄，果肉爆棚",
-    "price": 25.0,
+    "description": "水蜜桃果肉，芝士奶盖香浓",
+    "price": 27.0,
     "originalPrice": null,
-    "monthSales": 4280,
+    "monthSales": 3100,
     "rating": 4.8,
     "imageUrl": "https://example.com/products/grape_tea.jpg",
     "category": "HOT_SALE",
@@ -526,20 +524,20 @@
     ],
     "isAvailable": true,
     "tags": [
-      "招牌",
       "水果茶",
-      "热销"
+      "桃子",
+      "芝士"
     ]
   },
   {
     "productId": "prod_018",
-    "name": "芝芝莓莓",
+    "name": "芋泥波波茶",
     "restaurantId": "rest_010",
     "restaurantName": "喜茶",
-    "description": "草莓芝士，甜蜜双倍",
-    "price": 28.0,
+    "description": "香浓芋泥，波波Q弹",
+    "price": 26.0,
     "originalPrice": null,
-    "monthSales": 3650,
+    "monthSales": 2700,
     "rating": 4.7,
     "imageUrl": "https://example.com/products/strawberry_cheese.jpg",
     "category": "SIGNATURE",
@@ -559,9 +557,8 @@
     ],
     "isAvailable": true,
     "tags": [
-      "招牌",
-      "芝士",
-      "草莓"
+      "奶茶",
+      "芋头"
     ]
   },
   {
@@ -700,94 +697,92 @@
   },
   {
     "productId": "prod_026",
-    "name": "口味虾",
+    "name": "酸豆角炒肉末",
     "restaurantId": "rest_003",
     "restaurantName": "湘味轩",
-    "description": "麻辣鲜香，虾肉Q弹",
-    "price": 58.0,
-    "originalPrice": 68.0,
-    "monthSales": 1250,
+    "description": "酸辣开胃，经典湘菜",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 1800,
     "rating": 4.9,
     "imageUrl": "https://example.com/products/kouweixia.jpg",
-    "category": "SIGNATURE",
+    "category": "MAIN_DISH",
     "specifications": [],
     "isAvailable": true,
     "tags": [
-      "招牌",
-      "湘菜",
-      "辣"
+      "辣",
+      "肉类"
     ]
   },
   {
     "productId": "prod_027",
-    "name": "湘西外婆菜",
+    "name": "湘西酸肉",
     "restaurantId": "rest_003",
     "restaurantName": "湘味轩",
-    "description": "下饭神器，咸香开胃",
-    "price": 18.0,
+    "description": "湘西特色，酸香开胃",
+    "price": 36.0,
     "originalPrice": null,
-    "monthSales": 450,
+    "monthSales": 1650,
     "rating": 4.6,
     "imageUrl": "https://example.com/products/waipocai.jpg",
-    "category": "SIDE_DISH",
-    "specifications": [],
-    "isAvailable": true,
-    "tags": [
-      "下饭",
-      "小菜"
-    ]
-  },
-  {
-    "productId": "prod_028",
-    "name": "流沙包",
-    "restaurantId": "rest_004",
-    "restaurantName": "粤式早茶",
-    "description": "奶黄流心，香甜软糯",
-    "price": 18.0,
-    "originalPrice": null,
-    "monthSales": 1120,
-    "rating": 4.8,
-    "imageUrl": "https://example.com/products/liushabao.jpg",
     "category": "SIGNATURE",
     "specifications": [],
     "isAvailable": true,
     "tags": [
-      "招牌",
-      "早茶",
-      "点心"
+      "湘菜",
+      "特色"
+    ]
+  },
+  {
+    "productId": "prod_028",
+    "name": "荷叶糯米鸡",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "荷香四溢，糯米软糯",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 1720,
+    "rating": 4.8,
+    "imageUrl": "https://example.com/products/liushabao.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "点心",
+      "米食"
     ]
   },
   {
     "productId": "prod_029",
-    "name": "叉烧包",
+    "name": "金沙奶黄包",
     "restaurantId": "rest_004",
     "restaurantName": "粤式早茶",
-    "description": "叉烧馅料，皮薄馅大",
-    "price": 16.0,
+    "description": "金沙流心，香甜诱人",
+    "price": 17.0,
     "originalPrice": null,
-    "monthSales": 850,
+    "monthSales": 1650,
     "rating": 4.7,
     "imageUrl": "https://example.com/products/chashaobao.jpg",
-    "category": "HOT_SALE",
+    "category": "DESSERT",
     "specifications": [],
     "isAvailable": true,
     "tags": [
-      "早茶",
+      "甜品",
       "点心"
     ]
   },
   {
     "productId": "prod_030",
-    "name": "肠粉",
+    "name": "水晶虾饺",
     "restaurantId": "rest_004",
     "restaurantName": "粤式早茶",
-    "description": "滑嫩Q弹，鲜虾饱满",
-    "price": 20.0,
+    "description": "晶莹剔透，鲜虾Q弹",
+    "price": 22.0,
     "originalPrice": null,
-    "monthSales": 920,
+    "monthSales": 1850,
     "rating": 4.8,
     "imageUrl": "https://example.com/products/changfen.jpg",
-    "category": "HOT_SALE",
+    "category": "SIGNATURE",
     "specifications": [
       {
         "specId": "spec_030_1",
@@ -804,8 +799,8 @@
     ],
     "isAvailable": true,
     "tags": [
-      "早茶",
-      "热销"
+      "海鲜",
+      "点心"
     ]
   },
   {
@@ -880,16 +875,16 @@
   },
   {
     "productId": "prod_034",
-    "name": "厚乳拿铁",
+    "name": "海盐芝士拿铁",
     "restaurantId": "rest_006",
     "restaurantName": "瑞幸咖啡",
-    "description": "奶香浓郁，咖啡顺滑",
-    "price": 21.9,
-    "originalPrice": null,
-    "monthSales": 2850,
+    "description": "芝士奶盖，咸甜平衡",
+    "price": 24.0,
+    "originalPrice": 33.0,
+    "monthSales": 1850,
     "rating": 4.8,
     "imageUrl": "https://example.com/products/hounai_latte.jpg",
-    "category": "HOT_SALE",
+    "category": "SIGNATURE",
     "specifications": [
       {
         "specId": "spec_034_1",
@@ -906,8 +901,8 @@
     ],
     "isAvailable": true,
     "tags": [
-      "热销",
-      "咖啡"
+      "咖啡",
+      "芝士"
     ]
   },
   {
@@ -1016,13 +1011,13 @@
   },
   {
     "productId": "prod_039",
-    "name": "摩卡咖啡",
+    "name": "浓情摩卡",
     "restaurantId": "rest_009",
     "restaurantName": "星巴克",
-    "description": "巧克力咖啡，香醇丝滑",
+    "description": "巧克力浓郁，咖啡香醇",
     "price": 35.0,
     "originalPrice": null,
-    "monthSales": 1420,
+    "monthSales": 1150,
     "rating": 4.7,
     "imageUrl": "https://example.com/products/mocha.jpg",
     "category": "BEVERAGE",
@@ -1741,22 +1736,20 @@
   },
   {
     "productId": "prod_074",
-    "name": "凤爪",
+    "name": "豉汁蒸排骨",
     "restaurantId": "rest_004",
     "restaurantName": "粤式早茶",
-    "description": "粤式经典，清淡鲜美",
-    "price": 58.0,
+    "description": "豉香浓郁，排骨软嫩",
+    "price": 22.0,
     "originalPrice": null,
-    "monthSales": 343,
+    "monthSales": 1550,
     "rating": 4.4,
     "imageUrl": "tongyong.png",
-    "category": "SIGNATURE",
+    "category": "MAIN_DISH",
     "specifications": [],
     "isAvailable": true,
     "tags": [
-      "清淡",
-      "点心",
-      "粤菜"
+      "肉类"
     ]
   },
   {
@@ -2360,16 +2353,16 @@
   },
   {
     "productId": "prod_103",
-    "name": "丝绒拿铁",
+    "name": "小鹿拿铁",
     "restaurantId": "rest_006",
     "restaurantName": "瑞幸咖啡",
-    "description": "经典咖啡，品质保证",
-    "price": 16.0,
-    "originalPrice": null,
-    "monthSales": 719,
+    "description": "轻奢口感，咖啡香浓",
+    "price": 21.0,
+    "originalPrice": 30.0,
+    "monthSales": 2200,
     "rating": 4.7,
     "imageUrl": "tongyong.png",
-    "category": "HOT_SALE",
+    "category": "SIGNATURE",
     "specifications": [
       {
         "specId": "spec_103_1",
@@ -2386,8 +2379,6 @@
     ],
     "isAvailable": true,
     "tags": [
-      "热销",
-      "经典",
       "咖啡"
     ]
   },
@@ -2974,22 +2965,21 @@
   },
   {
     "productId": "prod_125",
-    "name": "四季春茶",
+    "name": "满杯百香果",
     "restaurantId": "rest_008",
     "restaurantName": "蜜雪冰城",
-    "description": "口感丝滑，料足味美",
-    "price": 3.0,
-    "originalPrice": 9.0,
-    "monthSales": 2667,
+    "description": "百香果浓郁，酸甜可口",
+    "price": 8.0,
+    "originalPrice": null,
+    "monthSales": 5600,
     "rating": 4.6,
     "imageUrl": "tongyong.png",
     "category": "BEVERAGE",
     "specifications": [],
     "isAvailable": true,
     "tags": [
-      "奶盖",
-      "甜品",
-      "水果茶"
+      "水果茶",
+      "百香果"
     ]
   },
   {
@@ -8214,6 +8204,2130 @@
     "tags": [
       "饮品",
       "解腻"
+    ]
+  },
+  {
+    "productId": "prod_346",
+    "name": "麻辣牛肉",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "精选优质牛肉，麻辣鲜香",
+    "price": 32.0,
+    "originalPrice": 38.4,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_001_346.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "肉类"
+    ]
+  },
+  {
+    "productId": "prod_347",
+    "name": "鲜虾麻辣烫",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "新鲜大虾，口感Q弹",
+    "price": 38.0,
+    "originalPrice": 45.6,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_001_347.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "海鲜"
+    ]
+  },
+  {
+    "productId": "prod_348",
+    "name": "素菜拼盘",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "多种新鲜蔬菜组合",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_001_348.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "素食",
+      "健康"
+    ]
+  },
+  {
+    "productId": "prod_349",
+    "name": "毛肚麻辣烫",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "爽脆毛肚，麻辣可口",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_001_349.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "内脏"
+    ]
+  },
+  {
+    "productId": "prod_350",
+    "name": "豆腐皮麻辣烫",
+    "restaurantId": "rest_001",
+    "restaurantName": "川香麻辣烫",
+    "description": "手工豆腐皮，入味十足",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_001_350.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "豆制品"
+    ]
+  },
+  {
+    "productId": "prod_351",
+    "name": "京味打卤面",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "传统打卤，料足味美",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_002_351.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "面食"
+    ]
+  },
+  {
+    "productId": "prod_352",
+    "name": "老北京凉面",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "夏日必备，清爽可口",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_002_352.jpg",
+    "category": "NEW_ARRIVAL",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "面食",
+      "凉菜"
+    ]
+  },
+  {
+    "productId": "prod_353",
+    "name": "炸酱拌饭",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "香浓炸酱配米饭",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_002_353.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "米饭"
+    ]
+  },
+  {
+    "productId": "prod_354",
+    "name": "京酱肉丝面",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "肉丝鲜嫩，酱香浓郁",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_002_354.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "面食",
+      "肉类"
+    ]
+  },
+  {
+    "productId": "prod_355",
+    "name": "老北京疙瘩汤",
+    "restaurantId": "rest_002",
+    "restaurantName": "老北京炸酱面",
+    "description": "暖胃养生，家常美味",
+    "price": 12.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_002_355.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "汤品"
+    ]
+  },
+  {
+    "productId": "prod_356",
+    "name": "剁椒鱼头",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "湘菜名品，鲜辣开胃",
+    "price": 58.0,
+    "originalPrice": 69.6,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_003_356.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "海鲜"
+    ]
+  },
+  {
+    "productId": "prod_357",
+    "name": "小炒黄牛肉",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "嫩滑牛肉，香辣下饭",
+    "price": 45.0,
+    "originalPrice": 54.0,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_003_357.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "肉类"
+    ]
+  },
+  {
+    "productId": "prod_358",
+    "name": "湘西外婆菜",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "开胃下饭，香辣可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_003_358.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "素食"
+    ]
+  },
+  {
+    "productId": "prod_359",
+    "name": "口味虾",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "鲜香麻辣，回味无穷",
+    "price": 68.0,
+    "originalPrice": 81.6,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_003_359.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "辣",
+      "海鲜"
+    ]
+  },
+  {
+    "productId": "prod_360",
+    "name": "湘味蒸菜",
+    "restaurantId": "rest_003",
+    "restaurantName": "湘味轩",
+    "description": "清淡养生，原汁原味",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_003_360.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "健康"
+    ]
+  },
+  {
+    "productId": "prod_361",
+    "name": "鲜虾烧卖",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "皮薄馅大，鲜香可口",
+    "price": 22.0,
+    "originalPrice": null,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_004_361.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "海鲜",
+      "点心"
+    ]
+  },
+  {
+    "productId": "prod_362",
+    "name": "叉烧包",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "传统粤式，甜咸适中",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_004_362.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "肉类",
+      "点心"
+    ]
+  },
+  {
+    "productId": "prod_363",
+    "name": "肠粉",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "滑嫩爽口，酱香浓郁",
+    "price": 16.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_004_363.jpg",
+    "category": "MAIN_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "米食"
+    ]
+  },
+  {
+    "productId": "prod_364",
+    "name": "凤爪",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "软糯入味，色泽红亮",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_004_364.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "肉类"
+    ]
+  },
+  {
+    "productId": "prod_365",
+    "name": "流沙包",
+    "restaurantId": "rest_004",
+    "restaurantName": "粤式早茶",
+    "description": "金黄流心，香甜可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_004_365.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品",
+      "点心"
+    ]
+  },
+  {
+    "productId": "prod_366",
+    "name": "蜂蜜黄油炸鸡",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "甜蜜酥脆，外酥里嫩的招牌之选",
+    "price": 48.0,
+    "originalPrice": null,
+    "monthSales": 1800,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_005_366.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "炸鸡",
+      "甜味"
+    ]
+  },
+  {
+    "productId": "prod_367",
+    "name": "芝士炸鸡",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "浓郁芝士，拉丝诱人",
+    "price": 52.0,
+    "originalPrice": null,
+    "monthSales": 1600,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_005_367.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "炸鸡",
+      "芝士"
+    ]
+  },
+  {
+    "productId": "prod_368",
+    "name": "酱油炸鸡",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "经典口味，咸香可口",
+    "price": 45.0,
+    "originalPrice": null,
+    "monthSales": 1500,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_005_368.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "炸鸡"
+    ]
+  },
+  {
+    "productId": "prod_369",
+    "name": "韩式辣酱炸鸡",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "香辣过瘾，回味无穷",
+    "price": 46.0,
+    "originalPrice": null,
+    "monthSales": 1700,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_005_369.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "炸鸡",
+      "辣"
+    ]
+  },
+  {
+    "productId": "prod_370",
+    "name": "原味炸鸡",
+    "restaurantId": "rest_005",
+    "restaurantName": "韩式炸鸡",
+    "description": "金黄酥脆，原汁原味",
+    "price": 42.0,
+    "originalPrice": null,
+    "monthSales": 1400,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_005_370.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "炸鸡"
+    ]
+  },
+  {
+    "productId": "prod_371",
+    "name": "生椰拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "椰香浓郁，清爽解腻的人气爆款",
+    "price": 20.0,
+    "originalPrice": 29.0,
+    "monthSales": 3200,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_006_371.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "椰子"
+    ]
+  },
+  {
+    "productId": "prod_372",
+    "name": "丝绒拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "口感丝滑，香醇浓郁的经典之选",
+    "price": 20.0,
+    "originalPrice": 29.0,
+    "monthSales": 2800,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_006_372.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡"
+    ]
+  },
+  {
+    "productId": "prod_373",
+    "name": "橙C美式",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "清新橙香，提神醒脑",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 2500,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_006_373.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "橙子"
+    ]
+  },
+  {
+    "productId": "prod_374",
+    "name": "厚乳拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "奶香四溢，顺滑绵密",
+    "price": 22.0,
+    "originalPrice": 32.0,
+    "monthSales": 2600,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_006_374.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "奶制品"
+    ]
+  },
+  {
+    "productId": "prod_375",
+    "name": "燕麦拿铁",
+    "restaurantId": "rest_006",
+    "restaurantName": "瑞幸咖啡",
+    "description": "健康选择，清香怡人",
+    "price": 19.0,
+    "originalPrice": null,
+    "monthSales": 1800,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_006_375.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "燕麦",
+      "健康"
+    ]
+  },
+  {
+    "productId": "prod_376",
+    "name": "杨枝甘露",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "芒果西柚，清甜可口的招牌之作",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 4200,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_007_376.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "芒果",
+      "西柚"
+    ]
+  },
+  {
+    "productId": "prod_377",
+    "name": "招牌芋圆奶茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "香浓奶茶，Q弹芋圆",
+    "price": 14.0,
+    "originalPrice": null,
+    "monthSales": 3800,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_007_377.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "芋圆"
+    ]
+  },
+  {
+    "productId": "prod_378",
+    "name": "茉莉奶绿",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "清香茉莉，奶香四溢",
+    "price": 13.0,
+    "originalPrice": null,
+    "monthSales": 3500,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_007_378.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "茉莉"
+    ]
+  },
+  {
+    "productId": "prod_379",
+    "name": "豆乳玉麒麟",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "豆香浓郁，健康美味",
+    "price": 14.0,
+    "originalPrice": null,
+    "monthSales": 2800,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_007_379.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "豆奶",
+      "健康"
+    ]
+  },
+  {
+    "productId": "prod_380",
+    "name": "芋泥波波绿茶",
+    "restaurantId": "rest_007",
+    "restaurantName": "茶百道",
+    "description": "香浓芋泥，波波Q弹，绿茶清香",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 3200,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_007_380.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "芋头"
+    ]
+  },
+  {
+    "productId": "prod_381",
+    "name": "冰鲜柠檬水",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "清爽解渴，酸甜可口的超值之选",
+    "price": 5.0,
+    "originalPrice": null,
+    "monthSales": 8500,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_008_381.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "柠檬"
+    ]
+  },
+  {
+    "productId": "prod_382",
+    "name": "冰淇淋甜筒",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "香甜软滑，夏日必备",
+    "price": 3.0,
+    "originalPrice": null,
+    "monthSales": 7800,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_008_382.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "冰淇淋",
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_383",
+    "name": "珍珠奶茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "经典口味，Q弹珍珠",
+    "price": 7.0,
+    "originalPrice": null,
+    "monthSales": 6500,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_008_383.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶"
+    ]
+  },
+  {
+    "productId": "prod_384",
+    "name": "雪王圣代",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "冰淇淋圣代，甜蜜诱人",
+    "price": 7.0,
+    "originalPrice": null,
+    "monthSales": 4500,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_008_384.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "冰淇淋",
+      "圣代"
+    ]
+  },
+  {
+    "productId": "prod_385",
+    "name": "四季春茶",
+    "restaurantId": "rest_008",
+    "restaurantName": "蜜雪冰城",
+    "description": "清香四季春，清爽怡人",
+    "price": 6.0,
+    "originalPrice": null,
+    "monthSales": 5200,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_008_385.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "茶饮"
+    ]
+  },
+  {
+    "productId": "prod_386",
+    "name": "焦糖玛奇朵",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "焦糖浓郁，层次分明的经典之作",
+    "price": 34.0,
+    "originalPrice": null,
+    "monthSales": 1500,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_009_386.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "焦糖"
+    ]
+  },
+  {
+    "productId": "prod_387",
+    "name": "抹茶拿铁",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "抹茶清香，奶香浓郁",
+    "price": 33.0,
+    "originalPrice": null,
+    "monthSales": 1200,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_009_387.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡",
+      "抹茶"
+    ]
+  },
+  {
+    "productId": "prod_388",
+    "name": "馥芮白",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "绵密奶泡，浓缩咖啡的完美结合",
+    "price": 32.0,
+    "originalPrice": null,
+    "monthSales": 1400,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_009_388.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "咖啡"
+    ]
+  },
+  {
+    "productId": "prod_389",
+    "name": "冰摇红莓黑加仑",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "莓果清新，酸甜可口",
+    "price": 26.0,
+    "originalPrice": 31.0,
+    "monthSales": 1100,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_009_389.jpg",
+    "category": "NEW_ARRIVAL",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "莓果"
+    ]
+  },
+  {
+    "productId": "prod_390",
+    "name": "白桃星冰乐",
+    "restaurantId": "rest_009",
+    "restaurantName": "星巴克",
+    "description": "白桃香甜，冰爽清凉",
+    "price": 35.0,
+    "originalPrice": 41.0,
+    "monthSales": 1300,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_009_390.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "星冰乐",
+      "白桃"
+    ]
+  },
+  {
+    "productId": "prod_391",
+    "name": "多肉葡萄",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "新鲜葡萄，果肉满满的人气王",
+    "price": 25.0,
+    "originalPrice": null,
+    "monthSales": 3500,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_010_391.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "葡萄"
+    ]
+  },
+  {
+    "productId": "prod_392",
+    "name": "芝芝莓莓",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "芝士奶盖，草莓清甜",
+    "price": 28.0,
+    "originalPrice": null,
+    "monthSales": 2800,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_010_392.jpg",
+    "category": "NEW_ARRIVAL",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "草莓",
+      "芝士"
+    ]
+  },
+  {
+    "productId": "prod_393",
+    "name": "芒椰糯米饭",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "芒果椰汁，糯米Q弹",
+    "price": 26.0,
+    "originalPrice": null,
+    "monthSales": 3200,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_010_393.jpg",
+    "category": "SIGNATURE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "芒果",
+      "椰子"
+    ]
+  },
+  {
+    "productId": "prod_394",
+    "name": "满杯红柚",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "红柚新鲜，酸甜适中",
+    "price": 23.0,
+    "originalPrice": null,
+    "monthSales": 2500,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_010_394.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "水果茶",
+      "柚子"
+    ]
+  },
+  {
+    "productId": "prod_395",
+    "name": "烤黑糖波波鲜奶",
+    "restaurantId": "rest_010",
+    "restaurantName": "喜茶",
+    "description": "黑糖香浓，鲜奶醇厚，波波Q弹",
+    "price": 24.0,
+    "originalPrice": null,
+    "monthSales": 2900,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_010_395.jpg",
+    "category": "HOT_SALE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "奶茶",
+      "黑糖"
+    ]
+  },
+  {
+    "productId": "prod_396",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_011_396.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_397",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_011_397.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_398",
+    "name": "特色饮品",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_011_398.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_399",
+    "name": "精品小食",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_011_399.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_400",
+    "name": "特色甜品",
+    "restaurantId": "rest_011",
+    "restaurantName": "CoCo都可",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_011_400.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_401",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_012_401.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_402",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_012_402.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_403",
+    "name": "特色饮品",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_012_403.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_404",
+    "name": "精品小食",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_012_404.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_405",
+    "name": "特色甜品",
+    "restaurantId": "rest_012",
+    "restaurantName": "麦当劳",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_012_405.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_406",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_013_406.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_407",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_013_407.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_408",
+    "name": "特色饮品",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_013_408.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_409",
+    "name": "精品小食",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_013_409.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_410",
+    "name": "特色甜品",
+    "restaurantId": "rest_013",
+    "restaurantName": "肯德基",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_013_410.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_411",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_014_411.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_412",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_014_412.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_413",
+    "name": "特色饮品",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_014_413.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_414",
+    "name": "精品小食",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_014_414.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_415",
+    "name": "特色甜品",
+    "restaurantId": "rest_014",
+    "restaurantName": "必胜客",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_014_415.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_416",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_015_416.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_417",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_015_417.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_418",
+    "name": "特色饮品",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_015_418.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_419",
+    "name": "精品小食",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_015_419.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_420",
+    "name": "特色甜品",
+    "restaurantId": "rest_015",
+    "restaurantName": "海底捞火锅",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_015_420.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_421",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_016_421.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_422",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_016_422.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_423",
+    "name": "特色饮品",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_016_423.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_424",
+    "name": "精品小食",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_016_424.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_425",
+    "name": "特色甜品",
+    "restaurantId": "rest_016",
+    "restaurantName": "西贝莜面村",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_016_425.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_426",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_017_426.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_427",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_017_427.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_428",
+    "name": "特色饮品",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_017_428.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_429",
+    "name": "精品小食",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_017_429.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_430",
+    "name": "特色甜品",
+    "restaurantId": "rest_017",
+    "restaurantName": "外婆家",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_017_430.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_431",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_018_431.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_432",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_018_432.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_433",
+    "name": "特色饮品",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_018_433.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_434",
+    "name": "精品小食",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_018_434.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_435",
+    "name": "特色甜品",
+    "restaurantId": "rest_018",
+    "restaurantName": "黄焖鸡米饭",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_018_435.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_436",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_019_436.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_437",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_019_437.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_438",
+    "name": "特色饮品",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_019_438.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_439",
+    "name": "精品小食",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_019_439.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_440",
+    "name": "特色甜品",
+    "restaurantId": "rest_019",
+    "restaurantName": "沙县小吃",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_019_440.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_441",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_020_441.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_442",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_020_442.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_443",
+    "name": "特色饮品",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_020_443.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_444",
+    "name": "精品小食",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_020_444.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_445",
+    "name": "特色甜品",
+    "restaurantId": "rest_020",
+    "restaurantName": "兰州拉面",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_020_445.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_446",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_021_446.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_447",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_021_447.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_448",
+    "name": "特色饮品",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_021_448.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_449",
+    "name": "精品小食",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_021_449.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_450",
+    "name": "特色甜品",
+    "restaurantId": "rest_021",
+    "restaurantName": "北京烤鸭 (华师校园店)",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_021_450.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_451",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_022_451.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_452",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_022_452.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_453",
+    "name": "特色饮品",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_022_453.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_454",
+    "name": "精品小食",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_022_454.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_455",
+    "name": "特色甜品",
+    "restaurantId": "rest_022",
+    "restaurantName": "美滋滋烤肉拌饭",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_022_455.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
+    ]
+  },
+  {
+    "productId": "prod_456",
+    "name": "招牌套餐A",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "精选主食搭配，营养均衡",
+    "price": 35.0,
+    "originalPrice": 42.0,
+    "monthSales": 50,
+    "rating": 4.3,
+    "imageUrl": "https://example.com/products/rest_023_456.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐",
+      "招牌"
+    ]
+  },
+  {
+    "productId": "prod_457",
+    "name": "招牌套餐B",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "丰盛美味，物超所值",
+    "price": 42.0,
+    "originalPrice": 50.4,
+    "monthSales": 70,
+    "rating": 4.4,
+    "imageUrl": "https://example.com/products/rest_023_457.jpg",
+    "category": "COMBO",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "套餐"
+    ]
+  },
+  {
+    "productId": "prod_458",
+    "name": "特色饮品",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "店家特调，清爽可口",
+    "price": 15.0,
+    "originalPrice": null,
+    "monthSales": 90,
+    "rating": 4.5,
+    "imageUrl": "https://example.com/products/rest_023_458.jpg",
+    "category": "BEVERAGE",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "饮品"
+    ]
+  },
+  {
+    "productId": "prod_459",
+    "name": "精品小食",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "开胃小吃，美味可口",
+    "price": 18.0,
+    "originalPrice": null,
+    "monthSales": 110,
+    "rating": 4.6,
+    "imageUrl": "https://example.com/products/rest_023_459.jpg",
+    "category": "SIDE_DISH",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "小吃"
+    ]
+  },
+  {
+    "productId": "prod_460",
+    "name": "特色甜品",
+    "restaurantId": "rest_023",
+    "restaurantName": "金长风荷叶烤鸡",
+    "description": "甜蜜诱人，幸福味道",
+    "price": 20.0,
+    "originalPrice": null,
+    "monthSales": 130,
+    "rating": 4.7,
+    "imageUrl": "https://example.com/products/rest_023_460.jpg",
+    "category": "DESSERT",
+    "specifications": [],
+    "isAvailable": true,
+    "tags": [
+      "甜品"
     ]
   }
 ]

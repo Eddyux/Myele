@@ -13,7 +13,47 @@ class DataRepository(private val context: Context) {
     private val preferencesManager = PreferencesManager(context)
 
     fun loadRestaurants(): List<Restaurant> {
-        return loadJsonData("data/restaurants.json")
+        val restaurants: List<Restaurant> = loadJsonData("data/restaurants.json")
+        // 为每个餐厅添加多样化的属性
+        return restaurants.mapIndexed { index, restaurant ->
+            // 先创建一个安全的副本，确保所有字段都不为null
+            val safeRestaurant = restaurant.copy(
+                products = restaurant.products ?: emptyList(),
+                coupons = restaurant.coupons ?: emptyList(),
+                features = restaurant.features ?: emptyList()
+            )
+
+            safeRestaurant.copy(
+                // 优惠活动多样化 (每个餐厅不同)
+                hasFirstOrderDiscount = (index % 5 == 0), // 20%的餐厅有首次光顾减
+                hasFullReduction = (index % 3 == 0), // 33%的餐厅有满减优惠
+                hasRedPacketReward = (index % 4 == 0), // 25%的餐厅有返红包
+                hasFreeDelivery = (index % 6 == 0 || safeRestaurant.deliveryFee < 2.0), // 部分餐厅免配送费
+                hasSpecialOffer = (index % 7 == 0), // 14%的餐厅有特价商品
+
+                // 商家特色多样化
+                features = buildList {
+                    if (safeRestaurant.rating >= 4.5) add(RestaurantFeature.BRAND_MERCHANT)
+                    if (index % 4 == 0) add(RestaurantFeature.FENGNIAO_DELIVERY)
+                    if (index % 8 == 0) add(RestaurantFeature.SELF_PICKUP)
+                    if (index % 10 == 0) add(RestaurantFeature.NEW_STORE)
+                    if (index % 5 == 0) add(RestaurantFeature.FOOD_SAFETY)
+                    if (index % 9 == 0) add(RestaurantFeature.CROSS_DAY_BOOKING)
+                    if (index % 7 == 0) add(RestaurantFeature.ONLINE_INVOICE)
+                    if (index % 6 == 0) add(RestaurantFeature.SLOW_MUST_COMPENSATE)
+                },
+
+                // 人均价多样化 (在原价格基础上增加一些随机性)
+                averagePrice = when (index % 6) {
+                    0 -> safeRestaurant.averagePrice * 0.8 // 便宜
+                    1 -> safeRestaurant.averagePrice * 1.2 // 稍贵
+                    2 -> safeRestaurant.averagePrice * 1.5 // 较贵
+                    3 -> safeRestaurant.averagePrice * 0.9 // 稍便宜
+                    4 -> safeRestaurant.averagePrice * 1.1 // 稍贵
+                    else -> safeRestaurant.averagePrice // 原价
+                }
+            )
+        }
     }
 
     fun loadProducts(): List<Product> {

@@ -3,6 +3,7 @@ package com.example.myele.ui.searchresult
 import android.content.Context
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Restaurant
+import com.example.myele.model.RestaurantFeature
 import com.example.myele.model.Product
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,6 +24,7 @@ class SearchResultPresenter(
     private var allRestaurants = listOf<Restaurant>()
     private var allProducts = listOf<Product>()
     private var currentSortType = SortType.COMPREHENSIVE
+    private var currentFilterOptions = FilterOptions()
     private val presenterScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
 
     override fun onViewCreated(keyword: String) {
@@ -83,7 +85,7 @@ class SearchResultPresenter(
 
     override fun onSortChanged(sortType: SortType) {
         currentSortType = sortType
-        sortAndUpdateRestaurants(sortType)
+        applyFilterAndSort()
     }
 
     override fun onBackClicked() {
@@ -93,6 +95,83 @@ class SearchResultPresenter(
     override fun onDestroy() {
         // 清理资源，取消所有协程
         presenterScope.cancel()
+    }
+
+    fun applyFilter(filterOptions: FilterOptions) {
+        currentFilterOptions = filterOptions
+        applyFilterAndSort()
+    }
+
+    fun sortBySales() {
+        // 按销量从高到低排序
+        val sortedRestaurants = allRestaurants.sortedByDescending { it.salesVolume }
+        view.updateRestaurants(sortedRestaurants)
+    }
+
+    fun sortByDeliveryTime() {
+        // 按配送时间从快到慢排序
+        val sortedRestaurants = allRestaurants.sortedBy { it.deliveryTime }
+        view.updateRestaurants(sortedRestaurants)
+    }
+
+    private fun applyFilterAndSort() {
+        var filteredRestaurants = allRestaurants
+
+        // 应用筛选条件
+        // 优惠活动筛选
+        if (currentFilterOptions.promotions.isNotEmpty()) {
+            filteredRestaurants = filteredRestaurants.filter { restaurant ->
+                currentFilterOptions.promotions.any { promotion ->
+                    when (promotion) {
+                        "首次光顾减" -> restaurant.hasFirstOrderDiscount
+                        "满减优惠" -> restaurant.hasFullReduction || restaurant.coupons.isNotEmpty()
+                        "下单返红包" -> restaurant.hasRedPacketReward
+                        "配送费优惠" -> restaurant.hasFreeDelivery || restaurant.deliveryFee < 3.0
+                        "特价商品" -> restaurant.hasSpecialOffer
+                        "0元起送" -> restaurant.minDeliveryAmount == 0.0
+                        else -> false
+                    }
+                }
+            }
+        }
+
+        // 商家特色筛选
+        if (currentFilterOptions.features.isNotEmpty()) {
+            filteredRestaurants = filteredRestaurants.filter { restaurant ->
+                currentFilterOptions.features.any { feature ->
+                    when (feature) {
+                        "蜂鸟准时达" -> RestaurantFeature.FENGNIAO_DELIVERY in restaurant.features
+                        "到店自取" -> RestaurantFeature.SELF_PICKUP in restaurant.features
+                        "品牌商家" -> RestaurantFeature.BRAND_MERCHANT in restaurant.features || restaurant.rating >= 4.5
+                        "新店" -> RestaurantFeature.NEW_STORE in restaurant.features
+                        "食无忧" -> RestaurantFeature.FOOD_SAFETY in restaurant.features
+                        "跨天预订" -> RestaurantFeature.CROSS_DAY_BOOKING in restaurant.features
+                        "线上开票" -> RestaurantFeature.ONLINE_INVOICE in restaurant.features
+                        "慢必赔" -> RestaurantFeature.SLOW_MUST_COMPENSATE in restaurant.features
+                        else -> false
+                    }
+                }
+            }
+        }
+
+        // 价格筛选
+        currentFilterOptions.priceRange?.let { priceRange ->
+            val (minPrice, maxPrice) = priceRange
+            filteredRestaurants = filteredRestaurants.filter { restaurant ->
+                restaurant.averagePrice >= minPrice.toDouble() && restaurant.averagePrice <= maxPrice.toDouble()
+            }
+        }
+
+        // 应用排序
+        val sortedRestaurants = when (currentSortType) {
+            SortType.COMPREHENSIVE -> filteredRestaurants
+            SortType.PRICE_LOW_TO_HIGH -> filteredRestaurants.sortedBy { it.averagePrice }
+            SortType.DISTANCE -> filteredRestaurants.sortedBy { it.distance }
+            SortType.RATING -> filteredRestaurants.sortedByDescending { it.rating }
+            SortType.MIN_DELIVERY -> filteredRestaurants.sortedBy { it.minDeliveryAmount }
+        }
+
+        view.updateRestaurants(sortedRestaurants)
     }
 
     private fun sortAndUpdateRestaurants(sortType: SortType) {
@@ -106,3 +185,12 @@ class SearchResultPresenter(
         view.updateRestaurants(sortedRestaurants)
     }
 }
+
+/**
+ * 筛选选项数据类
+ */
+data class FilterOptions(
+    val promotions: Set<String> = setOf(),
+    val features: Set<String> = setOf(),
+    val priceRange: Pair<Float, Float>? = null
+)

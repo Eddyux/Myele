@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Restaurant
+import com.example.myele.model.RestaurantFeature
 import com.example.myele.ui.components.RestaurantImage
 import com.example.myele.ui.components.HotDealImage
 import kotlinx.coroutines.launch
@@ -46,27 +47,106 @@ fun HomeScreen(navController: NavController) {
     val repository = remember { DataRepository(context) }
     val coroutineScope = rememberCoroutineScope()
 
-    var restaurants by remember { mutableStateOf<List<Restaurant>>(emptyList()) }
+    var allRestaurants by remember { mutableStateOf<List<Restaurant>>(emptyList()) }
+    var displayedRestaurants by remember { mutableStateOf<List<Restaurant>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var selectedTab by remember { mutableStateOf(1) } // 默认选中"推荐"（索引1）
     var isRefreshing by remember { mutableStateOf(false) }
     var showFilterDialog by remember { mutableStateOf(false) }
+    var showSortDialog by remember { mutableStateOf(false) }
+    var currentFilterOptions by remember { mutableStateOf(HomeFilterOptions()) }
+    var currentSortType by remember { mutableStateOf(HomeSortType.COMPREHENSIVE) }
+    var showRefreshDialog by remember { mutableStateOf(false) } // 换一换加载弹窗
 
     val tabs = listOf("常点", "推荐")
+
+    // 应用筛选和排序
+    fun applyFilterAndSort() {
+        var filteredRestaurants = allRestaurants
+
+        // 优惠活动筛选
+        if (currentFilterOptions.promotions.isNotEmpty()) {
+            filteredRestaurants = filteredRestaurants.filter { restaurant ->
+                currentFilterOptions.promotions.any { promotion ->
+                    when (promotion) {
+                        "首次光顾减" -> restaurant.hasFirstOrderDiscount
+                        "满减优惠" -> restaurant.hasFullReduction || restaurant.coupons.isNotEmpty()
+                        "下单返红包" -> restaurant.hasRedPacketReward
+                        "配送费优惠" -> restaurant.hasFreeDelivery || restaurant.deliveryFee < 3.0
+                        "特价商品" -> restaurant.hasSpecialOffer
+                        "0元起送" -> restaurant.minDeliveryAmount == 0.0
+                        else -> false
+                    }
+                }
+            }
+        }
+
+        // 商家特色筛选
+        if (currentFilterOptions.features.isNotEmpty()) {
+            filteredRestaurants = filteredRestaurants.filter { restaurant ->
+                currentFilterOptions.features.any { feature ->
+                    when (feature) {
+                        "蜂鸟准时达" -> RestaurantFeature.FENGNIAO_DELIVERY in restaurant.features
+                        "到店自取" -> RestaurantFeature.SELF_PICKUP in restaurant.features
+                        "品牌商家" -> RestaurantFeature.BRAND_MERCHANT in restaurant.features || restaurant.rating >= 4.5
+                        "新店" -> RestaurantFeature.NEW_STORE in restaurant.features
+                        "食无忧" -> RestaurantFeature.FOOD_SAFETY in restaurant.features
+                        "跨天预订" -> RestaurantFeature.CROSS_DAY_BOOKING in restaurant.features
+                        "线上开票" -> RestaurantFeature.ONLINE_INVOICE in restaurant.features
+                        "慢必赔" -> RestaurantFeature.SLOW_MUST_COMPENSATE in restaurant.features
+                        else -> false
+                    }
+                }
+            }
+        }
+
+        // 价格筛选
+        currentFilterOptions.priceRange?.let { priceRange ->
+            val (minPrice, maxPrice) = priceRange
+            filteredRestaurants = filteredRestaurants.filter { restaurant ->
+                restaurant.averagePrice >= minPrice.toDouble() && restaurant.averagePrice <= maxPrice.toDouble()
+            }
+        }
+
+        // 应用排序
+        val sortedRestaurants = when (currentSortType) {
+            HomeSortType.COMPREHENSIVE -> filteredRestaurants
+            HomeSortType.PRICE_LOW_TO_HIGH -> filteredRestaurants.sortedBy { it.averagePrice }
+            HomeSortType.DISTANCE -> filteredRestaurants.sortedBy { it.distance }
+            HomeSortType.RATING -> filteredRestaurants.sortedByDescending { it.rating }
+            HomeSortType.SALES -> filteredRestaurants.sortedByDescending { it.salesVolume }
+        }
+
+        displayedRestaurants = sortedRestaurants
+    }
+
+    // 应用筛选
+    fun applyFilter(filterOptions: HomeFilterOptions) {
+        currentFilterOptions = filterOptions
+        applyFilterAndSort()
+    }
+
+    // 应用排序
+    fun applySort(sortType: HomeSortType) {
+        currentSortType = sortType
+        applyFilterAndSort()
+    }
 
     // 刷新函数
     fun refreshData() {
         coroutineScope.launch {
             isRefreshing = true
             delay(1000)
-            restaurants = repository.loadRestaurants()
+            allRestaurants = repository.loadRestaurants()
+            applyFilterAndSort()
             isRefreshing = false
         }
     }
 
     LaunchedEffect(Unit) {
         isLoading = true
-        restaurants = repository.loadRestaurants()
+        allRestaurants = repository.loadRestaurants()
+        displayedRestaurants = allRestaurants
         isLoading = false
     }
 
@@ -92,7 +172,7 @@ fun HomeScreen(navController: NavController) {
             0 -> {
                 // 常点页面
                 FrequentlyOrderedPage(
-                    restaurants = restaurants,
+                    restaurants = displayedRestaurants,
                     navController = navController,
                     isLoading = isLoading,
                     isRefreshing = isRefreshing,
@@ -123,7 +203,41 @@ fun HomeScreen(navController: NavController) {
 
                         // 功能按钮行
                         item {
-                            FunctionButtons(onFilterClick = { showFilterDialog = true })
+                            FunctionButtons(
+                                onFilterClick = { showFilterDialog = true },
+                                onRefreshClick = {
+                                    // 换一换：打乱列表
+                                    showRefreshDialog = true
+                                    coroutineScope.launch {
+                                        delay(800) // 显示加载动画
+                                        displayedRestaurants = displayedRestaurants.shuffled()
+                                        showRefreshDialog = false
+                                    }
+                                },
+                                onRedPacketClick = {
+                                    // 天天爆红包：有返红包的排前面
+                                    currentSortType = HomeSortType.COMPREHENSIVE
+                                    displayedRestaurants = displayedRestaurants.sortedByDescending { it.hasRedPacketReward }
+                                },
+                                onFreeDeliveryClick = {
+                                    // 减配送费：配送费从低到高
+                                    currentSortType = HomeSortType.COMPREHENSIVE
+                                    displayedRestaurants = displayedRestaurants.sortedBy { it.deliveryFee }
+                                },
+                                onStudentClick = {
+                                    // 学生特价：价格从低到高
+                                    currentSortType = HomeSortType.PRICE_LOW_TO_HIGH
+                                    applySort(HomeSortType.PRICE_LOW_TO_HIGH)
+                                }
+                            )
+                        }
+
+                        // 排序选项
+                        item {
+                            HomeSortOptions(
+                                selectedSortType = currentSortType,
+                                onSortClicked = { showSortDialog = true }
+                            )
                         }
 
                         // 商家列表
@@ -138,7 +252,7 @@ fun HomeScreen(navController: NavController) {
                                     CircularProgressIndicator()
                                 }
                             } else {
-                                RestaurantList(restaurants = restaurants, navController = navController)
+                                RestaurantList(restaurants = displayedRestaurants, navController = navController)
                             }
                         }
                     }
@@ -150,8 +264,54 @@ fun HomeScreen(navController: NavController) {
         if (showFilterDialog) {
             HomeFilterDialog(
                 onDismiss = { showFilterDialog = false },
-                onConfirm = { showFilterDialog = false }
+                onConfirm = { filterOptions ->
+                    applyFilter(filterOptions)
+                    showFilterDialog = false
+                }
             )
+        }
+
+        // 排序弹窗
+        if (showSortDialog) {
+            HomeSortDialog(
+                selectedSortType = currentSortType,
+                onSortTypeSelected = { sortType ->
+                    applySort(sortType)
+                    showSortDialog = false
+                },
+                onDismiss = { showSortDialog = false }
+            )
+        }
+
+        // 换一换加载弹窗
+        if (showRefreshDialog) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.3f)),
+                contentAlignment = Alignment.Center
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = Color.White,
+                    modifier = Modifier.padding(32.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.padding(24.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(
+                            color = Color(0xFF00BFFF)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "换一换中...",
+                            fontSize = 16.sp,
+                            color = Color.Gray
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -468,7 +628,13 @@ fun ProductCard(imageIndex: Int = 0) {
 }
 
 @Composable
-fun FunctionButtons(onFilterClick: () -> Unit = {}) {
+fun FunctionButtons(
+    onFilterClick: () -> Unit = {},
+    onRefreshClick: () -> Unit = {},
+    onRedPacketClick: () -> Unit = {},
+    onFreeDeliveryClick: () -> Unit = {},
+    onStudentClick: () -> Unit = {}
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -481,10 +647,10 @@ fun FunctionButtons(onFilterClick: () -> Unit = {}) {
                 .padding(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            FunctionButton("换一换", Icons.Default.Refresh)
-            FunctionButton("天天爆红包", Icons.Default.CardGiftcard)
-            FunctionButton("减配送费", Icons.Default.LocalShipping)
-            FunctionButton("学生特价", Icons.Default.School)
+            FunctionButton("换一换", Icons.Default.Refresh, onClick = onRefreshClick)
+            FunctionButton("天天爆红包", Icons.Default.CardGiftcard, onClick = onRedPacketClick)
+            FunctionButton("减配送费", Icons.Default.LocalShipping, onClick = onFreeDeliveryClick)
+            FunctionButton("学生特价", Icons.Default.School, onClick = onStudentClick)
             Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = "筛选",
@@ -498,10 +664,10 @@ fun FunctionButtons(onFilterClick: () -> Unit = {}) {
 }
 
 @Composable
-fun FunctionButton(text: String, icon: ImageVector) {
+fun FunctionButton(text: String, icon: ImageVector, onClick: () -> Unit = {}) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable { /* TODO */ }
+        modifier = Modifier.clickable { onClick() }
     ) {
         Icon(
             imageVector = icon,
@@ -642,11 +808,11 @@ fun RestaurantCard(restaurant: Restaurant, navController: NavController) {
 @Composable
 fun HomeFilterDialog(
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit
+    onConfirm: (HomeFilterOptions) -> Unit
 ) {
     var selectedPromotions by remember { mutableStateOf(setOf<String>()) }
     var selectedFeatures by remember { mutableStateOf(setOf<String>()) }
-    var selectedPriceRange by remember { mutableStateOf<String?>(null) }
+    var sliderPosition by remember { mutableStateOf(0f..120f) }
 
     Box(
         modifier = Modifier
@@ -657,18 +823,46 @@ fun HomeFilterDialog(
         Surface(
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.TopEnd)
-                .padding(top = 180.dp)
+                .fillMaxHeight(0.7f)
+                .align(Alignment.BottomCenter)
                 .clickable(enabled = false) { },
             color = Color.White,
             shadowElevation = 8.dp,
-            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+            shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
         ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .heightIn(max = 600.dp)
+            Column(
+                modifier = Modifier.fillMaxSize()
             ) {
+                // 顶部标题栏
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(
+                        text = "筛选",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "关闭",
+                        modifier = Modifier
+                            .size(24.dp)
+                            .clickable { onDismiss() }
+                    )
+                }
+
+                HorizontalDivider()
+
+                // 可滚动内容区域
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                ) {
             item {
                 // 优惠活动
                 Text(
@@ -746,52 +940,74 @@ fun HomeFilterDialog(
             }
 
             item {
-                HomePriceRangeSlider()
+                HomePriceRangeSlider(
+                    sliderPosition = sliderPosition,
+                    onValueChange = { sliderPosition = it }
+                )
             }
 
             item {
-                Spacer(modifier = Modifier.height(24.dp))
-                // 底部按钮
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 16.dp),
-                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+        }
+
+                // 底部按钮 - 固定在底部
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    shadowElevation = 8.dp,
+                    color = Color.White
                 ) {
-                    Button(
-                        onClick = {
-                            selectedPromotions = setOf()
-                            selectedFeatures = setOf()
-                            selectedPriceRange = null
-                        },
-                        modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFE3F2FD)
-                        ),
-                        shape = RoundedCornerShape(24.dp)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        Text(
-                            text = "清空",
-                            color = Color(0xFF00BFFF),
-                            fontSize = 16.sp
-                        )
-                    }
-                    Button(
-                        onClick = onConfirm,
-                        modifier = Modifier.weight(1f),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF00BFFF)
-                        ),
-                        shape = RoundedCornerShape(24.dp)
-                    ) {
-                        Text(
-                            text = "查看(已选${selectedPromotions.size + selectedFeatures.size + if (selectedPriceRange != null) 1 else 0})",
-                            color = Color.White,
-                            fontSize = 16.sp
-                        )
+                        Button(
+                            onClick = {
+                                selectedPromotions = setOf()
+                                selectedFeatures = setOf()
+                                sliderPosition = 0f..120f
+                            },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFFE3F2FD)
+                            ),
+                            shape = RoundedCornerShape(24.dp)
+                        ) {
+                            Text(
+                                text = "清空",
+                                color = Color(0xFF00BFFF),
+                                fontSize = 16.sp
+                            )
+                        }
+                        Button(
+                            onClick = {
+                                val filterOptions = HomeFilterOptions(
+                                    promotions = selectedPromotions,
+                                    features = selectedFeatures,
+                                    priceRange = if (sliderPosition != 0f..120f) {
+                                        Pair(sliderPosition.start, sliderPosition.endInclusive)
+                                    } else null
+                                )
+                                onConfirm(filterOptions)
+                            },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color(0xFF00BFFF)
+                            ),
+                            shape = RoundedCornerShape(24.dp)
+                        ) {
+                            val selectedCount = selectedPromotions.size + selectedFeatures.size +
+                                if (sliderPosition != 0f..120f) 1 else 0
+                            Text(
+                                text = "查看(已选$selectedCount)",
+                                color = Color.White,
+                                fontSize = 16.sp
+                            )
+                        }
                     }
                 }
-            }
             }
         }
     }
@@ -834,9 +1050,10 @@ fun HomeFlowRow(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomePriceRangeSlider() {
-    var sliderPosition by remember { mutableStateOf(0f..120f) }
-
+fun HomePriceRangeSlider(
+    sliderPosition: ClosedFloatingPointRange<Float> = 0f..120f,
+    onValueChange: (ClosedFloatingPointRange<Float>) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -864,7 +1081,7 @@ fun HomePriceRangeSlider() {
 
         RangeSlider(
             value = sliderPosition,
-            onValueChange = { sliderPosition = it },
+            onValueChange = onValueChange,
             valueRange = 0f..120f,
             colors = SliderDefaults.colors(
                 thumbColor = Color(0xFF00BFFF),
@@ -970,6 +1187,157 @@ fun FrequentlyOrderedPage(
                     }
                 }
             }
+        }
+    }
+}
+
+/**
+ * 主页筛选选项数据类
+ */
+data class HomeFilterOptions(
+    val promotions: Set<String> = setOf(),
+    val features: Set<String> = setOf(),
+    val priceRange: Pair<Float, Float>? = null
+)
+
+/**
+ * 主页排序类型
+ */
+enum class HomeSortType {
+    COMPREHENSIVE,      // 综合排序
+    PRICE_LOW_TO_HIGH, // 人均价低到高
+    DISTANCE,          // 距离优先
+    RATING,            // 商家好评优先
+    SALES              // 销量优先
+}
+
+// 主页排序选项
+@Composable
+fun HomeSortOptions(
+    selectedSortType: HomeSortType,
+    onSortClicked: () -> Unit
+) {
+    Surface(
+        modifier = Modifier.fillMaxWidth(),
+        color = Color.White
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 12.dp),
+            horizontalArrangement = Arrangement.Start
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.clickable { onSortClicked() }
+            ) {
+                Text(
+                    text = when (selectedSortType) {
+                        HomeSortType.COMPREHENSIVE -> "综合排序"
+                        HomeSortType.PRICE_LOW_TO_HIGH -> "人均价低到高"
+                        HomeSortType.DISTANCE -> "距离优先"
+                        HomeSortType.RATING -> "商家好评优先"
+                        HomeSortType.SALES -> "销量优先"
+                    },
+                    fontSize = 14.sp,
+                    color = Color(0xFF00BFFF),
+                    fontWeight = FontWeight.Bold
+                )
+                Icon(
+                    imageVector = Icons.Default.ArrowDropDown,
+                    contentDescription = null,
+                    tint = Color(0xFF00BFFF),
+                    modifier = Modifier.size(16.dp)
+                )
+            }
+        }
+    }
+}
+
+// 主页排序弹窗
+@Composable
+fun HomeSortDialog(
+    selectedSortType: HomeSortType,
+    onSortTypeSelected: (HomeSortType) -> Unit,
+    onDismiss: () -> Unit
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.3f))
+            .clickable { onDismiss() }
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.TopStart)
+                .padding(top = 280.dp)
+                .clickable(enabled = false) { },
+            color = Color.White,
+            shadowElevation = 8.dp,
+            shape = RoundedCornerShape(bottomStart = 16.dp, bottomEnd = 16.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp)
+            ) {
+                HomeSortDialogOption(
+                    text = "综合排序",
+                    isSelected = selectedSortType == HomeSortType.COMPREHENSIVE,
+                    onClick = { onSortTypeSelected(HomeSortType.COMPREHENSIVE) }
+                )
+                HomeSortDialogOption(
+                    text = "人均价低到高",
+                    isSelected = selectedSortType == HomeSortType.PRICE_LOW_TO_HIGH,
+                    onClick = { onSortTypeSelected(HomeSortType.PRICE_LOW_TO_HIGH) }
+                )
+                HomeSortDialogOption(
+                    text = "距离优先",
+                    isSelected = selectedSortType == HomeSortType.DISTANCE,
+                    onClick = { onSortTypeSelected(HomeSortType.DISTANCE) }
+                )
+                HomeSortDialogOption(
+                    text = "商家好评优先",
+                    isSelected = selectedSortType == HomeSortType.RATING,
+                    onClick = { onSortTypeSelected(HomeSortType.RATING) }
+                )
+                HomeSortDialogOption(
+                    text = "销量优先",
+                    isSelected = selectedSortType == HomeSortType.SALES,
+                    onClick = { onSortTypeSelected(HomeSortType.SALES) }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun HomeSortDialogOption(
+    text: String,
+    isSelected: Boolean,
+    onClick: () -> Unit
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
+            .padding(horizontal = 16.dp, vertical = 16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = text,
+            fontSize = 16.sp,
+            color = if (isSelected) Color(0xFF00BFFF) else Color.Black,
+            fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Normal
+        )
+        if (isSelected) {
+            Icon(
+                imageVector = Icons.Default.Check,
+                contentDescription = null,
+                tint = Color(0xFF00BFFF)
+            )
         }
     }
 }

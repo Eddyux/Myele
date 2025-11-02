@@ -77,7 +77,17 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
             SortOptions(
                 selectedSortType = selectedSortType,
                 onSortClicked = { showSortDialog = true },
-                onFilterClicked = { showFilterDialog = true }
+                onFilterClicked = { showFilterDialog = true },
+                onSalesClicked = {
+                    // 销量优先：按销量排序
+                    selectedSortType = SortType.COMPREHENSIVE
+                    presenter.sortBySales()
+                },
+                onSpeedClicked = {
+                    // 速度优先：按配送时间排序
+                    selectedSortType = SortType.COMPREHENSIVE
+                    presenter.sortByDeliveryTime()
+                }
             )
 
             // 餐厅列表
@@ -124,7 +134,10 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
         if (showFilterDialog) {
             FilterDialog(
                 onDismiss = { showFilterDialog = false },
-                onConfirm = { showFilterDialog = false }
+                onConfirm = { filterOptions ->
+                    presenter.applyFilter(filterOptions)
+                    showFilterDialog = false
+                }
             )
         }
     }
@@ -188,7 +201,9 @@ fun TopBar(keyword: String, onBackClicked: () -> Unit, navController: NavControl
 fun SortOptions(
     selectedSortType: SortType,
     onSortClicked: () -> Unit,
-    onFilterClicked: () -> Unit
+    onFilterClicked: () -> Unit,
+    onSalesClicked: () -> Unit = {},
+    onSpeedClicked: () -> Unit = {}
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -226,12 +241,14 @@ fun SortOptions(
             Text(
                 text = "销量优先",
                 fontSize = 14.sp,
-                color = Color.Black
+                color = Color.Black,
+                modifier = Modifier.clickable { onSalesClicked() }
             )
             Text(
                 text = "速度优先",
                 fontSize = 14.sp,
-                color = Color.Black
+                color = Color.Black,
+                modifier = Modifier.clickable { onSpeedClicked() }
             )
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -347,11 +364,11 @@ fun SortDialogOption(
 @Composable
 fun FilterDialog(
     onDismiss: () -> Unit,
-    onConfirm: () -> Unit
+    onConfirm: (FilterOptions) -> Unit
 ) {
     var selectedPromotions by remember { mutableStateOf(setOf<String>()) }
     var selectedFeatures by remember { mutableStateOf(setOf<String>()) }
-    var selectedPriceRange by remember { mutableStateOf<String?>(null) }
+    var sliderPosition by remember { mutableStateOf(0f..120f) }
 
     Box(
         modifier = Modifier
@@ -451,7 +468,10 @@ fun FilterDialog(
             }
 
             item {
-                PriceRangeSlider()
+                PriceRangeSlider(
+                    sliderPosition = sliderPosition,
+                    onValueChange = { sliderPosition = it }
+                )
             }
 
             item {
@@ -467,7 +487,7 @@ fun FilterDialog(
                         onClick = {
                             selectedPromotions = setOf()
                             selectedFeatures = setOf()
-                            selectedPriceRange = null
+                            sliderPosition = 0f..120f
                         },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(
@@ -482,15 +502,26 @@ fun FilterDialog(
                         )
                     }
                     Button(
-                        onClick = onConfirm,
+                        onClick = {
+                            val filterOptions = FilterOptions(
+                                promotions = selectedPromotions,
+                                features = selectedFeatures,
+                                priceRange = if (sliderPosition != 0f..120f) {
+                                    Pair(sliderPosition.start, sliderPosition.endInclusive)
+                                } else null
+                            )
+                            onConfirm(filterOptions)
+                        },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF00BFFF)
                         ),
                         shape = RoundedCornerShape(24.dp)
                     ) {
+                        val selectedCount = selectedPromotions.size + selectedFeatures.size +
+                            if (sliderPosition != 0f..120f) 1 else 0
                         Text(
-                            text = "查看(已选${selectedPromotions.size + selectedFeatures.size + if (selectedPriceRange != null) 1 else 0})",
+                            text = "查看(已选$selectedCount)",
                             color = Color.White,
                             fontSize = 16.sp
                         )
@@ -787,9 +818,10 @@ fun CouponBanner() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PriceRangeSlider() {
-    var sliderPosition by remember { mutableStateOf(0f..120f) }
-
+fun PriceRangeSlider(
+    sliderPosition: ClosedFloatingPointRange<Float> = 0f..120f,
+    onValueChange: (ClosedFloatingPointRange<Float>) -> Unit = {}
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -817,7 +849,7 @@ fun PriceRangeSlider() {
 
         RangeSlider(
             value = sliderPosition,
-            onValueChange = { sliderPosition = it },
+            onValueChange = onValueChange,
             valueRange = 0f..120f,
             colors = SliderDefaults.colors(
                 thumbColor = Color(0xFF00BFFF),

@@ -245,3 +245,27 @@ app/src/main/
    - 修改地址：编辑现有地址信息，右上角删除按钮
    - 删除地址：长按地址卡片弹出删除确认弹窗
    - 地址标签：支持"家"、"公司"、"学校"三种标签
+
+
+2025-11-02 13:22:57.192 14339-14339 AndroidRuntime          com.example.myele                    E  FATAL EXCEPTION: main
+Process: com.example.myele, PID: 14339
+java.lang.NullPointerException: Parameter specified as non-null is null: method com.example.myele.model.Restaurant.copy, parameter products
+at com.example.myele.model.Restaurant.copy(Unknown Source:78)
+at com.example.myele.model.Restaurant.copy$default(Unknown Source:274)
+at com.example.myele.data.DataRepository.loadRestaurants(DataRepository.kt:19)
+at com.example.myele.ui.home.HomeScreenKt$HomeScreen$1.invokeSuspend(HomeScreen.kt:147)
+at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
+at androidx.compose.ui.platform.AndroidUiDispatcher.performTrampolineDispatch(AndroidUiDispatcher.android.kt:81)
+at androidx.compose.ui.platform.AndroidUiDispatcher.access$performTrampolineDispatch(AndroidUiDispatcher.android.kt:41)
+at androidx.compose.ui.platform.AndroidUiDispatcher$dispatchCallback$1.run(AndroidUiDispatcher.android.kt:57)
+at android.os.Handler.handleCallback(Handler.java:942)
+at android.os.Handler.dispatchMessage(Handler.java:99)
+at android.os.Looper.loopOnce(Looper.java:201)
+at android.os.Looper.loop(Looper.java:288)
+at android.app.ActivityThread.main(ActivityThread.java:7924)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:936)
+Suppressed: kotlinx.coroutines.internal.DiagnosticCoroutineContextException: [androidx.compose.ui.platform.MotionDurationScaleImpl@ad7dda0, androidx.compose.runtime.BroadcastFrameClock@d304d59, StandaloneCoroutine{Cancelling}@f83d1e, AndroidUiDispatcher@f8559ff]
+2025-11-02 13:22:57.199   553-635   ActivityTaskManager     system_server                        W    Force finishing activity com.example.myele/.MainActivity
