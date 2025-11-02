@@ -12,6 +12,8 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -30,12 +32,14 @@ import com.example.myele.ui.components.RestaurantImage
 @Composable
 fun TakeoutScreen(navController: NavController) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
     var restaurants by remember { mutableStateOf<List<Restaurant>>(emptyList()) }
     var isLoading by remember { mutableStateOf(true) }
     var selectedCategory by remember { mutableStateOf("精选") }
     var showSortDialog by remember { mutableStateOf(false) }
     var showFilterDialog by remember { mutableStateOf(false) }
     var selectedSortType by remember { mutableStateOf(SortType.COMPREHENSIVE) }
+    var showShuffleLoading by remember { mutableStateOf(false) }
 
     val presenter = remember {
         TakeoutPresenter(object : TakeoutContract.View {
@@ -94,8 +98,29 @@ fun TakeoutScreen(navController: NavController) {
                 onFilterClicked = { showFilterDialog = true },
                 onSpeedClicked = {
                     // 速度优先：按配送时间排序
-                    selectedSortType = SortType.COMPREHENSIVE
                     presenter.sortByDeliveryTime()
+                },
+                onShuffleClicked = {
+                    // 换一换：随机打乱餐厅列表
+                    showShuffleLoading = true
+                    presenter.shuffleRestaurants()
+                    // 延迟隐藏加载弹窗，让用户看到效果
+                    coroutineScope.launch {
+                        delay(500)
+                        showShuffleLoading = false
+                    }
+                },
+                onRedPacketClicked = {
+                    // 天天爆红包：按红包优惠排序
+                    presenter.sortByRedPacket()
+                },
+                onDeliveryFeeClicked = {
+                    // 减配送费：按配送费排序
+                    presenter.sortByDeliveryFee()
+                },
+                onNoThresholdClicked = {
+                    // 无门槛红包：按起送价排序
+                    presenter.sortByNoThreshold()
                 }
             )
 
@@ -143,6 +168,36 @@ fun TakeoutScreen(navController: NavController) {
                     showFilterDialog = false
                 }
             )
+        }
+
+        // 换一换加载弹窗
+        if (showShuffleLoading) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.3f)),
+                contentAlignment = Alignment.Center
+            ) {
+                Surface(
+                    shape = RoundedCornerShape(16.dp),
+                    color = Color.White
+                ) {
+                    Column(
+                        modifier = Modifier.padding(32.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator(
+                            color = Color(0xFF00BFFF)
+                        )
+                        Spacer(modifier = Modifier.height(16.dp))
+                        Text(
+                            text = "正在换一换...",
+                            fontSize = 14.sp,
+                            color = Color.Gray
+                        )
+                    }
+                }
+            }
         }
     }
 }
@@ -329,7 +384,11 @@ fun SortAndFilter(
     selectedSortType: SortType,
     onSortClicked: () -> Unit,
     onFilterClicked: () -> Unit,
-    onSpeedClicked: () -> Unit = {}
+    onSpeedClicked: () -> Unit = {},
+    onShuffleClicked: () -> Unit = {},
+    onRedPacketClicked: () -> Unit = {},
+    onDeliveryFeeClicked: () -> Unit = {},
+    onNoThresholdClicked: () -> Unit = {}
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -395,13 +454,56 @@ fun SortAndFilter(
                     .padding(start = 16.dp, end = 16.dp, bottom = 12.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(listOf("换一换", "天天爆红包", "减配送费", "无门槛红包")) { tag ->
+                item {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = Color(0xFFF5F5F5)
+                        color = Color(0xFFF5F5F5),
+                        modifier = Modifier.clickable { onShuffleClicked() }
                     ) {
                         Text(
-                            text = tag,
+                            text = "换一换",
+                            fontSize = 12.sp,
+                            color = Color.Black,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                        )
+                    }
+                }
+                item {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = Color(0xFFF5F5F5),
+                        modifier = Modifier.clickable { onRedPacketClicked() }
+                    ) {
+                        Text(
+                            text = "天天爆红包",
+                            fontSize = 12.sp,
+                            color = Color.Black,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                        )
+                    }
+                }
+                item {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = Color(0xFFF5F5F5),
+                        modifier = Modifier.clickable { onDeliveryFeeClicked() }
+                    ) {
+                        Text(
+                            text = "减配送费",
+                            fontSize = 12.sp,
+                            color = Color.Black,
+                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                        )
+                    }
+                }
+                item {
+                    Surface(
+                        shape = RoundedCornerShape(12.dp),
+                        color = Color(0xFFF5F5F5),
+                        modifier = Modifier.clickable { onNoThresholdClicked() }
+                    ) {
+                        Text(
+                            text = "无门槛红包",
                             fontSize = 12.sp,
                             color = Color.Black,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)

@@ -67,6 +67,32 @@ class TakeoutPresenter(
         view.updateRestaurants(sortedRestaurants)
     }
 
+    fun shuffleRestaurants() {
+        // 随机打乱餐厅列表
+        val shuffledRestaurants = allRestaurants.shuffled()
+        view.updateRestaurants(shuffledRestaurants)
+    }
+
+    fun sortByRedPacket() {
+        // 按红包优惠排序（有红包奖励的优先）
+        val sortedRestaurants = allRestaurants.sortedByDescending { it.hasRedPacketReward }
+        view.updateRestaurants(sortedRestaurants)
+    }
+
+    fun sortByDeliveryFee() {
+        // 按配送费排序（配送费低的优先，免配送费的最优先）
+        val sortedRestaurants = allRestaurants.sortedWith(
+            compareBy({ !it.hasFreeDelivery }, { it.deliveryFee })
+        )
+        view.updateRestaurants(sortedRestaurants)
+    }
+
+    fun sortByNoThreshold() {
+        // 按无门槛红包排序（无门槛或起送价低的优先）
+        val sortedRestaurants = allRestaurants.sortedBy { it.minDeliveryAmount }
+        view.updateRestaurants(sortedRestaurants)
+    }
+
     private fun applyFilterAndSort() {
         var filteredRestaurants = allRestaurants
 

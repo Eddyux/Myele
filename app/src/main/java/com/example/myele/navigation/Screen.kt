@@ -48,6 +48,7 @@ sealed class Screen(val route: String) {
     object FrequentStores : Screen("frequent_stores")
     object CustomerService : Screen("customer_service")
     object MyKefu : Screen("my_kefu")
+    object OrderRewards : Screen("order_rewards")
     object Settings : Screen("settings")
     object PaymentSettings : Screen("payment_settings")
     object NotificationSettings : Screen("notification_settings")

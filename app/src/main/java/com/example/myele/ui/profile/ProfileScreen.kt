@@ -431,7 +431,7 @@ fun MoreFunctions(navController: NavController) {
                 ProfileMenuItem(Icons.Default.LocationOn, "我的地址", Screen.MyAddresses.route),
                 ProfileMenuItem(Icons.Default.Support, "我的客服", Screen.CustomerService.route),
                 ProfileMenuItem(Icons.Default.Assessment, "我的账单", Screen.MyBills.route),
-                ProfileMenuItem(Icons.Default.AttachMoney, "下单返", null)
+                ProfileMenuItem(Icons.Default.AttachMoney, "下单返", Screen.OrderRewards.route)
             )
 
             LazyVerticalGrid(

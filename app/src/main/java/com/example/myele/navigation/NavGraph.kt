@@ -38,6 +38,7 @@ import com.example.myele.ui.myfollows.MyFollowsScreen
 import com.example.myele.ui.frequentstores.FrequentStoresScreen
 import com.example.myele.ui.customerservice.CustomerServiceScreen
 import com.example.myele.ui.mykefu.MyKefuScreen
+import com.example.myele.ui.profile.OrderRewardsScreen
 import com.example.myele.ui.settings.SettingsScreen
 import com.example.myele.ui.paymentsettings.PaymentSettingsScreen
 import com.example.myele.ui.notificationsettings.NotificationSettingsScreen
@@ -197,6 +198,10 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(Screen.MyKefu.route) {
             MyKefuScreen(navController)
+        }
+
+        composable(Screen.OrderRewards.route) {
+            OrderRewardsScreen(navController)
         }
 
         composable(Screen.Settings.route) {
