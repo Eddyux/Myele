@@ -13,10 +13,15 @@ import com.example.myele.data.DataRepository
 import com.example.myele.navigation.NavGraph
 import com.example.myele.ui.main.MainScreen
 import com.example.myele.ui.theme.MyEleTheme
+import com.example.myele.utils.JsonFileWriter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 每次应用启动时清空messages.json
+        JsonFileWriter.clearMessagesJson(applicationContext)
+
         enableEdgeToEdge()
         setContent {
             MyEleTheme {

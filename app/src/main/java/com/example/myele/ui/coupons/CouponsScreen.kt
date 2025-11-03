@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -21,15 +22,29 @@ import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
 import com.example.myele.model.Coupon
 import com.example.myele.model.CouponStatus
+import com.example.myele.utils.JsonFileWriter
 import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CouponsScreen(navController: NavController, repository: DataRepository) {
+    val context = LocalContext.current
     var selectedTab by remember { mutableStateOf("红包") }
     var selectedSort by remember { mutableStateOf("默认排序") }
     val coupons = remember { repository.getCoupons() }
+
+    // 页面进入时写入JSON数据到 /data/data/com.example.myele/files/messages.json
+    LaunchedEffect(Unit) {
+        val jsonData = JsonFileWriter.createCouponsPageData(
+            extraData = mapOf(
+                "selected_tab" to "红包",
+                "total_coupons" to coupons.size,
+                "source" to "profile_menu"
+            )
+        )
+        JsonFileWriter.writeToMessagesJson(context, jsonData)
+    }
 
     Scaffold(
         topBar = {
