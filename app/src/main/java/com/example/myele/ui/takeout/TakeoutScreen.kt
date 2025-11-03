@@ -1,5 +1,6 @@
 package com.example.myele.ui.takeout
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -29,6 +30,7 @@ import androidx.navigation.NavController
 import com.example.myele.model.Restaurant
 import com.example.myele.ui.components.RestaurantImage
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TakeoutScreen(navController: NavController) {
     val context = LocalContext.current
@@ -78,67 +80,7 @@ fun TakeoutScreen(navController: NavController) {
             // 顶部标题栏
             TopBar(onBackClicked = { navController.popBackStack() })
 
-            // 搜索栏
-            SearchBar()
-
-            // 分类图标
-            CategoryIcons(
-                selectedCategory = selectedCategory,
-                onCategorySelected = {
-                    selectedCategory = it
-                    presenter.onCategorySelected(it)
-                }
-            )
-
-            // 广告横幅
-            PromotionBanner()
-
-            // 排序和筛选
-            SortAndFilter(
-                selectedSortType = selectedSortType,
-                speedSelected = speedSelected,
-                selectedFunctionButton = selectedFunctionButton,
-                onSortClicked = { showSortDialog = true },
-                onFilterClicked = { showFilterDialog = true },
-                onSpeedClicked = {
-                    // 速度优先：按配送时间排序
-                    speedSelected = !speedSelected
-                    selectedFunctionButton = null
-                    presenter.sortByDeliveryTime()
-                },
-                onShuffleClicked = {
-                    // 换一换：随机打乱餐厅列表
-                    selectedFunctionButton = "换一换"
-                    speedSelected = false
-                    showShuffleLoading = true
-                    presenter.shuffleRestaurants()
-                    // 延迟隐藏加载弹窗，让用户看到效果
-                    coroutineScope.launch {
-                        delay(500)
-                        showShuffleLoading = false
-                    }
-                },
-                onRedPacketClicked = {
-                    // 天天爆红包：按红包优惠排序
-                    selectedFunctionButton = "天天爆红包"
-                    speedSelected = false
-                    presenter.sortByRedPacket()
-                },
-                onDeliveryFeeClicked = {
-                    // 减配送费：按配送费排序
-                    selectedFunctionButton = "减配送费"
-                    speedSelected = false
-                    presenter.sortByDeliveryFee()
-                },
-                onNoThresholdClicked = {
-                    // 无门槛红包：按起送价排序
-                    selectedFunctionButton = "无门槛红包"
-                    speedSelected = false
-                    presenter.sortByNoThreshold()
-                }
-            )
-
-            // 餐厅列表
+            // 整页滚动，精选那一栏固定
             if (isLoading) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -150,6 +92,75 @@ fun TakeoutScreen(navController: NavController) {
                 LazyColumn(
                     modifier = Modifier.fillMaxSize()
                 ) {
+                    // 搜索栏
+                    item {
+                        SearchBar()
+                    }
+
+                    // 分类图标（精选那一栏）- 固定在顶部
+                    stickyHeader {
+                        CategoryIcons(
+                            selectedCategory = selectedCategory,
+                            onCategorySelected = {
+                                selectedCategory = it
+                                presenter.onCategorySelected(it)
+                            }
+                        )
+                    }
+
+                    // 广告横幅
+                    item {
+                        PromotionBanner()
+                    }
+
+                    // 排序和筛选
+                    item {
+                        SortAndFilter(
+                            selectedSortType = selectedSortType,
+                            speedSelected = speedSelected,
+                            selectedFunctionButton = selectedFunctionButton,
+                            onSortClicked = { showSortDialog = true },
+                            onFilterClicked = { showFilterDialog = true },
+                            onSpeedClicked = {
+                                // 速度优先：按配送时间排序
+                                speedSelected = !speedSelected
+                                selectedFunctionButton = null
+                                presenter.sortByDeliveryTime()
+                            },
+                            onShuffleClicked = {
+                                // 换一换：随机打乱餐厅列表
+                                selectedFunctionButton = "换一换"
+                                speedSelected = false
+                                showShuffleLoading = true
+                                presenter.shuffleRestaurants()
+                                // 延迟隐藏加载弹窗，让用户看到效果
+                                coroutineScope.launch {
+                                    delay(500)
+                                    showShuffleLoading = false
+                                }
+                            },
+                            onRedPacketClicked = {
+                                // 天天爆红包：按红包优惠排序
+                                selectedFunctionButton = "天天爆红包"
+                                speedSelected = false
+                                presenter.sortByRedPacket()
+                            },
+                            onDeliveryFeeClicked = {
+                                // 减配送费：按配送费排序
+                                selectedFunctionButton = "减配送费"
+                                speedSelected = false
+                                presenter.sortByDeliveryFee()
+                            },
+                            onNoThresholdClicked = {
+                                // 无门槛红包：按起送价排序
+                                selectedFunctionButton = "无门槛红包"
+                                speedSelected = false
+                                presenter.sortByNoThreshold()
+                            }
+                        )
+                    }
+
+                    // 餐厅列表
                     items(restaurants) { restaurant ->
                         TakeoutRestaurantCard(
                             restaurant = restaurant,
@@ -840,7 +851,7 @@ fun TakeoutRestaurantCard(restaurant: Restaurant, navController: NavController) 
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp)
             .clickable {
-                navController.navigate("${com.example.myele.navigation.Screen.StorePage.route}/${restaurant.restaurantId}")
+                navController.navigate(com.example.myele.navigation.Screen.StorePage.createRoute(restaurant.restaurantId))
             },
         shape = RoundedCornerShape(8.dp),
         color = Color.White

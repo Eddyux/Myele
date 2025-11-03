@@ -116,11 +116,11 @@ fun NotificationSettingsScreen(navController: NavController) {
                         .fillMaxWidth()
                         .clickable {
                             if (systemNotificationEnabled) {
-                                // 已开启 -> 直接进入详情页
-                                showNotificationDetailScreen = true
-                            } else {
-                                // 已关闭 -> 先弹窗确认
+                                // 已开启 -> 先弹窗确认
                                 showCloseNotificationDialog = true
+                            } else {
+                                // 已关闭 -> 直接进入详情页
+                                showNotificationDetailScreen = true
                             }
                         },
                     color = Color.White
