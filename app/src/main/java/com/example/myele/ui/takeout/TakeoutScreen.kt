@@ -40,6 +40,8 @@ fun TakeoutScreen(navController: NavController) {
     var showFilterDialog by remember { mutableStateOf(false) }
     var selectedSortType by remember { mutableStateOf(SortType.COMPREHENSIVE) }
     var showShuffleLoading by remember { mutableStateOf(false) }
+    var selectedFunctionButton by remember { mutableStateOf<String?>(null) }
+    var speedSelected by remember { mutableStateOf(false) }
 
     val presenter = remember {
         TakeoutPresenter(object : TakeoutContract.View {
@@ -94,14 +96,20 @@ fun TakeoutScreen(navController: NavController) {
             // 排序和筛选
             SortAndFilter(
                 selectedSortType = selectedSortType,
+                speedSelected = speedSelected,
+                selectedFunctionButton = selectedFunctionButton,
                 onSortClicked = { showSortDialog = true },
                 onFilterClicked = { showFilterDialog = true },
                 onSpeedClicked = {
                     // 速度优先：按配送时间排序
+                    speedSelected = !speedSelected
+                    selectedFunctionButton = null
                     presenter.sortByDeliveryTime()
                 },
                 onShuffleClicked = {
                     // 换一换：随机打乱餐厅列表
+                    selectedFunctionButton = "换一换"
+                    speedSelected = false
                     showShuffleLoading = true
                     presenter.shuffleRestaurants()
                     // 延迟隐藏加载弹窗，让用户看到效果
@@ -112,14 +120,20 @@ fun TakeoutScreen(navController: NavController) {
                 },
                 onRedPacketClicked = {
                     // 天天爆红包：按红包优惠排序
+                    selectedFunctionButton = "天天爆红包"
+                    speedSelected = false
                     presenter.sortByRedPacket()
                 },
                 onDeliveryFeeClicked = {
                     // 减配送费：按配送费排序
+                    selectedFunctionButton = "减配送费"
+                    speedSelected = false
                     presenter.sortByDeliveryFee()
                 },
                 onNoThresholdClicked = {
                     // 无门槛红包：按起送价排序
+                    selectedFunctionButton = "无门槛红包"
+                    speedSelected = false
                     presenter.sortByNoThreshold()
                 }
             )
@@ -382,6 +396,8 @@ fun PromotionBanner() {
 @Composable
 fun SortAndFilter(
     selectedSortType: SortType,
+    speedSelected: Boolean = false,
+    selectedFunctionButton: String? = null,
     onSortClicked: () -> Unit,
     onFilterClicked: () -> Unit,
     onSpeedClicked: () -> Unit = {},
@@ -424,12 +440,18 @@ fun SortAndFilter(
                         modifier = Modifier.size(20.dp)
                     )
                 }
-                Text(
-                    text = "速度",
-                    fontSize = 14.sp,
-                    color = Color.Black,
+                Surface(
+                    shape = RoundedCornerShape(12.dp),
+                    color = if (speedSelected) Color(0xFF00BFFF) else Color.Transparent,
                     modifier = Modifier.clickable { onSpeedClicked() }
-                )
+                ) {
+                    Text(
+                        text = "速度",
+                        fontSize = 14.sp,
+                        color = if (speedSelected) Color.White else Color.Black,
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                    )
+                }
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.clickable { onFilterClicked() }
@@ -457,13 +479,13 @@ fun SortAndFilter(
                 item {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = Color(0xFFF5F5F5),
+                        color = if (selectedFunctionButton == "换一换") Color(0xFF00BFFF) else Color(0xFFF5F5F5),
                         modifier = Modifier.clickable { onShuffleClicked() }
                     ) {
                         Text(
                             text = "换一换",
                             fontSize = 12.sp,
-                            color = Color.Black,
+                            color = if (selectedFunctionButton == "换一换") Color.White else Color.Black,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
                         )
                     }
@@ -471,13 +493,13 @@ fun SortAndFilter(
                 item {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = Color(0xFFF5F5F5),
+                        color = if (selectedFunctionButton == "天天爆红包") Color(0xFF00BFFF) else Color(0xFFF5F5F5),
                         modifier = Modifier.clickable { onRedPacketClicked() }
                     ) {
                         Text(
                             text = "天天爆红包",
                             fontSize = 12.sp,
-                            color = Color.Black,
+                            color = if (selectedFunctionButton == "天天爆红包") Color.White else Color.Black,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
                         )
                     }
@@ -485,13 +507,13 @@ fun SortAndFilter(
                 item {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = Color(0xFFF5F5F5),
+                        color = if (selectedFunctionButton == "减配送费") Color(0xFF00BFFF) else Color(0xFFF5F5F5),
                         modifier = Modifier.clickable { onDeliveryFeeClicked() }
                     ) {
                         Text(
                             text = "减配送费",
                             fontSize = 12.sp,
-                            color = Color.Black,
+                            color = if (selectedFunctionButton == "减配送费") Color.White else Color.Black,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
                         )
                     }
@@ -499,13 +521,13 @@ fun SortAndFilter(
                 item {
                     Surface(
                         shape = RoundedCornerShape(12.dp),
-                        color = Color(0xFFF5F5F5),
+                        color = if (selectedFunctionButton == "无门槛红包") Color(0xFF00BFFF) else Color(0xFFF5F5F5),
                         modifier = Modifier.clickable { onNoThresholdClicked() }
                     ) {
                         Text(
                             text = "无门槛红包",
                             fontSize = 12.sp,
-                            color = Color.Black,
+                            color = if (selectedFunctionButton == "无门槛红包") Color.White else Color.Black,
                             modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
                         )
                     }

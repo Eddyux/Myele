@@ -38,6 +38,7 @@ import com.example.myele.ui.myfollows.MyFollowsScreen
 import com.example.myele.ui.frequentstores.FrequentStoresScreen
 import com.example.myele.ui.customerservice.CustomerServiceScreen
 import com.example.myele.ui.mykefu.MyKefuScreen
+import com.example.myele.ui.serviceprogress.ServiceProgressScreen
 import com.example.myele.ui.profile.OrderRewardsScreen
 import com.example.myele.ui.settings.SettingsScreen
 import com.example.myele.ui.paymentsettings.PaymentSettingsScreen
@@ -46,6 +47,7 @@ import com.example.myele.ui.myinfo.MyInfoScreen
 import com.example.myele.ui.changephone.ChangePhoneScreen
 import com.example.myele.ui.storepage.StorePageScreen
 import com.example.myele.ui.servicepage.ServicePageScreen
+import com.example.myele.ui.undeveloped.UndevelopedScreen
 
 /**
  * 导航图
@@ -200,6 +202,10 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
             MyKefuScreen(navController)
         }
 
+        composable(Screen.ServiceProgress.route) {
+            ServiceProgressScreen(navController)
+        }
+
         composable(Screen.OrderRewards.route) {
             OrderRewardsScreen(navController)
         }
@@ -231,6 +237,14 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
         ) { backStackEntry ->
             val serviceName = backStackEntry.arguments?.getString("serviceName") ?: ""
             ServicePageScreen(navController, serviceName)
+        }
+
+        composable(
+            route = Screen.Undeveloped.route,
+            arguments = listOf(navArgument("title") { type = NavType.StringType })
+        ) { backStackEntry ->
+            val title = backStackEntry.arguments?.getString("title") ?: "功能页"
+            UndevelopedScreen(navController, title)
         }
     }
 }

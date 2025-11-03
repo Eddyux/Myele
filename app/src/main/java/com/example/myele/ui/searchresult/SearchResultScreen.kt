@@ -33,6 +33,8 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
     var selectedSortType by remember { mutableStateOf(SortType.COMPREHENSIVE) }
     var showSortDialog by remember { mutableStateOf(false) }
     var showFilterDialog by remember { mutableStateOf(false) }
+    var salesSelected by remember { mutableStateOf(false) }
+    var speedSelected by remember { mutableStateOf(false) }
 
     val presenter = remember {
         SearchResultPresenter(object : SearchResultContract.View {
@@ -76,15 +78,21 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
             // 排序选项
             SortOptions(
                 selectedSortType = selectedSortType,
+                salesSelected = salesSelected,
+                speedSelected = speedSelected,
                 onSortClicked = { showSortDialog = true },
                 onFilterClicked = { showFilterDialog = true },
                 onSalesClicked = {
                     // 销量优先：按销量排序
+                    salesSelected = !salesSelected
+                    speedSelected = false
                     selectedSortType = SortType.COMPREHENSIVE
                     presenter.sortBySales()
                 },
                 onSpeedClicked = {
                     // 速度优先：按配送时间排序
+                    speedSelected = !speedSelected
+                    salesSelected = false
                     selectedSortType = SortType.COMPREHENSIVE
                     presenter.sortByDeliveryTime()
                 }
@@ -200,6 +208,8 @@ fun TopBar(keyword: String, onBackClicked: () -> Unit, navController: NavControl
 @Composable
 fun SortOptions(
     selectedSortType: SortType,
+    salesSelected: Boolean = false,
+    speedSelected: Boolean = false,
     onSortClicked: () -> Unit,
     onFilterClicked: () -> Unit,
     onSalesClicked: () -> Unit = {},
@@ -238,18 +248,30 @@ fun SortOptions(
                     modifier = Modifier.size(16.dp)
                 )
             }
-            Text(
-                text = "销量优先",
-                fontSize = 14.sp,
-                color = Color.Black,
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = if (salesSelected) Color(0xFF00BFFF) else Color.Transparent,
                 modifier = Modifier.clickable { onSalesClicked() }
-            )
-            Text(
-                text = "速度优先",
-                fontSize = 14.sp,
-                color = Color.Black,
+            ) {
+                Text(
+                    text = "销量优先",
+                    fontSize = 14.sp,
+                    color = if (salesSelected) Color.White else Color.Black,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                )
+            }
+            Surface(
+                shape = RoundedCornerShape(12.dp),
+                color = if (speedSelected) Color(0xFF00BFFF) else Color.Transparent,
                 modifier = Modifier.clickable { onSpeedClicked() }
-            )
+            ) {
+                Text(
+                    text = "速度优先",
+                    fontSize = 14.sp,
+                    color = if (speedSelected) Color.White else Color.Black,
+                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp)
+                )
+            }
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.clickable { onFilterClicked() }

@@ -58,6 +58,9 @@ fun HomeScreen(navController: NavController) {
     var currentSortType by remember { mutableStateOf(HomeSortType.COMPREHENSIVE) }
     var showRefreshDialog by remember { mutableStateOf(false) } // 换一换加载弹窗
 
+    // 跟踪哪个功能按钮被选中
+    var selectedFunctionButton by remember { mutableStateOf<String?>(null) }
+
     val tabs = listOf("常点", "推荐")
 
     // 应用筛选和排序
@@ -204,9 +207,11 @@ fun HomeScreen(navController: NavController) {
                         // 功能按钮行
                         item {
                             FunctionButtons(
+                                selectedButton = selectedFunctionButton,
                                 onFilterClick = { showFilterDialog = true },
                                 onRefreshClick = {
                                     // 换一换：打乱列表
+                                    selectedFunctionButton = "换一换"
                                     showRefreshDialog = true
                                     coroutineScope.launch {
                                         delay(800) // 显示加载动画
@@ -216,16 +221,19 @@ fun HomeScreen(navController: NavController) {
                                 },
                                 onRedPacketClick = {
                                     // 天天爆红包：有返红包的排前面
+                                    selectedFunctionButton = "天天爆红包"
                                     currentSortType = HomeSortType.COMPREHENSIVE
                                     displayedRestaurants = displayedRestaurants.sortedByDescending { it.hasRedPacketReward }
                                 },
                                 onFreeDeliveryClick = {
                                     // 减配送费：配送费从低到高
+                                    selectedFunctionButton = "减配送费"
                                     currentSortType = HomeSortType.COMPREHENSIVE
                                     displayedRestaurants = displayedRestaurants.sortedBy { it.deliveryFee }
                                 },
                                 onStudentClick = {
                                     // 学生特价：价格从低到高
+                                    selectedFunctionButton = "学生特价"
                                     currentSortType = HomeSortType.PRICE_LOW_TO_HIGH
                                     applySort(HomeSortType.PRICE_LOW_TO_HIGH)
                                 }
@@ -629,6 +637,7 @@ fun ProductCard(imageIndex: Int = 0) {
 
 @Composable
 fun FunctionButtons(
+    selectedButton: String? = null,
     onFilterClick: () -> Unit = {},
     onRefreshClick: () -> Unit = {},
     onRedPacketClick: () -> Unit = {},
@@ -647,10 +656,10 @@ fun FunctionButtons(
                 .padding(horizontal = 16.dp, vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            FunctionButton("换一换", Icons.Default.Refresh, onClick = onRefreshClick)
-            FunctionButton("天天爆红包", Icons.Default.CardGiftcard, onClick = onRedPacketClick)
-            FunctionButton("减配送费", Icons.Default.LocalShipping, onClick = onFreeDeliveryClick)
-            FunctionButton("学生特价", Icons.Default.School, onClick = onStudentClick)
+            FunctionButton("换一换", Icons.Default.Refresh, isSelected = selectedButton == "换一换", onClick = onRefreshClick)
+            FunctionButton("天天爆红包", Icons.Default.CardGiftcard, isSelected = selectedButton == "天天爆红包", onClick = onRedPacketClick)
+            FunctionButton("减配送费", Icons.Default.LocalShipping, isSelected = selectedButton == "减配送费", onClick = onFreeDeliveryClick)
+            FunctionButton("学生特价", Icons.Default.School, isSelected = selectedButton == "学生特价", onClick = onStudentClick)
             Icon(
                 imageVector = Icons.Default.Menu,
                 contentDescription = "筛选",
@@ -664,23 +673,29 @@ fun FunctionButtons(
 }
 
 @Composable
-fun FunctionButton(text: String, icon: ImageVector, onClick: () -> Unit = {}) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
+fun FunctionButton(text: String, icon: ImageVector, isSelected: Boolean = false, onClick: () -> Unit = {}) {
+    Surface(
+        shape = RoundedCornerShape(12.dp),
+        color = if (isSelected) Color(0xFF00BFFF) else Color.Transparent,
         modifier = Modifier.clickable { onClick() }
     ) {
-        Icon(
-            imageVector = icon,
-            contentDescription = text,
-            tint = Color(0xFF00BFFF),
-            modifier = Modifier.size(16.dp)
-        )
-        Spacer(modifier = Modifier.width(4.dp))
-        Text(
-            text = text,
-            fontSize = 12.sp,
-            color = Color.Gray
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+        ) {
+            Icon(
+                imageVector = icon,
+                contentDescription = text,
+                tint = if (isSelected) Color.White else Color(0xFF00BFFF),
+                modifier = Modifier.size(16.dp)
+            )
+            Spacer(modifier = Modifier.width(4.dp))
+            Text(
+                text = text,
+                fontSize = 12.sp,
+                color = if (isSelected) Color.White else Color.Gray
+            )
+        }
     }
 }
 

@@ -375,7 +375,7 @@ fun OrderDetailScreen(
             // 联系客服按钮
             item {
                 Button(
-                    onClick = { },
+                    onClick = { navController.navigate(Screen.MyKefu.route) },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 12.dp, vertical = 8.dp),

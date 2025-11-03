@@ -61,7 +61,7 @@ fun ProfileScreen(navController: NavController) {
 
         // 我的钱包
         item {
-            MyWallet()
+            MyWallet(navController)
         }
 
         // 我的关注和常点的店
@@ -76,7 +76,7 @@ fun ProfileScreen(navController: NavController) {
 
         // 你可能还喜欢
         item {
-            RecommendedFood()
+            RecommendedFood(navController)
         }
     }
 }
@@ -181,7 +181,7 @@ fun UserQuickActions(navController: NavController) {
                 navController.navigate(Screen.FoodieCard.route)
             }
             QuickActionItem("吃货豆", Icons.Default.Star, Color(0xFFFFD700)) {
-                // TODO: Navigate to foodie beans page
+                navController.navigate(Screen.Undeveloped.createRoute("吃货豆"))
             }
             QuickActionItem("红包卡券", Icons.Default.LocalOffer, Color(0xFFFF3366)) {
                 navController.navigate(Screen.Coupons.route)
@@ -305,7 +305,7 @@ fun OrderTypeItem(title: String, icon: ImageVector, onClick: () -> Unit = {}) {
 }
 
 @Composable
-fun MyWallet() {
+fun MyWallet(navController: NavController) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -327,20 +327,28 @@ fun MyWallet() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                WalletItem("借钱", Icons.Default.Paid)
-                WalletItem("零钱", Icons.Default.AccountBalanceWallet)
-                WalletItem("外卖红包", Icons.Default.CardGiftcard)
-                WalletItem("笔笔返现", Icons.Default.MonetizationOn)
+                WalletItem("借钱", Icons.Default.Paid) {
+                    navController.navigate(Screen.Undeveloped.createRoute("借钱"))
+                }
+                WalletItem("零钱", Icons.Default.AccountBalanceWallet) {
+                    navController.navigate(Screen.Undeveloped.createRoute("零钱"))
+                }
+                WalletItem("外卖红包", Icons.Default.CardGiftcard) {
+                    navController.navigate(Screen.Undeveloped.createRoute("外卖红包"))
+                }
+                WalletItem("笔笔返现", Icons.Default.MonetizationOn) {
+                    navController.navigate(Screen.Undeveloped.createRoute("笔笔返现"))
+                }
             }
         }
     }
 }
 
 @Composable
-fun WalletItem(title: String, icon: ImageVector) {
+fun WalletItem(title: String, icon: ImageVector, onClick: () -> Unit = {}) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.clickable { /* TODO */ }
+        modifier = Modifier.clickable(onClick = onClick)
     ) {
         Icon(
             imageVector = icon,
@@ -474,9 +482,10 @@ fun FunctionItem(item: ProfileMenuItem, navController: NavController) {
 }
 
 @Composable
-fun RecommendedFood() {
+fun RecommendedFood(navController: NavController) {
     val restaurants = listOf(
         RestaurantInfo(
+            restaurantId = "rest_023",
             name = "金长风荷叶烤鸡",
             description = "招牌荷叶烤鸡，香嫩入味",
             deliveryTime = "35分钟",
@@ -485,6 +494,7 @@ fun RecommendedFood() {
             imageName = "chicken_restaurant"
         ),
         RestaurantInfo(
+            restaurantId = "rest_001",
             name = "川香麻辣烫",
             description = "正宗川味，麻辣鲜香",
             deliveryTime = "25分钟",
@@ -493,6 +503,7 @@ fun RecommendedFood() {
             imageName = "malatang_restaurant"
         ),
         RestaurantInfo(
+            restaurantId = "rest_006",
             name = "瑞幸咖啡",
             description = "精品咖啡，提神醒脑",
             deliveryTime = "20分钟",
@@ -520,7 +531,9 @@ fun RecommendedFood() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = 4.dp)
-                    .clickable { /* TODO */ },
+                    .clickable {
+                        navController.navigate(Screen.StorePage.createRoute(restaurant.restaurantId))
+                    },
                 shape = RoundedCornerShape(8.dp),
                 color = Color.White
             ) {
@@ -571,6 +584,7 @@ fun RecommendedFood() {
 }
 
 data class RestaurantInfo(
+    val restaurantId: String,
     val name: String,
     val description: String,
     val deliveryTime: String,

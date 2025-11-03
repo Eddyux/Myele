@@ -479,7 +479,7 @@ fun BottomButtons(navController: NavController) {
             horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             OutlinedButton(
-                onClick = { /* TODO */ },
+                onClick = { navController.navigate(com.example.myele.navigation.Screen.ServiceProgress.route) },
                 modifier = Modifier
                     .weight(1f)
                     .height(48.dp),

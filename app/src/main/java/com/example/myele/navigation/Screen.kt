@@ -48,6 +48,7 @@ sealed class Screen(val route: String) {
     object FrequentStores : Screen("frequent_stores")
     object CustomerService : Screen("customer_service")
     object MyKefu : Screen("my_kefu")
+    object ServiceProgress : Screen("service_progress")
     object OrderRewards : Screen("order_rewards")
     object Settings : Screen("settings")
     object PaymentSettings : Screen("payment_settings")
@@ -58,5 +59,10 @@ sealed class Screen(val route: String) {
     // 通用服务页面
     object ServicePage : Screen("service_page/{serviceName}") {
         fun createRoute(serviceName: String) = "service_page/$serviceName"
+    }
+
+    // 通用未开发页面
+    object Undeveloped : Screen("undeveloped/{title}") {
+        fun createRoute(title: String) = "undeveloped/$title"
     }
 }

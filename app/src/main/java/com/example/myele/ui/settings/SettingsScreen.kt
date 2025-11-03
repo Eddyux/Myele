@@ -66,16 +66,16 @@ fun SettingsScreen(navController: NavController) {
             // 设置选项列表
             val settingItems = listOf(
                 SettingItem("收货地址管理", route = Screen.MyAddresses.route),
-                SettingItem("账号与安全"),
+                SettingItem("账号与安全", route = Screen.Undeveloped.createRoute("账号与安全")),
                 SettingItem("支付设置", "先享后付、免密支付等", Screen.PaymentSettings.route),
-                SettingItem("安全中心", "安全问题解决与咨询"),
+                SettingItem("安全中心", "安全问题解决与咨询", Screen.Undeveloped.createRoute("安全中心")),
                 SettingItem("消息通知设置", "订单、优惠通知等", Screen.NotificationSettings.route),
-                SettingItem("通用设置", "清理缓存、图片质量"),
-                SettingItem("桌面小组件", "管理你的桌面小组件"),
-                SettingItem("关于饿了么"),
-                SettingItem("问题咨询及反馈"),
-                SettingItem("个人信息收集清单"),
-                SettingItem("第三方信息数据共享")
+                SettingItem("通用设置", "清理缓存、图片质量", Screen.Undeveloped.createRoute("通用设置")),
+                SettingItem("桌面小组件", "管理你的桌面小组件", Screen.Undeveloped.createRoute("桌面小组件")),
+                SettingItem("关于饿了么", route = Screen.Undeveloped.createRoute("关于饿了么")),
+                SettingItem("问题咨询及反馈", route = Screen.Undeveloped.createRoute("问题咨询及反馈")),
+                SettingItem("个人信息收集清单", route = Screen.Undeveloped.createRoute("个人信息收集清单")),
+                SettingItem("第三方信息数据共享", route = Screen.Undeveloped.createRoute("第三方信息数据共享"))
             )
 
             items(settingItems) { item ->

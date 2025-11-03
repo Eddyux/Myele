@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.text.style.TextAlign
 import com.example.myele.data.DataRepository
+import androidx.activity.compose.BackHandler
 
 data class NotificationItem(
     val title: String,
@@ -49,6 +50,35 @@ fun NotificationSettingsScreen(navController: NavController) {
     var bannerDialogMessage by remember { mutableStateOf("") }
     var showGenericScreen by remember { mutableStateOf(false) }
     var genericScreenTitle by remember { mutableStateOf("") }
+
+    // 处理系统返回键
+    BackHandler(enabled = showNotificationDetailScreen || showGenericScreen) {
+        when {
+            showNotificationDetailScreen -> showNotificationDetailScreen = false
+            showGenericScreen -> showGenericScreen = false
+        }
+    }
+
+    // 如果显示内部页面，则完全替换主页面
+    if (showNotificationDetailScreen) {
+        NotificationDetailScreen(
+            systemNotificationEnabled = systemNotificationEnabled,
+            onBack = { showNotificationDetailScreen = false },
+            onToggle = { enabled ->
+                systemNotificationEnabled = enabled
+                prefsManager.setSystemNotificationEnabled(enabled)
+            }
+        )
+        return
+    }
+
+    if (showGenericScreen) {
+        GenericNotificationScreen(
+            title = genericScreenTitle,
+            onBack = { showGenericScreen = false }
+        )
+        return
+    }
 
     Scaffold(
         topBar = {
@@ -84,7 +114,15 @@ fun NotificationSettingsScreen(navController: NavController) {
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clickable { showCloseNotificationDialog = true },
+                        .clickable {
+                            if (systemNotificationEnabled) {
+                                // 已开启 -> 直接进入详情页
+                                showNotificationDetailScreen = true
+                            } else {
+                                // 已关闭 -> 先弹窗确认
+                                showCloseNotificationDialog = true
+                            }
+                        },
                     color = Color.White
                 ) {
                     Row(
@@ -256,23 +294,13 @@ fun NotificationSettingsScreen(navController: NavController) {
             CloseNotificationDialog(
                 onDismiss = { showCloseNotificationDialog = false },
                 onClose = {
+                    // 点击"关闭"后进入详情页
                     showCloseNotificationDialog = false
                     showNotificationDetailScreen = true
                 },
                 onKeep = {
+                    // 点击"保留重要通知"不进入
                     showCloseNotificationDialog = false
-                }
-            )
-        }
-
-        // 通知详情页面
-        if (showNotificationDetailScreen) {
-            NotificationDetailScreen(
-                systemNotificationEnabled = systemNotificationEnabled,
-                onBack = { showNotificationDetailScreen = false },
-                onToggle = { enabled ->
-                    systemNotificationEnabled = enabled
-                    prefsManager.setSystemNotificationEnabled(enabled)
                 }
             )
         }
@@ -282,14 +310,6 @@ fun NotificationSettingsScreen(navController: NavController) {
             SimpleMessageDialog(
                 message = bannerDialogMessage,
                 onDismiss = { showBannerDialog = false }
-            )
-        }
-
-        // 通用页面
-        if (showGenericScreen) {
-            GenericNotificationScreen(
-                title = genericScreenTitle,
-                onBack = { showGenericScreen = false }
             )
         }
     }
@@ -555,8 +575,9 @@ fun GenericNotificationScreen(
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = title,
+                text = "该功能未开发",
                 fontSize = 16.sp,
+                fontWeight = FontWeight.Medium,
                 color = Color.Gray
             )
         }

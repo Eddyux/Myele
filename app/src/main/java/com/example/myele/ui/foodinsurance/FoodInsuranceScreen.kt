@@ -28,6 +28,7 @@ fun FoodInsuranceScreen(
     orderId: String
 ) {
     val order = remember { repository.getOrders().find { it.orderId == orderId } }
+    var showSuccessDialog by remember { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
@@ -216,7 +217,7 @@ fun FoodInsuranceScreen(
                         Spacer(modifier = Modifier.height(16.dp))
 
                         Button(
-                            onClick = { },
+                            onClick = { showSuccessDialog = true },
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
                             shape = RoundedCornerShape(24.dp)
@@ -355,6 +356,45 @@ fun FoodInsuranceScreen(
                 }
             }
         }
+    }
+
+    // 申请成功弹窗
+    if (showSuccessDialog) {
+        AlertDialog(
+            onDismissRequest = { showSuccessDialog = false },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.CheckCircle,
+                    contentDescription = null,
+                    tint = Color(0xFF4CAF50),
+                    modifier = Modifier.size(48.dp)
+                )
+            },
+            title = {
+                Text(
+                    text = "申请成功",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            },
+            text = {
+                Text(
+                    text = "您的理赔申请已提交成功，我们将在1-3个工作日内处理，请耐心等待。",
+                    fontSize = 14.sp,
+                    color = Color.Gray
+                )
+            },
+            confirmButton = {
+                Button(
+                    onClick = { showSuccessDialog = false },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                    shape = RoundedCornerShape(20.dp)
+                ) {
+                    Text("确定")
+                }
+            },
+            shape = RoundedCornerShape(16.dp)
+        )
     }
 }
 
