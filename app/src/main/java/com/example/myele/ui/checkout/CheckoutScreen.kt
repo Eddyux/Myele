@@ -213,8 +213,9 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                 }
 
                 // 记录通用的完成订单（用于任务19等）
+                // 注意：如果已经记录了肯德基订单，则不重复记录通用订单
                 val fromPage = CartManager.getFromPage()
-                if (fromPage != null) {
+                if (fromPage != null && !(hasKFCProducts && searchKey != null)) {
                     val extraDataMap = mutableMapOf<String, Any>(
                         "from_page" to fromPage,
                         "payment_success" to true

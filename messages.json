@@ -2,7 +2,7 @@
   {
     "action": "perform_search",
     "page": "home",
-    "timestamp": 1.762269049944E12,
+    "timestamp": 1.762269986387E12,
     "extra_data": {
       "search_query": "肯德基",
       "search_triggered": true
@@ -11,7 +11,7 @@
   {
     "action": "enter_checkout",
     "page": "checkout",
-    "timestamp": 1.762269052834E12,
+    "timestamp": 1.762269989352E12,
     "page_info": {
       "total_amount": 56.0,
       "product_count": 1.0,
@@ -21,7 +21,7 @@
   {
     "action": "complete_order",
     "page": "checkout",
-    "timestamp": 1.762269057607E12,
+    "timestamp": 1.762269992686E12,
     "page_info": {
       "restaurant": "肯德基"
     },
@@ -34,25 +34,14 @@
     }
   },
   {
-    "action": "complete_order",
-    "page": "checkout",
-    "timestamp": 1.762269057609E12,
-    "page_info": {},
-    "extra_data": {
-      "from_page": "takeout",
-      "payment_success": true,
-      "delivery_type": "immediate"
-    }
-  },
-  {
     "action": "cart_checkout_success",
     "page": "cart",
-    "timestamp": 1762269057632,
+    "timestamp": 1762269992739,
     "extra_data": {
       "select_all": true,
       "entered_checkout": true,
       "payment_success": true,
-      "order_id": "order_1762269057607",
+      "order_id": "order_1762269992685",
       "amount": 53.0,
       "payment_method": "微信支付"
     }
