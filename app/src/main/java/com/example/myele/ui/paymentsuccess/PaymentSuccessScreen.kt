@@ -29,14 +29,23 @@ fun PaymentSuccessScreen(
     amount: Double,
     paymentMethod: String = "微信支付"
 ) {
-    // 3秒后自动跳转到我的订单页面
+    // 记录支付成功（用于任务11等检测）
     LaunchedEffect(Unit) {
-        delay(3000)
-        navController.navigate(Screen.MyOrders.route) {
-            popUpTo(Screen.Home.route) {
-                inclusive = false
-            }
-        }
+        // 记录购物车结算成功的完整流程
+        com.example.myele.utils.ActionLogger.logCartAction(
+            context = navController.context,
+            action = "cart_checkout_success",
+            selectAll = true,
+            extraData = mapOf(
+                "entered_checkout" to true,
+                "payment_success" to true,
+                "order_id" to orderId,
+                "amount" to amount,
+                "payment_method" to paymentMethod
+            )
+        )
+        // 延迟确保日志写入完成
+        delay(500)
     }
 
     Box(
@@ -101,7 +110,7 @@ fun PaymentSuccessScreen(
 
             // 提示文字
             Text(
-                text = "3秒后自动跳转到我的订单...",
+                text = "支付完成，可以查看订单详情",
                 fontSize = 14.sp,
                 color = Color.Gray
             )

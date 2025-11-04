@@ -31,6 +31,17 @@ fun ChangePhoneScreen(navController: NavController) {
     var showEditDialog by remember { mutableStateOf(false) }
     var showSuccessDialog by remember { mutableStateOf(false) }
 
+    // 记录进入更换手机号页面（用于任务12检测）
+    LaunchedEffect(Unit) {
+        com.example.myele.utils.ActionLogger.logAction(
+            context = context,
+            action = "enter_change_phone_page",
+            page = "change_phone",
+            pageInfo = mapOf("screen_name" to "ChangePhoneScreen"),
+            extraData = mapOf("source" to "settings")
+        )
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(

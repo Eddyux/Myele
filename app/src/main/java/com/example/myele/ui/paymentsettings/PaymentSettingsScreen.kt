@@ -93,6 +93,14 @@ fun PaymentSettingsScreen(navController: NavController) {
                                 prefsManager.setAlipayFreePasswordEnabled(enabled)
                                 dialogMessage = if (enabled) "免密支付已开启" else "免密支付已关闭"
                                 showDialog = true
+
+                                // 记录设置操作
+                                com.example.myele.utils.ActionLogger.logSettings(
+                                    context = context,
+                                    settingType = "免密支付",
+                                    enabled = enabled,
+                                    showDialog = true
+                                )
                             }
                         )
                     }

@@ -13,6 +13,9 @@ object CartManager {
     // 所有商品数据的引用
     private var allProducts: List<Product> = emptyList()
 
+    // 记录是否全选（用于任务11检测）
+    private var wasSelectAll: Boolean = false
+
     /**
      * 设置商品数据
      */
@@ -23,10 +26,19 @@ object CartManager {
     /**
      * 设置待结算商品
      * @param items Map of productId to quantity
+     * @param selectAll 是否全选
      */
-    fun setCheckoutItems(items: Map<String, Int>) {
+    fun setCheckoutItems(items: Map<String, Int>, selectAll: Boolean = false) {
         checkoutItems.clear()
         checkoutItems.putAll(items)
+        wasSelectAll = selectAll
+    }
+
+    /**
+     * 获取是否全选
+     */
+    fun wasSelectAll(): Boolean {
+        return wasSelectAll
     }
 
     /**

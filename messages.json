@@ -1,12 +1,30 @@
-{
-  "action": "enter_orders_page",
-  "page": "orders",
-  "timestamp": 1762225153647,
-  "page_info": {
-    "screen_name": "MyOrdersScreen"
+[
+  {
+    "action": "complete_order",
+    "page": "checkout",
+    "timestamp": 1.76224141168E12,
+    "page_info": {
+      "restaurant": "肯德基"
+    },
+    "extra_data": {
+      "search_keyword": "肯德基",
+      "added_to_cart": true,
+      "used_coupon": false,
+      "selected_max_coupon": false,
+      "payment_success": true
+    }
   },
-  "extra_data": {
-    "selected_tab": "全部",
-    "source": "profile"
+  {
+    "action": "cart_checkout_success",
+    "page": "cart",
+    "timestamp": 1762241411713,
+    "extra_data": {
+      "select_all": true,
+      "entered_checkout": true,
+      "payment_success": true,
+      "order_id": "order_1762241411680",
+      "amount": 31.0,
+      "payment_method": "微信支付"
+    }
   }
-}
+]

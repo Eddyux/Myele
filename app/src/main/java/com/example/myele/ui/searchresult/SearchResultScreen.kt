@@ -141,9 +141,22 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
         // 筛选弹窗
         if (showFilterDialog) {
             FilterDialog(
+                keyword = keyword,
                 onDismiss = { showFilterDialog = false },
                 onConfirm = { filterOptions ->
                     presenter.applyFilter(filterOptions)
+
+                    // 记录筛选操作
+                    filterOptions.priceRange?.let { (min, max) ->
+                        com.example.myele.utils.ActionLogger.logFilter(
+                            context = navController.context,
+                            page = "search_result",
+                            priceMin = min.toInt(),
+                            priceMax = max.toInt(),
+                            otherFilters = mapOf("keyword" to keyword)
+                        )
+                    }
+
                     showFilterDialog = false
                 }
             )
@@ -385,6 +398,7 @@ fun SortDialogOption(
 // 筛选弹窗
 @Composable
 fun FilterDialog(
+    keyword: String = "",
     onDismiss: () -> Unit,
     onConfirm: (FilterOptions) -> Unit
 ) {

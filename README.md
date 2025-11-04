@@ -86,7 +86,41 @@ app/src/main/
 
 ---
 
-## 最新更新 (2025-10-31)
+## 最新更新 (2025-11-04)
+
+### Bug修复
+1. **DataRepository崩溃修复**
+   - 修复Restaurant对象从JSON加载时NullPointerException错误
+   - 使用自定义JSON解析逻辑，确保所有字段都有默认值
+   - 避免Gson反序列化时将未定义字段设为null
+
+### 数据记录系统
+1. **ActionLogger工具类**
+   - 创建统一的操作日志记录器
+   - 支持记录页面导航、搜索、筛选、排序、订单操作、设置变更、购物车操作、消息发送等
+   - 数据写入到`data/data/com.example.myele/files/messages.json`
+   - 为自动化测试提供验证基础
+
+2. **检测脚本**
+   - 创建eval_8.py到eval_15.py共8个检测脚本
+   - 对应开发要求中的任务8-15
+   - 支持通过ADB读取APP内部存储数据并验证
+
+3. **已实现的数据记录**
+   - ✅ 任务8: 搜索烤鸡并选择价格区间0-30（SearchResultScreen）
+   - ✅ 任务9: 取消订单并选择原因（OrderDetailScreen）
+   - ✅ 任务10: 开启免密支付（PaymentSettingsScreen）
+
+4. **待实现的数据记录**（框架已搭建，可参考已完成任务添加）
+   - 任务11: 购物车全选和结算
+   - 任务12: 更换手机号
+   - 任务13: 关闭消息推送
+   - 任务14: 肯德基下单流程
+   - 任务15: 联系骑手发送消息
+
+---
+
+## 历史更新 (2025-10-31)
 
 ### 主页标签优化
 1. **主页标签调整**
@@ -245,27 +279,3 @@ app/src/main/
    - 修改地址：编辑现有地址信息，右上角删除按钮
    - 删除地址：长按地址卡片弹出删除确认弹窗
    - 地址标签：支持"家"、"公司"、"学校"三种标签
-
-
-2025-11-02 13:22:57.192 14339-14339 AndroidRuntime          com.example.myele                    E  FATAL EXCEPTION: main
-Process: com.example.myele, PID: 14339
-java.lang.NullPointerException: Parameter specified as non-null is null: method com.example.myele.model.Restaurant.copy, parameter products
-at com.example.myele.model.Restaurant.copy(Unknown Source:78)
-at com.example.myele.model.Restaurant.copy$default(Unknown Source:274)
-at com.example.myele.data.DataRepository.loadRestaurants(DataRepository.kt:19)
-at com.example.myele.ui.home.HomeScreenKt$HomeScreen$1.invokeSuspend(HomeScreen.kt:147)
-at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
-at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:108)
-at androidx.compose.ui.platform.AndroidUiDispatcher.performTrampolineDispatch(AndroidUiDispatcher.android.kt:81)
-at androidx.compose.ui.platform.AndroidUiDispatcher.access$performTrampolineDispatch(AndroidUiDispatcher.android.kt:41)
-at androidx.compose.ui.platform.AndroidUiDispatcher$dispatchCallback$1.run(AndroidUiDispatcher.android.kt:57)
-at android.os.Handler.handleCallback(Handler.java:942)
-at android.os.Handler.dispatchMessage(Handler.java:99)
-at android.os.Looper.loopOnce(Looper.java:201)
-at android.os.Looper.loop(Looper.java:288)
-at android.app.ActivityThread.main(ActivityThread.java:7924)
-at java.lang.reflect.Method.invoke(Native Method)
-at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:548)
-at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:936)
-Suppressed: kotlinx.coroutines.internal.DiagnosticCoroutineContextException: [androidx.compose.ui.platform.MotionDurationScaleImpl@ad7dda0, androidx.compose.runtime.BroadcastFrameClock@d304d59, StandaloneCoroutine{Cancelling}@f83d1e, AndroidUiDispatcher@f8559ff]
-2025-11-02 13:22:57.199   553-635   ActivityTaskManager     system_server                        W    Force finishing activity com.example.myele/.MainActivity

@@ -446,6 +446,7 @@ fun NotificationDetailScreen(
     onBack: () -> Unit,
     onToggle: (Boolean) -> Unit
 ) {
+    val context = LocalContext.current
     var enabled by remember { mutableStateOf(systemNotificationEnabled) }
     var showDialog by remember { mutableStateOf(false) }
     var dialogMessage by remember { mutableStateOf("") }
@@ -498,6 +499,14 @@ fun NotificationDetailScreen(
                             onToggle(newEnabled)
                             dialogMessage = if (newEnabled) "已打开" else "关闭成功"
                             showDialog = true
+
+                            // 记录设置操作（用于任务13检测）
+                            com.example.myele.utils.ActionLogger.logSettings(
+                                context = context,
+                                settingType = "系统消息通知",
+                                enabled = newEnabled,
+                                showDialog = true
+                            )
                         }
                     )
                 }

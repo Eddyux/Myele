@@ -23,6 +23,7 @@ import com.example.myele.ui.components.ProductImage
 
 @Composable
 fun CheckoutScreen(navController: NavController, repository: com.example.myele.data.DataRepository) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     var deliveryMethod by remember { mutableStateOf("外卖配送") }
     var deliveryTime by remember { mutableStateOf("立即送出") }
     var showCouponDialog by remember { mutableStateOf(false) }
@@ -142,6 +143,34 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                 // 创建订单并导航到支付成功页面
                 val orderId = "order_${System.currentTimeMillis()}"
                 val totalAmount = subtotal + 2.0 + 5.0 - couponDiscount
+
+                // 检查是否从肯德基下单（用于任务14检测）
+                val hasKFCProducts = checkoutProducts.any { it.first.restaurantName.contains("肯德基") }
+                if (hasKFCProducts) {
+                    // 检查是否使用了优惠券
+                    val usedCoupon = selectedCoupon != null
+                    // 检查是否选择了最大的优惠券（第一个就是最大的，因为已排序）
+                    val selectedMaxCoupon = if (availableCoupons.isNotEmpty() && selectedCoupon != null) {
+                        selectedCoupon == availableCoupons.first()
+                    } else {
+                        false
+                    }
+
+                    // 记录肯德基下单流程（用于任务14检测）
+                    com.example.myele.utils.ActionLogger.logAction(
+                        context = context,
+                        action = "complete_order",
+                        page = "checkout",
+                        pageInfo = mapOf("restaurant" to "肯德基"),
+                        extraData = mapOf(
+                            "search_keyword" to "肯德基",
+                            "added_to_cart" to true,
+                            "used_coupon" to usedCoupon,
+                            "selected_max_coupon" to selectedMaxCoupon,
+                            "payment_success" to true
+                        )
+                    )
+                }
 
                 // 导航到支付成功页面
                 navController.navigate(

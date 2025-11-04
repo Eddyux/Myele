@@ -162,6 +162,14 @@ fun HomeScreen(navController: NavController) {
     }
 
     LaunchedEffect(Unit) {
+        // 清空messages.json文件，避免数据累积
+        try {
+            val file = java.io.File(context.filesDir, "messages.json")
+            file.writeText("[]")
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         isLoading = true
         allRestaurants = repository.loadRestaurants()
         displayedRestaurants = allRestaurants

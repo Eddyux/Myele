@@ -228,7 +228,7 @@ fun ShoppingCartScreen(navController: NavController) {
                         }
                     }
                 }
-                CartManager.setCheckoutItems(selectedItems)
+                CartManager.setCheckoutItems(selectedItems, selectAll)
                 navController.navigate(com.example.myele.navigation.Screen.Checkout.route)
             }
         )

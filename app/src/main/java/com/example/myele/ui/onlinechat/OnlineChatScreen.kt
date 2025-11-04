@@ -30,7 +30,12 @@ data class ChatMsg(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OnlineChatScreen(navController: NavController, riderName: String = "周丹奎") {
+fun OnlineChatScreen(
+    navController: NavController,
+    riderName: String = "周丹奎",
+    orderStatus: String = "配送中"
+) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     var messageText by remember { mutableStateOf("") }
     var messages by remember {
         mutableStateOf(
@@ -119,12 +124,27 @@ fun OnlineChatScreen(navController: NavController, riderName: String = "周丹�
                         IconButton(
                             onClick = {
                                 if (messageText.isNotBlank()) {
+                                    val message = messageText
                                     messages = messages + ChatMsg(
                                         id = (messages.size + 1).toString(),
-                                        content = messageText,
+                                        content = message,
                                         time = "刚刚",
                                         isFromRider = false
                                     )
+
+                                    // 记录发送消息（用于任务15检测）
+                                    com.example.myele.utils.ActionLogger.logAction(
+                                        context = context,
+                                        action = "send_message",
+                                        page = "chat",
+                                        pageInfo = mapOf("chat_type" to "rider_chat"),
+                                        extraData = mapOf(
+                                            "recipient_type" to "rider",
+                                            "message" to message,
+                                            "order_status" to orderStatus
+                                        )
+                                    )
+
                                     messageText = ""
                                 }
                             }

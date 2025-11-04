@@ -13,27 +13,54 @@ class DataRepository(private val context: Context) {
     private val preferencesManager = PreferencesManager(context)
 
     fun loadRestaurants(): List<Restaurant> {
-        val restaurants: List<Restaurant> = loadJsonData("data/restaurants.json")
+        // 使用自定义加载方法来处理Restaurant的null字段
+        val jsonString = try {
+            context.assets.open("data/restaurants.json").bufferedReader().use { it.readText() }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            return emptyList()
+        }
+
+        // 解析JSON为Map列表，然后手动创建Restaurant对象
+        val type = object : TypeToken<List<Map<String, Any>>>() {}.type
+        val dataList: List<Map<String, Any>> = gson.fromJson(jsonString, type) ?: return emptyList()
+
+        val restaurants = dataList.map { data ->
+            Restaurant(
+                restaurantId = data["restaurantId"] as? String ?: "",
+                name = data["name"] as? String ?: "",
+                rating = (data["rating"] as? Double) ?: 0.0,
+                salesVolume = ((data["salesVolume"] as? Double)?.toInt()) ?: 0,
+                deliveryTime = ((data["deliveryTime"] as? Double)?.toInt()) ?: 30,
+                distance = (data["distance"] as? Double) ?: 0.0,
+                minDeliveryAmount = (data["minDeliveryAmount"] as? Double) ?: 0.0,
+                deliveryFee = (data["deliveryFee"] as? Double) ?: 0.0,
+                averagePrice = (data["averagePrice"] as? Double) ?: 30.0,
+                cuisineType = data["cuisineType"] as? String ?: "",
+                features = emptyList(), // 默认空列表
+                products = emptyList(), // 默认空列表
+                coupons = emptyList(),  // 默认空列表
+                phone = data["phone"] as? String ?: "",
+                address = data["address"] as? String ?: "",
+                isFollowed = data["isFollowed"] as? Boolean ?: false,
+                isFavorite = data["isFavorite"] as? Boolean ?: false,
+                hasAppointment = data["hasAppointment"] as? Boolean ?: false
+            )
+        }
+
         // 为每个餐厅添加多样化的属性
         return restaurants.mapIndexed { index, restaurant ->
-            // 先创建一个安全的副本，确保所有字段都不为null
-            val safeRestaurant = restaurant.copy(
-                products = restaurant.products ?: emptyList(),
-                coupons = restaurant.coupons ?: emptyList(),
-                features = restaurant.features ?: emptyList()
-            )
-
-            safeRestaurant.copy(
+            restaurant.copy(
                 // 优惠活动多样化 (每个餐厅不同)
                 hasFirstOrderDiscount = (index % 5 == 0), // 20%的餐厅有首次光顾减
                 hasFullReduction = (index % 3 == 0), // 33%的餐厅有满减优惠
                 hasRedPacketReward = (index % 4 == 0), // 25%的餐厅有返红包
-                hasFreeDelivery = (index % 6 == 0 || safeRestaurant.deliveryFee < 2.0), // 部分餐厅免配送费
+                hasFreeDelivery = (index % 6 == 0 || restaurant.deliveryFee < 2.0), // 部分餐厅免配送费
                 hasSpecialOffer = (index % 7 == 0), // 14%的餐厅有特价商品
 
                 // 商家特色多样化
                 features = buildList {
-                    if (safeRestaurant.rating >= 4.5) add(RestaurantFeature.BRAND_MERCHANT)
+                    if (restaurant.rating >= 4.5) add(RestaurantFeature.BRAND_MERCHANT)
                     if (index % 4 == 0) add(RestaurantFeature.FENGNIAO_DELIVERY)
                     if (index % 8 == 0) add(RestaurantFeature.SELF_PICKUP)
                     if (index % 10 == 0) add(RestaurantFeature.NEW_STORE)
@@ -45,12 +72,12 @@ class DataRepository(private val context: Context) {
 
                 // 人均价多样化 (在原价格基础上增加一些随机性)
                 averagePrice = when (index % 6) {
-                    0 -> safeRestaurant.averagePrice * 0.8 // 便宜
-                    1 -> safeRestaurant.averagePrice * 1.2 // 稍贵
-                    2 -> safeRestaurant.averagePrice * 1.5 // 较贵
-                    3 -> safeRestaurant.averagePrice * 0.9 // 稍便宜
-                    4 -> safeRestaurant.averagePrice * 1.1 // 稍贵
-                    else -> safeRestaurant.averagePrice // 原价
+                    0 -> restaurant.averagePrice * 0.8 // 便宜
+                    1 -> restaurant.averagePrice * 1.2 // 稍贵
+                    2 -> restaurant.averagePrice * 1.5 // 较贵
+                    3 -> restaurant.averagePrice * 0.9 // 稍便宜
+                    4 -> restaurant.averagePrice * 1.1 // 稍贵
+                    else -> restaurant.averagePrice // 原价
                 }
             )
         }

@@ -36,6 +36,7 @@ fun OrderDetailScreen(
     var showContactBottomSheet by remember { mutableStateOf(false) }
     var showContactMerchantBottomSheet by remember { mutableStateOf(false) }
     var showCancelOrderSheet by remember { mutableStateOf(false) }
+    var showCancelSuccessDialog by remember { mutableStateOf(false) }
 
     if (order == null) {
         Box(
@@ -481,8 +482,18 @@ fun OrderDetailScreen(
                 cancelReasons.forEach { reason ->
                     TextButton(
                         onClick = {
-                            // TODO: 执行取消订单逻辑
+                            // 记录取消订单操作
+                            com.example.myele.utils.ActionLogger.logOrderAction(
+                                context = navController.context,
+                                action = "cancel_order",
+                                orderId = order.orderId,
+                                orderStatus = "待接单",
+                                cancelReason = reason,
+                                extraData = mapOf("show_success_dialog" to true)
+                            )
+
                             showCancelOrderSheet = false
+                            showCancelSuccessDialog = true
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
@@ -503,6 +514,46 @@ fun OrderDetailScreen(
                 }
             }
         }
+    }
+
+    // 取消成功弹窗
+    if (showCancelSuccessDialog) {
+        AlertDialog(
+            onDismissRequest = {
+                showCancelSuccessDialog = false
+            },
+            icon = {
+                Icon(
+                    imageVector = Icons.Default.CheckCircle,
+                    contentDescription = null,
+                    tint = Color(0xFF4CAF50),
+                    modifier = Modifier.size(48.dp)
+                )
+            },
+            title = {
+                Text(
+                    text = "取消成功",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            },
+            text = {
+                Text(
+                    text = "订单已成功取消",
+                    fontSize = 16.sp,
+                    color = Color.Gray
+                )
+            },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        showCancelSuccessDialog = false
+                    }
+                ) {
+                    Text("确定", fontSize = 16.sp, color = Color(0xFF00BFFF))
+                }
+            }
+        )
     }
 }
 

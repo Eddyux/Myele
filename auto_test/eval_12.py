@@ -2,20 +2,19 @@ import subprocess
 import json
 
 subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
+               stdout=open('messages.json', 'w'))
 
 with open('messages.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
     if isinstance(data, list):
         data = data[-1] if data else {}
 
-def validate_addresses_page():
-    if data.get('action') != 'enter_addresses_page':
+def validate_change_phone():
+    if data.get('action') != 'enter_change_phone_page':
         return False
-    # 【关键】必须进入地址页面
-    if data.get('page') != 'addresses':
+    if data.get('page') != 'change_phone':
         return False
     return True
 
-result = validate_addresses_page()
+result = validate_change_phone()
 print(result)
