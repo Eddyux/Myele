@@ -62,6 +62,27 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
     // Calculate discount
     val couponDiscount = selectedCoupon?.calculateDiscount(subtotal, deliveryFee) ?: 0.0
 
+    // 记录进入结算页面
+    LaunchedEffect(Unit) {
+        val pageInfoMap = mutableMapOf<String, Any>(
+            "total_amount" to subtotal,
+            "product_count" to checkoutProducts.size
+        )
+
+        // 如果有searchKey，也记录下来
+        val searchKey = CartManager.getSearchKeyword()
+        if (searchKey != null) {
+            pageInfoMap["search_query"] = searchKey
+        }
+
+        com.example.myele.utils.ActionLogger.logAction(
+            context = context,
+            action = "enter_checkout",
+            page = "checkout",
+            pageInfo = pageInfoMap
+        )
+    }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -144,9 +165,12 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                 val orderId = "order_${System.currentTimeMillis()}"
                 val totalAmount = subtotal + 2.0 + 5.0 - couponDiscount
 
-                // 检查是否从肯德基下单（用于任务14检测）
+                // 检查是否从搜索进入（用于任务14检测）
+                val searchKey = CartManager.getSearchKeyword()
                 val hasKFCProducts = checkoutProducts.any { it.first.restaurantName.contains("肯德基") }
-                if (hasKFCProducts) {
+
+                // 只有从搜索页面进入肯德基商家时才记录
+                if (hasKFCProducts && searchKey != null) {
                     // 检查是否使用了优惠券
                     val usedCoupon = selectedCoupon != null
                     // 检查是否选择了最大的优惠券（第一个就是最大的，因为已排序）
@@ -163,7 +187,7 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                         page = "checkout",
                         pageInfo = mapOf("restaurant" to "肯德基"),
                         extraData = mapOf(
-                            "search_keyword" to "肯德基",
+                            "search_query" to searchKey,  // 使用实际的搜索关键词
                             "added_to_cart" to true,
                             "used_coupon" to usedCoupon,
                             "selected_max_coupon" to selectedMaxCoupon,

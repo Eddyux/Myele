@@ -1,30 +1,28 @@
 [
   {
-    "action": "complete_order",
-    "page": "checkout",
-    "timestamp": 1.76224141168E12,
+    "action": "send_message",
+    "page": "chat",
+    "timestamp": 1.762247845306E12,
     "page_info": {
-      "restaurant": "肯德基"
+      "chat_type": "rider_chat"
     },
     "extra_data": {
-      "search_keyword": "肯德基",
-      "added_to_cart": true,
-      "used_coupon": false,
-      "selected_max_coupon": false,
-      "payment_success": true
+      "recipient_type": "rider",
+      "message": "出了什么情况，怎么还没到\n",
+      "order_status": "已完成"
     }
   },
   {
-    "action": "cart_checkout_success",
-    "page": "cart",
-    "timestamp": 1762241411713,
+    "action": "send_message",
+    "page": "chat",
+    "timestamp": 1762247866168,
+    "page_info": {
+      "chat_type": "rider_chat"
+    },
     "extra_data": {
-      "select_all": true,
-      "entered_checkout": true,
-      "payment_success": true,
-      "order_id": "order_1762241411680",
-      "amount": 31.0,
-      "payment_method": "微信支付"
+      "recipient_type": "rider",
+      "message": "出了什么情况，怎么还没到",
+      "order_status": "已完成"
     }
   }
 ]

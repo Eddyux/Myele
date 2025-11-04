@@ -29,9 +29,11 @@ import com.example.myele.model.Restaurant
 import com.example.myele.model.ProductCategory
 import com.example.myele.ui.components.RestaurantImage
 import com.example.myele.ui.components.ProductImage
+import com.example.myele.navigation.Screen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StorePageScreen(navController: NavController, restaurantId: String) {
+fun StorePageScreen(navController: NavController, restaurantId: String, searchKey: String? = null) {
     val context = LocalContext.current
     val repository = remember { DataRepository(context) }
 
@@ -44,6 +46,12 @@ fun StorePageScreen(navController: NavController, restaurantId: String) {
     // Cart state - store product ID to quantity map
     var cartItems by remember { mutableStateOf<Map<String, Int>>(emptyMap()) }
 
+    // More menu state
+    var showMoreMenu by remember { mutableStateOf(false) }
+    var showShareMenu by remember { mutableStateOf(false) }
+    var showShareSuccessDialog by remember { mutableStateOf(false) }
+    var sharedPlatform by remember { mutableStateOf("") }
+
     LaunchedEffect(restaurantId) {
         val restaurants = repository.loadRestaurants()
         restaurant = restaurants.find { it.restaurantId == restaurantId }
@@ -55,6 +63,9 @@ fun StorePageScreen(navController: NavController, restaurantId: String) {
 
         // Initialize CartManager with all products
         CartManager.setProducts(allProducts)
+
+        // 只在从搜索页面进入时保存searchKey
+        CartManager.setSearchKeyword(searchKey)
     }
 
     val tabs = listOf("点餐", "评价", "商家", "好友拼单")
@@ -69,7 +80,8 @@ fun StorePageScreen(navController: NavController, restaurantId: String) {
             StorePageTopBar(
                 navController = navController,
                 isFollowed = isFollowed,
-                onFollowClick = { isFollowed = !isFollowed }
+                onFollowClick = { isFollowed = !isFollowed },
+                onMoreClick = { showMoreMenu = true }
             )
 
             restaurant?.let { store ->
@@ -155,6 +167,213 @@ fun StorePageScreen(navController: NavController, restaurantId: String) {
                 modifier = Modifier.align(Alignment.BottomCenter)
             )
         }
+
+        // 更多菜单弹窗
+        if (showMoreMenu) {
+            ModalBottomSheet(
+                onDismissRequest = { showMoreMenu = false }
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp)
+                ) {
+                    // 分享按钮
+                    TextButton(
+                        onClick = {
+                            showMoreMenu = false
+                            showShareMenu = true
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.Share, contentDescription = null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("分享", fontSize = 16.sp)
+                        }
+                    }
+                    Divider()
+
+                    // 举报商家按钮
+                    TextButton(
+                        onClick = {
+                            showMoreMenu = false
+                            navController.navigate(Screen.Undeveloped.createRoute("举报商家"))
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.Report, contentDescription = null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("举报商家", fontSize = 16.sp)
+                        }
+                    }
+                    Divider()
+
+                    // 智能客服按钮
+                    TextButton(
+                        onClick = {
+                            showMoreMenu = false
+                            navController.navigate(Screen.MyKefu.route)
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Icon(Icons.Default.Support, contentDescription = null)
+                            Spacer(modifier = Modifier.width(8.dp))
+                            Text("智能客服", fontSize = 16.sp)
+                        }
+                    }
+                    Divider()
+
+                    // 取消按钮
+                    TextButton(
+                        onClick = { showMoreMenu = false },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("取消", fontSize = 16.sp, color = Color.Gray)
+                    }
+                }
+            }
+        }
+
+        // 分享平台选择菜单
+        if (showShareMenu) {
+            ModalBottomSheet(
+                onDismissRequest = { showShareMenu = false }
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp)
+                ) {
+                    Text(
+                        text = "分享到",
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+
+                    // 分享平台网格
+                    val platforms = listOf(
+                        "微信" to Icons.Default.Chat,
+                        "朋友圈" to Icons.Default.Group,
+                        "微博" to Icons.Default.Public,
+                        "QQ" to Icons.Default.Message,
+                        "QQ空间" to Icons.Default.Photo,
+                        "钉钉" to Icons.Default.Work
+                    )
+
+                    platforms.chunked(4).forEach { row ->
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            row.forEach { (platform, icon) ->
+                                Column(
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .clickable {
+                                            // 记录分享操作
+                                            com.example.myele.utils.ActionLogger.logAction(
+                                                context = context,
+                                                action = "share_store",
+                                                page = "store_page",
+                                                pageInfo = mapOf(
+                                                    "restaurant_name" to (restaurant?.name ?: ""),
+                                                    "restaurant_id" to restaurantId
+                                                ),
+                                                extraData = mapOf(
+                                                    "platform" to platform
+                                                )
+                                            )
+
+                                            sharedPlatform = platform
+                                            showShareMenu = false
+                                            showShareSuccessDialog = true
+                                        }
+                                ) {
+                                    Icon(
+                                        imageVector = icon,
+                                        contentDescription = platform,
+                                        modifier = Modifier
+                                            .size(48.dp)
+                                            .padding(8.dp),
+                                        tint = Color(0xFF00BFFF)
+                                    )
+                                    Text(
+                                        text = platform,
+                                        fontSize = 12.sp,
+                                        color = Color.Black
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    // 取消按钮
+                    TextButton(
+                        onClick = { showShareMenu = false },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text("取消", fontSize = 16.sp, color = Color.Gray)
+                    }
+                }
+            }
+        }
+
+        // 分享成功弹窗
+        if (showShareSuccessDialog) {
+            AlertDialog(
+                onDismissRequest = { showShareSuccessDialog = false },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.CheckCircle,
+                        contentDescription = null,
+                        tint = Color(0xFF4CAF50),
+                        modifier = Modifier.size(48.dp)
+                    )
+                },
+                title = {
+                    Text(
+                        text = "分享成功",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                },
+                text = {
+                    Text(
+                        text = "已分享到$sharedPlatform",
+                        fontSize = 16.sp,
+                        color = Color.Gray
+                    )
+                },
+                confirmButton = {
+                    TextButton(
+                        onClick = { showShareSuccessDialog = false }
+                    ) {
+                        Text("确定", fontSize = 16.sp, color = Color(0xFF00BFFF))
+                    }
+                }
+            )
+        }
     }
 }
 
@@ -163,7 +382,8 @@ fun StorePageScreen(navController: NavController, restaurantId: String) {
 fun StorePageTopBar(
     navController: NavController,
     isFollowed: Boolean,
-    onFollowClick: () -> Unit
+    onFollowClick: () -> Unit,
+    onMoreClick: () -> Unit
 ) {
     TopAppBar(
         title = { },
@@ -186,7 +406,7 @@ fun StorePageTopBar(
                     tint = if (isFollowed) Color.Red else Color.Gray
                 )
             }
-            IconButton(onClick = { /* More */ }) {
+            IconButton(onClick = onMoreClick) {
                 Icon(Icons.Default.MoreVert, contentDescription = "更多")
             }
         },

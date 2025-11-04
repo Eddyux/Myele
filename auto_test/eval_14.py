@@ -39,7 +39,7 @@ def validate_kfc_order():
     extra_data = order_record['extra_data']
 
     # 检测4: 【关键】验证搜索了"肯德基"
-    if extra_data.get('search_keyword') != '肯德基':
+    if extra_data.get('search_query') != '肯德基':
         return False
 
     # 检测5: 【关键】验证加入了购物车

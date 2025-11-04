@@ -113,7 +113,8 @@ fun SearchResultScreen(navController: NavController, keyword: String) {
                     items(restaurants) { restaurant ->
                         SearchResultRestaurantCard(
                             restaurant = restaurant,
-                            navController = navController
+                            navController = navController,
+                            keyword = keyword
                         )
                     }
 
@@ -605,13 +606,13 @@ fun FlowRow(
 }
 
 @Composable
-fun SearchResultRestaurantCard(restaurant: Restaurant, navController: NavController) {
+fun SearchResultRestaurantCard(restaurant: Restaurant, navController: NavController, keyword: String) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp)
             .clickable {
-                navController.navigate(com.example.myele.navigation.Screen.StorePage.createRoute(restaurant.restaurantId))
+                navController.navigate(com.example.myele.navigation.Screen.StorePage.createRoute(restaurant.restaurantId, keyword))
             },
         shape = RoundedCornerShape(8.dp),
         color = Color.White

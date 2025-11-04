@@ -15,8 +15,10 @@ sealed class Screen(val route: String) {
         fun createRoute(orderId: String, amount: Double, paymentMethod: String) =
             "payment_success/$orderId/$amount/$paymentMethod"
     }
-    object StorePage : Screen("store_page/{restaurantId}") {
-        fun createRoute(restaurantId: String) = "store_page/$restaurantId"
+    object StorePage : Screen("store_page/{restaurantId}?searchKey={searchKey}") {
+        fun createRoute(restaurantId: String, searchKey: String? = null) =
+            if (searchKey != null) "store_page/$restaurantId?searchKey=$searchKey"
+            else "store_page/$restaurantId"
     }
     object Messages : Screen("messages")
     object MessageDetail : Screen("message_detail/{riderName}") {
@@ -32,7 +34,11 @@ sealed class Screen(val route: String) {
     object OrderDetail : Screen("order_detail/{orderId}") {
         fun createRoute(orderId: String) = "order_detail/$orderId"
     }
-    object OnlineChat : Screen("online_chat")
+    object OnlineChat : Screen("online_chat?orderStatus={orderStatus}") {
+        fun createRoute(orderStatus: String? = null) =
+            if (orderStatus != null) "online_chat?orderStatus=$orderStatus"
+            else "online_chat"
+    }
     object Coupons : Screen("coupons")
     object Reviews : Screen("reviews")
     object MyBills : Screen("my_bills")

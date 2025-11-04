@@ -33,7 +33,7 @@ data class ChatMsg(
 fun OnlineChatScreen(
     navController: NavController,
     riderName: String = "周丹奎",
-    orderStatus: String = "配送中"
+    orderStatus: String
 ) {
     val context = androidx.compose.ui.platform.LocalContext.current
     var messageText by remember { mutableStateOf("") }

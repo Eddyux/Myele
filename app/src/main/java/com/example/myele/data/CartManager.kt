@@ -16,6 +16,9 @@ object CartManager {
     // 记录是否全选（用于任务11检测）
     private var wasSelectAll: Boolean = false
 
+    // 记录搜索关键词（用于任务14检测）- 只在从搜索页面进入商家时设置
+    private var searchKeyword: String? = null
+
     /**
      * 设置商品数据
      */
@@ -79,5 +82,26 @@ object CartManager {
      */
     fun getTotalQuantity(): Int {
         return checkoutItems.values.sum()
+    }
+
+    /**
+     * 设置搜索关键词（仅在从搜索页面进入商家时设置）
+     */
+    fun setSearchKeyword(keyword: String?) {
+        searchKeyword = keyword
+    }
+
+    /**
+     * 获取搜索关键词
+     */
+    fun getSearchKeyword(): String? {
+        return searchKeyword
+    }
+
+    /**
+     * 清除搜索关键词
+     */
+    fun clearSearchKeyword() {
+        searchKeyword = null
     }
 }

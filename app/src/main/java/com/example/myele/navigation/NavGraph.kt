@@ -98,10 +98,18 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
 
         composable(
             route = Screen.StorePage.route,
-            arguments = listOf(navArgument("restaurantId") { type = NavType.StringType })
+            arguments = listOf(
+                navArgument("restaurantId") { type = NavType.StringType },
+                navArgument("searchKey") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = null
+                }
+            )
         ) { backStackEntry ->
             val restaurantId = backStackEntry.arguments?.getString("restaurantId") ?: ""
-            StorePageScreen(navController, restaurantId)
+            val searchKey = backStackEntry.arguments?.getString("searchKey")
+            StorePageScreen(navController, restaurantId, searchKey)
         }
 
         composable(Screen.Messages.route) {
@@ -153,8 +161,18 @@ fun NavGraph(navController: NavHostController, repository: DataRepository) {
             FoodInsuranceScreen(navController, repository, orderId)
         }
 
-        composable(Screen.OnlineChat.route) {
-            OnlineChatScreen(navController)
+        composable(
+            route = Screen.OnlineChat.route,
+            arguments = listOf(
+                navArgument("orderStatus") {
+                    type = NavType.StringType
+                    nullable = true
+                    defaultValue = "配送中"
+                }
+            )
+        ) { backStackEntry ->
+            val orderStatus = backStackEntry.arguments?.getString("orderStatus") ?: "配送中"
+            OnlineChatScreen(navController, orderStatus = orderStatus)
         }
 
         composable(Screen.Coupons.route) {

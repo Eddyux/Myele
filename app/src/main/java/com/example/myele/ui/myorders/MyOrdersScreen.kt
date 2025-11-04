@@ -223,11 +223,24 @@ fun OrderCard(order: Order, navController: NavController) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.clickable {
+                        // 点击商家名称跳转到商家详情页
+                        navController.navigate(Screen.StorePage.createRoute(order.restaurantId))
+                    }
+                ) {
                     Text(
                         text = order.restaurantName,
                         fontSize = 16.sp,
                         fontWeight = FontWeight.Bold
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = ">",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Gray
                     )
                     if (order.status == OrderStatus.COMPLETED) {
                         Spacer(modifier = Modifier.width(8.dp))

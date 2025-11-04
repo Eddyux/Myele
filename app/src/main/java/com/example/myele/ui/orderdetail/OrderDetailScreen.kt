@@ -407,7 +407,15 @@ fun OrderDetailScreen(
                 TextButton(
                     onClick = {
                         showContactBottomSheet = false
-                        navController.navigate(Screen.OnlineChat.route)
+                        // 将订单状态转换为中文字符串
+                        val orderStatusText = when (order.status) {
+                            OrderStatus.COMPLETED -> "已完成"
+                            OrderStatus.DELIVERING -> "配送中"
+                            OrderStatus.PREPARING -> "待接单"
+                            OrderStatus.PENDING_ACCEPT -> "待接单"
+                            else -> "处理中"
+                        }
+                        navController.navigate(Screen.OnlineChat.createRoute(orderStatusText))
                     },
                     modifier = Modifier.fillMaxWidth()
                 ) {
