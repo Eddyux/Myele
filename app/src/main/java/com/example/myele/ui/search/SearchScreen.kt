@@ -105,6 +105,18 @@ fun SearchScreen(navController: NavController) {
                         onSuggestionClick = { suggestion ->
                             searchText = suggestion
                             presenter.onSearchClicked(suggestion)
+
+                            // 记录搜索推荐点击
+                            ActionLogger.logAction(
+                                context = context,
+                                action = "perform_search",
+                                page = "home",
+                                extraData = mapOf(
+                                    "search_query" to suggestion,
+                                    "search_triggered" to true
+                                )
+                            )
+
                             navController.navigate(com.example.myele.navigation.Screen.SearchResult.createRoute(suggestion))
                         }
                     )
@@ -119,6 +131,18 @@ fun SearchScreen(navController: NavController) {
                         onHistoryItemClick = { keyword ->
                             searchText = keyword
                             presenter.onHistoryItemClicked(keyword)
+
+                            // 记录历史搜索点击
+                            ActionLogger.logAction(
+                                context = context,
+                                action = "perform_search",
+                                page = "home",
+                                extraData = mapOf(
+                                    "search_query" to keyword,
+                                    "search_triggered" to true
+                                )
+                            )
+
                             navController.navigate(com.example.myele.navigation.Screen.SearchResult.createRoute(keyword))
                         },
                         onClearClick = {
@@ -135,6 +159,18 @@ fun SearchScreen(navController: NavController) {
                     onStoreClick = { storeName ->
                         searchText = storeName
                         presenter.onSearchClicked(storeName)
+
+                        // 记录搜索发现点击
+                        ActionLogger.logAction(
+                            context = context,
+                            action = "perform_search",
+                            page = "home",
+                            extraData = mapOf(
+                                "search_query" to storeName,
+                                "search_triggered" to true
+                            )
+                        )
+
                         navController.navigate(com.example.myele.navigation.Screen.SearchResult.createRoute(storeName))
                     }
                 )
@@ -349,7 +385,6 @@ fun SearchDiscovery(
     stores: List<StoreRecommendation>,
     onStoreClick: (String) -> Unit
 ) {
-    val context = androidx.compose.ui.platform.LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -386,13 +421,6 @@ fun SearchDiscovery(
                     shape = RoundedCornerShape(16.dp),
                     color = Color(0xFFF5F5F5),
                     modifier = Modifier.clickable {
-                        // 记录快速搜索
-                        com.example.myele.utils.ActionLogger.logAction(
-                            context = context,
-                            action = "search",
-                            page = "search",
-                            pageInfo = mapOf("search_query" to store.name)
-                        )
                         onStoreClick(store.name)
                     }
                 ) {
