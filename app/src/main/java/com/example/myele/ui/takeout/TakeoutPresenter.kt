@@ -58,6 +58,30 @@ class TakeoutPresenter(
 
     fun applyFilter(filterOptions: TakeoutFilterOptions) {
         currentFilterOptions = filterOptions
+
+        // 记录筛选操作
+        val filterList = mutableListOf<String>()
+        filterList.addAll(filterOptions.promotions)
+        filterList.addAll(filterOptions.features)
+
+        if (filterOptions.priceRange != null) {
+            val (minPrice, maxPrice) = filterOptions.priceRange
+            filterList.add("价格区间:${minPrice.toInt()}-${maxPrice.toInt()}")
+        }
+
+        // 只在有筛选选项时记录
+        if (filterList.isNotEmpty()) {
+            com.example.myele.utils.ActionLogger.logAction(
+                context = context,
+                action = "apply_filter",
+                page = "takeout",
+                pageInfo = mapOf(),
+                extraData = mapOf(
+                    "filters" to filterList
+                )
+            )
+        }
+
         applyFilterAndSort()
     }
 

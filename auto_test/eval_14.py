@@ -17,12 +17,15 @@ with open('messages.json', 'r', encoding='utf-8') as f:
 # 4. 必须选择最大的优惠券
 # 5. 必须支付成功
 def validate_kfc_order():
-    # 从数组中找到最后一个完成订单的记录
+    # 从数组中找到最后一个完成订单的记录（且包含search_query字段）
     order_record = None
     for record in reversed(all_data):
         if record.get('action') == 'complete_order':
-            order_record = record
-            break
+            # 确保这是肯德基订单记录（包含search_query）
+            extra_data = record.get('extra_data', {})
+            if 'search_query' in extra_data:
+                order_record = record
+                break
 
     # 检测1: 验证完成订单操作存在
     if order_record is None:

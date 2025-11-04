@@ -349,6 +349,7 @@ fun SearchDiscovery(
     stores: List<StoreRecommendation>,
     onStoreClick: (String) -> Unit
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -384,7 +385,16 @@ fun SearchDiscovery(
                 Surface(
                     shape = RoundedCornerShape(16.dp),
                     color = Color(0xFFF5F5F5),
-                    modifier = Modifier.clickable { onStoreClick(store.name) }
+                    modifier = Modifier.clickable {
+                        // 记录快速搜索
+                        com.example.myele.utils.ActionLogger.logAction(
+                            context = context,
+                            action = "search",
+                            page = "search",
+                            pageInfo = mapOf("search_query" to store.name)
+                        )
+                        onStoreClick(store.name)
+                    }
                 ) {
                     Text(
                         text = store.name,

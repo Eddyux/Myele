@@ -88,6 +88,35 @@ class SearchResultPresenter(
         applyFilterAndSort()
     }
 
+    fun applyFilter(filterOptions: FilterOptions) {
+        currentFilterOptions = filterOptions
+
+        // 记录筛选操作
+        val filterList = mutableListOf<String>()
+        filterList.addAll(filterOptions.promotions)
+        filterList.addAll(filterOptions.features)
+
+        if (filterOptions.priceRange != null) {
+            val (minPrice, maxPrice) = filterOptions.priceRange
+            filterList.add("价格区间:${minPrice.toInt()}-${maxPrice.toInt()}")
+        }
+
+        // 只在有筛选选项时记录
+        if (filterList.isNotEmpty()) {
+            com.example.myele.utils.ActionLogger.logAction(
+                context = context,
+                action = "apply_filter",
+                page = "search_result",
+                pageInfo = mapOf(),
+                extraData = mapOf(
+                    "filters" to filterList
+                )
+            )
+        }
+
+        applyFilterAndSort()
+    }
+
     override fun onBackClicked() {
         // 返回操作由View层处理
     }
@@ -95,11 +124,6 @@ class SearchResultPresenter(
     override fun onDestroy() {
         // 清理资源，取消所有协程
         presenterScope.cancel()
-    }
-
-    fun applyFilter(filterOptions: FilterOptions) {
-        currentFilterOptions = filterOptions
-        applyFilterAndSort()
     }
 
     fun sortBySales() {

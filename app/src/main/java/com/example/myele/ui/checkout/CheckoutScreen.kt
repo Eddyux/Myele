@@ -17,15 +17,22 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.example.myele.data.CartManager
 import com.example.myele.ui.components.ProductImage
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Composable
 fun CheckoutScreen(navController: NavController, repository: com.example.myele.data.DataRepository) {
     val context = androidx.compose.ui.platform.LocalContext.current
     var deliveryMethod by remember { mutableStateOf("外卖配送") }
-    var deliveryTime by remember { mutableStateOf("立即送出") }
+    var deliveryTimeType by remember { mutableStateOf("立即送出") } // "立即送出" or "预约配送"
+    var selectedDeliveryDate by remember { mutableStateOf("今日") }
+    var selectedDeliveryTimeSlot by remember { mutableStateOf("") }
+    var showDeliveryTimeDialog by remember { mutableStateOf(false) }
     var showCouponDialog by remember { mutableStateOf(false) }
     var selectedCoupon by remember { mutableStateOf<com.example.myele.model.Coupon?>(null) }
     var paymentMethod by remember { mutableStateOf("微信支付") }
@@ -112,8 +119,17 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
             // 配送时间
             item {
                 DeliveryTimeSection(
-                    selectedTime = deliveryTime,
-                    onTimeChanged = { deliveryTime = it }
+                    selectedTimeType = deliveryTimeType,
+                    selectedDate = selectedDeliveryDate,
+                    selectedTimeSlot = selectedDeliveryTimeSlot,
+                    onImmediateClicked = {
+                        deliveryTimeType = "立即送出"
+                        selectedDeliveryDate = "今日"
+                        selectedDeliveryTimeSlot = ""
+                    },
+                    onScheduleClicked = {
+                        showDeliveryTimeDialog = true
+                    }
                 )
             }
 
@@ -199,15 +215,26 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                 // 记录通用的完成订单（用于任务19等）
                 val fromPage = CartManager.getFromPage()
                 if (fromPage != null) {
+                    val extraDataMap = mutableMapOf<String, Any>(
+                        "from_page" to fromPage,
+                        "payment_success" to true
+                    )
+
+                    // 如果是预约配送，记录预约信息
+                    if (deliveryTimeType == "预约配送") {
+                        extraDataMap["delivery_type"] = "scheduled"
+                        extraDataMap["delivery_date"] = selectedDeliveryDate
+                        extraDataMap["delivery_time_slot"] = selectedDeliveryTimeSlot
+                    } else {
+                        extraDataMap["delivery_type"] = "immediate"
+                    }
+
                     com.example.myele.utils.ActionLogger.logAction(
                         context = context,
                         action = "complete_order",
                         page = "checkout",
                         pageInfo = mapOf(),
-                        extraData = mapOf(
-                            "from_page" to fromPage,
-                            "payment_success" to true
-                        )
+                        extraData = extraDataMap
                     )
                 }
 
@@ -246,6 +273,30 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                 showPaymentDialog = false
             },
             onDismiss = { showPaymentDialog = false }
+        )
+    }
+
+    // 配送时间选择弹窗
+    if (showDeliveryTimeDialog) {
+        DeliveryTimeSelectionDialog(
+            onTimeSelected = { date, timeSlot ->
+                deliveryTimeType = "预约配送"
+                selectedDeliveryDate = date
+                selectedDeliveryTimeSlot = timeSlot
+                showDeliveryTimeDialog = false
+
+                // 记录预约配送
+                com.example.myele.utils.ActionLogger.logAction(
+                    context = context,
+                    action = "select_scheduled_delivery",
+                    page = "checkout",
+                    pageInfo = mapOf(
+                        "delivery_date" to date,
+                        "delivery_time_slot" to timeSlot
+                    )
+                )
+            },
+            onDismiss = { showDeliveryTimeDialog = false }
         )
     }
 }
@@ -358,7 +409,13 @@ fun AddressSection() {
 }
 
 @Composable
-fun DeliveryTimeSection(selectedTime: String, onTimeChanged: (String) -> Unit) {
+fun DeliveryTimeSection(
+    selectedTimeType: String,
+    selectedDate: String,
+    selectedTimeSlot: String,
+    onImmediateClicked: () -> Unit,
+    onScheduleClicked: () -> Unit
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -366,20 +423,91 @@ fun DeliveryTimeSection(selectedTime: String, onTimeChanged: (String) -> Unit) {
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text("配送时间", fontSize = 14.sp, color = Color.Black)
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Text(selectedTime, fontSize = 14.sp, color = Color(0xFF00BFFF))
-                Icon(
-                    imageVector = Icons.Default.ChevronRight,
-                    contentDescription = null,
-                    tint = Color.Gray
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text("配送时间", fontSize = 14.sp, color = Color.Black, fontWeight = FontWeight.Medium)
+            Spacer(modifier = Modifier.height(12.dp))
+
+            // 两个按钮：立即送出 和 预约配送
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                // 立即送出按钮
+                Surface(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = onImmediateClicked),
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        1.dp,
+                        if (selectedTimeType == "立即送出") Color(0xFF00BFFF) else Color(0xFFE0E0E0)
+                    ),
+                    color = if (selectedTimeType == "立即送出") Color(0xFFF0F8FF) else Color.White
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        if (selectedTimeType == "立即送出") {
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = null,
+                                tint = Color(0xFF00BFFF),
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                        }
+                        Text(
+                            text = "立即送出",
+                            fontSize = 14.sp,
+                            color = if (selectedTimeType == "立即送出") Color(0xFF00BFFF) else Color.Black
+                        )
+                    }
+                }
+
+                // 预约配送按钮
+                Surface(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable(onClick = onScheduleClicked),
+                    shape = RoundedCornerShape(8.dp),
+                    border = BorderStroke(
+                        1.dp,
+                        if (selectedTimeType == "预约配送") Color(0xFF00BFFF) else Color(0xFFE0E0E0)
+                    ),
+                    color = if (selectedTimeType == "预约配送") Color(0xFFF0F8FF) else Color.White
+                ) {
+                    Row(
+                        modifier = Modifier.padding(12.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        if (selectedTimeType == "预约配送") {
+                            Icon(
+                                imageVector = Icons.Default.Check,
+                                contentDescription = null,
+                                tint = Color(0xFF00BFFF),
+                                modifier = Modifier.size(16.dp)
+                            )
+                            Spacer(modifier = Modifier.width(4.dp))
+                        }
+                        Text(
+                            text = "预约配送",
+                            fontSize = 14.sp,
+                            color = if (selectedTimeType == "预约配送") Color(0xFF00BFFF) else Color.Black
+                        )
+                    }
+                }
+            }
+
+            // 显示选中的预约时间（在按钮下方）
+            if (selectedTimeType == "预约配送" && selectedTimeSlot.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "已选择：$selectedDate $selectedTimeSlot",
+                    fontSize = 12.sp,
+                    color = Color.Gray
                 )
             }
         }
@@ -966,6 +1094,222 @@ fun CouponItem(
                     onClick = onSelect,
                     colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF00BFFF))
                 )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DeliveryTimeSelectionDialog(
+    onTimeSelected: (String, String) -> Unit,
+    onDismiss: () -> Unit
+) {
+    var selectedDate by remember { mutableStateOf("今日（周二）") }
+    var selectedTimeSlot by remember { mutableStateOf("") }
+
+    // 生成日期列表
+    val dateList = remember {
+        listOf(
+            "今日（周二）",
+            "明日（周三）",
+            "11-06（周四）",
+            "11-07（周五）",
+            "11-08（周六）",
+            "11-09（周日）",
+            "11-10（周一）"
+        )
+    }
+
+    // 生成所有时间段列表（今日+明日及之后的时间段）
+    val allTimeSlots = remember {
+        listOf(
+            // 今日时间段
+            "今日" to listOf(
+                "尽快送达" to "1元配送费",
+                "22:25-22:45" to "1元配送费",
+                "22:45-23:05" to "1元配送费",
+                "23:05-23:25" to "1元配送费",
+                "23:25-23:45" to "1元配送费"
+            ),
+            // 明日及以后的时间段
+            "明日" to listOf(
+                "07:40-08:00" to "0元配送费",
+                "08:00-08:20" to "0元配送费",
+                "08:20-08:40" to "0元配送费",
+                "08:40-09:00" to "0元配送费",
+                "11:00-11:20" to "1元配送费",
+                "11:20-11:40" to "1元配送费",
+                "11:40-12:00" to "1元配送费",
+                "12:00-12:20" to "1元配送费",
+                "12:20-12:40" to "1元配送费",
+                "12:40-13:00" to "1元配送费"
+            )
+        )
+    }
+
+    val timeSlots = remember(selectedDate) {
+        val todaySlots = allTimeSlots[0].second
+        val tomorrowSlots = allTimeSlots[1].second
+        when {
+            selectedDate.contains("今日") -> todaySlots + tomorrowSlots
+            else -> tomorrowSlots
+        }
+    }
+
+    ModalBottomSheet(
+        onDismissRequest = onDismiss,
+        containerColor = Color.White,
+        dragHandle = null
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            // 标题栏
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "选择送达时间",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
+                )
+                IconButton(onClick = onDismiss) {
+                    Icon(
+                        imageVector = Icons.Default.Close,
+                        contentDescription = "关闭",
+                        tint = Color.Gray
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            // 左右分栏布局
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(400.dp)
+            ) {
+                // 左侧：日期列表
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(0.35f)
+                        .fillMaxHeight()
+                        .background(Color(0xFFF8F8F8)),
+                    verticalArrangement = Arrangement.spacedBy(1.dp)
+                ) {
+                    items(dateList.size) { index ->
+                        val date = dateList[index]
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable { selectedDate = date },
+                            color = if (selectedDate == date) Color.White else Color(0xFFF8F8F8)
+                        ) {
+                            Text(
+                                text = date,
+                                fontSize = 14.sp,
+                                color = Color.Black,
+                                modifier = Modifier.padding(16.dp)
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.width(1.dp))
+
+                // 右侧：时间段列表
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(0.65f)
+                        .fillMaxHeight()
+                        .background(Color.White)
+                        .padding(horizontal = 12.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    item {
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+
+                    items(timeSlots.size) { index ->
+                        val (timeSlot, description) = timeSlots[index]
+                        val displayText = when {
+                            timeSlot == "尽快送达" -> "今日 $timeSlot"
+                            selectedDate.contains("今日") && index < 5 -> "今日 $timeSlot"
+                            selectedDate.contains("今日") && index >= 5 -> "明日 $timeSlot"
+                            else -> "${selectedDate.take(5)} $timeSlot"
+                        }
+
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    selectedTimeSlot = timeSlot
+
+                                    // 判断实际是今日还是明日的时间段
+                                    val isToday = selectedDate.contains("今日") && index < 5
+                                    val isTomorrow = selectedDate.contains("今日") && index >= 5
+
+                                    // 根据选择的时间段自动切换左侧日期
+                                    if (isTomorrow) {
+                                        selectedDate = "明日（周三）"
+                                    }
+
+                                    // 确定实际日期
+                                    val actualDate = when {
+                                        isToday -> "今日"
+                                        isTomorrow -> "明日"
+                                        selectedDate.contains("明日") -> "明日"
+                                        else -> selectedDate.take(5)
+                                    }
+
+                                    onTimeSelected(actualDate, timeSlot)
+                                },
+                            color = if (selectedTimeSlot == timeSlot) Color(0xFFF0F8FF) else Color.White
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                horizontalArrangement = Arrangement.SpaceBetween,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = displayText,
+                                        fontSize = 14.sp,
+                                        color = Color.Black,
+                                        fontWeight = FontWeight.Medium
+                                    )
+                                    Spacer(modifier = Modifier.height(2.dp))
+                                    Text(
+                                        text = description,
+                                        fontSize = 12.sp,
+                                        color = Color.Gray
+                                    )
+                                }
+                                if (selectedTimeSlot == timeSlot) {
+                                    Icon(
+                                        imageVector = Icons.Default.Check,
+                                        contentDescription = null,
+                                        tint = Color(0xFF00BFFF),
+                                        modifier = Modifier.size(20.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.height(8.dp))
+                    }
+                }
             }
         }
     }
