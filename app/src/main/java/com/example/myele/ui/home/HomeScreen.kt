@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
+import com.example.myele.data.ActionLogger
 import com.example.myele.model.Restaurant
 import com.example.myele.model.RestaurantFeature
 import com.example.myele.ui.components.RestaurantImage
@@ -139,6 +140,20 @@ fun HomeScreen(navController: NavController) {
     fun refreshData() {
         coroutineScope.launch {
             isRefreshing = true
+
+            // 记录刷新操作
+            ActionLogger.logAction(
+                context = context,
+                action = "refresh_page",
+                page = "home",
+                pageInfo = mapOf(
+                    "screen_name" to "HomeScreen"
+                ),
+                extraData = mapOf(
+                    "refresh_type" to "pull_to_refresh"
+                )
+            )
+
             delay(1000)
             allRestaurants = repository.loadRestaurants()
             applyFilterAndSort()

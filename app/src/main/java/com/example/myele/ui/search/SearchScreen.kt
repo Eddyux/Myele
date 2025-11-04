@@ -18,11 +18,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.myele.ui.components.RestaurantImage
+import com.example.myele.data.ActionLogger
 
 @Composable
 fun SearchScreen(navController: NavController) {
+    val context = LocalContext.current
     var searchText by remember { mutableStateOf("") }
     var searchHistory by remember { mutableStateOf<List<String>>(emptyList()) }
     var searchSuggestions by remember { mutableStateOf<List<String>>(emptyList()) }
@@ -69,6 +72,18 @@ fun SearchScreen(navController: NavController) {
             onSearchClicked = {
                 if (searchText.isNotBlank()) {
                     presenter.onSearchClicked(searchText)
+
+                    // 记录搜索操作
+                    ActionLogger.logAction(
+                        context = context,
+                        action = "perform_search",
+                        page = "home",
+                        extraData = mapOf(
+                            "search_query" to searchText,
+                            "search_triggered" to true
+                        )
+                    )
+
                     navController.navigate(com.example.myele.navigation.Screen.SearchResult.createRoute(searchText))
                 }
             },

@@ -16,8 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
+import com.example.myele.data.ActionLogger
 import com.example.myele.model.Order
 import com.example.myele.model.OrderStatus
 import com.example.myele.navigation.Screen
@@ -28,12 +30,29 @@ import java.util.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyOrdersScreen(navController: NavController, repository: DataRepository) {
+    val context = LocalContext.current
     val presenter = remember { MyOrdersPresenter(repository) }
 
     var orders by remember { mutableStateOf<List<Order>>(emptyList()) }
     var monthlyExpense by remember { mutableStateOf(0.0) }
     var searchQuery by remember { mutableStateOf("") }
     var selectedTab by remember { mutableStateOf("全部") }
+
+    // 记录进入我的订单-全部页面
+    LaunchedEffect(Unit) {
+        ActionLogger.logAction(
+            context = context,
+            action = "enter_orders_page",
+            page = "orders",
+            pageInfo = mapOf(
+                "screen_name" to "MyOrdersScreen"
+            ),
+            extraData = mapOf(
+                "selected_tab" to "全部",
+                "source" to "profile"
+            )
+        )
+    }
 
     val view = remember {
         object : MyOrdersContract.View {

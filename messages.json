@@ -1,0 +1,12 @@
+{
+  "action": "enter_orders_page",
+  "page": "orders",
+  "timestamp": 1762225153647,
+  "page_info": {
+    "screen_name": "MyOrdersScreen"
+  },
+  "extra_data": {
+    "selected_tab": "全部",
+    "source": "profile"
+  }
+}

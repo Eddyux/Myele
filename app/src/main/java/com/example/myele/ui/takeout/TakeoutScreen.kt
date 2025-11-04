@@ -29,6 +29,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.example.myele.model.Restaurant
 import com.example.myele.ui.components.RestaurantImage
+import com.example.myele.data.ActionLogger
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -179,6 +180,19 @@ fun TakeoutScreen(navController: NavController) {
                     selectedSortType = sortType
                     presenter.onSortChanged(sortType)
                     showSortDialog = false
+
+                    // 记录排序选择操作
+                    if (sortType == SortType.RATING) {
+                        ActionLogger.logAction(
+                            context = context,
+                            action = "select_sort_option",
+                            page = "takeout",
+                            extraData = mapOf(
+                                "sort_option" to "好评优先",
+                                "sort_type" to "综合排序"
+                            )
+                        )
+                    }
                 },
                 onDismiss = { showSortDialog = false }
             )

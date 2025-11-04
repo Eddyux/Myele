@@ -29,13 +29,13 @@ data class CartItem(
     val productName: String,
     val price: Double,
     val quantity: Int,
-    var isSelected: Boolean = true
+    var isSelected: Boolean = false
 )
 
 data class RestaurantCart(
     val restaurantName: String,
     val items: List<CartItem>,
-    var isSelected: Boolean = true
+    var isSelected: Boolean = false
 )
 
 @Composable
@@ -76,10 +76,10 @@ fun ShoppingCartScreen(navController: NavController) {
                             product1.name,
                             product1.price,
                             1,
-                            true
+                            false
                         )
                     ),
-                    true
+                    false
                 )
             )
         }
@@ -94,7 +94,7 @@ fun ShoppingCartScreen(navController: NavController) {
                     product2.name,
                     product2.price,
                     1,
-                    true
+                    false
                 )
             )
         }
@@ -106,7 +106,7 @@ fun ShoppingCartScreen(navController: NavController) {
                     product3.name,
                     product3.price,
                     2,
-                    true
+                    false
                 )
             )
         }
@@ -115,7 +115,7 @@ fun ShoppingCartScreen(navController: NavController) {
                 RestaurantCart(
                     laobeijingItems.first().restaurantName,
                     laobeijingItems,
-                    true
+                    false
                 )
             )
         }
@@ -132,10 +132,10 @@ fun ShoppingCartScreen(navController: NavController) {
                             product4.name,
                             product4.price,
                             1,
-                            true
+                            false
                         )
                     ),
-                    true
+                    false
                 )
             )
         }
@@ -143,7 +143,7 @@ fun ShoppingCartScreen(navController: NavController) {
         restaurantCarts = carts
     }
 
-    var selectAll by remember { mutableStateOf(true) }
+    var selectAll by remember { mutableStateOf(false) }
 
     val totalPrice = restaurantCarts.flatMap { it.items }
         .filter { it.isSelected }

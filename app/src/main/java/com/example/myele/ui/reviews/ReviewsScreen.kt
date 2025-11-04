@@ -19,8 +19,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
+import com.example.myele.data.ActionLogger
 import com.example.myele.model.Order
 import com.example.myele.model.OrderStatus
 import com.example.myele.model.Review
@@ -28,9 +30,27 @@ import com.example.myele.model.Review
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReviewsScreen(navController: NavController, repository: DataRepository) {
+    val context = LocalContext.current
     var selectedTab by remember { mutableStateOf("待评价") }
     val orders = remember { repository.getOrders() }
     val reviews = remember { repository.getReviews() }
+
+    // 记录进入待评价页面
+    LaunchedEffect(Unit) {
+        ActionLogger.logAction(
+            context = context,
+            action = "enter_reviews_page",
+            page = "reviews",
+            pageInfo = mapOf(
+                "title" to "评价中心",
+                "screen_name" to "ReviewsScreen"
+            ),
+            extraData = mapOf(
+                "selected_tab" to "待评价",
+                "source" to "profile"
+            )
+        )
+    }
 
     // 筛选待评价订单
     val pendingReviewOrders = orders.filter {

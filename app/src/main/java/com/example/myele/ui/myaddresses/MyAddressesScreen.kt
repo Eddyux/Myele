@@ -18,16 +18,35 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
+import com.example.myele.data.ActionLogger
 import com.example.myele.model.Address
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyAddressesScreen(navController: NavController, repository: DataRepository) {
+    val context = LocalContext.current
     val addresses = remember { repository.getAddresses() }
     var addressToDelete by remember { mutableStateOf<Address?>(null) }
     var showDeleteDialog by remember { mutableStateOf(false) }
+
+    // 记录进入我的地址页面
+    LaunchedEffect(Unit) {
+        ActionLogger.logAction(
+            context = context,
+            action = "enter_addresses_page",
+            page = "addresses",
+            pageInfo = mapOf(
+                "title" to "收货地址",
+                "screen_name" to "MyAddressesScreen"
+            ),
+            extraData = mapOf(
+                "source" to "profile"
+            )
+        )
+    }
 
     Scaffold(
         topBar = {
