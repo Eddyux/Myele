@@ -182,17 +182,24 @@ fun TakeoutScreen(navController: NavController) {
                     showSortDialog = false
 
                     // 记录排序选择操作
-                    if (sortType == SortType.RATING) {
-                        ActionLogger.logAction(
-                            context = context,
-                            action = "select_sort_option",
-                            page = "takeout",
-                            extraData = mapOf(
-                                "sort_option" to "好评优先",
-                                "sort_type" to "综合排序"
-                            )
-                        )
+                    val sortOptionName = when (sortType) {
+                        SortType.RATING -> "好评优先"
+                        SortType.DELIVERY_SPEED -> "配送最快"
+                        SortType.COMPREHENSIVE -> "综合排序"
+                        SortType.PRICE_LOW_TO_HIGH -> "人均价低到高"
+                        SortType.DISTANCE -> "距离优先"
+                        SortType.MIN_DELIVERY -> "起送低到高"
                     }
+
+                    ActionLogger.logAction(
+                        context = context,
+                        action = "select_sort_option",
+                        page = "takeout",
+                        extraData = mapOf(
+                            "sort_option" to sortOptionName,
+                            "sort_type" to "综合排序"
+                        )
+                    )
                 },
                 onDismiss = { showSortDialog = false }
             )
@@ -247,7 +254,8 @@ enum class SortType {
     PRICE_LOW_TO_HIGH, // 人均价低到高
     DISTANCE,          // 距离优先
     RATING,            // 商家好评优先
-    MIN_DELIVERY       // 起送低到高
+    MIN_DELIVERY,      // 起送低到高
+    DELIVERY_SPEED     // 配送最快
 }
 
 @Composable
@@ -453,6 +461,7 @@ fun SortAndFilter(
                             SortType.DISTANCE -> "距离优先"
                             SortType.RATING -> "商家好评优先"
                             SortType.MIN_DELIVERY -> "起送低到高"
+                            SortType.DELIVERY_SPEED -> "配送最快"
                         },
                         fontSize = 14.sp,
                         color = Color(0xFF00BFFF),
@@ -594,6 +603,11 @@ fun SortDialog(
                     text = "综合排序",
                     isSelected = selectedSortType == SortType.COMPREHENSIVE,
                     onClick = { onSortTypeSelected(SortType.COMPREHENSIVE) }
+                )
+                SortOption(
+                    text = "配送最快",
+                    isSelected = selectedSortType == SortType.DELIVERY_SPEED,
+                    onClick = { onSortTypeSelected(SortType.DELIVERY_SPEED) }
                 )
                 SortOption(
                     text = "人均价低到高",
@@ -865,6 +879,8 @@ fun TakeoutRestaurantCard(restaurant: Restaurant, navController: NavController) 
             .fillMaxWidth()
             .padding(horizontal = 8.dp, vertical = 4.dp)
             .clickable {
+                // 记录从外卖页面进入（用于任务19检测）
+                com.example.myele.data.CartManager.setFromPage("takeout")
                 navController.navigate(com.example.myele.navigation.Screen.StorePage.createRoute(restaurant.restaurantId))
             },
         shape = RoundedCornerShape(8.dp),

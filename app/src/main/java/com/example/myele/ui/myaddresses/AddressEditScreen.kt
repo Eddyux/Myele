@@ -320,6 +320,23 @@ fun AddressEditScreen(
                             repository.updateAddress(addressToSave)
                         } else {
                             repository.addAddress(addressToSave)
+
+                            // 记录添加地址操作（仅在新增模式下）
+                            com.example.myele.utils.ActionLogger.logAction(
+                                context = navController.context,
+                                action = "add_address",
+                                page = "address",
+                                pageInfo = mapOf(
+                                    "screen_name" to "AddressEditScreen"
+                                ),
+                                extraData = mapOf(
+                                    "address" to address,
+                                    "detail_address" to detailAddress,
+                                    "name" to receiverName,
+                                    "phone" to receiverPhone,
+                                    "tag" to selectedTag
+                                )
+                            )
                         }
 
                         // 显示保存成功弹窗

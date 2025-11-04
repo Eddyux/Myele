@@ -162,7 +162,7 @@ fun HomeScreen(navController: NavController) {
     }
 
     LaunchedEffect(Unit) {
-        // 清空messages.json文件，避免数据累积
+        // 清空messages.json文件，确保每次从首页开始测试时数据是干净的
         try {
             val file = java.io.File(context.filesDir, "messages.json")
             file.writeText("[]")

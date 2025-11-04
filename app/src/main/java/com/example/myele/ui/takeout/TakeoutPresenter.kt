@@ -153,6 +153,7 @@ class TakeoutPresenter(
             SortType.DISTANCE -> filteredRestaurants.sortedBy { it.distance }
             SortType.RATING -> filteredRestaurants.sortedByDescending { it.rating }
             SortType.MIN_DELIVERY -> filteredRestaurants.sortedBy { it.minDeliveryAmount }
+            SortType.DELIVERY_SPEED -> filteredRestaurants.sortedBy { it.deliveryTime }
         }
 
         view.updateRestaurants(sortedRestaurants)

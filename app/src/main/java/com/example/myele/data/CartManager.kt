@@ -19,6 +19,9 @@ object CartManager {
     // 记录搜索关键词（用于任务14检测）- 只在从搜索页面进入商家时设置
     private var searchKeyword: String? = null
 
+    // 记录来源页面（用于任务19检测）- 从哪个页面进入的结算
+    private var fromPage: String? = null
+
     /**
      * 设置商品数据
      */
@@ -103,5 +106,26 @@ object CartManager {
      */
     fun clearSearchKeyword() {
         searchKeyword = null
+    }
+
+    /**
+     * 设置来源页面（仅在从特定页面进入结算时设置）
+     */
+    fun setFromPage(page: String?) {
+        fromPage = page
+    }
+
+    /**
+     * 获取来源页面
+     */
+    fun getFromPage(): String? {
+        return fromPage
+    }
+
+    /**
+     * 清除来源页面
+     */
+    fun clearFromPage() {
+        fromPage = null
     }
 }

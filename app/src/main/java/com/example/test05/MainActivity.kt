@@ -19,8 +19,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 每次应用启动时清空messages.json
-        JsonFileWriter.clearMessagesJson(applicationContext)
+        // 注意：已将清空逻辑移到HomeScreen，避免应用重启时丢失测试数据
+        // 只在进入首页时清空，保证测试流程完整性
 
         enableEdgeToEdge()
         setContent {

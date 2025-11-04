@@ -3,6 +3,7 @@ package com.example.myele.data
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.File
 
 /**
@@ -12,6 +13,9 @@ import java.io.File
 object ActionLogger {
     private val gson: Gson = GsonBuilder().setPrettyPrinting().create()
     private const val FILE_NAME = "messages.json"
+
+    // 定义正确的类型
+    private val listType = object : TypeToken<List<Map<String, Any>>>() {}.type
 
     /**
      * 记录用户操作
@@ -43,8 +47,31 @@ object ActionLogger {
                 data["extra_data"] = it
             }
 
-            val jsonString = gson.toJson(data)
+            // 读取现有的记录
             val file = File(context.filesDir, FILE_NAME)
+            val existingList = if (file.exists()) {
+                try {
+                    val existingJson = file.readText()
+                    if (existingJson.isNotBlank()) {
+                        // 使用TypeToken正确反序列化
+                        gson.fromJson<List<Map<String, Any>>>(existingJson, listType) ?: emptyList()
+                    } else {
+                        emptyList()
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    emptyList()
+                }
+            } else {
+                emptyList()
+            }
+
+            // 追加新记录
+            val updatedList = existingList.toMutableList()
+            updatedList.add(data)
+
+            // 写入整个数组
+            val jsonString = gson.toJson(updatedList)
             file.writeText(jsonString)
         } catch (e: Exception) {
             e.printStackTrace()

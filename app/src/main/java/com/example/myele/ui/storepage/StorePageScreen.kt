@@ -171,72 +171,87 @@ fun StorePageScreen(navController: NavController, restaurantId: String, searchKe
         // 更多菜单弹窗
         if (showMoreMenu) {
             ModalBottomSheet(
-                onDismissRequest = { showMoreMenu = false }
+                onDismissRequest = { showMoreMenu = false },
+                containerColor = Color.White
             ) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 16.dp)
+                        .background(Color.White)
+                        .padding(16.dp)
                 ) {
-                    // 分享按钮
-                    TextButton(
-                        onClick = {
-                            showMoreMenu = false
-                            showShareMenu = true
-                        },
-                        modifier = Modifier.fillMaxWidth()
+                    // 横向选项
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
+                        // 分享按钮
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    showMoreMenu = false
+                                    showShareMenu = true
+                                }
+                                .padding(8.dp)
                         ) {
-                            Icon(Icons.Default.Share, contentDescription = null)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("分享", fontSize = 16.sp)
+                            Icon(
+                                imageVector = Icons.Default.Share,
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                tint = Color(0xFF00BFFF)
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text("分享", fontSize = 14.sp, color = Color.Black)
                         }
-                    }
-                    Divider()
 
-                    // 举报商家按钮
-                    TextButton(
-                        onClick = {
-                            showMoreMenu = false
-                            navController.navigate(Screen.Undeveloped.createRoute("举报商家"))
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
+                        // 举报商家按钮
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    showMoreMenu = false
+                                    navController.navigate(Screen.Undeveloped.createRoute("举报商家"))
+                                }
+                                .padding(8.dp)
                         ) {
-                            Icon(Icons.Default.Report, contentDescription = null)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("举报商家", fontSize = 16.sp)
+                            Icon(
+                                imageVector = Icons.Default.Report,
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                tint = Color(0xFF00BFFF)
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text("举报商家", fontSize = 14.sp, color = Color.Black)
                         }
-                    }
-                    Divider()
 
-                    // 智能客服按钮
-                    TextButton(
-                        onClick = {
-                            showMoreMenu = false
-                            navController.navigate(Screen.MyKefu.route)
-                        },
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.CenterVertically
+                        // 智能客服按钮
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier
+                                .weight(1f)
+                                .clickable {
+                                    showMoreMenu = false
+                                    navController.navigate(Screen.MyKefu.route)
+                                }
+                                .padding(8.dp)
                         ) {
-                            Icon(Icons.Default.Support, contentDescription = null)
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text("智能客服", fontSize = 16.sp)
+                            Icon(
+                                imageVector = Icons.Default.Support,
+                                contentDescription = null,
+                                modifier = Modifier.size(32.dp),
+                                tint = Color(0xFF00BFFF)
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text("智能客服", fontSize = 14.sp, color = Color.Black)
                         }
                     }
-                    Divider()
+
+                    Spacer(modifier = Modifier.height(16.dp))
 
                     // 取消按钮
                     TextButton(

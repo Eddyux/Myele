@@ -3,6 +3,7 @@ package com.example.myele.utils
 import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.google.gson.reflect.TypeToken
 import java.io.File
 
 /**
@@ -11,6 +12,9 @@ import java.io.File
  */
 object ActionLogger {
     private val gson: Gson = GsonBuilder().setPrettyPrinting().create()
+
+    // 定义正确的类型
+    private val listType = object : TypeToken<List<Map<String, Any>>>() {}.type
 
     /**
      * 记录用户操作
@@ -42,8 +46,14 @@ object ActionLogger {
             val existingList = if (file.exists()) {
                 try {
                     val existingJson = file.readText()
-                    gson.fromJson(existingJson, List::class.java) as? List<Map<String, Any>> ?: emptyList()
+                    if (existingJson.isNotBlank()) {
+                        // 使用TypeToken正确反序列化
+                        gson.fromJson<List<Map<String, Any>>>(existingJson, listType) ?: emptyList()
+                    } else {
+                        emptyList()
+                    }
                 } catch (e: Exception) {
+                    e.printStackTrace()
                     emptyList()
                 }
             } else {

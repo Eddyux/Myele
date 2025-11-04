@@ -196,6 +196,21 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                     )
                 }
 
+                // 记录通用的完成订单（用于任务19等）
+                val fromPage = CartManager.getFromPage()
+                if (fromPage != null) {
+                    com.example.myele.utils.ActionLogger.logAction(
+                        context = context,
+                        action = "complete_order",
+                        page = "checkout",
+                        pageInfo = mapOf(),
+                        extraData = mapOf(
+                            "from_page" to fromPage,
+                            "payment_success" to true
+                        )
+                    )
+                }
+
                 // 导航到支付成功页面
                 navController.navigate(
                     com.example.myele.navigation.Screen.PaymentSuccess.createRoute(

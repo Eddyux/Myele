@@ -34,6 +34,7 @@ data class MerchantChatMessage(
 fun MerchantChatScreen(
     navController: NavController
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     var messageText by remember { mutableStateOf("") }
     var messages by remember { mutableStateOf(emptyList<MerchantChatMessage>()) }
 
@@ -114,12 +115,26 @@ fun MerchantChatScreen(
                         IconButton(
                             onClick = {
                                 if (messageText.isNotBlank()) {
+                                    val message = messageText
                                     messages = messages + MerchantChatMessage(
                                         id = (messages.size + 1).toString(),
-                                        content = messageText,
+                                        content = message,
                                         time = "刚刚",
                                         isFromMerchant = false
                                     )
+
+                                    // 记录发送消息给商家（用于任务18检测）
+                                    com.example.myele.utils.ActionLogger.logAction(
+                                        context = context,
+                                        action = "send_message",
+                                        page = "chat",
+                                        pageInfo = mapOf("chat_type" to "merchant_chat"),
+                                        extraData = mapOf(
+                                            "recipient_type" to "merchant",
+                                            "message" to message
+                                        )
+                                    )
+
                                     messageText = ""
                                 }
                             }

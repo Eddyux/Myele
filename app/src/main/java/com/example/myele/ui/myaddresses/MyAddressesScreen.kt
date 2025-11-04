@@ -28,7 +28,7 @@ import com.example.myele.model.Address
 @Composable
 fun MyAddressesScreen(navController: NavController, repository: DataRepository) {
     val context = LocalContext.current
-    val addresses = remember { repository.getAddresses() }
+    var addresses by remember { mutableStateOf(repository.getAddresses()) }
     var addressToDelete by remember { mutableStateOf<Address?>(null) }
     var showDeleteDialog by remember { mutableStateOf(false) }
 
@@ -101,7 +101,12 @@ fun MyAddressesScreen(navController: NavController, repository: DataRepository) 
                     addressToDelete = null
                 },
                 onConfirm = {
-                    // TODO: 删除地址逻辑
+                    // 删除地址
+                    addressToDelete?.let { address ->
+                        repository.deleteAddress(address.addressId)
+                        // 刷新地址列表
+                        addresses = repository.getAddresses()
+                    }
                     showDeleteDialog = false
                     addressToDelete = null
                 }
