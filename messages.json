@@ -1,43 +1,48 @@
 [
   {
-    "action": "select_sort_option",
-    "page": "takeout",
-    "timestamp": 1.762270941909E12,
+    "action": "perform_search",
+    "page": "home",
+    "timestamp": 1.76232266224E12,
     "extra_data": {
-      "sort_option": "人均价低到高",
-      "sort_type": "综合排序"
+      "search_query": "肯德基",
+      "search_triggered": true
     }
   },
   {
     "action": "enter_checkout",
     "page": "checkout",
-    "timestamp": 1.762270943923E12,
+    "timestamp": 1.762322665587E12,
     "page_info": {
-      "total_amount": 28.0,
-      "product_count": 1.0
+      "total_amount": 56.0,
+      "product_count": 1.0,
+      "search_query": "肯德基"
     }
   },
   {
     "action": "complete_order",
     "page": "checkout",
-    "timestamp": 1.762270944293E12,
-    "page_info": {},
+    "timestamp": 1.76232266857E12,
+    "page_info": {
+      "restaurant": "肯德基"
+    },
     "extra_data": {
-      "from_page": "takeout",
-      "payment_success": true,
-      "delivery_type": "immediate"
+      "search_query": "肯德基",
+      "added_to_cart": true,
+      "used_coupon": true,
+      "selected_max_coupon": true,
+      "payment_success": true
     }
   },
   {
     "action": "cart_checkout_success",
     "page": "cart",
-    "timestamp": 1762270944329,
+    "timestamp": 1762322668608,
     "extra_data": {
       "select_all": true,
       "entered_checkout": true,
       "payment_success": true,
-      "order_id": "order_1762270944293",
-      "amount": 35.0,
+      "order_id": "order_1762322668570",
+      "amount": 53.0,
       "payment_method": "微信支付"
     }
   }

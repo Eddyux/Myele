@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
+import com.example.myele.data.ActionLogger
+import androidx.compose.ui.platform.LocalContext
 import java.util.*
 
 data class BillCategory(val name: String, val percentage: Int, val amount: Double, val count: Int)
@@ -27,8 +29,26 @@ data class TopRestaurant(val rank: Int, val name: String, val amount: Double, va
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MyBillsScreen(navController: NavController, repository: DataRepository) {
+    val context = LocalContext.current
     var selectedTab by remember { mutableStateOf("周账单") }
     val totalExpense = if (selectedTab == "周账单") 113.33 else 41.48
+
+    // 记录进入我的账单页面
+    LaunchedEffect(Unit) {
+        ActionLogger.logAction(
+            context = context,
+            action = "enter_mybills_page",
+            page = "mybills",
+            pageInfo = mapOf(
+                "title" to "我的账单",
+                "screen_name" to "MyBillsScreen"
+            ),
+            extraData = mapOf(
+                "selected_tab" to "周账单",
+                "source" to "profile"
+            )
+        )
+    }
 
     Scaffold(
         topBar = {
@@ -77,7 +97,23 @@ fun MyBillsScreen(navController: NavController, repository: DataRepository) {
                 )
                 Tab(
                     selected = selectedTab == "月账单",
-                    onClick = { selectedTab = "月账单" },
+                    onClick = {
+                        selectedTab = "月账单"
+                        // 记录切换到月账单
+                        ActionLogger.logAction(
+                            context = context,
+                            action = "switch_to_monthly_bill",
+                            page = "mybills",
+                            pageInfo = mapOf(
+                                "title" to "我的账单",
+                                "screen_name" to "MyBillsScreen"
+                            ),
+                            extraData = mapOf(
+                                "selected_tab" to "月账单",
+                                "switched_from" to "周账单"
+                            )
+                        )
+                    },
                     text = {
                         Text(
                             text = "月账单",

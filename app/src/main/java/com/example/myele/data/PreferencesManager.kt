@@ -122,6 +122,22 @@ class PreferencesManager(context: Context) {
         prefs.edit().putStringSet(KEY_DELETED_ADDRESSES, ids).apply()
     }
 
+    // ============ 评价管理 ============
+
+    /**
+     * 获取已删除的评价ID列表
+     */
+    fun getDeletedReviewIds(): MutableSet<String> {
+        return prefs.getStringSet(KEY_DELETED_REVIEWS, mutableSetOf())?.toMutableSet() ?: mutableSetOf()
+    }
+
+    /**
+     * 保存已删除的评价ID列表
+     */
+    fun saveDeletedReviewIds(ids: Set<String>) {
+        prefs.edit().putStringSet(KEY_DELETED_REVIEWS, ids).apply()
+    }
+
     companion object {
         // 支付设置相关
         private const val KEY_ALIPAY_FREE_PASSWORD = "alipay_free_password"
@@ -137,5 +153,8 @@ class PreferencesManager(context: Context) {
         // 地址管理相关
         private const val KEY_CUSTOM_ADDRESSES = "custom_addresses"
         private const val KEY_DELETED_ADDRESSES = "deleted_addresses"
+
+        // 评价管理相关
+        private const val KEY_DELETED_REVIEWS = "deleted_reviews"
     }
 }

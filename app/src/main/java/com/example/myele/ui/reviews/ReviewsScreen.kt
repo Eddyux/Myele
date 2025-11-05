@@ -20,6 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
 import com.example.myele.data.ActionLogger
@@ -220,7 +222,23 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
                 )
                 Tab(
                     selected = selectedTab == "已评价",
-                    onClick = { selectedTab = "已评价" },
+                    onClick = {
+                        selectedTab = "已评价"
+                        // 记录切换到已评价
+                        ActionLogger.logAction(
+                            context = context,
+                            action = "switch_to_reviewed",
+                            page = "reviews",
+                            pageInfo = mapOf(
+                                "title" to "评价中心",
+                                "screen_name" to "ReviewsScreen"
+                            ),
+                            extraData = mapOf(
+                                "selected_tab" to "已评价",
+                                "switched_from" to "待评价"
+                            )
+                        )
+                    },
                     text = {
                         Text(
                             text = "已评价",
@@ -247,7 +265,7 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
                         val review = completedReviews[index]
                         val order = orders.find { order -> order.orderId == review.orderId }
                         if (order != null) {
-                            CompletedReviewCard(review, order)
+                            CompletedReviewCard(review, order, context)
                         }
                     }
                 }
@@ -387,8 +405,9 @@ fun PendingReviewCard(order: Order) {
 }
 
 @Composable
-fun CompletedReviewCard(review: Review, order: Order) {
+fun CompletedReviewCard(review: Review, order: Order, context: android.content.Context) {
     var showDeleteDialog by remember { mutableStateOf(false) }
+    var showDeleteSuccess by remember { mutableStateOf(false) }
 
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -561,13 +580,49 @@ fun CompletedReviewCard(review: Review, order: Order) {
         DeleteReviewDialog(
             onDismiss = { showDeleteDialog = false },
             onDelete = {
-                // TODO: 执行删除逻辑
+                // 记录删除评价操作
+                ActionLogger.logAction(
+                    context = context,
+                    action = "delete_review",
+                    page = "reviews",
+                    pageInfo = mapOf(
+                        "title" to "评价中心",
+                        "screen_name" to "ReviewsScreen"
+                    ),
+                    extraData = mapOf(
+                        "review_id" to review.reviewId,
+                        "order_id" to review.orderId,
+                        "restaurant_name" to order.restaurantName,
+                        "deleted_successfully" to true
+                    )
+                )
                 showDeleteDialog = false
+                showDeleteSuccess = true
             },
             onAnonymous = {
-                // TODO: 设为匿名
+                // 记录设为匿名操作
+                ActionLogger.logAction(
+                    context = context,
+                    action = "set_review_anonymous",
+                    page = "reviews",
+                    pageInfo = mapOf(
+                        "title" to "评价中心",
+                        "screen_name" to "ReviewsScreen"
+                    ),
+                    extraData = mapOf(
+                        "review_id" to review.reviewId,
+                        "order_id" to review.orderId
+                    )
+                )
                 showDeleteDialog = false
             }
+        )
+    }
+
+    // 删除成功弹窗
+    if (showDeleteSuccess) {
+        DeleteSuccessDialog(
+            onDismiss = { showDeleteSuccess = false }
         )
     }
 }
@@ -578,12 +633,9 @@ fun DeleteReviewDialog(
     onDelete: () -> Unit,
     onAnonymous: () -> Unit
 ) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.5f))
-            .clickable(enabled = false) { },
-        contentAlignment = Alignment.Center
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -662,6 +714,46 @@ fun DeleteReviewDialog(
                     contentDescription = "关闭",
                     tint = Color.White,
                     modifier = Modifier.size(32.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun DeleteSuccessDialog(onDismiss: () -> Unit) {
+    LaunchedEffect(Unit) {
+        kotlinx.coroutines.delay(1500)
+        onDismiss()
+    }
+
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Surface(
+            modifier = Modifier
+                .padding(horizontal = 48.dp)
+                .wrapContentHeight(),
+            shape = RoundedCornerShape(12.dp),
+            color = Color.White
+        ) {
+            Column(
+                modifier = Modifier.padding(24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Icon(
+                    imageVector = Icons.Default.CheckCircle,
+                    contentDescription = null,
+                    tint = Color(0xFF4CAF50),
+                    modifier = Modifier.size(48.dp)
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = "删除成功",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.Black
                 )
             }
         }

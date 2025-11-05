@@ -17,6 +17,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.myele.data.DataRepository
+import com.example.myele.data.ActionLogger
+import androidx.compose.ui.platform.LocalContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,8 +29,27 @@ fun FoodInsuranceScreen(
     repository: DataRepository,
     orderId: String
 ) {
+    val context = LocalContext.current
     val order = remember { repository.getOrders().find { it.orderId == orderId } }
     var showSuccessDialog by remember { mutableStateOf(false) }
+
+    // 记录进入食无忧理赔页面
+    LaunchedEffect(Unit) {
+        ActionLogger.logAction(
+            context = context,
+            action = "enter_food_insurance_page",
+            page = "food_insurance",
+            pageInfo = mapOf(
+                "title" to "订单保障",
+                "screen_name" to "FoodInsuranceScreen"
+            ),
+            extraData = mapOf(
+                "order_id" to orderId,
+                "restaurant_name" to (order?.restaurantName ?: ""),
+                "source" to "order_detail"
+            )
+        )
+    }
 
     Scaffold(
         topBar = {
@@ -217,7 +238,24 @@ fun FoodInsuranceScreen(
                         Spacer(modifier = Modifier.height(16.dp))
 
                         Button(
-                            onClick = { showSuccessDialog = true },
+                            onClick = {
+                                // 记录申请理赔操作
+                                ActionLogger.logAction(
+                                    context = context,
+                                    action = "apply_food_insurance",
+                                    page = "food_insurance",
+                                    pageInfo = mapOf(
+                                        "title" to "订单保障",
+                                        "screen_name" to "FoodInsuranceScreen"
+                                    ),
+                                    extraData = mapOf(
+                                        "order_id" to orderId,
+                                        "restaurant_name" to (order?.restaurantName ?: ""),
+                                        "apply_successfully" to true
+                                    )
+                                )
+                                showSuccessDialog = true
+                            },
                             modifier = Modifier.fillMaxWidth(),
                             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
                             shape = RoundedCornerShape(24.dp)

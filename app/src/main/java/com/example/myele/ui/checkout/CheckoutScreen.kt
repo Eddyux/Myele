@@ -37,6 +37,11 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
     var selectedCoupon by remember { mutableStateOf<com.example.myele.model.Coupon?>(null) }
     var paymentMethod by remember { mutableStateOf("微信支付") }
     var showPaymentDialog by remember { mutableStateOf(false) }
+    var showAddressDialog by remember { mutableStateOf(false) }
+
+    // Get addresses and select default or first
+    val addresses = remember { repository.getAddresses() }
+    var selectedAddress by remember { mutableStateOf(addresses.firstOrNull()) }
 
     // Get checkout products from CartManager
     val checkoutProducts = remember { CartManager.getCheckoutProducts() }
@@ -113,7 +118,10 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
 
             // 收货地址
             item {
-                AddressSection()
+                AddressSection(
+                    selectedAddress = selectedAddress,
+                    onClick = { showAddressDialog = true }
+                )
             }
 
             // 配送时间
@@ -221,6 +229,13 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                         "payment_success" to true
                     )
 
+                    // 记录收货地址信息
+                    selectedAddress?.let { address ->
+                        extraDataMap["delivery_address_name"] = address.receiverName
+                        extraDataMap["delivery_address_phone"] = address.receiverPhone
+                        extraDataMap["delivery_address_detail"] = address.detailAddress
+                    }
+
                     // 如果是预约配送，记录预约信息
                     if (deliveryTimeType == "预约配送") {
                         extraDataMap["delivery_type"] = "scheduled"
@@ -274,6 +289,30 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                 showPaymentDialog = false
             },
             onDismiss = { showPaymentDialog = false }
+        )
+    }
+
+    // 地址选择弹窗
+    if (showAddressDialog) {
+        AddressSelectionDialog(
+            addresses = addresses,
+            selectedAddress = selectedAddress,
+            onAddressSelected = { address ->
+                selectedAddress = address
+                showAddressDialog = false
+                // 记录切换地址
+                com.example.myele.utils.ActionLogger.logAction(
+                    context = context,
+                    action = "change_delivery_address",
+                    page = "checkout",
+                    pageInfo = mapOf(
+                        "address_id" to address.addressId,
+                        "address_name" to address.receiverName,
+                        "detailed_address" to address.detailAddress
+                    )
+                )
+            },
+            onDismiss = { showAddressDialog = false }
         )
     }
 
@@ -365,11 +404,15 @@ fun DeliveryMethodSection(selectedMethod: String, onMethodChanged: (String) -> U
 }
 
 @Composable
-fun AddressSection() {
+fun AddressSection(
+    selectedAddress: com.example.myele.model.Address?,
+    onClick: () -> Unit
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 8.dp, vertical = 4.dp),
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .clickable(onClick = onClick),
         shape = RoundedCornerShape(8.dp),
         color = Color.White
     ) {
@@ -388,14 +431,18 @@ fun AddressSection() {
             Spacer(modifier = Modifier.width(12.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "华中师范大学元宝山公寓二期六栋",
+                    text = selectedAddress?.getFullAddress() ?: "请选择收货地址",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "于骁 138****8888",
+                    text = if (selectedAddress != null) {
+                        "${selectedAddress.receiverName} ${selectedAddress.receiverPhone.replace(Regex("(\\d{3})\\d{4}(\\d{4})"), "$1****$2")}"
+                    } else {
+                        "请选择地址"
+                    },
                     fontSize = 12.sp,
                     color = Color.Gray
                 )
@@ -1310,6 +1357,106 @@ fun DeliveryTimeSelectionDialog(
                     item {
                         Spacer(modifier = Modifier.height(8.dp))
                     }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun AddressSelectionDialog(
+    addresses: List<com.example.myele.model.Address>,
+    selectedAddress: com.example.myele.model.Address?,
+    onAddressSelected: (com.example.myele.model.Address) -> Unit,
+    onDismiss: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        Surface(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp),
+            shape = RoundedCornerShape(16.dp),
+            color = Color.White
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = "选择收货地址",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(bottom = 16.dp)
+                )
+
+                LazyColumn(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .heightIn(max = 400.dp)
+                ) {
+                    items(addresses.size) { index ->
+                        val address = addresses[index]
+                        Surface(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 4.dp)
+                                .clickable { onAddressSelected(address) },
+                            shape = RoundedCornerShape(8.dp),
+                            color = if (address.addressId == selectedAddress?.addressId)
+                                Color(0xFFE3F2FD) else Color(0xFFF5F5F5)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(12.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Row(verticalAlignment = Alignment.CenterVertically) {
+                                        Text(
+                                            text = address.receiverName,
+                                            fontSize = 14.sp,
+                                            fontWeight = FontWeight.Bold
+                                        )
+                                        Spacer(modifier = Modifier.width(8.dp))
+                                        Text(
+                                            text = address.receiverPhone.replace(Regex("(\\d{3})\\d{4}(\\d{4})"), "$1****$2"),
+                                            fontSize = 12.sp,
+                                            color = Color.Gray
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.height(4.dp))
+                                    Text(
+                                        text = address.getFullAddress(),
+                                        fontSize = 13.sp,
+                                        color = Color.Gray,
+                                        maxLines = 2
+                                    )
+                                }
+                                if (address.addressId == selectedAddress?.addressId) {
+                                    Icon(
+                                        imageVector = Icons.Default.CheckCircle,
+                                        contentDescription = null,
+                                        tint = Color(0xFF00BFFF),
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                Button(
+                    onClick = onDismiss,
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                    shape = RoundedCornerShape(8.dp)
+                ) {
+                    Text("取消", fontSize = 16.sp)
                 }
             }
         }

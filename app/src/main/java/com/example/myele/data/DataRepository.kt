@@ -177,6 +177,26 @@ class DataRepository(private val context: Context) {
         preferencesManager.saveDeletedAddressIds(deletedIds)
     }
 
+    // ============ 评价管理方法 ============
+
+    /**
+     * 删除评价
+     */
+    fun deleteReview(reviewId: String) {
+        val deletedIds = preferencesManager.getDeletedReviewIds()
+        deletedIds.add(reviewId)
+        preferencesManager.saveDeletedReviewIds(deletedIds)
+    }
+
+    /**
+     * 获取评价列表（排除已删除的）
+     */
+    fun getFilteredReviews(): List<Review> {
+        val reviews = loadReviews()
+        val deletedIds = preferencesManager.getDeletedReviewIds()
+        return reviews.filter { it.reviewId !in deletedIds }
+    }
+
     /**
      * 获取PreferencesManager实例
      */
