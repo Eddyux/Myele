@@ -196,8 +196,13 @@ fun MyOrdersScreen(navController: NavController, repository: DataRepository) {
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(orders) { order ->
-                    OrderCard(order, navController)
+                items(orders.size) { index ->
+                    OrderCard(
+                        order = orders[index],
+                        orderIndex = index,
+                        navController = navController,
+                        context = context
+                    )
                 }
             }
         }
@@ -205,12 +210,32 @@ fun MyOrdersScreen(navController: NavController, repository: DataRepository) {
 }
 
 @Composable
-fun OrderCard(order: Order, navController: NavController) {
+fun OrderCard(
+    order: Order,
+    orderIndex: Int,
+    navController: NavController,
+    context: android.content.Context
+) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
             .clickable {
+                // 记录点击订单进入详情页
+                ActionLogger.logAction(
+                    context = context,
+                    action = "navigate",
+                    page = "order_detail",
+                    extraData = mapOf(
+                        "from_page" to "my_orders",
+                        "order_id" to order.orderId,
+                        "order_index" to orderIndex,
+                        "is_first_order" to (orderIndex == 0),
+                        "order_status" to getOrderStatusText(order.status),
+                        "restaurant_name" to order.restaurantName,
+                        "order_items" to order.items.map { it.productName }
+                    )
+                )
                 navController.navigate(Screen.OrderDetail.createRoute(order.orderId))
             },
         shape = RoundedCornerShape(12.dp),

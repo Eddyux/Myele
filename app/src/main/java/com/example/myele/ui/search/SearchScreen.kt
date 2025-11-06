@@ -31,6 +31,18 @@ fun SearchScreen(navController: NavController) {
     var searchSuggestions by remember { mutableStateOf<List<String>>(emptyList()) }
     var recommendedStores by remember { mutableStateOf<List<StoreRecommendation>>(emptyList()) }
 
+    // 记录进入搜索页面
+    LaunchedEffect(Unit) {
+        ActionLogger.logAction(
+            context = context,
+            action = "navigate",
+            page = "search",
+            extraData = mapOf(
+                "from_page" to "home"
+            )
+        )
+    }
+
     val presenter = remember {
         SearchPresenter(object : SearchContract.View {
             override fun updateSearchHistory(history: List<String>) {
@@ -147,6 +159,16 @@ fun SearchScreen(navController: NavController) {
                         },
                         onClearClick = {
                             presenter.onClearHistoryClicked()
+
+                            // 记录清除历史记录操作
+                            ActionLogger.logAction(
+                                context = context,
+                                action = "clear_search_history",
+                                page = "search",
+                                extraData = mapOf(
+                                    "history_cleared" to true
+                                )
+                            )
                         }
                     )
                 }
