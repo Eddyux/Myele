@@ -2,7 +2,7 @@
   {
     "action": "enter_orders_page",
     "page": "orders",
-    "timestamp": 1.762422015613E12,
+    "timestamp": 1.762430624047E12,
     "page_info": {
       "screen_name": "MyOrdersScreen"
     },
@@ -12,40 +12,51 @@
     }
   },
   {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.762422106694E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_001",
-      "order_index": 0.0,
-      "is_first_order": true,
-      "order_status": "已送达",
-      "restaurant_name": "川香麻辣烫"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.762422178256E12,
+    "action": "navigate_to_store",
+    "page": "store_page",
+    "timestamp": 1.762430625982E12,
     "page_info": {
-      "screen_name": "MyOrdersScreen"
+      "restaurant_name": "湘味轩",
+      "restaurant_id": "rest_003"
     },
     "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
+      "from_page": "my_orders"
     }
   },
   {
     "action": "enter_orders_page",
     "page": "orders",
-    "timestamp": 1762422183346,
+    "timestamp": 1.762430632582E12,
     "page_info": {
       "screen_name": "MyOrdersScreen"
     },
     "extra_data": {
       "selected_tab": "全部",
       "source": "profile"
+    }
+  },
+  {
+    "action": "navigate_to_store",
+    "page": "store_page",
+    "timestamp": 1.762430636832E12,
+    "page_info": {
+      "restaurant_name": "川香麻辣烫",
+      "restaurant_id": "rest_001"
+    },
+    "extra_data": {
+      "from_page": "my_orders"
+    }
+  },
+  {
+    "action": "share_store",
+    "page": "store_page",
+    "timestamp": 1762430644924,
+    "page_info": {
+      "restaurant_name": "川香麻辣烫",
+      "restaurant_id": "rest_001"
+    },
+    "extra_data": {
+      "platform": "微信"
     }
   }
 ]

@@ -251,6 +251,19 @@ fun OrderCard(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier.clickable {
+                        // 记录点击商家名称
+                        ActionLogger.logAction(
+                            context = context,
+                            action = "navigate_to_store",
+                            page = "store_page",
+                            pageInfo = mapOf(
+                                "restaurant_name" to order.restaurantName,
+                                "restaurant_id" to order.restaurantId
+                            ),
+                            extraData = mapOf(
+                                "from_page" to "my_orders"
+                            )
+                        )
                         // 点击商家名称跳转到商家详情页
                         navController.navigate(Screen.StorePage.createRoute(order.restaurantId))
                     }
