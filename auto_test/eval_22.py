@@ -7,7 +7,7 @@ import json
 # 2. 必须切换到已评价标签
 # 3. 必须删除评价
 # 4. 必须有删除成功弹窗
-def validate_delete_review():
+def validate_delete_review(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))

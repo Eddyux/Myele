@@ -5,7 +5,7 @@ import json
 # 关键验证点:
 # 1. 必须进入全部订单页(my_orders页面)
 # 2. 必须点击页面第一个订单(进入订单详情页)
-def validate_view_first_order_detail():
+def validate_view_first_order_detail(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
@@ -59,7 +59,11 @@ def validate_view_first_order_detail():
     if not clicked_first_delivered_order:
         return "false4"
 
-    return True
+    # 检测3: 验证result中是否包含"33"
+    if result is not None and '33' in str(result):
+        return True
+    else:
+        return "false5"
 
 if __name__ == '__main__':
     # 运行验证并输出结果

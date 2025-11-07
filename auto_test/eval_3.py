@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_reviews_page():
+def validate_reviews_page(result=None):
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
 

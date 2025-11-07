@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_kfc_order():
+def validate_kfc_order(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))

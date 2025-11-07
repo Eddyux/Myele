@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_close_notification():
+def validate_close_notification(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))

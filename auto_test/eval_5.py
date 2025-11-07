@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_home_refresh():
+def validate_home_refresh(result=None):
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
 

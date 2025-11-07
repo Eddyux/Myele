@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_my_orders_all():
+def validate_my_orders_all(result=None):
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
 

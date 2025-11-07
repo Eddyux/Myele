@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_scheduled_order():
+def validate_scheduled_order(result=None):
     # 从设备获取文件
     try:
         subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],

@@ -7,7 +7,7 @@ import json
 # 2. 必须筛选食无忧和预约配送
 # 3. 必须给于骁和余味分别下单(两次订单,不同收货人)
 # 4. 必须是明日到达
-def validate_dual_orders_with_filter():
+def validate_dual_orders_with_filter(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))

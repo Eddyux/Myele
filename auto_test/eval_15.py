@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_contact_rider():
+def validate_contact_rider(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))

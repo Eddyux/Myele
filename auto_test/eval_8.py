@@ -1,7 +1,7 @@
 import subprocess
 import json
 
-def validate_search_and_filter():
+def validate_search_and_filter(result=None):
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
 

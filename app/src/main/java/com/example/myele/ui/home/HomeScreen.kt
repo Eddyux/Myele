@@ -224,7 +224,7 @@ fun HomeScreen(navController: NavController) {
 
                         // 爆品团推荐
                         item {
-                            ProductRecommendation()
+                            ProductRecommendation(navController)
                         }
 
                         // 功能按钮行
@@ -584,7 +584,7 @@ fun ServiceIconItem(service: ServiceItem, navController: NavController) {
 }
 
 @Composable
-fun ProductRecommendation() {
+fun ProductRecommendation(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -606,7 +606,12 @@ fun ProductRecommendation() {
             Text(
                 text = "更多 >",
                 fontSize = 12.sp,
-                color = Color.Gray
+                color = Color.Gray,
+                modifier = Modifier.clickable {
+                    navController.navigate(
+                        com.example.myele.navigation.Screen.ServicePage.createRoute("爆品团")
+                    )
+                }
             )
         }
         Spacer(modifier = Modifier.height(8.dp))

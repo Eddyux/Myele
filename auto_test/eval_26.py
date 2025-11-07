@@ -5,7 +5,7 @@ import json
 # 关键验证点:
 # 1. 必须进入搜索页面(search页面)
 # 2. 必须点击删除历史记录按钮
-def validate_clear_search_history():
+def validate_clear_search_history(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
@@ -45,5 +45,6 @@ def validate_clear_search_history():
 
 if __name__ == '__main__':
     # 运行验证并输出结果
-    result = validate_clear_search_history()
+    result = (
+        validate_clear_search_history())
     print(result)

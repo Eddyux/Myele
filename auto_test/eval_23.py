@@ -7,7 +7,7 @@ import json
 # 2. 必须找到麻辣烫订单
 # 3. 必须进入食无忧理赔页面
 # 4. 必须申请理赔成功
-def validate_food_insurance_claim():
+def validate_food_insurance_claim(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))

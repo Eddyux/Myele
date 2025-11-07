@@ -5,7 +5,7 @@ import json
 # 关键验证点:
 # 1. 必须进入我的账单页面
 # 2. 必须切换到月账单
-def validate_mybills_monthly():
+def validate_mybills_monthly(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
                     stdout=open('messages.json', 'w'))
@@ -43,7 +43,11 @@ def validate_mybills_monthly():
     if not switched_to_monthly:
         return "false4"
 
-    return True
+    # 检测3: 验证result中是否包含"21.48"
+    if result is not None and '21.48' in str(result):
+        return True
+    else:
+        return "false5"
 
 if __name__ == '__main__':
     # 运行验证并输出结果
