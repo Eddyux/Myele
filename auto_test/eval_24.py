@@ -7,10 +7,11 @@ import json
 # 2. 必须筛选食无忧和预约配送
 # 3. 必须给于骁和余味分别下单(两次订单,不同收货人)
 # 4. 必须是明日到达
+# 5. 配送时间必须在中午11点-13点之间
 def validate_dual_orders_with_filter(result=None):
     # 从设备获取文件
     subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                    stdout=open('messages.json', 'w'))
+                   stdout=open('messages.json', 'w'))
 
     # 读取文件
     try:
@@ -31,11 +32,10 @@ def validate_dual_orders_with_filter(result=None):
         if record.get('action') == 'apply_filter' and record.get('page') == 'takeout':
             extra_data = record.get('extra_data', {})
             filters = extra_data.get('filters', [])
-            # filters是一个列表,包含筛选项的字符串
             # 检查是否筛选了食无忧
             if 'FOOD_SAFETY' in filters or 'food_safety' in filters or '食无忧' in str(filters):
                 filtered_food_safety = True
-            # 检查是否筛选了跨天预定
+            # 检查是否筛选了跨天预定（预约配送）
             if 'CROSS_DAY_BOOKING' in filters or 'cross_day_booking' in filters or '跨天预订' in str(filters):
                 filtered_cross_day = True
 
@@ -45,18 +45,36 @@ def validate_dual_orders_with_filter(result=None):
     if not filtered_cross_day:
         return "false4"
 
-    # 检测2: 验证有两个不同地址的订单
+    # 检测2: 验证有两个不同地址的订单，且配送时间为明日中午
     order_addresses = []
     for record in all_data:
         if record.get('action') == 'complete_order' and record.get('page') == 'checkout':
             extra_data = record.get('extra_data', {})
-            # 检查是否是预约配送
+            # 检查是否是明日配送
             delivery_date = extra_data.get('delivery_date')
-            if delivery_date and '明日' in delivery_date:
-                # 记录收货人
-                address_name = extra_data.get('delivery_address_name', '')
-                if address_name:
-                    order_addresses.append(address_name)
+            if not (delivery_date and '明日' in delivery_date):
+                continue  # 跳过非明日的订单
+
+            # 新增：检查配送时间是否在中午11-13点之间
+            delivery_time_slot = extra_data.get('delivery_time_slot')  # 格式示例："11:30-12:00" 或 "12:30-13:00"
+            if not delivery_time_slot:
+                return "false13"  # 无配送时间段信息
+
+            try:
+                start_time = delivery_time_slot.split('-')[0]  # 取时间段开始部分（如"11:30"）
+                hour = int(start_time.split(':')[0])  # 提取小时（如11）
+                # 验证小时是否在11点（含）到13点（不含）之间
+                if hour < 11 or hour >= 13:
+                    return "false13"  # 不在中午时间段
+            except (IndexError, ValueError):
+                # 处理格式错误（如时间段拆分失败、小时转换失败）
+                return "false13"
+
+            # 记录收货人信息
+            address_name = extra_data.get('delivery_address_name', '')
+            if address_name:
+                order_addresses.append(address_name)
+
 
     # 检查是否有于骁和余味两个人的订单
     has_yuxiao = any('于骁' in addr for addr in order_addresses)
@@ -68,7 +86,7 @@ def validate_dual_orders_with_filter(result=None):
     if not has_yuwei:
         return "false6"
 
-    # 检测3: 确认至少有两个订单
+    # 检测3: 确认至少有两个订单（分别给两人）
     if len(order_addresses) < 2:
         return "false7"
 

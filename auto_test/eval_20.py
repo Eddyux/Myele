@@ -83,13 +83,13 @@ def validate_scheduled_order(result=None):
     if not delivery_time_slot:
         return 'false12'
 
-    # 验证时间段是否在中午范围（11:00-14:00）
+    # 验证时间段是否在中午范围（11:00-13:00）
     # 时间段格式如 "11:30-11:50"
     try:
         start_time = delivery_time_slot.split('-')[0]
         hour = int(start_time.split(':')[0])
-        # 中午时间段应该在11点到14点之间
-        if hour < 11 or hour >= 14:
+        # 中午时间段应该在11点到13点之间
+        if hour < 11 or hour >= 13:
             return 'false13'
     except:
         return 'false14'
