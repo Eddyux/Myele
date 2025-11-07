@@ -1,18 +1,6 @@
 import subprocess
 import json
 
-# 从设备获取文件
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-# 读取文件
-try:
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        all_data = json.load(f)
-except:
-    print("false1")
-    exit()
-
 # 验证任务23: 在"我的"-"全部订单"中找到有麻辣烫的订单,进入"订单详情页",点击申请食无忧理赔
 # 关键验证点:
 # 1. 必须进入订单页面
@@ -20,6 +8,17 @@ except:
 # 3. 必须进入食无忧理赔页面
 # 4. 必须申请理赔成功
 def validate_food_insurance_claim():
+    # 从设备获取文件
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    # 读取文件
+    try:
+        with open('messages.json', 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+    except:
+        return "false1"
+
     # 检查是否有数据
     if not all_data:
         return "false2"
@@ -60,6 +59,7 @@ def validate_food_insurance_claim():
 
     return True
 
-# 运行验证并输出结果
-result = validate_food_insurance_claim()
-print(result)
+if __name__ == '__main__':
+    # 运行验证并输出结果
+    result = validate_food_insurance_claim()
+    print(result)

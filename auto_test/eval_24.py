@@ -1,18 +1,6 @@
 import subprocess
 import json
 
-# 从设备获取文件
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-# 读取文件
-try:
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        all_data = json.load(f)
-except:
-    print("false1")
-    exit()
-
 # 验证任务24: 在外卖页面筛选食无忧和预约配送,找一个商家给于骁和余味分别下一单明日中午到达的爆品
 # 关键验证点:
 # 1. 必须进入外卖页面
@@ -20,6 +8,17 @@ except:
 # 3. 必须给于骁和余味分别下单(两次订单,不同收货人)
 # 4. 必须是明日到达
 def validate_dual_orders_with_filter():
+    # 从设备获取文件
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    # 读取文件
+    try:
+        with open('messages.json', 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+    except:
+        return "false1"
+
     # 检查是否有数据
     if not all_data:
         return "false2"
@@ -75,6 +74,7 @@ def validate_dual_orders_with_filter():
 
     return True
 
-# 运行验证并输出结果
-result = validate_dual_orders_with_filter()
-print(result)
+if __name__ == '__main__':
+    # 运行验证并输出结果
+    result = validate_dual_orders_with_filter()
+    print(result)

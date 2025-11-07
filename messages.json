@@ -1,62 +1,40 @@
 [
   {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.762430624047E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
+    "action": "navigate",
+    "page": "search",
+    "timestamp": 1.762490288046E12,
     "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
+      "from_page": "home"
     }
   },
   {
-    "action": "navigate_to_store",
-    "page": "store_page",
-    "timestamp": 1.762430625982E12,
-    "page_info": {
-      "restaurant_name": "湘味轩",
-      "restaurant_id": "rest_003"
-    },
+    "action": "perform_search",
+    "page": "home",
+    "timestamp": 1.762490292212E12,
     "extra_data": {
-      "from_page": "my_orders"
+      "search_query": "烤鸡",
+      "search_triggered": true
     }
   },
   {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.762430632582E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
+    "action": "apply_filter",
+    "page": "search_result",
+    "timestamp": 1.762490301986E12,
+    "page_info": {},
     "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
+      "filters": [
+        "价格区间:0-30"
+      ]
     }
   },
   {
-    "action": "navigate_to_store",
-    "page": "store_page",
-    "timestamp": 1.762430636832E12,
-    "page_info": {
-      "restaurant_name": "川香麻辣烫",
-      "restaurant_id": "rest_001"
-    },
+    "action": "filter",
+    "page": "search_result",
+    "timestamp": 1762490301989,
     "extra_data": {
-      "from_page": "my_orders"
-    }
-  },
-  {
-    "action": "share_store",
-    "page": "store_page",
-    "timestamp": 1762430644924,
-    "page_info": {
-      "restaurant_name": "川香麻辣烫",
-      "restaurant_id": "rest_001"
-    },
-    "extra_data": {
-      "platform": "微信"
+      "price_min": 0,
+      "price_max": 30,
+      "keyword": "烤鸡"
     }
   }
 ]

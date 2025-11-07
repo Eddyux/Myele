@@ -1,28 +1,29 @@
 import subprocess
 import json
 
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-with open('messages.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-    # 兼容对象和数组两种格式
-    if isinstance(data, list):
-        data = data[-1] if data else {}
-
 def validate_coupons_page():
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    with open('messages.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        # 兼容对象和数组两种格式
+        if isinstance(data, list):
+            data = data[-1] if data else {}
+
     if data.get('action') != 'enter_coupons_page':
-        return False
+        return 'false1'
     if data.get('page') != 'coupons':
-        return False
+        return 'false2'
     if 'page_info' not in data:
-        return False
+        return 'false3'
     page_info = data['page_info']
     if page_info.get('title') != '红包卡券':
-        return False
+        return 'false4'
     if page_info.get('screen_name') != 'CouponsScreen':
-        return False
+        return 'false5'
     return True
 
-result = validate_coupons_page()
-print(result)
+if __name__ == '__main__':
+    result = validate_coupons_page()
+    print(result)

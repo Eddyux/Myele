@@ -1,26 +1,25 @@
 import subprocess
 import json
 
-# 从设备获取文件
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-# 读取文件
-try:
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        all_data = json.load(f)
-except:
-    print(False)
-    exit()
-
 # 验证任务21: 进入"我的"-"我的账单"页面,切换到"月账单"
 # 关键验证点:
 # 1. 必须进入我的账单页面
 # 2. 必须切换到月账单
 def validate_mybills_monthly():
+    # 从设备获取文件
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    # 读取文件
+    try:
+        with open('messages.json', 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+    except:
+        return 'false1'
+
     # 检查是否有数据
     if not all_data:
-        return "false1"
+        return "false2"
 
     # 检测1: 验证进入我的账单页面
     entered_mybills = False
@@ -30,7 +29,7 @@ def validate_mybills_monthly():
             break
 
     if not entered_mybills:
-        return "false2"
+        return "false3"
 
     # 检测2: 验证切换到月账单
     switched_to_monthly = False
@@ -42,10 +41,11 @@ def validate_mybills_monthly():
                 break
 
     if not switched_to_monthly:
-        return "false3"
+        return "false4"
 
     return True
 
-# 运行验证并输出结果
-result = validate_mybills_monthly()
-print(result)
+if __name__ == '__main__':
+    # 运行验证并输出结果
+    result = validate_mybills_monthly()
+    print(result)

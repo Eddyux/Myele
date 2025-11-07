@@ -1,18 +1,6 @@
 import subprocess
 import json
 
-# 从设备获取文件
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-# 读取文件
-try:
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        all_data = json.load(f)
-except:
-    print("false1")
-    exit()
-
 # 验证任务22: 进入"我的"-"我的订单-待评价",找到已评价,删除最近的一个评价
 # 关键验证点:
 # 1. 必须进入评价中心页面
@@ -20,6 +8,17 @@ except:
 # 3. 必须删除评价
 # 4. 必须有删除成功弹窗
 def validate_delete_review():
+    # 从设备获取文件
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    # 读取文件
+    try:
+        with open('messages.json', 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+    except:
+        return "false1"
+
     # 检查是否有数据
     if not all_data:
         return "false2"
@@ -61,6 +60,7 @@ def validate_delete_review():
 
     return True
 
-# 运行验证并输出结果
-result = validate_delete_review()
-print(result)
+if __name__ == '__main__':
+    # 运行验证并输出结果
+    result = validate_delete_review()
+    print(result)

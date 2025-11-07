@@ -1,31 +1,32 @@
 import subprocess
 import json
 
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-with open('messages.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)
-    if isinstance(data, list):
-        data = data[-1] if data else {}
-
 def validate_search_and_filter():
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    with open('messages.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        if isinstance(data, list):
+            data = data[-1] if data else {}
+
     if data.get('action') != 'filter':
-        return False
+        return 'false1'
     if data.get('page') != 'search_result':
-        return False
+        return 'false2'
     if 'extra_data' not in data:
-        return False
+        return 'false3'
     extra_data = data['extra_data']
     # 【关键】搜索关键词必须是"烤鸡"
     if extra_data.get('keyword') != '烤鸡':
-        return False
+        return 'false4'
     # 【关键】价格区间必须是0-30
     if extra_data.get('price_min') != 0:
-        return False
+        return 'false5'
     if extra_data.get('price_max') != 30:
-        return False
+        return 'false6'
     return True
 
-result = validate_search_and_filter()
-print(result)
+if __name__ == '__main__':
+    result = validate_search_and_filter()
+    print(result)

@@ -1,23 +1,22 @@
 import subprocess
 import json
 
-# 从设备获取文件
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-# 读取文件
-try:
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        all_data = json.load(f)
-except:
-    print("false1")
-    exit()
-
 # 验证任务25: 进入"我的"-"我的订单",找到最新已完成订单,点击进入第一个订单详情页,查看"实付"金额明细
 # 关键验证点:
 # 1. 必须进入全部订单页(my_orders页面)
 # 2. 必须点击页面第一个订单(进入订单详情页)
 def validate_view_first_order_detail():
+    # 从设备获取文件
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    # 读取文件
+    try:
+        with open('messages.json', 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+    except:
+        return "false1"
+
     # 检查是否有数据
     if not all_data:
         return "false2"
@@ -62,6 +61,7 @@ def validate_view_first_order_detail():
 
     return True
 
-# 运行验证并输出结果
-result = validate_view_first_order_detail()
-print(result)
+if __name__ == '__main__':
+    # 运行验证并输出结果
+    result = validate_view_first_order_detail()
+    print(result)

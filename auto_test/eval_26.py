@@ -1,23 +1,22 @@
 import subprocess
 import json
 
-# 从设备获取文件
-subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                stdout=open('messages.json', 'w'))
-
-# 读取文件
-try:
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        all_data = json.load(f)
-except:
-    print("false1")
-    exit()
-
 # 验证任务26: 点击搜索框,在搜索历史页面找到"清除历史"按钮并点击
 # 关键验证点:
 # 1. 必须进入搜索页面(search页面)
 # 2. 必须点击删除历史记录按钮
 def validate_clear_search_history():
+    # 从设备获取文件
+    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
+                    stdout=open('messages.json', 'w'))
+
+    # 读取文件
+    try:
+        with open('messages.json', 'r', encoding='utf-8') as f:
+            all_data = json.load(f)
+    except:
+        return "false1"
+
     # 检查是否有数据
     if not all_data:
         return "false2"
@@ -44,6 +43,7 @@ def validate_clear_search_history():
 
     return True
 
-# 运行验证并输出结果
-result = validate_clear_search_history()
-print(result)
+if __name__ == '__main__':
+    # 运行验证并输出结果
+    result = validate_clear_search_history()
+    print(result)
