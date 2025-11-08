@@ -25,25 +25,25 @@ def validate_contact_merchant(result=None):
 
     # 检测1: 验证发送消息操作存在
     if message_record is None:
-        return 'false1'
+        return False
 
     # 检测2: 验证page
     if message_record.get('page') != 'chat':
-        return 'false2'
+        return False
 
     # 检测3: 验证extra_data存在
     if 'extra_data' not in message_record:
-        return 'false3'
+        return False
 
     extra_data = message_record['extra_data']
 
     # 检测4: 【关键】验证收件人类型是商家(不能是骑手)
     if extra_data.get('recipient_type') != 'merchant':
-        return 'false4'
+        return False
 
     # 检测5: 【关键】验证发送了正确的消息
     if extra_data.get('message') != '缺少可乐，要求退款':
-        return 'false5'
+        return False
 
     return True
 

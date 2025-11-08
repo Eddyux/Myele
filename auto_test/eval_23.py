@@ -17,11 +17,11 @@ def validate_food_insurance_claim(result=None):
         with open('messages.json', 'r', encoding='utf-8') as f:
             all_data = json.load(f)
     except:
-        return "false1"
+        return False
 
     # 检查是否有数据
     if not all_data:
-        return "false2"
+        return False
 
     # 检测1: 验证进入订单页面 (这个可能已经在其他任务中记录过,所以不是必需的)
     # 检测2: 验证进入食无忧理赔页面
@@ -39,10 +39,10 @@ def validate_food_insurance_claim(result=None):
                 break
 
     if not entered_insurance:
-        return "false3"
+        return False
 
     if not found_mala_order:
-        return "false4"
+        return False
 
     # 检测3: 验证申请理赔成功
     applied_insurance = False
@@ -55,7 +55,7 @@ def validate_food_insurance_claim(result=None):
                 break
 
     if not applied_insurance:
-        return "false5"
+        return False
 
     return True
 

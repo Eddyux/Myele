@@ -11,16 +11,16 @@ def validate_home_refresh(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'refresh_page':
-        return 'false1'
+        return False
     # 【关键】必须在主页
     if data.get('page') != 'home':
-        return 'false2'
+        return False
     if 'extra_data' not in data:
-        return 'false3'
+        return False
     extra_data = data['extra_data']
     # 【关键】必须是下拉刷新
     if extra_data.get('refresh_type') != 'pull_to_refresh':
-        return 'false4'
+        return False
     return True
 
 if __name__ == '__main__':

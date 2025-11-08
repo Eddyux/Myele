@@ -17,11 +17,11 @@ def validate_delete_review(result=None):
         with open('messages.json', 'r', encoding='utf-8') as f:
             all_data = json.load(f)
     except:
-        return "false1"
+        return False
 
     # 检查是否有数据
     if not all_data:
-        return "false2"
+        return False
 
     # 检测1: 验证进入评价中心页面
     entered_reviews = False
@@ -31,7 +31,7 @@ def validate_delete_review(result=None):
             break
 
     if not entered_reviews:
-        return "false3"
+        return False
 
     # 检测2: 验证切换到已评价标签
     switched_to_reviewed = False
@@ -43,7 +43,7 @@ def validate_delete_review(result=None):
                 break
 
     if not switched_to_reviewed:
-        return "false4"
+        return False
 
     # 检测3: 验证删除评价
     deleted_review = False
@@ -56,7 +56,7 @@ def validate_delete_review(result=None):
                 break
 
     if not deleted_review:
-        return "false5"
+        return False
 
     return True
 

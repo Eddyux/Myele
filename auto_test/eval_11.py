@@ -11,21 +11,21 @@ def validate_cart_checkout(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'cart_checkout_success':
-        return 'false1'
+        return False
     if data.get('page') != 'cart':
-        return 'false2'
+        return False
     if 'extra_data' not in data:
-        return 'false3'
+        return False
     extra_data = data['extra_data']
     # 【关键】必须全选
     if not extra_data.get('select_all', False):
-        return 'false4'
+        return False
     # 【关键】必须进入结算页面
     if not extra_data.get('entered_checkout', False):
-        return 'false5'
+        return False
     # 【关键】必须支付成功
     if not extra_data.get('payment_success', False):
-        return 'false6'
+        return False
     return True
 
 if __name__ == '__main__':

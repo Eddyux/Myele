@@ -18,11 +18,11 @@ def validate_dual_orders_with_filter(result=None):
         with open('messages.json', 'r', encoding='utf-8') as f:
             all_data = json.load(f)
     except:
-        return "false1"
+        return False
 
     # 检查是否有数据
     if not all_data:
-        return "false2"
+        return False
 
     # 检测1: 验证进入外卖页面并使用筛选功能
     filtered_food_safety = False
@@ -40,10 +40,10 @@ def validate_dual_orders_with_filter(result=None):
                 filtered_cross_day = True
 
     if not filtered_food_safety:
-        return "false3"
+        return False
 
     if not filtered_cross_day:
-        return "false4"
+        return False
 
     # 检测2: 验证有两个不同地址的订单，且配送时间为明日中午
     order_addresses = []
@@ -58,17 +58,17 @@ def validate_dual_orders_with_filter(result=None):
             # 新增：检查配送时间是否在中午11-13点之间
             delivery_time_slot = extra_data.get('delivery_time_slot')  # 格式示例："11:30-12:00" 或 "12:30-13:00"
             if not delivery_time_slot:
-                return "false13"  # 无配送时间段信息
+                return False  # 无配送时间段信息
 
             try:
                 start_time = delivery_time_slot.split('-')[0]  # 取时间段开始部分（如"11:30"）
                 hour = int(start_time.split(':')[0])  # 提取小时（如11）
                 # 验证小时是否在11点（含）到13点（不含）之间
                 if hour < 11 or hour >= 13:
-                    return "false13"  # 不在中午时间段
+                    return False  # 不在中午时间段
             except (IndexError, ValueError):
                 # 处理格式错误（如时间段拆分失败、小时转换失败）
-                return "false13"
+                return False
 
             # 记录收货人信息
             address_name = extra_data.get('delivery_address_name', '')
@@ -81,14 +81,14 @@ def validate_dual_orders_with_filter(result=None):
     has_yuwei = any('余味' in addr for addr in order_addresses)
 
     if not has_yuxiao:
-        return "false5"
+        return False
 
     if not has_yuwei:
-        return "false6"
+        return False
 
     # 检测3: 确认至少有两个订单（分别给两人）
     if len(order_addresses) < 2:
-        return "false7"
+        return False
 
     return True
 

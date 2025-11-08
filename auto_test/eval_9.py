@@ -11,21 +11,21 @@ def validate_cancel_order(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'cancel_order':
-        return 'false1'
+        return False
     if data.get('page') != 'order':
-        return 'false2'
+        return False
     if 'extra_data' not in data:
-        return 'false3'
+        return False
     extra_data = data['extra_data']
     # 【关键】订单状态必须是"待接单"
     if extra_data.get('order_status') != '待接单':
-        return 'false4'
+        return False
     # 【关键】必须选择取消原因
     if not extra_data.get('cancel_reason'):
-        return 'false5'
+        return False
     # 【关键】必须显示弹窗
     if not extra_data.get('show_dialog', True):
-        return 'false6'
+        return False
     return True
 
 if __name__ == '__main__':

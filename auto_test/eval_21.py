@@ -15,11 +15,11 @@ def validate_mybills_monthly(result=None):
         with open('messages.json', 'r', encoding='utf-8') as f:
             all_data = json.load(f)
     except:
-        return 'false1'
+        return False
 
     # 检查是否有数据
     if not all_data:
-        return "false2"
+        return False
 
     # 检测1: 验证进入我的账单页面
     entered_mybills = False
@@ -29,7 +29,7 @@ def validate_mybills_monthly(result=None):
             break
 
     if not entered_mybills:
-        return "false3"
+        return False
 
     # 检测2: 验证切换到月账单
     switched_to_monthly = False
@@ -41,13 +41,13 @@ def validate_mybills_monthly(result=None):
                 break
 
     if not switched_to_monthly:
-        return "false4"
+        return False
 
-    # 检测3: 验证result中是否包含"41.48元"
-    if result is not None and '41.48' in str(result):
+    # 检测3: 验证result中是否包含"41.48"
+    if 'final_message' in result and '41.48' in result['final_message']:
         return True
     else:
-        return "false5"
+        return False
 
 if __name__ == '__main__':
     # 运行验证并输出结果

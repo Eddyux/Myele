@@ -12,16 +12,16 @@ def validate_coupons_page(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'enter_coupons_page':
-        return 'false1'
+        return False
     if data.get('page') != 'coupons':
-        return 'false2'
+        return False
     if 'page_info' not in data:
-        return 'false3'
+        return False
     page_info = data['page_info']
     if page_info.get('title') != '红包卡券':
-        return 'false4'
+        return False
     if page_info.get('screen_name') != 'CouponsScreen':
-        return 'false5'
+        return False
     return True
 
 if __name__ == '__main__':

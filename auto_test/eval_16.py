@@ -24,7 +24,7 @@ def validate_share_malatang(result=None):
             break
 
     if not found_orders_page:
-        return 'false1'
+        return False
 
     # 检测2: 验证是否点击了商家名进入商家详情页，且商家名包含"麻辣烫"
     found_navigate_to_malatang_store = False
@@ -39,7 +39,7 @@ def validate_share_malatang(result=None):
                 break
 
     if not found_navigate_to_malatang_store:
-        return 'false2'
+        return False
 
     # 检测3: 从数组中找到最后一个分享商家的记录
     share_record = None
@@ -50,29 +50,29 @@ def validate_share_malatang(result=None):
 
     # 检测4: 验证分享操作存在
     if share_record is None:
-        return 'false3'
+        return False
 
     # 检测5: 验证page
     if share_record.get('page') != 'store_page':
-        return 'false4'
+        return False
 
     # 检测6: 验证extra_data存在且分享平台是微信
     if 'extra_data' not in share_record:
-        return 'false5'
+        return False
 
     extra_data = share_record['extra_data']
     if extra_data.get('platform') != '微信':
-        return 'false6'
+        return False
 
     # 检测7: 验证page_info包含restaurant_name且包含"麻辣烫"
     if 'page_info' not in share_record:
-        return 'false7'
+        return False
 
     page_info = share_record['page_info']
     restaurant_name = page_info.get('restaurant_name', '')
 
     if '麻辣烫' not in restaurant_name:
-        return 'false8'
+        return False
 
     return True
 

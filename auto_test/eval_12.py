@@ -11,9 +11,9 @@ def validate_change_phone(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'enter_change_phone_page':
-        return 'false1'
+        return False
     if data.get('page') != 'change_phone':
-        return 'false2'
+        return False
     return True
 
 if __name__ == '__main__':

@@ -19,37 +19,37 @@ def validate_kfc_order(result=None):
 
     # 检测1: 验证完成订单操作存在
     if order_record is None:
-        return 'false1'
+        return False
 
     # 检测2: 验证page
     if order_record.get('page') != 'checkout':
-        return 'false2'
+        return False
 
     # 检测3: 验证extra_data存在
     if 'extra_data' not in order_record:
-        return 'false3'
+        return False
 
     extra_data = order_record['extra_data']
 
     # 检测4: 【关键】验证搜索了"肯德基"
     if extra_data.get('search_query') != '肯德基':
-        return 'false4'
+        return False
 
     # 检测5: 【关键】验证加入了购物车
     if not extra_data.get('added_to_cart', False):
-        return 'false5'
+        return False
 
     # 检测6: 【关键】验证使用了优惠券
     if not extra_data.get('used_coupon', False):
-        return 'false6'
+        return False
 
     # 检测7: 【关键】验证选择了最大的优惠券
     if not extra_data.get('selected_max_coupon', False):
-        return 'false7'
+        return False
 
     # 检测8: 【关键】验证支付成功
     if not extra_data.get('payment_success', False):
-        return 'false8'
+        return False
 
     return True
 

@@ -11,10 +11,10 @@ def validate_addresses_page(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'enter_addresses_page':
-        return 'false1'
+        return False
     # 【关键】必须进入地址页面
     if data.get('page') != 'addresses':
-        return 'false2'
+        return False
     return True
 
 if __name__ == '__main__':

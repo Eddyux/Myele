@@ -11,13 +11,13 @@ def validate_search_action(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'perform_search':
-        return 'false1'
+        return False
     if 'extra_data' not in data:
-        return 'false2'
+        return False
     extra_data = data['extra_data']
     # 【关键】搜索关键词必须是"瑞幸咖啡"
     if extra_data.get('search_query') != '瑞幸咖啡':
-        return 'false3'
+        return False
 
     return True
 

@@ -19,29 +19,29 @@ def validate_contact_rider(result=None):
 
     # 检测1: 验证发送消息操作存在
     if message_record is None:
-        return 'false1'
+        return False
 
     # 检测2: 验证page
     if message_record.get('page') != 'chat':
-        return 'false2'
+        return False
 
     # 检测3: 验证extra_data存在
     if 'extra_data' not in message_record:
-        return 'false3'
+        return False
 
     extra_data = message_record['extra_data']
 
     # 检测4: 【关键】验证收件人类型是骑手（不能是商家）
     if extra_data.get('recipient_type') != 'rider':
-        return 'false4'
+        return False
 
     # 检测5: 【关键】验证发送了正确的消息
     if extra_data.get('message') != '出了什么情况，怎么还没到':
-        return 'false5'
+        return False
 
     # 检测6: 【关键】验证订单状态为"配送中"（不能是"已完成"、"待接单"等其他状态）
     if extra_data.get('order_status') != '配送中':
-        return 'false6'
+        return False
 
     return True
 

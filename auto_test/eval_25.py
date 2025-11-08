@@ -15,11 +15,11 @@ def validate_view_first_order_detail(result=None):
         with open('messages.json', 'r', encoding='utf-8') as f:
             all_data = json.load(f)
     except:
-        return "false1"
+        return False
 
     # 检查是否有数据
     if not all_data:
-        return "false2"
+        return False
 
 
     # 检测1: 验证进入全部订单页面(my_orders)
@@ -37,7 +37,7 @@ def validate_view_first_order_detail(result=None):
                 break
 
     if not enter_orders_page:
-        return "false3"
+        return False
 
     # 检测2: 验证点击第一个已送达订单进入订单详情页
     clicked_first_delivered_order = False
@@ -57,13 +57,15 @@ def validate_view_first_order_detail(result=None):
                 break
 
     if not clicked_first_delivered_order:
-        return "false4"
+        return False
 
-    # 检测3: 验证result中是否包含"33元"，不说元可能错误的是对的
-    if result is not None and '33元' in str(result):
+    # 检测3: 验证result中是否包含"33"
+    if result is None:
+        return False
+    if 'final_message' in result and '33' in result['final_message']:
         return True
     else:
-        return "false5"
+        return False
 
 if __name__ == '__main__':
     # 运行验证并输出结果

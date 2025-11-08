@@ -11,18 +11,18 @@ def validate_sort_selection(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'select_sort_option':
-        return 'false1'
+        return False
     if data.get('page') != 'takeout':
-        return 'false2'
+        return False
     if 'extra_data' not in data:
-        return 'false3'
+        return False
     extra_data = data['extra_data']
     # 【关键】排序选项必须是"好评优先"
     if extra_data.get('sort_option') != '好评优先':
-        return 'false4'
+        return False
     # 【关键】必须点击"综合排序"
     if extra_data.get('sort_type') != '综合排序':
-        return 'false5'
+        return False
     return True
 
 if __name__ == '__main__':

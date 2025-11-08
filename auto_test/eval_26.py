@@ -15,11 +15,11 @@ def validate_clear_search_history(result=None):
         with open('messages.json', 'r', encoding='utf-8') as f:
             all_data = json.load(f)
     except:
-        return "false1"
+        return False
 
     # 检查是否有数据
     if not all_data:
-        return "false2"
+        return False
 
     # 检测1: 验证进入搜索页面
     entered_search = False
@@ -29,7 +29,7 @@ def validate_clear_search_history(result=None):
             break
 
     if not entered_search:
-        return "false3"
+        return False
 
     # 检测2: 验证点击清除历史记录按钮
     clicked_clear_history = False
@@ -39,7 +39,7 @@ def validate_clear_search_history(result=None):
             break
 
     if not clicked_clear_history:
-        return "false4"
+        return False
 
     return True
 

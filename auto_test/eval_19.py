@@ -25,25 +25,25 @@ def validate_takeout_order(result=None):
 
     # 检测1: 验证完成订单操作存在
     if order_record is None:
-        return 'false1'
+        return False
 
     # 检测2: 验证page
     if order_record.get('page') != 'checkout':
-        return 'false2'
+        return False
 
     # 检测3: 验证extra_data存在
     if 'extra_data' not in order_record:
-        return 'false3'
+        return False
 
     extra_data = order_record['extra_data']
 
     # 检测4: 【关键】验证来自外卖页面
     if extra_data.get('from_page') != 'takeout':
-        return 'false4'
+        return False
 
     # 检测5: 【关键】验证支付成功
     if not extra_data.get('payment_success', False):
-        return 'false5'
+        return False
 
     # 检测6: 查找排序选择记录,验证选择了"配送最快"
     sort_record = None
@@ -53,19 +53,19 @@ def validate_takeout_order(result=None):
             break
 
     if sort_record is None:
-        return 'false6'
+        return False
 
     # 检测7: 验证排序页面是外卖页面
     if sort_record.get('page') != 'takeout':
-        return 'false7'
+        return False
 
     # 检测8: 验证排序选项
     if 'extra_data' not in sort_record:
-        return 'false8'
+        return False
 
     sort_extra = sort_record['extra_data']
     if sort_extra.get('sort_option') != '配送最快':
-        return 'false9'
+        return False
 
     return True
 

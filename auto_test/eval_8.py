@@ -11,20 +11,20 @@ def validate_search_and_filter(result=None):
             data = data[-1] if data else {}
 
     if data.get('action') != 'filter':
-        return 'false1'
+        return False
     if data.get('page') != 'search_result':
-        return 'false2'
+        return False
     if 'extra_data' not in data:
-        return 'false3'
+        return False
     extra_data = data['extra_data']
     # 【关键】搜索关键词必须是"烤鸡"
     if extra_data.get('keyword') != '烤鸡':
-        return 'false4'
+        return False
     # 【关键】价格区间必须是0-30
     if extra_data.get('price_min') != 0:
-        return 'false5'
+        return False
     if extra_data.get('price_max') != 30:
-        return 'false6'
+        return False
     return True
 
 if __name__ == '__main__':
