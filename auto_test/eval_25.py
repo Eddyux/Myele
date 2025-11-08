@@ -59,8 +59,8 @@ def validate_view_first_order_detail(result=None):
     if not clicked_first_delivered_order:
         return "false4"
 
-    # 检测3: 验证result中是否包含"33"
-    if result is not None and '33' in str(result):
+    # 检测3: 验证result中是否包含"33元"，不说元可能错误的是对的
+    if result is not None and '33元' in str(result):
         return True
     else:
         return "false5"

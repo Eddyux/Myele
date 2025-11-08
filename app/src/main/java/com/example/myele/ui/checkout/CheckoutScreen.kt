@@ -233,7 +233,10 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                     selectedAddress?.let { address ->
                         extraDataMap["delivery_address_name"] = address.receiverName
                         extraDataMap["delivery_address_phone"] = address.receiverPhone
+                        extraDataMap["delivery_address_street"] = address.street
                         extraDataMap["delivery_address_detail"] = address.detailAddress
+                        extraDataMap["delivery_address_full"] = address.getFullAddress()
+                        address.yuwei?.let { extraDataMap["delivery_address_yuwei"] = it }
                     }
 
                     // 如果是预约配送，记录预约信息
@@ -252,6 +255,45 @@ fun CheckoutScreen(navController: NavController, repository: com.example.myele.d
                         pageInfo = mapOf(),
                         extraData = extraDataMap
                     )
+                }
+
+                // 创建订单对象并保存到OrderManager
+                selectedAddress?.let { address ->
+                    // 创建订单项列表
+                    val orderItems = checkoutProducts.map { (product, quantity) ->
+                        com.example.myele.model.OrderItem(
+                            itemId = "item_${System.currentTimeMillis()}_${product.productId}",
+                            productName = product.name,
+                            productId = product.productId,
+                            quantity = quantity,
+                            price = product.price,
+                            specifications = null
+                        )
+                    }
+
+                    // 获取餐厅信息（从第一个商品）
+                    val firstProduct = checkoutProducts.firstOrNull()?.first
+                    if (firstProduct != null) {
+                        val order = com.example.myele.model.Order(
+                            orderId = orderId,
+                            restaurantId = firstProduct.restaurantId,
+                            restaurantName = firstProduct.restaurantName,
+                            status = com.example.myele.model.OrderStatus.PENDING_ACCEPT,
+                            orderTime = java.util.Date(),
+                            items = orderItems,
+                            totalAmount = subtotal,
+                            discountAmount = couponDiscount,
+                            actualAmount = totalAmount,
+                            deliveryAddress = address,
+                            deliveryFee = 5.0,
+                            packagingFee = 2.0,
+                            usedCouponId = selectedCoupon?.couponId,
+                            canCancel = true
+                        )
+
+                        // 添加到订单管理器
+                        com.example.myele.data.OrderManager.addOrder(order)
+                    }
                 }
 
                 // 导航到支付成功页面

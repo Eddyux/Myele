@@ -117,7 +117,7 @@ fun PaymentSuccessScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 立即查看按钮
+            // 完成按钮
             Button(
                 onClick = {
                     navController.navigate(Screen.MyOrders.route) {
@@ -131,7 +131,7 @@ fun PaymentSuccessScreen(
                 ),
                 modifier = Modifier.fillMaxWidth(0.6f)
             ) {
-                Text("立即查看订单", fontSize = 16.sp)
+                Text("完成", fontSize = 16.sp)
             }
         }
     }

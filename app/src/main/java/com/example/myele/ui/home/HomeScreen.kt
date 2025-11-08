@@ -162,14 +162,6 @@ fun HomeScreen(navController: NavController) {
     }
 
     LaunchedEffect(Unit) {
-        // 清空messages.json文件，确保每次从首页开始测试时数据是干净的
-        try {
-            val file = java.io.File(context.filesDir, "messages.json")
-            file.writeText("[]")
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-
         isLoading = true
         allRestaurants = repository.loadRestaurants()
         displayedRestaurants = allRestaurants
@@ -187,7 +179,8 @@ fun HomeScreen(navController: NavController) {
             selectedTab = selectedTab,
             onTabSelected = { selectedTab = it },
             onRefresh = { refreshData() },
-            isRefreshing = isRefreshing
+            isRefreshing = isRefreshing,
+            onAddressClick = { navController.navigate(com.example.myele.navigation.Screen.MyAddresses.route) }
         )
 
         // 搜索栏
@@ -353,7 +346,8 @@ fun TopTabBar(
     selectedTab: Int,
     onTabSelected: (Int) -> Unit,
     onRefresh: () -> Unit = {},
-    isRefreshing: Boolean = false
+    isRefreshing: Boolean = false,
+    onAddressClick: () -> Unit = {}
 ) {
     Surface(
         modifier = Modifier.fillMaxWidth(),
@@ -411,7 +405,7 @@ fun TopTabBar(
                     // 地址显示
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.clickable { /* 切换地址 */ }
+                        modifier = Modifier.clickable { onAddressClick() }
                     ) {
                         Text(
                             text = "华中师范大学元宝山...",

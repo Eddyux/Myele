@@ -23,8 +23,10 @@ class MyOrdersPresenter(private val repository: DataRepository) : MyOrdersContra
     override fun loadOrders(filter: String) {
         view?.showLoading()
 
-        // 获取所有订单
-        allOrders = repository.getOrders()
+        // 获取所有订单：合并JSON中的原始订单和运行时创建的订单
+        val originalOrders = repository.getOrders()
+        val runtimeOrders = com.example.myele.data.OrderManager.getRuntimeOrders()
+        allOrders = runtimeOrders + originalOrders // 运行时订单在前面
 
         // 根据筛选条件过滤订单
         val filteredOrders = when (filter) {

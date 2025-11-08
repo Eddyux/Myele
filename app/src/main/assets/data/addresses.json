@@ -7,7 +7,8 @@
     "detailAddress": "六栋",
     "addressType": "HOME",
     "isDefault": true,
-    "tag": "家"
+    "tag": "家",
+    "yuwei": "门口左转第三间"
   },
   {
     "addressId": "addr_002",
@@ -48,5 +49,15 @@
     "addressType": "OTHER",
     "isDefault": false,
     "tag": "其他"
+  },
+  {
+    "addressId": "addr_006",
+    "receiverName": "余味",
+    "receiverPhone": "13022222222",
+    "street": "华中师范大学元宝山二期6栋",
+    "detailAddress": "613",
+    "addressType": "SCHOOL",
+    "isDefault": false,
+    "tag": "学校"
   }
 ]

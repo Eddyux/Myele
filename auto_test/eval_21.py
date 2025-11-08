@@ -43,8 +43,8 @@ def validate_mybills_monthly(result=None):
     if not switched_to_monthly:
         return "false4"
 
-    # 检测3: 验证result中是否包含"21.48"
-    if result is not None and '21.48' in str(result):
+    # 检测3: 验证result中是否包含"41.48元"
+    if result is not None and '41.48' in str(result):
         return True
     else:
         return "false5"

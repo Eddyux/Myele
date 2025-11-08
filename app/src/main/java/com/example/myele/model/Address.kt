@@ -21,7 +21,8 @@ data class Address(
     val detailAddress: String,              // 详细地址（门牌号等）
     val addressType: AddressType,           // 地址类型
     val isDefault: Boolean = false,         // 是否默认地址
-    val tag: String? = null                 // 地址标签（"家"、"公司"、"学校"）
+    val tag: String? = null,                // 地址标签（"家"、"公司"、"学校"）
+    val yuwei: String? = null               // 余味信息
 ) {
     /**
      * 获取完整地址
