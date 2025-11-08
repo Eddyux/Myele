@@ -95,7 +95,7 @@ fun MyOrdersScreen(navController: NavController, repository: DataRepository) {
                                 presenter.loadOrders(selectedTab)
                             }
                         },
-                        placeholder = { Text("搜索三年内的订单记录", fontSize = 14.sp) },
+                        placeholder = { Text("", fontSize = 14.sp) },
                         leadingIcon = {
                             Icon(Icons.Default.Search, contentDescription = "搜索", modifier = Modifier.size(20.dp))
                         },
