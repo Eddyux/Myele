@@ -972,12 +972,169 @@
   {
     "action": "cancel_order",
     "page": "order",
-    "timestamp": 1762593716446,
+    "timestamp": 1.762593716446E12,
     "extra_data": {
       "order_id": "order_003",
       "order_status": "待接单",
       "cancel_reason": "商家不接单",
       "show_success_dialog": true
+    }
+  },
+  {
+    "action": "apply_filter",
+    "page": "takeout",
+    "timestamp": 1.762594736613E12,
+    "page_info": {},
+    "extra_data": {
+      "filters": [
+        "跨天预订"
+      ]
+    }
+  },
+  {
+    "action": "enter_checkout",
+    "page": "checkout",
+    "timestamp": 1.762594739794E12,
+    "page_info": {
+      "total_amount": 28.0,
+      "product_count": 1.0
+    }
+  },
+  {
+    "action": "select_scheduled_delivery",
+    "page": "checkout",
+    "timestamp": 1.762594745342E12,
+    "page_info": {
+      "delivery_date": "明日",
+      "delivery_time_slot": "11:40-12:00"
+    }
+  },
+  {
+    "action": "complete_order",
+    "page": "checkout",
+    "timestamp": 1.762594746657E12,
+    "page_info": {},
+    "extra_data": {
+      "from_page": "takeout",
+      "payment_success": true,
+      "delivery_address_name": "于骁",
+      "delivery_address_phone": "13800138001",
+      "delivery_address_street": "华中师范大学元宝山公寓二期",
+      "delivery_address_detail": "六栋",
+      "delivery_address_full": "华中师范大学元宝山公寓二期 六栋",
+      "delivery_address_yuwei": "门口左转第三间",
+      "delivery_type": "scheduled",
+      "delivery_date": "明日",
+      "delivery_time_slot": "11:40-12:00"
+    }
+  },
+  {
+    "action": "cart_checkout_success",
+    "page": "cart",
+    "timestamp": 1.762594746715E12,
+    "extra_data": {
+      "select_all": true,
+      "entered_checkout": true,
+      "payment_success": true,
+      "order_id": "order_1762594746657",
+      "amount": 35.0,
+      "payment_method": "微信支付"
+    }
+  },
+  {
+    "action": "enter_orders_page",
+    "page": "orders",
+    "timestamp": 1.762594772813E12,
+    "page_info": {
+      "screen_name": "MyOrdersScreen"
+    },
+    "extra_data": {
+      "selected_tab": "全部",
+      "source": "profile"
+    }
+  },
+  {
+    "action": "navigate",
+    "page": "order_detail",
+    "timestamp": 1.762594776664E12,
+    "extra_data": {
+      "from_page": "my_orders",
+      "order_id": "order_001",
+      "order_index": 1.0,
+      "is_first_order": false,
+      "order_status": "已送达",
+      "restaurant_name": "川香麻辣烫",
+      "order_items": [
+        "麻辣烫（大份）",
+        "可乐"
+      ]
+    }
+  },
+  {
+    "action": "send_message",
+    "page": "chat",
+    "timestamp": 1.762594783815E12,
+    "page_info": {
+      "chat_type": "merchant_chat"
+    },
+    "extra_data": {
+      "recipient_type": "merchant",
+      "message": "缺少可乐，要求退款"
+    }
+  },
+  {
+    "action": "send_message",
+    "page": "chat",
+    "timestamp": 1.762594941513E12,
+    "page_info": {
+      "chat_type": "rider_chat"
+    },
+    "extra_data": {
+      "recipient_type": "rider",
+      "message": "出了什么情况，怎么还没到",
+      "order_status": "已完成"
+    }
+  },
+  {
+    "action": "enter_orders_page",
+    "page": "orders",
+    "timestamp": 1.762594969185E12,
+    "page_info": {
+      "screen_name": "MyOrdersScreen"
+    },
+    "extra_data": {
+      "selected_tab": "全部",
+      "source": "profile"
+    }
+  },
+  {
+    "action": "navigate",
+    "page": "order_detail",
+    "timestamp": 1.76259497484E12,
+    "extra_data": {
+      "from_page": "my_orders",
+      "order_id": "order_002",
+      "order_index": 2.0,
+      "is_first_order": false,
+      "order_status": "配送中",
+      "restaurant_name": "湘味轩",
+      "order_items": [
+        "剁椒鱼头",
+        "毛血旺"
+      ]
+    }
+  },
+  {
+    "action": "send_message",
+    "page": "chat",
+    "timestamp": 1762594982306,
+    "page_info": {
+      "chat_type": "rider_chat"
+    },
+    "extra_data": {
+      "recipient_type": "rider",
+      "message": "出了什么情况，怎么还没到",
+      "order_status": "配送中"
     }
   }
 ]

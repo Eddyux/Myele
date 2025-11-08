@@ -42,7 +42,7 @@ def validate_contact_merchant(result=None):
         return 'false4'
 
     # 检测5: 【关键】验证发送了正确的消息
-    if extra_data.get('message') != '缺少可乐,要求退款':
+    if extra_data.get('message') != '缺少可乐，要求退款':
         return 'false5'
 
     return True
