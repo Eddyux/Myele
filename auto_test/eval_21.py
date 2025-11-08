@@ -42,7 +42,9 @@ def validate_mybills_monthly(result=None):
 
     if not switched_to_monthly:
         return False
-
+    # 验证 result 存在
+    if result is None:
+        return False
     # 检测3: 验证result中是否包含"41.48"
     if 'final_message' in result and '41.48' in result['final_message']:
         return True
