@@ -1,57 +1,42 @@
-import subprocess
-import json
+from appsim.utils import read_json_from_device
 
-# 验证任务21: 进入"我的"-"我的账单"页面,切换到"月账单"
-# 关键验证点:
-# 1. 必须进入我的账单页面
-# 2. 必须切换到月账单
-def validate_mybills_monthly(result=None):
-    # 从设备获取文件
-    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                    stdout=open('messages.json', 'w'))
+PACKAGE_NAME = "com.example.myele"
+DEVICE_FILE_PATH = "files/messages.json"
+ACTION_ENTER_FOOD_INSURANCE_PAGE = "enter_food_insurance_page"
+ACTION_APPLY_FOOD_INSURANCE = "apply_food_insurance"
+PAGE_FOOD_INSURANCE = "food_insurance"
+KEYWORD_MALATANG = "麻辣烫"
 
-    # 读取文件
+def validate_task_twenty_one(result=None,device_id=None,backup_dir=None):
     try:
-        with open('messages.json', 'r', encoding='utf-8') as f:
-            all_data = json.load(f)
+        all_data = read_json_from_device(device_id, PACKAGE_NAME, DEVICE_FILE_PATH, backup_dir)
     except:
         return False
 
-    # 检查是否有数据
     if not all_data:
         return False
 
-    # 检测1: 验证进入我的账单页面
-    entered_mybills = False
-    for record in all_data:
-        if record.get('action') == 'enter_mybills_page' and record.get('page') == 'mybills':
-            entered_mybills = True
-            break
-
-    if not entered_mybills:
+    entered_insurance = any(
+        r.get('action') == ACTION_ENTER_FOOD_INSURANCE_PAGE and
+        r.get('page') == PAGE_FOOD_INSURANCE and
+        KEYWORD_MALATANG in r.get('extra_data', {}).get('restaurant_name', '')
+        for r in all_data
+    )
+    if not entered_insurance:
         return False
 
-    # 检测2: 验证切换到月账单
-    switched_to_monthly = False
-    for record in all_data:
-        if record.get('action') == 'switch_to_monthly_bill' and record.get('page') == 'mybills':
-            extra_data = record.get('extra_data', {})
-            if extra_data.get('selected_tab') == '月账单':
-                switched_to_monthly = True
-                break
+    applied_insurance = any(
+        r.get('action') == ACTION_APPLY_FOOD_INSURANCE and
+        r.get('page') == PAGE_FOOD_INSURANCE and
+        r.get('extra_data', {}).get('apply_successfully') == True
+        for r in all_data
+    )
+    if not applied_insurance:
+        return False
 
-    if not switched_to_monthly:
-        return False
-    # 验证 result 存在
-    if result is None:
-        return False
-    # 检测3: 验证result中是否包含"41.48"
-    if 'final_message' in result and '41.48' in result['final_message']:
-        return True
-    else:
-        return False
+    return True
 
 if __name__ == '__main__':
     # 运行验证并输出结果
-    result = validate_mybills_monthly()
+    result = validate_task_twenty_one()
     print(result)

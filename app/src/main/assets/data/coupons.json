@@ -31,7 +31,7 @@
   },
   {
     "couponId": "coupon_003",
-    "name": "8折优惠券",
+    "name": "老北京炸酱面优惠券",
     "type": "DISCOUNT",
     "discountAmount": null,
     "discountRate": 0.8,
@@ -41,7 +41,7 @@
     "validUntil": "2025-02-28T23:59:59.000Z",
     "status": "AVAILABLE",
     "applicableRestaurants": ["rest_002"],
-    "description": "老北京炸酱面专用，最高优惠10元",
+    "description": "老北京炸酱面专用",
     "isExpiringSoon": false
   },
   {
@@ -106,7 +106,7 @@
   },
   {
     "couponId": "coupon_008",
-    "name": "瑞幸咖啡9.9元券",
+    "name": "咖啡优惠券",
     "type": "SPECIAL",
     "discountAmount": null,
     "discountRate": null,
@@ -116,7 +116,7 @@
     "validUntil": "2025-12-31T23:59:59.000Z",
     "status": "AVAILABLE",
     "applicableRestaurants": ["rest_006"],
-    "description": "瑞幸专用，任意饮品9.9元",
+    "description": "指定商家专用优惠券",
     "isExpiringSoon": false
   },
   {
@@ -136,7 +136,7 @@
   },
   {
     "couponId": "coupon_010",
-    "name": "茶百道第二杯半价",
+    "name": "茶百道优惠券",
     "type": "DISCOUNT",
     "discountAmount": null,
     "discountRate": 0.5,
@@ -146,7 +146,7 @@
     "validUntil": "2025-03-31T23:59:59.000Z",
     "status": "AVAILABLE",
     "applicableRestaurants": ["rest_007"],
-    "description": "茶百道专用，最高优惠10元",
+    "description": "茶百道专用",
     "isExpiringSoon": false
   },
   {

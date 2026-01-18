@@ -1,33 +1,24 @@
-import subprocess
-import json
+from appsim.utils import read_json_from_device
 
-def validate_cancel_order(result=None):
-    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                    stdout=open('messages.json', 'w'))
+PACKAGE_NAME = "com.example.myele"
+DEVICE_FILE_PATH = "files/messages.json"
+ACTION_CART_CHECKOUT_SUCCESS = "cart_checkout_success"
+PAGE_CART = "cart"
 
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        if isinstance(data, list):
-            data = data[-1] if data else {}
+def validate_task_nine(result=None,device_id=None,backup_dir=None):
+    try:
+        all_data = read_json_from_device(device_id, PACKAGE_NAME, DEVICE_FILE_PATH, backup_dir)
+        data = all_data[-1] if isinstance(all_data, list) and all_data else all_data
+    except:
+        return False
 
-    if data.get('action') != 'cancel_order':
+    if data.get('action') != ACTION_CART_CHECKOUT_SUCCESS or data.get('page') != PAGE_CART:
         return False
-    if data.get('page') != 'order':
-        return False
-    if 'extra_data' not in data:
-        return False
-    extra_data = data['extra_data']
-    # 【关键】订单状态必须是"待接单"
-    if extra_data.get('order_status') != '待接单':
-        return False
-    # 【关键】必须选择取消原因
-    if not extra_data.get('cancel_reason'):
-        return False
-    # 【关键】必须显示弹窗
-    if not extra_data.get('show_dialog', True):
+    extra_data = data.get('extra_data', {})
+    if not extra_data.get('select_all', False) or not extra_data.get('entered_checkout', False) or not extra_data.get('payment_success', False):
         return False
     return True
 
 if __name__ == '__main__':
-    result = validate_cancel_order()
+    result = validate_task_nine()
     print(result)

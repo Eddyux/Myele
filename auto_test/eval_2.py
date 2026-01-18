@@ -1,30 +1,17 @@
-import subprocess
-import json
+def validate_task_two(result=None,device_id=None,backup_dir=None):
+    # 验证 result 存在
+    if result is None:
+        return False
+    final_message = result.get("final_message")
+    if not isinstance(final_message, str):
+        return False
 
-def validate_sort_selection(result=None):
-    subprocess.run(['adb', 'exec-out', 'run-as', 'com.example.myele', 'cat', 'files/messages.json'],
-                    stdout=open('messages.json', 'w'))
-
-    with open('messages.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        if isinstance(data, list):
-            data = data[-1] if data else {}
-
-    if data.get('action') != 'select_sort_option':
+    # 检测 result 中的final_messages中是否包含 "肯德基"
+    if 'final_message' in result and '肯德基' in result['final_message']:
+        return True
+    else:
         return False
-    if data.get('page') != 'takeout':
-        return False
-    if 'extra_data' not in data:
-        return False
-    extra_data = data['extra_data']
-    # 【关键】排序选项必须是"好评优先"
-    if extra_data.get('sort_option') != '好评优先':
-        return False
-    # 【关键】必须点击"综合排序"
-    if extra_data.get('sort_type') != '综合排序':
-        return False
-    return True
 
 if __name__ == '__main__':
-    result = validate_sort_selection()
+    result = validate_task_two()
     print(result)

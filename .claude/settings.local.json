@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(while read file)",
+      "Bash(do head -1 \"$file\")",
+      "Bash(echo:*)",
+      "Bash(done)",
+      "Bash(./gradlew compileDebugKotlin:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
