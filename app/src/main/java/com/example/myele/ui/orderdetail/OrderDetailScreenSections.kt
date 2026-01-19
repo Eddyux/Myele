@@ -185,6 +185,7 @@ fun OrderProductsSection(order: Order) {
                         ProductImage(
                             productId = item.productId,
                             productName = item.productName,
+                            restaurantName = order.restaurantName,
                             size = 48.dp,
                             cornerRadius = 4.dp
                         )

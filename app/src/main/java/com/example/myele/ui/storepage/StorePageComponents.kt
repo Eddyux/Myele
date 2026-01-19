@@ -213,7 +213,8 @@ fun CategoryItem(
 fun SignatureProductCard(
     product: Product,
     quantity: Int,
-    onAdd: () -> Unit
+    onAdd: () -> Unit,
+    onRemove: () -> Unit
 ) {
     Surface(
         modifier = Modifier
@@ -225,6 +226,7 @@ fun SignatureProductCard(
             ProductImage(
                 productId = product.productId,
                 productName = product.name,
+                restaurantName = product.restaurantName,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(100.dp),
@@ -260,16 +262,53 @@ fun SignatureProductCard(
                             )
                         }
                     }
-                    IconButton(
-                        onClick = onAdd,
-                        modifier = Modifier.size(24.dp)
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = "添加",
-                            tint = Color(0xFF00BFFF),
-                            modifier = Modifier.size(20.dp)
-                        )
+
+                    // Quantity controls
+                    if (quantity > 0) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            IconButton(
+                                onClick = onRemove,
+                                modifier = Modifier.size(20.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Remove,
+                                    contentDescription = "减少",
+                                    tint = Color(0xFF00BFFF),
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                            Text(
+                                text = "$quantity",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            IconButton(
+                                onClick = onAdd,
+                                modifier = Modifier.size(20.dp)
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.Add,
+                                    contentDescription = "添加",
+                                    tint = Color(0xFF00BFFF),
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+                        }
+                    } else {
+                        IconButton(
+                            onClick = onAdd,
+                            modifier = Modifier.size(24.dp)
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = "添加",
+                                tint = Color(0xFF00BFFF),
+                                modifier = Modifier.size(20.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -292,6 +331,7 @@ fun ProductItem(
         ProductImage(
             productId = product.productId,
             productName = product.name,
+            restaurantName = product.restaurantName,
             modifier = Modifier.size(80.dp),
             size = 80.dp,
             cornerRadius = 8.dp

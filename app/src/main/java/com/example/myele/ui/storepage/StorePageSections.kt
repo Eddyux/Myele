@@ -60,7 +60,8 @@ fun ProductList(
                 SignatureProductsSection(
                     products = signatureProducts,
                     cartItems = cartItems,
-                    onAddToCart = onAddToCart
+                    onAddToCart = onAddToCart,
+                    onRemoveFromCart = onRemoveFromCart
                 )
             }
         }
@@ -81,7 +82,8 @@ fun ProductList(
 fun SignatureProductsSection(
     products: List<Product>,
     cartItems: Map<String, Int>,
-    onAddToCart: (String) -> Unit
+    onAddToCart: (String) -> Unit,
+    onRemoveFromCart: (String) -> Unit
 ) {
     Column(modifier = Modifier.padding(16.dp)) {
         Text(
@@ -97,7 +99,8 @@ fun SignatureProductsSection(
                 SignatureProductCard(
                     product = product,
                     quantity = cartItems[product.productId] ?: 0,
-                    onAdd = { onAddToCart(product.productId) }
+                    onAdd = { onAddToCart(product.productId) },
+                    onRemove = { onRemoveFromCart(product.productId) }
                 )
             }
         }

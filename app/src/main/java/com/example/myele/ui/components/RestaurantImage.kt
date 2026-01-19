@@ -166,6 +166,7 @@ fun HotDealImage(
 fun ProductImage(
     productId: String,
     productName: String,
+    restaurantName: String = "",
     modifier: Modifier = Modifier,
     size: Dp = 80.dp,
     cornerRadius: Dp = 8.dp

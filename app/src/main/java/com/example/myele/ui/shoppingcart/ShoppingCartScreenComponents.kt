@@ -132,6 +132,7 @@ fun RestaurantCartCard(
                     ProductImage(
                         productId = item.productId,
                         productName = item.productName,
+                        restaurantName = restaurant.restaurantName,
                         modifier = Modifier.size(60.dp),
                         size = 60.dp,
                         cornerRadius = 8.dp

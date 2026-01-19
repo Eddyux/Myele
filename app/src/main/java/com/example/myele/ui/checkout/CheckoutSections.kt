@@ -242,6 +242,7 @@ fun OrderItemsSection(
                     ProductImage(
                         productId = product.productId,
                         productName = product.name,
+                        restaurantName = product.restaurantName,
                         modifier = Modifier.size(50.dp),
                         size = 50.dp,
                         cornerRadius = 6.dp

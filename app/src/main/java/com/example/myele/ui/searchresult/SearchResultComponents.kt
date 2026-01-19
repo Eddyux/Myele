@@ -402,6 +402,7 @@ fun ProductItem(product: com.example.myele.model.Product) {
         com.example.myele.ui.components.ProductImage(
             productId = product.productId,
             productName = product.name,
+            restaurantName = product.restaurantName,
             size = 80.dp,
             cornerRadius = 8.dp
         )
