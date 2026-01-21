@@ -1,4 +1,4 @@
-package com.example.myele
+package com.example.myele_sim
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -9,11 +9,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.myele.data.DataRepository
-import com.example.myele.navigation.NavGraph
-import com.example.myele.ui.main.MainScreen
-import com.example.myele.ui.theme.MyEleTheme
-import com.example.myele.utils.JsonFileWriter
+import com.example.myele_sim.data.DataRepository
+import com.example.myele_sim.navigation.NavGraph
+import com.example.myele_sim.ui.main.MainScreen
+import com.example.myele_sim.ui.theme.MyEleTheme
+import com.example.myele_sim.utils.JsonFileWriter
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

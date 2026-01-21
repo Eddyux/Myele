@@ -4,12 +4,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.myele"
+    namespace = "com.example.myele_sim"
     compileSdk = 36
     buildToolsVersion = "36.0.0"
 
     defaultConfig {
-        applicationId = "com.example.myele"
+        applicationId = "com.example.myele_sim"
         minSdk = 33
         targetSdk = 33
         versionCode = 1

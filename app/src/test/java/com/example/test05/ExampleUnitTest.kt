@@ -1,4 +1,4 @@
-package com.example.myele
+package com.example.myele_sim
 
 import org.junit.Test
 

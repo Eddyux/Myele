@@ -1,4 +1,4 @@
-package com.example.myele.ui.theme
+package com.example.myele_sim.ui.theme
 
 import android.app.Activity
 import android.os.Build

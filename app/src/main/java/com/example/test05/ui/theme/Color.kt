@@ -1,4 +1,4 @@
-package com.example.myele.ui.theme
+package com.example.myele_sim.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

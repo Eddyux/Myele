@@ -1,206 +1,19 @@
 [
   {
-    "action": "enter_mybills_page",
-    "page": "mybills",
-    "timestamp": 1.768707893744E12,
-    "page_info": {
-      "title": "我的账单",
-      "screen_name": "MyBillsScreen"
-    },
-    "extra_data": {
-      "selected_tab": "周账单",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "switch_to_monthly_bill",
-    "page": "mybills",
-    "timestamp": 1.768707897398E12,
-    "page_info": {
-      "title": "我的账单",
-      "screen_name": "MyBillsScreen"
-    },
-    "extra_data": {
-      "selected_tab": "月账单",
-      "switched_from": "周账单"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "search",
-    "timestamp": 1.768708091568E12,
-    "extra_data": {
-      "from_page": "home"
-    }
-  },
-  {
-    "action": "perform_search",
+    "action": "refresh_page",
     "page": "home",
-    "timestamp": 1.768708094843E12,
-    "extra_data": {
-      "search_query": "粤式早茶",
-      "search_triggered": true
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "search",
-    "timestamp": 1.76870813378E12,
-    "extra_data": {
-      "from_page": "home"
-    }
-  },
-  {
-    "action": "select_sort_option",
-    "page": "takeout",
-    "timestamp": 1.768709544318E12,
-    "extra_data": {
-      "sort_option": "配送最快",
-      "sort_type": "综合排序"
-    }
-  },
-  {
-    "action": "select_sort_option",
-    "page": "takeout",
-    "timestamp": 1.768709644993E12,
-    "extra_data": {
-      "sort_option": "距离优先",
-      "sort_type": "综合排序"
-    }
-  },
-  {
-    "action": "enter_checkout",
-    "page": "checkout",
-    "timestamp": 1.768709661216E12,
+    "timestamp": 1.768992558691E12,
     "page_info": {
-      "total_amount": 158.0,
-      "product_count": 1.0
-    }
-  },
-  {
-    "action": "complete_order",
-    "page": "checkout",
-    "timestamp": 1.768709661611E12,
-    "page_info": {},
-    "extra_data": {
-      "from_page": "takeout",
-      "payment_success": true,
-      "delivery_address_name": "于骁",
-      "delivery_address_phone": "13800138001",
-      "delivery_address_street": "华中师范大学元宝山公寓二期",
-      "delivery_address_detail": "六栋",
-      "delivery_address_full": "华中师范大学元宝山公寓二期 六栋",
-      "delivery_address_yuwei": "门口左转第三间",
-      "delivery_type": "immediate"
-    }
-  },
-  {
-    "action": "cart_checkout_success",
-    "page": "cart",
-    "timestamp": 1.768709661662E12,
-    "extra_data": {
-      "select_all": true,
-      "entered_checkout": true,
-      "payment_success": true,
-      "order_id": "order_1768709661611",
-      "amount": 165.0,
-      "payment_method": "微信支付"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768709668143E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
+      "screen_name": "HomeScreen"
     },
     "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.7687942748E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768794283155E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_002",
-      "order_index": 1.0,
-      "is_first_order": false,
-      "order_status": "配送中",
-      "restaurant_name": "湘味轩",
-      "order_items": [
-        "剁椒鱼头",
-        "毛血旺"
-      ]
-    }
-  },
-  {
-    "action": "enter_mybills_page",
-    "page": "mybills",
-    "timestamp": 1.768830192584E12,
-    "page_info": {
-      "title": "我的账单",
-      "screen_name": "MyBillsScreen"
-    },
-    "extra_data": {
-      "selected_tab": "周账单",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830197292E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate_to_store",
-    "page": "store_page",
-    "timestamp": 1.768830214001E12,
-    "page_info": {
-      "restaurant_name": "茶百道",
-      "restaurant_id": "rest_007"
-    },
-    "extra_data": {
-      "from_page": "my_orders"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830223522E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
+      "refresh_type": "pull_to_refresh"
     }
   },
   {
     "action": "apply_filter",
     "page": "takeout",
-    "timestamp": 1.768830408176E12,
+    "timestamp": 1.76899258654E12,
     "page_info": {},
     "extra_data": {
       "filters": [
@@ -212,16 +25,16 @@
   {
     "action": "enter_checkout",
     "page": "checkout",
-    "timestamp": 1.768830413952E12,
+    "timestamp": 1.768992592662E12,
     "page_info": {
-      "total_amount": 28.0,
+      "total_amount": 16.0,
       "product_count": 1.0
     }
   },
   {
     "action": "select_scheduled_delivery",
     "page": "checkout",
-    "timestamp": 1.76883042193E12,
+    "timestamp": 1.768992600642E12,
     "page_info": {
       "delivery_date": "明日",
       "delivery_time_slot": "11:00-11:20"
@@ -230,7 +43,7 @@
   {
     "action": "complete_order",
     "page": "checkout",
-    "timestamp": 1.768830422829E12,
+    "timestamp": 1.768992601932E12,
     "page_info": {},
     "extra_data": {
       "from_page": "takeout",
@@ -249,20 +62,20 @@
   {
     "action": "cart_checkout_success",
     "page": "cart",
-    "timestamp": 1.76883042287E12,
+    "timestamp": 1.768992601974E12,
     "extra_data": {
       "select_all": true,
       "entered_checkout": true,
       "payment_success": true,
-      "order_id": "order_1768830422829",
-      "amount": 35.0,
+      "order_id": "order_1768992601932",
+      "amount": 23.0,
       "payment_method": "微信支付"
     }
   },
   {
     "action": "enter_orders_page",
     "page": "orders",
-    "timestamp": 1.768830424037E12,
+    "timestamp": 1.768992603224E12,
     "page_info": {
       "screen_name": "MyOrdersScreen"
     },
@@ -274,7 +87,7 @@
   {
     "action": "navigate_to_store",
     "page": "store_page",
-    "timestamp": 1.768830425708E12,
+    "timestamp": 1.768992605006E12,
     "page_info": {
       "restaurant_name": "川香麻辣烫",
       "restaurant_id": "rest_001"
@@ -286,16 +99,16 @@
   {
     "action": "enter_checkout",
     "page": "checkout",
-    "timestamp": 1.76883042779E12,
+    "timestamp": 1.768992608834E12,
     "page_info": {
-      "total_amount": 28.0,
+      "total_amount": 16.0,
       "product_count": 1.0
     }
   },
   {
     "action": "change_delivery_address",
     "page": "checkout",
-    "timestamp": 1.768830430302E12,
+    "timestamp": 1.768992612824E12,
     "page_info": {
       "address_id": "addr_006",
       "address_name": "余味",
@@ -305,16 +118,16 @@
   {
     "action": "select_scheduled_delivery",
     "page": "checkout",
-    "timestamp": 1.768830434096E12,
+    "timestamp": 1.7689926185E12,
     "page_info": {
       "delivery_date": "明日",
-      "delivery_time_slot": "11:00-11:20"
+      "delivery_time_slot": "11:20-11:40"
     }
   },
   {
     "action": "complete_order",
     "page": "checkout",
-    "timestamp": 1.768830436791E12,
+    "timestamp": 1.768992619189E12,
     "page_info": {},
     "extra_data": {
       "from_page": "takeout",
@@ -326,76 +139,26 @@
       "delivery_address_full": "华中师范大学元宝山二期6栋 613",
       "delivery_type": "scheduled",
       "delivery_date": "明日",
-      "delivery_time_slot": "11:00-11:20"
+      "delivery_time_slot": "11:20-11:40"
     }
   },
   {
     "action": "cart_checkout_success",
     "page": "cart",
-    "timestamp": 1.768830436834E12,
+    "timestamp": 1.768992619226E12,
     "extra_data": {
       "select_all": true,
       "entered_checkout": true,
       "payment_success": true,
-      "order_id": "order_1768830436791",
-      "amount": 35.0,
+      "order_id": "order_1768992619189",
+      "amount": 23.0,
       "payment_method": "微信支付"
     }
   },
   {
     "action": "enter_orders_page",
     "page": "orders",
-    "timestamp": 1.768830455856E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830868161E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "enter_mybills_page",
-    "page": "mybills",
-    "timestamp": 1.768830877053E12,
-    "page_info": {
-      "title": "我的账单",
-      "screen_name": "MyBillsScreen"
-    },
-    "extra_data": {
-      "selected_tab": "周账单",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "switch_to_monthly_bill",
-    "page": "mybills",
-    "timestamp": 1.768830877914E12,
-    "page_info": {
-      "title": "我的账单",
-      "screen_name": "MyBillsScreen"
-    },
-    "extra_data": {
-      "selected_tab": "月账单",
-      "switched_from": "周账单"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830890508E12,
+    "timestamp": 1.768992653244E12,
     "page_info": {
       "screen_name": "MyOrdersScreen"
     },
@@ -406,241 +169,40 @@
   },
   {
     "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768830891179E12,
+    "page": "search",
+    "timestamp": 1.768992665004E12,
     "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_1768830436791",
-      "order_index": 0.0,
-      "is_first_order": true,
-      "order_status": "待接单",
-      "restaurant_name": "川香麻辣烫",
-      "order_items": [
-        "麻辣烫（大份）"
+      "from_page": "home"
+    }
+  },
+  {
+    "action": "perform_search",
+    "page": "home",
+    "timestamp": 1.768992675074E12,
+    "extra_data": {
+      "search_query": "烤鸡",
+      "search_triggered": true
+    }
+  },
+  {
+    "action": "apply_filter",
+    "page": "search_result",
+    "timestamp": 1.768992686091E12,
+    "page_info": {},
+    "extra_data": {
+      "filters": [
+        "价格区间:0-30"
       ]
     }
   },
   {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830894229E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
+    "action": "filter",
+    "page": "search_result",
+    "timestamp": 1768992686094,
     "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768830897879E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_003",
-      "order_index": 2.0,
-      "is_first_order": false,
-      "order_status": "待接单",
-      "restaurant_name": "老北京炸酱面",
-      "order_items": [
-        "老北京炸酱面"
-      ]
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830901025E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768830904487E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_002",
-      "order_index": 3.0,
-      "is_first_order": false,
-      "order_status": "配送中",
-      "restaurant_name": "湘味轩",
-      "order_items": [
-        "剁椒鱼头",
-        "毛血旺"
-      ]
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830908237E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768830910674E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_001",
-      "order_index": 4.0,
-      "is_first_order": false,
-      "order_status": "已送达",
-      "restaurant_name": "川香麻辣烫",
-      "order_items": [
-        "麻辣烫（大份）",
-        "可乐"
-      ]
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830913221E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768830918514E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_004",
-      "order_index": 5.0,
-      "is_first_order": false,
-      "order_status": "待评价",
-      "restaurant_name": "韩式炸鸡",
-      "order_items": [
-        "韩式炸鸡全家桶"
-      ]
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830921411E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768830923084E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_007",
-      "order_index": 6.0,
-      "is_first_order": false,
-      "order_status": "待评价",
-      "restaurant_name": "茶百道",
-      "order_items": [
-        "杨枝甘露"
-      ]
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830925747E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768830936941E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "enter_orders_page",
-    "page": "orders",
-    "timestamp": 1.768831003948E12,
-    "page_info": {
-      "screen_name": "MyOrdersScreen"
-    },
-    "extra_data": {
-      "selected_tab": "全部",
-      "source": "profile"
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "order_detail",
-    "timestamp": 1.768831011538E12,
-    "extra_data": {
-      "from_page": "my_orders",
-      "order_id": "order_001",
-      "order_index": 4.0,
-      "is_first_order": false,
-      "order_status": "已送达",
-      "restaurant_name": "川香麻辣烫",
-      "order_items": [
-        "麻辣烫（大份）",
-        "可乐"
-      ]
-    }
-  },
-  {
-    "action": "enter_food_insurance_page",
-    "page": "food_insurance",
-    "timestamp": 1.768831013838E12,
-    "page_info": {
-      "title": "订单保障",
-      "screen_name": "FoodInsuranceScreen"
-    },
-    "extra_data": {
-      "order_id": "order_001",
-      "restaurant_name": "川香麻辣烫",
-      "source": "order_detail"
-    }
-  },
-  {
-    "action": "apply_food_insurance",
-    "page": "food_insurance",
-    "timestamp": 1768831016113,
-    "page_info": {
-      "title": "订单保障",
-      "screen_name": "FoodInsuranceScreen"
-    },
-    "extra_data": {
-      "order_id": "order_001",
-      "restaurant_name": "川香麻辣烫",
-      "apply_successfully": true
+      "price_min": 0,
+      "price_max": 30,
+      "keyword": "烤鸡"
     }
   }
 ]

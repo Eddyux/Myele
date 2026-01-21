@@ -1,4 +1,4 @@
-package com.example.myele
+package com.example.myele_sim
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
