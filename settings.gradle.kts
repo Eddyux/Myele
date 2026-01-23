@@ -39,5 +39,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "myele"
+rootProject.name = "eleme"
 include(":app")

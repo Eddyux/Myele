@@ -21,7 +21,7 @@
 
 ```
 app/src/main/
-├── java/com/example/myele/
+├── java/com/example/eleme/
 │   ├── data/              # 数据层 (Repository, CartManager)
 │   ├── model/             # 数据模型
 │   ├── navigation/        # 导航配置
@@ -191,7 +191,7 @@ app/src/main/
 1. **ActionLogger工具类**
    - 创建统一的操作日志记录器
    - 支持记录页面导航、搜索、筛选、排序、订单操作、设置变更、购物车操作、消息发送等
-   - 数据写入到`data/data/com.example.myele/files/messages.json`
+   - 数据写入到`data/data/com.example.eleme/files/messages.json`
    - 为自动化测试提供验证基础
 
 2. **检测脚本**

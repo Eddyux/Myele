@@ -8,7 +8,7 @@ def validate_addresses_page(result=None,device_id=None,backup_dir=None):
     cmd = ['adb']
     if device_id:
         cmd.extend(['-s', device_id])
-    cmd.extend(['exec-out', 'run-as', 'com.example.myele_sim', 'cat', 'files/messages.json'])
+    cmd.extend(['exec-out', 'run-as', 'com.example.eleme_sim', 'cat', 'files/messages.json'])
     subprocess.run(cmd, stdout=open(message_file_path, 'w'))
 
     try:
