@@ -35,7 +35,7 @@ fun PaymentSuccessScreen(
         com.example.eleme_sim.utils.ActionLogger.logCartAction(
             context = navController.context,
             action = "cart_checkout_success",
-            selectAll = true,
+            selectAll = com.example.eleme_sim.data.CartManager.wasSelectAll(),
             extraData = mapOf(
                 "entered_checkout" to true,
                 "payment_success" to true,

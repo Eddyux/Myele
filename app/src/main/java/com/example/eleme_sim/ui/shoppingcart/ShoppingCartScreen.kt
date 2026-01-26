@@ -219,8 +219,11 @@ fun ShoppingCartScreen(navController: NavController) {
                         }
                     }
                 }
-                CartManager.setCheckoutItems(selectedItems, selectAll)
-                navController.navigate(com.example.eleme_sim.navigation.Screen.Checkout.route)
+                // 只有在有选中商品时才允许结算
+                if (selectedItems.isNotEmpty()) {
+                    CartManager.setCheckoutItems(selectedItems, selectAll)
+                    navController.navigate(com.example.eleme_sim.navigation.Screen.Checkout.route)
+                }
             }
         )
     }

@@ -1,92 +1,30 @@
 [
   {
-    "action": "refresh_page",
-    "page": "home",
-    "timestamp": 1.769161733746E12,
-    "page_info": {
-      "screen_name": "HomeScreen"
-    },
-    "extra_data": {
-      "refresh_type": "pull_to_refresh"
-    }
-  },
-  {
-    "action": "refresh_page",
-    "page": "home",
-    "timestamp": 1.769162024586E12,
-    "page_info": {
-      "screen_name": "HomeScreen"
-    },
-    "extra_data": {
-      "refresh_type": "pull_to_refresh"
-    }
-  },
-  {
-    "action": "apply_filter",
-    "page": "takeout",
-    "timestamp": 1.769162029894E12,
-    "page_info": {},
-    "extra_data": {
-      "filters": [
-        "食无忧",
-        "跨天预订"
-      ]
-    }
-  },
-  {
     "action": "enter_checkout",
     "page": "checkout",
-    "timestamp": 1.769162032771E12,
+    "timestamp": 1.769399330421E12,
     "page_info": {
-      "total_amount": 16.0,
+      "total_amount": 32.0,
       "product_count": 1.0
-    }
-  },
-  {
-    "action": "select_scheduled_delivery",
-    "page": "checkout",
-    "timestamp": 1.769162079465E12,
-    "page_info": {
-      "delivery_date": "明日",
-      "delivery_time_slot": "11:00-11:20"
-    }
-  },
-  {
-    "action": "complete_order",
-    "page": "checkout",
-    "timestamp": 1.769162080879E12,
-    "page_info": {},
-    "extra_data": {
-      "from_page": "takeout",
-      "payment_success": true,
-      "delivery_address_name": "于骁",
-      "delivery_address_phone": "13800138001",
-      "delivery_address_street": "华中师范大学元宝山公寓二期",
-      "delivery_address_detail": "六栋",
-      "delivery_address_full": "华中师范大学元宝山公寓二期 六栋",
-      "delivery_address_yuwei": "门口左转第三间",
-      "delivery_type": "scheduled",
-      "delivery_date": "明日",
-      "delivery_time_slot": "11:00-11:20"
     }
   },
   {
     "action": "cart_checkout_success",
     "page": "cart",
-    "timestamp": 1.769162080916E12,
+    "timestamp": 1.769399331241E12,
     "extra_data": {
-      "select_all": true,
+      "select_all": false,
       "entered_checkout": true,
       "payment_success": true,
-      "order_id": "order_1769162080879",
-      "amount": 23.0,
+      "order_id": "order_1769399331197",
+      "amount": 39.0,
       "payment_method": "微信支付"
     }
   },
   {
     "action": "enter_orders_page",
     "page": "orders",
-    "timestamp": 1.769162086258E12,
+    "timestamp": 1.76939933449E12,
     "page_info": {
       "screen_name": "MyOrdersScreen"
     },
@@ -96,80 +34,31 @@
     }
   },
   {
-    "action": "navigate_to_store",
-    "page": "store_page",
-    "timestamp": 1.769162090656E12,
-    "page_info": {
-      "restaurant_name": "川香麻辣烫",
-      "restaurant_id": "rest_001"
-    },
-    "extra_data": {
-      "from_page": "my_orders"
-    }
-  },
-  {
     "action": "enter_checkout",
     "page": "checkout",
-    "timestamp": 1.769162092902E12,
+    "timestamp": 1.769399352023E12,
     "page_info": {
-      "total_amount": 28.0,
+      "total_amount": 32.0,
       "product_count": 1.0
-    }
-  },
-  {
-    "action": "change_delivery_address",
-    "page": "checkout",
-    "timestamp": 1.769162095366E12,
-    "page_info": {
-      "address_id": "addr_006",
-      "address_name": "余味",
-      "detailed_address": "613"
-    }
-  },
-  {
-    "action": "select_scheduled_delivery",
-    "page": "checkout",
-    "timestamp": 1.769162098256E12,
-    "page_info": {
-      "delivery_date": "明日",
-      "delivery_time_slot": "11:00-11:20"
-    }
-  },
-  {
-    "action": "complete_order",
-    "page": "checkout",
-    "timestamp": 1.769162098755E12,
-    "page_info": {},
-    "extra_data": {
-      "from_page": "takeout",
-      "payment_success": true,
-      "delivery_address_name": "余味",
-      "delivery_address_phone": "13022222222",
-      "delivery_address_street": "华中师范大学元宝山二期6栋",
-      "delivery_address_detail": "613",
-      "delivery_address_full": "华中师范大学元宝山二期6栋 613",
-      "delivery_type": "scheduled",
-      "delivery_date": "明日",
-      "delivery_time_slot": "11:00-11:20"
     }
   },
   {
     "action": "cart_checkout_success",
     "page": "cart",
-    "timestamp": 1.769162098788E12,
+    "timestamp": 1.76939935269E12,
     "extra_data": {
-      "select_all": true,
+      "select_all": false,
       "entered_checkout": true,
       "payment_success": true,
-      "order_id": "order_1769162098755",
-      "amount": 35.0,
+      "order_id": "order_1769399352654",
+      "amount": 39.0,
       "payment_method": "微信支付"
     }
   },
   {
     "action": "enter_orders_page",
     "page": "orders",
-    "timestamp": 1.769162101594E12,
+    "timestamp": 1.76939936317E12,
     "page_info": {
       "screen_name": "MyOrdersScreen"
     },
@@ -179,116 +68,25 @@
     }
   },
   {
-    "action": "enter_mybills_page",
-    "page": "mybills",
-    "timestamp": 1.769162107308E12,
+    "action": "enter_checkout",
+    "page": "checkout",
+    "timestamp": 1.769399371216E12,
     "page_info": {
-      "title": "我的账单",
-      "screen_name": "MyBillsScreen"
-    },
-    "extra_data": {
-      "selected_tab": "周账单",
-      "source": "profile"
+      "total_amount": 142.0,
+      "product_count": 4.0
     }
   },
   {
-    "action": "change_setting",
-    "page": "settings",
-    "timestamp": 1.769162770909E12,
+    "action": "cart_checkout_success",
+    "page": "cart",
+    "timestamp": 1769399375679,
     "extra_data": {
-      "setting_type": "免密支付",
-      "enabled": true,
-      "show_dialog": true
-    }
-  },
-  {
-    "action": "change_setting",
-    "page": "settings",
-    "timestamp": 1.769162786151E12,
-    "extra_data": {
-      "setting_type": "免密支付",
-      "enabled": false,
-      "show_dialog": true
-    }
-  },
-  {
-    "action": "navigate",
-    "page": "search",
-    "timestamp": 1.769162937562E12,
-    "extra_data": {
-      "from_page": "home"
-    }
-  },
-  {
-    "action": "perform_search",
-    "page": "home",
-    "timestamp": 1.769162940279E12,
-    "extra_data": {
-      "search_query": "烤鸡",
-      "search_triggered": true
-    }
-  },
-  {
-    "action": "apply_filter",
-    "page": "search_result",
-    "timestamp": 1.769162957242E12,
-    "page_info": {},
-    "extra_data": {
-      "filters": [
-        "价格区间:0-30"
-      ]
-    }
-  },
-  {
-    "action": "filter",
-    "page": "search_result",
-    "timestamp": 1.769162957244E12,
-    "extra_data": {
-      "price_min": 0.0,
-      "price_max": 30.0,
-      "keyword": "烤鸡"
-    }
-  },
-  {
-    "action": "apply_filter",
-    "page": "search_result",
-    "timestamp": 1.76916297204E12,
-    "page_info": {},
-    "extra_data": {
-      "filters": [
-        "价格区间:0-30"
-      ]
-    }
-  },
-  {
-    "action": "filter",
-    "page": "search_result",
-    "timestamp": 1.769162972042E12,
-    "extra_data": {
-      "price_min": 0.0,
-      "price_max": 30.0,
-      "keyword": "烤鸡"
-    }
-  },
-  {
-    "action": "apply_filter",
-    "page": "search_result",
-    "timestamp": 1.769162982946E12,
-    "page_info": {},
-    "extra_data": {
-      "filters": [
-        "价格区间:0-65"
-      ]
-    }
-  },
-  {
-    "action": "filter",
-    "page": "search_result",
-    "timestamp": 1769162982949,
-    "extra_data": {
-      "price_min": 0,
-      "price_max": 65,
-      "keyword": "烤鸡"
+      "select_all": true,
+      "entered_checkout": true,
+      "payment_success": true,
+      "order_id": "order_1769399375656",
+      "amount": 149.0,
+      "payment_method": "微信支付"
     }
   }
 ]
