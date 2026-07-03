@@ -1,16 +1,36 @@
 package com.example.eleme_sim.ui.myorders
 
+import android.content.Context
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.Recommend
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -19,22 +39,31 @@ import com.example.eleme_sim.model.Order
 import com.example.eleme_sim.model.OrderStatus
 import com.example.eleme_sim.navigation.Screen
 import com.example.eleme_sim.ui.components.ProductImage
+import com.example.eleme_sim.ui.components.RestaurantImage
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+
+private val OrdersCardColor = Color(0xFFFFFEFD)
+private val OrdersTextPrimary = Color(0xFF1D232B)
+private val OrdersTextSecondary = Color(0xFF99A1AD)
+private val OrdersTextMuted = Color(0xFFB7BEC8)
+private val OrdersAccent = Color(0xFF28B7F6)
+private val OrdersAccentSoft = Color(0xFFE9F9FF)
+private val OrdersWarning = Color(0xFFFF8A34)
+private val OrdersDanger = Color(0xFFFF6257)
 
 @Composable
 fun OrderCard(
     order: Order,
     orderIndex: Int,
     navController: NavController,
-    context: android.content.Context
+    context: Context
 ) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(horizontal = 14.dp, vertical = 9.dp)
             .clickable {
-                // 记录点击订单进入详情页
                 ActionLogger.logAction(
                     context = context,
                     action = "navigate",
@@ -51,268 +80,308 @@ fun OrderCard(
                 )
                 navController.navigate(Screen.OrderDetail.createRoute(order.orderId))
             },
-        shape = RoundedCornerShape(12.dp),
-        color = Color.White
+        shape = RoundedCornerShape(28.dp),
+        color = OrdersCardColor,
+        shadowElevation = 8.dp
     ) {
-        Column(modifier = Modifier.padding(16.dp)) {
-            // 店铺名称和订单状态
+        Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 16.dp)) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
                 Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.clickable {
-                        // 记录点击商家名称
-                        ActionLogger.logAction(
-                            context = context,
-                            action = "navigate_to_store",
-                            page = "store_page",
-                            pageInfo = mapOf(
-                                "restaurant_name" to order.restaurantName,
-                                "restaurant_id" to order.restaurantId
-                            ),
-                            extraData = mapOf(
-                                "from_page" to "my_orders"
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            ActionLogger.logAction(
+                                context = context,
+                                action = "navigate_to_store",
+                                page = "store_page",
+                                pageInfo = mapOf(
+                                    "restaurant_name" to order.restaurantName,
+                                    "restaurant_id" to order.restaurantId
+                                ),
+                                extraData = mapOf(
+                                    "from_page" to "my_orders"
+                                )
                             )
-                        )
-                        // 点击商家名称跳转到商家详情页
-                        navController.navigate(Screen.StorePage.createRoute(order.restaurantId))
-                    }
+                            navController.navigate(Screen.StorePage.createRoute(order.restaurantId))
+                        },
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = order.restaurantName,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
+                    RestaurantImage(
+                        restaurantName = order.restaurantName,
+                        size = 56.dp,
+                        cornerRadius = 18.dp
                     )
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text(
-                        text = ">",
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray
-                    )
+                    Spacer(modifier = Modifier.width(12.dp))
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = order.restaurantName,
+                            fontSize = 16.sp,
+                            lineHeight = 21.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = OrdersTextPrimary,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
                 }
 
-                Text(
-                    text = getOrderStatusText(order.status),
-                    fontSize = 14.sp,
-                    color = when (order.status) {
-                        OrderStatus.COMPLETED -> Color.Gray
-                        OrderStatus.CANCELLED -> Color.Red
-                        OrderStatus.DELIVERING -> Color(0xFF00BFFF)
-                        else -> Color(0xFFFF6B00)
-                    }
-                )
+                Spacer(modifier = Modifier.width(12.dp))
+
+                Column(horizontalAlignment = Alignment.End) {
+                    Text(
+                        text = getOrderStatusText(order.status),
+                        fontSize = 14.sp,
+                        color = when (order.status) {
+                            OrderStatus.COMPLETED -> OrdersTextSecondary
+                            OrderStatus.CANCELLED -> OrdersDanger
+                            OrderStatus.DELIVERING -> OrdersAccent
+                            else -> OrdersWarning
+                        },
+                        fontWeight = FontWeight.Medium
+                    )
+                }
             }
 
-            Divider(modifier = Modifier.padding(vertical = 12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
 
-            // 商品列表
-            order.items.take(3).forEach { item ->
+            val displayItems = order.items.take(3)
+            displayItems.forEachIndexed { index, item ->
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Row(modifier = Modifier.weight(1f)) {
-                        // 商品图片
-                        ProductImage(
-                            productId = item.productId,
-                            productName = item.productName,
-                            restaurantName = order.restaurantName,
-                            size = 48.dp,
-                            cornerRadius = 4.dp
+                    ProductImage(
+                        productId = item.productId,
+                        productName = item.productName,
+                        restaurantName = order.restaurantName,
+                        size = 108.dp,
+                        cornerRadius = 20.dp
+                    )
+
+                    Spacer(modifier = Modifier.width(14.dp))
+
+                    Column(
+                        modifier = Modifier.weight(1f),
+                        verticalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = item.productName,
+                            fontSize = 15.sp,
+                            lineHeight = 21.sp,
+                            fontWeight = FontWeight.Medium,
+                            color = OrdersTextPrimary,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
                         )
 
-                        Spacer(modifier = Modifier.width(8.dp))
+                        Spacer(modifier = Modifier.height(6.dp))
 
-                        Column {
+                        if (!item.specifications.isNullOrBlank()) {
                             Text(
-                                text = item.productName,
-                                fontSize = 14.sp,
-                                maxLines = 1
+                                text = item.specifications,
+                                fontSize = 13.sp,
+                                color = OrdersTextSecondary
                             )
-                            if (!item.specifications.isNullOrBlank()) {
-                                Text(
-                                    text = item.specifications,
-                                    fontSize = 12.sp,
-                                    color = Color.Gray
+                        }
+
+                        if (order.canApplyInsurance) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                OrderTag(
+                                    text = "食品安全理赔",
+                                    textColor = OrdersAccent,
+                                    backgroundColor = OrdersAccentSoft
                                 )
+                                if (order.deliveryTime != null) {
+                                    OrderTag(
+                                        text = "慢必赔",
+                                        textColor = OrdersWarning,
+                                        backgroundColor = Color(0xFFFFF3E8)
+                                    )
+                                }
                             }
                         }
                     }
 
+                    Spacer(modifier = Modifier.width(12.dp))
+
+                    Column(
+                        horizontalAlignment = Alignment.End,
+                        verticalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        Text(
+                            text = "x${item.quantity}",
+                            fontSize = 13.sp,
+                            color = OrdersTextSecondary
+                        )
+                    }
+                }
+
+                if (index < displayItems.size - 1) {
+                    Spacer(modifier = Modifier.height(14.dp))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                Text(
+                    text = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(order.orderTime),
+                    fontSize = 12.sp,
+                    color = OrdersTextMuted
+                )
+                Row(verticalAlignment = Alignment.CenterVertically) {
                     Text(
-                        text = "x${item.quantity}",
-                        fontSize = 14.sp,
-                        color = Color.Gray
+                        text = "实付",
+                        fontSize = 13.sp,
+                        color = Color(0xFF666666)
+                    )
+                    Text(
+                        text = " ¥${String.format("%.2f", order.actualAmount)}",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = OrdersTextPrimary
                     )
                 }
             }
 
-            // 特殊标签（食品安全理赔等）
-            if (order.canApplyInsurance) {
+            if (order.status == OrderStatus.COMPLETED) {
+                HorizontalDivider(
+                    modifier = Modifier.padding(top = 16.dp, bottom = 14.dp),
+                    thickness = 1.dp,
+                    color = Color(0xFFF1F3F6)
+                )
+
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Surface(
-                        shape = RoundedCornerShape(4.dp),
-                        color = Color(0xFFE3F2FD)
+                    Icon(
+                        imageVector = Icons.Default.Recommend,
+                        contentDescription = null,
+                        tint = OrdersWarning,
+                        modifier = Modifier.size(18.dp)
+                    )
+                    Spacer(modifier = Modifier.width(6.dp))
+                    Text(
+                        text = "更多推荐",
+                        fontSize = 13.sp,
+                        color = OrdersTextSecondary,
+                        fontWeight = FontWeight.Medium
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(
+                        text = "${order.restaurantName}（中南店）",
+                        modifier = Modifier.weight(1f),
+                        fontSize = 13.sp,
+                        color = OrdersTextPrimary,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                    Text(
+                        text = "去看看",
+                        fontSize = 13.sp,
+                        color = OrdersTextSecondary
+                    )
+                    Icon(
+                        imageVector = Icons.Default.KeyboardArrowRight,
+                        contentDescription = null,
+                        modifier = Modifier.size(18.dp),
+                        tint = OrdersTextSecondary
+                    )
+                }
+            }
+
+            when {
+                order.status == OrderStatus.COMPLETED && !order.hasReview -> {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "食品安全理赔",
-                            fontSize = 11.sp,
-                            color = Color(0xFF00BFFF),
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
-                    }
-                    if (order.deliveryTime != null) {
-                        Surface(
-                            shape = RoundedCornerShape(4.dp),
-                            color = Color(0xFFFFF3E0)
+                        OutlinedButton(
+                            onClick = { },
+                            shape = RoundedCornerShape(999.dp),
+                            colors = ButtonDefaults.outlinedButtonColors(
+                                containerColor = Color.White,
+                                contentColor = Color(0xFF707985)
+                            ),
+                            border = BorderStroke(1.dp, Color(0xFFDCE2E9))
                         ) {
-                            Text(
-                                text = "慢必赔",
-                                fontSize = 11.sp,
-                                color = Color(0xFFFF6B00),
-                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                            )
+                            Text("评价", fontSize = 14.sp)
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Button(
+                            onClick = { },
+                            shape = RoundedCornerShape(999.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.White,
+                                contentColor = OrdersAccent
+                            ),
+                            border = BorderStroke(1.dp, OrdersAccent)
+                        ) {
+                            Text("再来一单", fontSize = 14.sp, fontWeight = FontWeight.Bold)
+                        }
+                    }
+                }
+
+                order.status == OrderStatus.DELIVERING -> {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        OrderTag(
+                            text = "满1送2元",
+                            textColor = OrdersDanger,
+                            backgroundColor = Color(0xFFFFF0EE)
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Button(
+                            onClick = { },
+                            shape = RoundedCornerShape(999.dp),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = Color.White,
+                                contentColor = OrdersAccent
+                            ),
+                            border = BorderStroke(1.dp, OrdersAccent)
+                        ) {
+                            Text("再来一单", fontSize = 14.sp, fontWeight = FontWeight.Bold)
                         }
                     }
                 }
             }
-
-            // 下单时间和实付价格
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(order.orderTime),
-                    fontSize = 12.sp,
-                    color = Color.Gray
-                )
-                Text(
-                    text = "实付 ¥${String.format("%.2f", order.actualAmount)}",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black
-                )
-            }
-
-            // 订单操作按钮
-            if (order.status == OrderStatus.COMPLETED && !order.hasReview) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 12.dp),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    OutlinedButton(
-                        onClick = { },
-                        shape = RoundedCornerShape(20.dp),
-                        colors = ButtonDefaults.outlinedButtonColors(
-                            contentColor = Color.Gray
-                        )
-                    ) {
-                        Text("评价", fontSize = 13.sp)
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Button(
-                        onClick = { },
-                        shape = RoundedCornerShape(20.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF00BFFF)
-                        )
-                    ) {
-                        Text("再来一单", fontSize = 13.sp)
-                    }
-                }
-            } else if (order.status == OrderStatus.DELIVERING) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp),
-                    horizontalArrangement = Arrangement.End
-                ) {
-                    Surface(
-                        shape = RoundedCornerShape(4.dp),
-                        color = Color(0xFFFFF3E0)
-                    ) {
-                        Text(
-                            text = "满1送2元",
-                            fontSize = 11.sp,
-                            color = Color(0xFFFF6B00),
-                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Button(
-                        onClick = { },
-                        shape = RoundedCornerShape(20.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF00BFFF)
-                        ),
-                        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 4.dp)
-                    ) {
-                        Text("再来一单", fontSize = 13.sp)
-                    }
-                }
-            }
-
-            // 推荐商家
-            if (order.status == OrderStatus.COMPLETED) {
-                Surface(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 12.dp),
-                    shape = RoundedCornerShape(8.dp),
-                    color = Color(0xFFF5F5F5)
-                ) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Recommend,
-                            contentDescription = null,
-                            tint = Color(0xFFFF6B00),
-                            modifier = Modifier.size(20.dp)
-                        )
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Text(
-                            text = "更多推荐",
-                            fontSize = 13.sp,
-                            color = Color.Gray
-                        )
-                        Spacer(modifier = Modifier.weight(1f))
-                        Text(
-                            text = "${order.restaurantName}（中南店）",
-                            fontSize = 13.sp,
-                            color = Color.Black
-                        )
-                        Spacer(modifier = Modifier.width(4.dp))
-                        Text(
-                            text = "去看看 >",
-                            fontSize = 13.sp,
-                            color = Color.Gray
-                        )
-                    }
-                }
-            }
         }
+    }
+}
+
+@Composable
+private fun OrderTag(
+    text: String,
+    textColor: Color,
+    backgroundColor: Color
+) {
+    Surface(
+        shape = RoundedCornerShape(999.dp),
+        color = backgroundColor
+    ) {
+        Text(
+            text = text,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+            fontSize = 12.sp,
+            color = textColor,
+            fontWeight = FontWeight.Medium
+        )
     }
 }
 

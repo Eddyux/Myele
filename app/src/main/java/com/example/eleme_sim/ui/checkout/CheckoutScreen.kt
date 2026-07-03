@@ -1,77 +1,83 @@
 package com.example.eleme_sim.ui.checkout
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.runtime.*
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.example.eleme_sim.data.CartManager
+import com.example.eleme_sim.data.DataRepository
+import com.example.eleme_sim.model.Coupon
+import com.example.eleme_sim.model.CouponStatus
+import com.example.eleme_sim.navigation.Screen
+import com.example.eleme_sim.utils.ActionLogger
+import com.example.eleme_sim.data.OrderManager
+import com.example.eleme_sim.model.Order
+import com.example.eleme_sim.model.OrderItem
+import com.example.eleme_sim.model.OrderStatus
+import java.util.Date
 
 @Composable
-fun CheckoutScreen(navController: NavController, repository: com.example.eleme_sim.data.DataRepository) {
+fun CheckoutScreen(navController: NavController, repository: DataRepository) {
     val context = androidx.compose.ui.platform.LocalContext.current
     var deliveryMethod by remember { mutableStateOf("外卖配送") }
-    var deliveryTimeType by remember { mutableStateOf("立即送出") } // "立即送出" or "预约配送"
+    var deliveryTimeType by remember { mutableStateOf("立即送出") }
     var selectedDeliveryDate by remember { mutableStateOf("今日") }
     var selectedDeliveryTimeSlot by remember { mutableStateOf("") }
     var showDeliveryTimeDialog by remember { mutableStateOf(false) }
     var showCouponDialog by remember { mutableStateOf(false) }
-    var selectedCoupon by remember { mutableStateOf<com.example.eleme_sim.model.Coupon?>(null) }
+    var selectedCoupon by remember { mutableStateOf<Coupon?>(null) }
     var paymentMethod by remember { mutableStateOf("微信支付") }
     var showPaymentDialog by remember { mutableStateOf(false) }
     var showAddressDialog by remember { mutableStateOf(false) }
 
-    // Get addresses and select default or first
     val addresses = remember { repository.getAddresses() }
     var selectedAddress by remember { mutableStateOf(addresses.firstOrNull()) }
 
-    // Get checkout products from CartManager
     val checkoutProducts = remember { CartManager.getCheckoutProducts() }
     val subtotal = remember { CartManager.getSubtotal() }
+    val productsByRestaurant = remember { checkoutProducts.groupBy { it.first.restaurantName } }
+    val restaurantIds = remember { checkoutProducts.map { it.first.restaurantId }.distinct() }
 
-    // Group products by restaurant
-    val productsByRestaurant = remember {
-        checkoutProducts.groupBy { it.first.restaurantName }
-    }
-
-    // Get restaurant IDs from products
-    val restaurantIds = remember {
-        checkoutProducts.map { it.first.restaurantId }.distinct()
-    }
-
-    // Load available coupons
     val allCoupons = remember { repository.getCoupons() }
-    val deliveryFee = 5.0 // 配送费
+    val deliveryFee = 5.0
     val availableCoupons = remember(subtotal, restaurantIds) {
         allCoupons.filter { coupon ->
-            coupon.status == com.example.eleme_sim.model.CouponStatus.AVAILABLE &&
-            (coupon.applicableRestaurants.isEmpty() ||
-             restaurantIds.any { it in coupon.applicableRestaurants }) &&
-            (coupon.minOrderAmount == null || subtotal >= (coupon.minOrderAmount ?: 0.0))
+            coupon.status == CouponStatus.AVAILABLE &&
+                (coupon.applicableRestaurants.isEmpty() ||
+                    restaurantIds.any { it in coupon.applicableRestaurants }) &&
+                (coupon.minOrderAmount == null || subtotal >= (coupon.minOrderAmount ?: 0.0))
         }.sortedByDescending {
             it.calculateDiscount(subtotal, deliveryFee)
         }
     }
 
-    // Calculate discount
     val couponDiscount = selectedCoupon?.calculateDiscount(subtotal, deliveryFee) ?: 0.0
 
-    // 记录进入结算页面
     LaunchedEffect(Unit) {
         val pageInfoMap = mutableMapOf<String, Any>(
             "total_amount" to subtotal,
             "product_count" to checkoutProducts.size
         )
 
-        // 如果有searchKey,也记录下来
         val searchKey = CartManager.getSearchKeyword()
         if (searchKey != null) {
             pageInfoMap["search_query"] = searchKey
         }
 
-        com.example.eleme_sim.utils.ActionLogger.logAction(
+        ActionLogger.logAction(
             context = context,
             action = "enter_checkout",
             page = "checkout",
@@ -82,17 +88,15 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
+            .background(Color(0xFFF3F5F7))
     ) {
-        // 顶部标题栏
         TopBar(onBackClicked = { navController.popBackStack() })
 
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(1f)
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 10.dp, bottom = 20.dp)
         ) {
-            // 配送方式选择
             item {
                 DeliveryMethodSection(
                     selectedMethod = deliveryMethod,
@@ -100,7 +104,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                 )
             }
 
-            // 收货地址
             item {
                 AddressSection(
                     selectedAddress = selectedAddress,
@@ -108,7 +111,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                 )
             }
 
-            // 配送时间
             item {
                 DeliveryTimeSection(
                     selectedTimeType = deliveryTimeType,
@@ -119,23 +121,17 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                         selectedDeliveryDate = "今日"
                         selectedDeliveryTimeSlot = ""
                     },
-                    onScheduleClicked = {
-                        showDeliveryTimeDialog = true
-                    }
+                    onScheduleClicked = { showDeliveryTimeDialog = true }
                 )
             }
 
-            // 订单商品 - 按商家分组显示
-            productsByRestaurant.forEach { (restaurantName, products) ->
-                item {
-                    OrderItemsSection(
-                        restaurantName = restaurantName,
-                        products = products
-                    )
-                }
+            items(productsByRestaurant.toList(), key = { it.first }) { (restaurantName, products) ->
+                OrderItemsSection(
+                    restaurantName = restaurantName,
+                    products = products
+                )
             }
 
-            // 优惠券选择
             item {
                 CouponSelectionSection(
                     selectedCoupon = selectedCoupon,
@@ -143,7 +139,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                 )
             }
 
-            // 订单费用明细
             item {
                 OrderFeesSection(
                     subtotal = subtotal,
@@ -151,12 +146,10 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                 )
             }
 
-            // 备注和餐具
             item {
                 OrderOptionsSection()
             }
 
-            // 支付方式
             item {
                 PaymentMethodSection(
                     selectedMethod = paymentMethod,
@@ -165,37 +158,30 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
             }
         }
 
-        // 底部提交订单
         BottomSubmitBar(
             total = subtotal + 2.0 + 5.0 - couponDiscount,
             onSubmit = {
-                // 创建订单并导航到支付成功页面
                 val orderId = "order_${System.currentTimeMillis()}"
                 val totalAmount = subtotal + 2.0 + 5.0 - couponDiscount
 
-                // 检查是否从搜索进入(用于任务14检测)
                 val searchKey = CartManager.getSearchKeyword()
                 val hasKFCProducts = checkoutProducts.any { it.first.restaurantName.contains("肯德基") }
 
-                // 只有从搜索页面进入肯德基商家时才记录
                 if (hasKFCProducts && searchKey != null) {
-                    // 检查是否使用了优惠券
                     val usedCoupon = selectedCoupon != null
-                    // 检查是否选择了最大的优惠券(第一个就是最大的,因为已排序)
                     val selectedMaxCoupon = if (availableCoupons.isNotEmpty() && selectedCoupon != null) {
                         selectedCoupon == availableCoupons.first()
                     } else {
                         false
                     }
 
-                    // 记录肯德基下单流程(用于任务14检测)
-                    com.example.eleme_sim.utils.ActionLogger.logAction(
+                    ActionLogger.logAction(
                         context = context,
                         action = "complete_order",
                         page = "checkout",
                         pageInfo = mapOf("restaurant" to "肯德基"),
                         extraData = mapOf(
-                            "search_query" to searchKey,  // 使用实际的搜索关键词
+                            "search_query" to searchKey,
                             "added_to_cart" to true,
                             "used_coupon" to usedCoupon,
                             "selected_max_coupon" to selectedMaxCoupon,
@@ -204,8 +190,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                     )
                 }
 
-                // 记录通用的完成订单(用于任务19等)
-                // 注意:如果已经记录了肯德基订单,则不重复记录通用订单
                 val fromPage = CartManager.getFromPage()
                 if (fromPage != null && !(hasKFCProducts && searchKey != null)) {
                     val extraDataMap = mutableMapOf<String, Any>(
@@ -213,7 +197,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                         "payment_success" to true
                     )
 
-                    // 记录收货地址信息
                     selectedAddress?.let { address ->
                         extraDataMap["delivery_address_name"] = address.receiverName
                         extraDataMap["delivery_address_phone"] = address.receiverPhone
@@ -223,7 +206,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                         address.yuwei?.let { extraDataMap["delivery_address_yuwei"] = it }
                     }
 
-                    // 如果是预约配送,记录预约信息
                     if (deliveryTimeType == "预约配送") {
                         extraDataMap["delivery_type"] = "scheduled"
                         extraDataMap["delivery_date"] = selectedDeliveryDate
@@ -232,7 +214,7 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                         extraDataMap["delivery_type"] = "immediate"
                     }
 
-                    com.example.eleme_sim.utils.ActionLogger.logAction(
+                    ActionLogger.logAction(
                         context = context,
                         action = "complete_order",
                         page = "checkout",
@@ -241,11 +223,9 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                     )
                 }
 
-                // 创建订单对象并保存到OrderManager
                 selectedAddress?.let { address ->
-                    // 创建订单项列表
                     val orderItems = checkoutProducts.map { (product, quantity) ->
-                        com.example.eleme_sim.model.OrderItem(
+                        OrderItem(
                             itemId = "item_${System.currentTimeMillis()}_${product.productId}",
                             productName = product.name,
                             productId = product.productId,
@@ -255,15 +235,14 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                         )
                     }
 
-                    // 获取餐厅信息(从第一个商品)
                     val firstProduct = checkoutProducts.firstOrNull()?.first
                     if (firstProduct != null) {
-                        val order = com.example.eleme_sim.model.Order(
+                        val order = Order(
                             orderId = orderId,
                             restaurantId = firstProduct.restaurantId,
                             restaurantName = firstProduct.restaurantName,
-                            status = com.example.eleme_sim.model.OrderStatus.PENDING_ACCEPT,
-                            orderTime = java.util.Date(),
+                            status = OrderStatus.PENDING_ACCEPT,
+                            orderTime = Date(),
                             items = orderItems,
                             totalAmount = subtotal,
                             discountAmount = couponDiscount,
@@ -275,14 +254,12 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                             canCancel = true
                         )
 
-                        // 添加到订单管理器
-                        com.example.eleme_sim.data.OrderManager.addOrder(order)
+                        OrderManager.addOrder(order)
                     }
                 }
 
-                // 导航到支付成功页面
                 navController.navigate(
-                    com.example.eleme_sim.navigation.Screen.PaymentSuccess.createRoute(
+                    Screen.PaymentSuccess.createRoute(
                         orderId = orderId,
                         amount = totalAmount,
                         paymentMethod = paymentMethod
@@ -292,7 +269,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
         )
     }
 
-    // 优惠券选择弹窗
     if (showCouponDialog) {
         CouponSelectionDialog(
             availableCoupons = availableCoupons,
@@ -306,7 +282,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
         )
     }
 
-    // 支付方式选择弹窗
     if (showPaymentDialog) {
         PaymentMethodDialog(
             selectedMethod = paymentMethod,
@@ -318,7 +293,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
         )
     }
 
-    // 地址选择弹窗
     if (showAddressDialog) {
         AddressSelectionDialog(
             addresses = addresses,
@@ -326,8 +300,7 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
             onAddressSelected = { address ->
                 selectedAddress = address
                 showAddressDialog = false
-                // 记录切换地址
-                com.example.eleme_sim.utils.ActionLogger.logAction(
+                ActionLogger.logAction(
                     context = context,
                     action = "change_delivery_address",
                     page = "checkout",
@@ -342,7 +315,6 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
         )
     }
 
-    // 配送时间选择弹窗
     if (showDeliveryTimeDialog) {
         DeliveryTimeSelectionDialog(
             onTimeSelected = { date, timeSlot ->
@@ -351,8 +323,7 @@ fun CheckoutScreen(navController: NavController, repository: com.example.eleme_s
                 selectedDeliveryTimeSlot = timeSlot
                 showDeliveryTimeDialog = false
 
-                // 记录预约配送
-                com.example.eleme_sim.utils.ActionLogger.logAction(
+                ActionLogger.logAction(
                     context = context,
                     action = "select_scheduled_delivery",
                     page = "checkout",

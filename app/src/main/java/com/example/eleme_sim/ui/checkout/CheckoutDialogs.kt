@@ -2,13 +2,40 @@ package com.example.eleme_sim.ui.checkout
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,18 +44,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.example.eleme_sim.model.Address
+import com.example.eleme_sim.model.Coupon
 
 @Composable
 fun CouponSelectionDialog(
-    availableCoupons: List<com.example.eleme_sim.model.Coupon>,
-    selectedCoupon: com.example.eleme_sim.model.Coupon?,
+    availableCoupons: List<Coupon>,
+    selectedCoupon: Coupon?,
     subtotal: Double,
-    onCouponSelected: (com.example.eleme_sim.model.Coupon?) -> Unit,
+    onCouponSelected: (Coupon?) -> Unit,
     onDismiss: () -> Unit
 ) {
-    androidx.compose.material3.AlertDialog(
+    AlertDialog(
         onDismissRequest = onDismiss,
-        containerColor = Color(0xFFF5F5F5),
+        containerColor = Color(0xFFF7FAFC),
         title = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -39,43 +68,41 @@ fun CouponSelectionDialog(
                     Icon(Icons.Default.ArrowBack, contentDescription = "返回")
                 }
                 Text("选择饿了么红包", fontSize = 18.sp, fontWeight = FontWeight.Bold)
-                Text("兑换码", fontSize = 14.sp, color = Color(0xFF00BFFF))
+                Text("兑换码", fontSize = 14.sp, color = Color(0xFF16B8F3))
             }
         },
         text = {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(max = 500.dp)
+                    .heightIn(max = 500.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 item {
                     Text(
-                        "饿了么红包  可选1张",
+                        text = "饿了么红包  可选1张",
                         fontSize = 14.sp,
-                        color = Color.Gray,
-                        modifier = Modifier.padding(vertical = 8.dp)
+                        color = Color(0xFF98A2B3),
+                        modifier = Modifier.padding(vertical = 4.dp)
                     )
                 }
 
-                items(availableCoupons.size) { index ->
-                    val coupon = availableCoupons[index]
+                items(availableCoupons) { coupon ->
                     CouponItem(
                         coupon = coupon,
                         isSelected = coupon.couponId == selectedCoupon?.couponId,
                         subtotal = subtotal,
-                        isRecommended = index == 0,
+                        isRecommended = coupon == availableCoupons.firstOrNull(),
                         onSelect = { onCouponSelected(coupon) }
                     )
-                    Spacer(modifier = Modifier.height(12.dp))
                 }
 
-                // 不想爆涨选项
                 item {
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onCouponSelected(null) },
-                        shape = RoundedCornerShape(8.dp),
+                        shape = RoundedCornerShape(16.dp),
                         color = Color.White
                     ) {
                         Row(
@@ -85,7 +112,7 @@ fun CouponSelectionDialog(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text("不想爆涨?可直接使用", fontSize = 14.sp, color = Color.Gray)
+                            Text("不想爆涨?可直接使用", fontSize = 14.sp, color = Color(0xFF667085))
                             RadioButton(
                                 selected = selectedCoupon == null,
                                 onClick = { onCouponSelected(null) }
@@ -97,8 +124,9 @@ fun CouponSelectionDialog(
         },
         confirmButton = {
             Button(
-                onClick = { onDismiss() },
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
+                onClick = onDismiss,
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF16B8F3)),
+                shape = RoundedCornerShape(18.dp),
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(
@@ -108,7 +136,8 @@ fun CouponSelectionDialog(
                     } else {
                         "确定"
                     },
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
@@ -121,22 +150,20 @@ fun PaymentMethodDialog(
     onMethodSelected: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
-    androidx.compose.material3.AlertDialog(
+    AlertDialog(
         onDismissRequest = onDismiss,
         containerColor = Color.White,
         title = {
             Text("选择支付方式", fontSize = 18.sp, fontWeight = FontWeight.Bold)
         },
         text = {
-            Column(
-                modifier = Modifier.fillMaxWidth()
-            ) {
+            Column(modifier = Modifier.fillMaxWidth()) {
                 listOf("微信支付", "支付宝").forEach { method ->
                     Surface(
                         modifier = Modifier
                             .fillMaxWidth()
                             .clickable { onMethodSelected(method) },
-                        color = if (selectedMethod == method) Color(0xFFF0F8FF) else Color.White
+                        color = if (selectedMethod == method) Color(0xFFF0F9FF) else Color.White
                     ) {
                         Row(
                             modifier = Modifier
@@ -145,22 +172,18 @@ fun PaymentMethodDialog(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Text(
-                                text = method,
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
+                            Text(text = method, fontSize = 16.sp, color = Color.Black)
                             if (selectedMethod == method) {
                                 Icon(
                                     imageVector = Icons.Default.Check,
                                     contentDescription = null,
-                                    tint = Color(0xFF00BFFF)
+                                    tint = Color(0xFF16B8F3)
                                 )
                             }
                         }
                     }
                     if (method != "支付宝") {
-                        Divider()
+                        HorizontalDivider(color = Color(0xFFF0F2F5))
                     }
                 }
             }
@@ -168,7 +191,7 @@ fun PaymentMethodDialog(
         confirmButton = {
             Button(
                 onClick = onDismiss,
-                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF))
+                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF16B8F3))
             ) {
                 Text("确定")
             }
@@ -185,7 +208,6 @@ fun DeliveryTimeSelectionDialog(
     var selectedDate by remember { mutableStateOf("今日(周二)") }
     var selectedTimeSlot by remember { mutableStateOf("") }
 
-    // 生成日期列表
     val dateList = remember {
         listOf(
             "今日(周二)",
@@ -198,10 +220,8 @@ fun DeliveryTimeSelectionDialog(
         )
     }
 
-    // 生成所有时间段列表(今日+明日及之后的时间段)
     val allTimeSlots = remember {
         listOf(
-            // 今日时间段
             "今日" to listOf(
                 "尽快送达" to "1元配送费",
                 "22:25-22:45" to "1元配送费",
@@ -209,7 +229,6 @@ fun DeliveryTimeSelectionDialog(
                 "23:05-23:25" to "1元配送费",
                 "23:25-23:45" to "1元配送费"
             ),
-            // 明日及以后的时间段
             "明日" to listOf(
                 "07:40-08:00" to "0元配送费",
                 "08:00-08:20" to "0元配送费",
@@ -244,7 +263,6 @@ fun DeliveryTimeSelectionDialog(
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            // 标题栏
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -267,27 +285,24 @@ fun DeliveryTimeSelectionDialog(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // 左右分栏布局
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(400.dp)
             ) {
-                // 左侧:日期列表
                 LazyColumn(
                     modifier = Modifier
                         .weight(0.35f)
                         .fillMaxHeight()
-                        .background(Color(0xFFF8F8F8)),
+                        .background(Color(0xFFF7F8FA)),
                     verticalArrangement = Arrangement.spacedBy(1.dp)
                 ) {
-                    items(dateList.size) { index ->
-                        val date = dateList[index]
+                    items(dateList) { date ->
                         Surface(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable { selectedDate = date },
-                            color = if (selectedDate == date) Color.White else Color(0xFFF8F8F8)
+                            color = if (selectedDate == date) Color.White else Color(0xFFF7F8FA)
                         ) {
                             Text(
                                 text = date,
@@ -301,7 +316,6 @@ fun DeliveryTimeSelectionDialog(
 
                 Spacer(modifier = Modifier.width(1.dp))
 
-                // 右侧:时间段列表
                 LazyColumn(
                     modifier = Modifier
                         .weight(0.65f)
@@ -310,12 +324,11 @@ fun DeliveryTimeSelectionDialog(
                         .padding(horizontal = 12.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    item {
-                        Spacer(modifier = Modifier.height(8.dp))
-                    }
+                    item { Spacer(modifier = Modifier.height(8.dp)) }
 
-                    items(timeSlots.size) { index ->
-                        val (timeSlot, description) = timeSlots[index]
+                    items(timeSlots) { pair ->
+                        val (timeSlot, description) = pair
+                        val index = timeSlots.indexOf(pair)
                         val displayText = when {
                             timeSlot == "尽快送达" -> "今日 $timeSlot"
                             selectedDate.contains("今日") && index < 5 -> "今日 $timeSlot"
@@ -328,27 +341,21 @@ fun DeliveryTimeSelectionDialog(
                                 .fillMaxWidth()
                                 .clickable {
                                     selectedTimeSlot = timeSlot
-
-                                    // 判断实际是今日还是明日的时间段
                                     val isToday = selectedDate.contains("今日") && index < 5
                                     val isTomorrow = selectedDate.contains("今日") && index >= 5
-
-                                    // 根据选择的时间段自动切换左侧日期
                                     if (isTomorrow) {
                                         selectedDate = "明日(周三)"
                                     }
-
-                                    // 确定实际日期
                                     val actualDate = when {
                                         isToday -> "今日"
                                         isTomorrow -> "明日"
                                         selectedDate.contains("明日") -> "明日"
                                         else -> selectedDate.take(5)
                                     }
-
                                     onTimeSelected(actualDate, timeSlot)
                                 },
-                            color = if (selectedTimeSlot == timeSlot) Color(0xFFF0F8FF) else Color.White
+                            shape = RoundedCornerShape(14.dp),
+                            color = if (selectedTimeSlot == timeSlot) Color(0xFFF0F9FF) else Color.White
                         ) {
                             Row(
                                 modifier = Modifier
@@ -375,17 +382,14 @@ fun DeliveryTimeSelectionDialog(
                                     Icon(
                                         imageVector = Icons.Default.Check,
                                         contentDescription = null,
-                                        tint = Color(0xFF00BFFF),
-                                        modifier = Modifier.size(20.dp)
+                                        tint = Color(0xFF16B8F3)
                                     )
                                 }
                             }
                         }
                     }
 
-                    item {
-                        Spacer(modifier = Modifier.height(8.dp))
-                    }
+                    item { Spacer(modifier = Modifier.height(8.dp)) }
                 }
             }
         }
@@ -394,9 +398,9 @@ fun DeliveryTimeSelectionDialog(
 
 @Composable
 fun AddressSelectionDialog(
-    addresses: List<com.example.eleme_sim.model.Address>,
-    selectedAddress: com.example.eleme_sim.model.Address?,
-    onAddressSelected: (com.example.eleme_sim.model.Address) -> Unit,
+    addresses: List<Address>,
+    selectedAddress: Address?,
+    onAddressSelected: (Address) -> Unit,
     onDismiss: () -> Unit
 ) {
     Dialog(
@@ -407,12 +411,10 @@ fun AddressSelectionDialog(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 24.dp),
-            shape = RoundedCornerShape(16.dp),
+            shape = RoundedCornerShape(18.dp),
             color = Color.White
         ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
-            ) {
+            Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = "选择收货地址",
                     fontSize = 18.sp,
@@ -423,18 +425,20 @@ fun AddressSelectionDialog(
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .heightIn(max = 400.dp)
+                        .heightIn(max = 400.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    items(addresses.size) { index ->
-                        val address = addresses[index]
+                    items(addresses) { address ->
                         Surface(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(vertical = 4.dp)
                                 .clickable { onAddressSelected(address) },
-                            shape = RoundedCornerShape(8.dp),
-                            color = if (address.addressId == selectedAddress?.addressId)
-                                Color(0xFFE3F2FD) else Color(0xFFF5F5F5)
+                            shape = RoundedCornerShape(12.dp),
+                            color = if (address.addressId == selectedAddress?.addressId) {
+                                Color(0xFFEAF8FF)
+                            } else {
+                                Color(0xFFF7F8FA)
+                            }
                         ) {
                             Row(
                                 modifier = Modifier
@@ -468,8 +472,7 @@ fun AddressSelectionDialog(
                                     Icon(
                                         imageVector = Icons.Default.CheckCircle,
                                         contentDescription = null,
-                                        tint = Color(0xFF00BFFF),
-                                        modifier = Modifier.size(24.dp)
+                                        tint = Color(0xFF16B8F3)
                                     )
                                 }
                             }
@@ -482,8 +485,8 @@ fun AddressSelectionDialog(
                 Button(
                     onClick = onDismiss,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00BFFF)),
-                    shape = RoundedCornerShape(8.dp)
+                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF16B8F3)),
+                    shape = RoundedCornerShape(12.dp)
                 ) {
                     Text("取消", fontSize = 16.sp)
                 }

@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.eleme_sim.ui.components.RiderAvatar
+import com.example.eleme_sim.ui.components.UserAvatar
 
 data class ChatMessage(
     val id: String,
@@ -159,7 +160,7 @@ fun MessageDetailScreen(
                     horizontalArrangement = Arrangement.Start,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RiderAvatar(size = 60.dp)
+                    RiderAvatar(size = 56.dp)
                     Spacer(modifier = Modifier.width(12.dp))
                     Column {
                         Text(
@@ -206,7 +207,7 @@ fun MessageBubble(message: ChatMessage) {
         horizontalArrangement = if (message.isFromRider) Arrangement.Start else Arrangement.End
     ) {
         if (message.isFromRider) {
-            RiderAvatar(size = 36.dp)
+            RiderAvatar(size = 40.dp)
             Spacer(modifier = Modifier.width(8.dp))
         }
 
@@ -234,12 +235,7 @@ fun MessageBubble(message: ChatMessage) {
 
         if (!message.isFromRider) {
             Spacer(modifier = Modifier.width(8.dp))
-            // 用户头像占位
-            Box(
-                modifier = Modifier
-                    .size(36.dp)
-                    .background(Color.LightGray, shape = RoundedCornerShape(18.dp))
-            )
+            UserAvatar(size = 40.dp)
         }
     }
 }

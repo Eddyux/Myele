@@ -1,18 +1,27 @@
 package com.example.eleme_sim.ui.shoppingcart
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.eleme_sim.data.DataRepository
 import com.example.eleme_sim.data.CartManager
+import com.example.eleme_sim.data.DataRepository
+import com.example.eleme_sim.navigation.Screen
 
 data class CartItem(
     val productId: String,
@@ -20,13 +29,13 @@ data class CartItem(
     val productName: String,
     val price: Double,
     val quantity: Int,
-    var isSelected: Boolean = false
+    val isSelected: Boolean = false
 )
 
 data class RestaurantCart(
     val restaurantName: String,
     val items: List<CartItem>,
-    var isSelected: Boolean = false
+    val isSelected: Boolean = false
 )
 
 @Composable
@@ -34,169 +43,157 @@ fun ShoppingCartScreen(navController: NavController) {
     val context = LocalContext.current
     val repository = remember { DataRepository(context) }
 
-    // Load products and create shopping cart items
-    var restaurantCarts by remember {
-        mutableStateOf<List<RestaurantCart>>(emptyList())
-    }
+    var restaurantCarts by remember { mutableStateOf<List<RestaurantCart>>(emptyList()) }
 
     LaunchedEffect(Unit) {
         val allProducts = repository.loadProducts()
-        // Initialize CartManager with all products
         CartManager.setProducts(allProducts)
 
-        // Create sample shopping cart with products from different restaurants
-        // 从川香麻辣烫选1个商品
-        val product1 = allProducts.find { it.productId == "prod_001" } // 麻辣烫
-        // 从老北京炸酱面选2个商品
-        val product2 = allProducts.find { it.productId == "prod_002" } // 炸酱面
-        val product3 = allProducts.find { it.productId == "prod_022" } // 京酱肉丝
-        // 从湘味轩选1个商品
-        val product4 = allProducts.find { it.productId == "prod_026" } // 口味虾
+        val product1 = allProducts.find { it.productId == "prod_001" }
+        val product2 = allProducts.find { it.productId == "prod_002" }
+        val product3 = allProducts.find { it.productId == "prod_022" }
+        val product4 = allProducts.find { it.productId == "prod_026" }
 
-        val carts = mutableListOf<RestaurantCart>()
-
-        // 川香麻辣烫
-        if (product1 != null) {
-            carts.add(
-                RestaurantCart(
-                    product1.restaurantName,
-                    listOf(
-                        CartItem(
-                            product1.productId,
-                            product1.restaurantName,
-                            product1.name,
-                            product1.price,
-                            1,
-                            false
+        restaurantCarts = buildList {
+            product1?.let { product ->
+                add(
+                    RestaurantCart(
+                        restaurantName = product.restaurantName,
+                        items = listOf(
+                            CartItem(
+                                productId = product.productId,
+                                restaurantName = product.restaurantName,
+                                productName = product.name,
+                                price = product.price,
+                                quantity = 1
+                            )
                         )
-                    ),
-                    false
+                    )
                 )
-            )
-        }
+            }
 
-        // 老北京炸酱面
-        val laobeijingItems = mutableListOf<CartItem>()
-        if (product2 != null) {
-            laobeijingItems.add(
-                CartItem(
-                    product2.productId,
-                    product2.restaurantName,
-                    product2.name,
-                    product2.price,
-                    1,
-                    false
-                )
-            )
-        }
-        if (product3 != null) {
-            laobeijingItems.add(
-                CartItem(
-                    product3.productId,
-                    product3.restaurantName,
-                    product3.name,
-                    product3.price,
-                    2,
-                    false
-                )
-            )
-        }
-        if (laobeijingItems.isNotEmpty()) {
-            carts.add(
-                RestaurantCart(
-                    laobeijingItems.first().restaurantName,
-                    laobeijingItems,
-                    false
-                )
-            )
-        }
-
-        // 湘味轩
-        if (product4 != null) {
-            carts.add(
-                RestaurantCart(
-                    product4.restaurantName,
-                    listOf(
-                        CartItem(
-                            product4.productId,
-                            product4.restaurantName,
-                            product4.name,
-                            product4.price,
-                            1,
-                            false
+            if (product2 != null || product3 != null) {
+                val items = buildList {
+                    product2?.let { product ->
+                        add(
+                            CartItem(
+                                productId = product.productId,
+                                restaurantName = product.restaurantName,
+                                productName = product.name,
+                                price = product.price,
+                                quantity = 1
+                            )
                         )
-                    ),
-                    false
-                )
-            )
-        }
+                    }
+                    product3?.let { product ->
+                        add(
+                            CartItem(
+                                productId = product.productId,
+                                restaurantName = product.restaurantName,
+                                productName = product.name,
+                                price = product.price,
+                                quantity = 2
+                            )
+                        )
+                    }
+                }
 
-        restaurantCarts = carts
+                if (items.isNotEmpty()) {
+                    add(
+                        RestaurantCart(
+                            restaurantName = items.first().restaurantName,
+                            items = items
+                        )
+                    )
+                }
+            }
+
+            product4?.let { product ->
+                add(
+                    RestaurantCart(
+                        restaurantName = product.restaurantName,
+                        items = listOf(
+                            CartItem(
+                                productId = product.productId,
+                                restaurantName = product.restaurantName,
+                                productName = product.name,
+                                price = product.price,
+                                quantity = 1
+                            )
+                        )
+                    )
+                )
+            }
+        }
     }
 
     var selectAll by remember { mutableStateOf(false) }
-
-    val totalPrice = restaurantCarts.flatMap { it.items }
-        .filter { it.isSelected }
-        .sumOf { it.price * it.quantity }
+    val totalPrice by remember(restaurantCarts) {
+        derivedStateOf {
+            restaurantCarts
+                .flatMap { it.items }
+                .filter { it.isSelected }
+                .sumOf { it.price * it.quantity }
+        }
+    }
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
+            .background(Color(0xFFF4F7FB))
     ) {
-        // 顶部标题栏
-        TopBar()
+        TopBar(
+            title = "购物车",
+            address = "华中师范大学元宝山学..."
+        )
 
-        // 常买和全能超市
         QuickAccess()
 
-        // 购物车内容
         LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .weight(1f)
+            modifier = Modifier.weight(1f),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = 18.dp
+            )
         ) {
             item {
-                Text(
-                    text = "想点就马上下单吧",
-                    fontSize = 14.sp,
-                    color = Color.Gray,
-                    modifier = Modifier.padding(16.dp, 12.dp)
-                )
+                SuggestedSectionHeader()
             }
 
-            items(restaurantCarts.size) { index ->
-                val restaurant = restaurantCarts[index]
+            itemsIndexed(restaurantCarts) { index, restaurant ->
                 RestaurantCartCard(
                     restaurant = restaurant,
+                    modifier = Modifier.padding(bottom = 14.dp),
                     onRestaurantSelected = { selected ->
-                        val updated = restaurantCarts.toMutableList()
-                        updated[index] = restaurant.copy(
-                            isSelected = selected,
-                            items = restaurant.items.map { it.copy(isSelected = selected) }
-                        )
-                        restaurantCarts = updated
+                        restaurantCarts = restaurantCarts.toMutableList().also { carts ->
+                            carts[index] = restaurant.copy(
+                                isSelected = selected,
+                                items = restaurant.items.map { it.copy(isSelected = selected) }
+                            )
+                        }
                     },
                     onItemSelected = { itemIndex, selected ->
-                        val updated = restaurantCarts.toMutableList()
-                        val updatedItems = restaurant.items.toMutableList()
-                        updatedItems[itemIndex] = updatedItems[itemIndex].copy(isSelected = selected)
-                        updated[index] = restaurant.copy(
-                            items = updatedItems,
-                            isSelected = updatedItems.all { it.isSelected }
-                        )
-                        restaurantCarts = updated
+                        restaurantCarts = restaurantCarts.toMutableList().also { carts ->
+                            val updatedItems = restaurant.items.toMutableList().also { items ->
+                                items[itemIndex] = items[itemIndex].copy(isSelected = selected)
+                            }
+                            carts[index] = restaurant.copy(
+                                items = updatedItems,
+                                isSelected = updatedItems.all { it.isSelected }
+                            )
+                        }
                     }
                 )
             }
 
             item {
-                UnavailableItems()
+                UnavailableItems(
+                    modifier = Modifier.padding(top = 4.dp)
+                )
             }
         }
 
-        // 底部结算栏
         BottomCheckoutBar(
             selectAll = selectAll,
             onSelectAllChanged = { selected ->
@@ -210,19 +207,19 @@ fun ShoppingCartScreen(navController: NavController) {
             },
             totalPrice = totalPrice,
             onCheckoutClick = {
-                // Collect selected items and pass to CartManager
-                val selectedItems = mutableMapOf<String, Int>()
-                restaurantCarts.forEach { restaurant ->
-                    restaurant.items.forEach { item ->
-                        if (item.isSelected) {
-                            selectedItems[item.productId] = item.quantity
+                val selectedItems = buildMap<String, Int> {
+                    restaurantCarts.forEach { restaurant ->
+                        restaurant.items.forEach { item ->
+                            if (item.isSelected) {
+                                put(item.productId, item.quantity)
+                            }
                         }
                     }
                 }
-                // 只有在有选中商品时才允许结算
+
                 if (selectedItems.isNotEmpty()) {
                     CartManager.setCheckoutItems(selectedItems, selectAll)
-                    navController.navigate(com.example.eleme_sim.navigation.Screen.Checkout.route)
+                    navController.navigate(Screen.Checkout.route)
                 }
             }
         )
