@@ -1,13 +1,31 @@
 package com.example.eleme_sim.ui.orderdetail
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.MoreHoriz
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,7 +40,6 @@ fun OrderDetailScreen(
     repository: DataRepository,
     orderId: String
 ) {
-    // 从repository获取订单详情
     val order = remember { repository.getOrders().find { it.orderId == orderId } }
     var showContactBottomSheet by remember { mutableStateOf(false) }
     var showContactMerchantBottomSheet by remember { mutableStateOf(false) }
@@ -40,42 +57,50 @@ fun OrderDetailScreen(
     }
 
     Scaffold(
+        containerColor = Color(0xFFF7F7F5),
         topBar = {
             TopAppBar(
                 title = { },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(
-                            Icons.Default.ArrowBack,
+                            imageVector = Icons.Default.ArrowBack,
                             contentDescription = "返回",
-                            tint = Color.Black
+                            tint = Color(0xFF2F3135)
                         )
                     }
                 },
                 actions = {
                     IconButton(onClick = { }) {
-                        Icon(Icons.Default.MoreVert, contentDescription = "更多", tint = Color.Black)
+                        Icon(
+                            imageVector = Icons.Default.MoreHoriz,
+                            contentDescription = "更多",
+                            tint = Color(0xFF2F3135)
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
+                    containerColor = Color.Transparent,
+                    scrolledContainerColor = Color.Transparent,
+                    navigationIconContentColor = Color(0xFF2F3135),
+                    actionIconContentColor = Color(0xFF2F3135)
                 ),
                 windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
         }
     ) { paddingValues ->
         LazyColumn(
+            state = rememberLazyListState(),
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color(0xFFF5F5F5))
+                .background(Color(0xFFF7F7F5)),
+            contentPadding = PaddingValues(start = 20.dp, end = 20.dp, bottom = 28.dp),
+            verticalArrangement = Arrangement.spacedBy(14.dp)
         ) {
-            // 订单状态头部
             item {
                 OrderStatusHeader(order = order)
             }
-
-            // 操作按钮
             item {
                 OrderActionButtons(
                     order = order,
@@ -84,35 +109,27 @@ fun OrderDetailScreen(
                     onCancelOrder = { showCancelOrderSheet = true }
                 )
             }
-
-            // 食无忧理赔进入栏（所有订单都显示）
             item {
                 FoodInsuranceEntry(navController = navController, orderId = order.orderId)
             }
-
-            // 订单商品信息
             item {
                 OrderProductsSection(order = order)
             }
-
-            // 配送信息
             item {
                 DeliveryInfoSection(order = order)
             }
-
-            // 订单信息
             item {
                 OrderInfoSection(order = order)
             }
-
-            // 联系客服按钮
             item {
-                ContactCustomerServiceButton(navController = navController)
+                ContactCustomerServiceButton(
+                    navController = navController,
+                    modifier = Modifier.padding(top = 2.dp)
+                )
             }
         }
     }
 
-    // 联系骑手底部弹窗
     if (showContactBottomSheet) {
         ContactRiderBottomSheet(
             order = order,
@@ -121,7 +138,6 @@ fun OrderDetailScreen(
         )
     }
 
-    // 联系商家底部弹窗
     if (showContactMerchantBottomSheet) {
         ContactMerchantBottomSheet(
             navController = navController,
@@ -129,7 +145,6 @@ fun OrderDetailScreen(
         )
     }
 
-    // 取消订单底部弹窗
     if (showCancelOrderSheet) {
         CancelOrderBottomSheet(
             order = order,
@@ -139,11 +154,9 @@ fun OrderDetailScreen(
         )
     }
 
-    // 取消成功弹窗
     if (showCancelSuccessDialog) {
         CancelSuccessDialog(
             onDismiss = { showCancelSuccessDialog = false }
         )
     }
 }
-

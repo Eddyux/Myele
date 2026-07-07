@@ -1,13 +1,32 @@
 package com.example.eleme_sim.ui.foodiecard
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -63,81 +82,106 @@ fun FoodieCardScreen(navController: NavController, repository: DataRepository) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("超级吃货卡") },
+                title = {
+                    Text(
+                        text = "超级吃货卡",
+                        fontSize = 22.sp,
+                        color = Color.White
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "返回",
+                            tint = Color.White
+                        )
                     }
                 },
                 actions = {
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "皇冠",
-                        tint = Color(0xFFFFD700),
-                        modifier = Modifier.padding(end = 8.dp)
-                    )
+                    Surface(
+                        color = Color(0x26FFFFFF),
+                        shape = androidx.compose.foundation.shape.RoundedCornerShape(16.dp)
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "皇冠",
+                            tint = Color(0xFFFFD56B),
+                            modifier = Modifier
+                                .padding(horizontal = 8.dp, vertical = 6.dp)
+                                .size(16.dp)
+                        )
+                    }
                     TextButton(onClick = { }) {
-                        Text("查看全部", fontSize = 14.sp)
+                        Text(
+                            text = "查看全部",
+                            fontSize = 14.sp,
+                            color = Color.White
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.White
+                    containerColor = Color(0x33180F0D)
                 ),
                 windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
-        }
+        },
+        containerColor = Color(0xFFF6F2EC)
     ) { paddingValues ->
-        LazyColumn(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
+                .background(Color(0xFFF6F2EC))
                 .padding(paddingValues)
-                .background(Color(0xFFF5F5F5))
         ) {
-            // 购买超级吃货卡板块
-            item {
-                PurchaseFoodieCardSection(foodieCards = foodieCards)
-            }
+            FoodieHeroBackdrop(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .height(252.dp)
+            )
 
-            // 爆红包套餐列表
-            item {
-                ExplosivePackagesSection(explosivePackages = explosivePackages)
-            }
+            LazyColumn(
+                modifier = Modifier.fillMaxSize()
+            ) {
+                item {
+                    PurchaseFoodieCardSection(foodieCards = foodieCards)
+                }
 
-            // 火车票神券广告
-            item {
-                TrainTicketAdSection()
-            }
+                item {
+                    ExplosivePackagesSection(explosivePackages = explosivePackages)
+                }
 
-            // 商家分类标签
-            item {
-                MerchantCategoryTabsSection(
-                    selectedTab = selectedTab,
-                    onTabSelected = { tab ->
-                        selectedTab = tab
-                        presenter.filterRestaurants(if (tab == "爆红包商家") "explosive" else "all")
-                    }
-                )
-            }
+                item {
+                    TrainTicketAdSection()
+                }
 
-            // 排序和筛选选项
-            item {
-                SortAndFilterSection(
-                    selectedSort = selectedSort,
-                    onSortSelected = { sort ->
-                        selectedSort = sort
-                        presenter.sortRestaurants(if (sort == "综合排序") "综合" else "人气")
-                    }
-                )
-            }
+                item {
+                    MerchantCategoryTabsSection(
+                        selectedTab = selectedTab,
+                        onTabSelected = { tab ->
+                            selectedTab = tab
+                            presenter.filterRestaurants(if (tab == "爆红包商家") "explosive" else "all")
+                        }
+                    )
+                }
 
-            // 筛选标签
-            item {
-                FilterTagsSection()
-            }
+                item {
+                    SortAndFilterSection(
+                        selectedSort = selectedSort,
+                        onSortSelected = { sort ->
+                            selectedSort = sort
+                            presenter.sortRestaurants(if (sort == "综合排序") "综合" else "人气")
+                        }
+                    )
+                }
 
-            // 餐厅列表
-            items(restaurants.size) { index ->
-                RestaurantCard(restaurants[index])
+                item {
+                    FilterTagsSection()
+                }
+
+                items(restaurants.size) { index ->
+                    RestaurantCard(restaurants[index])
+                }
             }
         }
     }

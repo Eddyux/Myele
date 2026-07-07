@@ -59,7 +59,7 @@ fun StorePageScreen(navController: NavController, restaurantId: String, searchKe
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFF5F5F5))
+                .background(StoreBg)
         ) {
             // Top bar
             StorePageTopBar(
@@ -74,18 +74,11 @@ fun StorePageScreen(navController: NavController, restaurantId: String, searchKe
                 StoreHeader(store)
 
                 // Tab bar
-                TabRow(
-                    selectedTabIndex = selectedTab,
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    tabs.forEachIndexed { index, title ->
-                        Tab(
-                            selected = selectedTab == index,
-                            onClick = { selectedTab = index },
-                            text = { Text(title) }
-                        )
-                    }
-                }
+                StoreTabRow(
+                    tabs = tabs,
+                    selectedTab = selectedTab,
+                    onTabSelected = { selectedTab = it }
+                )
 
                 // Content based on selected tab
                 when (selectedTab) {

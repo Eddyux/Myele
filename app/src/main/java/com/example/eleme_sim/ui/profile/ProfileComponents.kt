@@ -105,7 +105,7 @@ fun RowScope.FavoriteItem(title: String, subtitle: String, onClick: () -> Unit) 
     ) {
         Text(
             text = title,
-            fontSize = 14.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black
         )
@@ -137,7 +137,7 @@ fun FunctionItem(item: ProfileMenuItem, navController: NavController) {
         Spacer(modifier = Modifier.width(8.dp))
         Text(
             text = item.title,
-            fontSize = 14.sp,
+            fontSize = 15.sp,
             color = Color.Black
         )
     }

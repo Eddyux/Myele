@@ -1,26 +1,72 @@
-package com.example.eleme_sim.ui.reviews
+﻿package com.example.eleme_sim.ui.reviews
 
+import android.content.Context
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Image
+import androidx.compose.material.icons.filled.MoreHoriz
+import androidx.compose.material.icons.filled.Restaurant
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import com.example.eleme_sim.R
 import com.example.eleme_sim.data.ActionLogger
 import com.example.eleme_sim.model.Order
 import com.example.eleme_sim.model.Review
+import com.example.eleme_sim.ui.components.ProductImage
+import com.example.eleme_sim.utils.ImageUtils
+import kotlinx.coroutines.delay
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
+
+private val reviewDateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.CHINA)
 
 @Composable
 fun StatItem(value: String, label: String) {
@@ -57,7 +103,7 @@ fun PendingReviewCard(order: Order) {
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "2025-10-19",
+                    text = formatReviewDate(order.orderTime),
                     fontSize = 12.sp,
                     color = Color.Gray
                 )
@@ -65,26 +111,18 @@ fun PendingReviewCard(order: Order) {
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // 商品信息
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Row(modifier = Modifier.weight(1f)) {
-                    // 商品图片
-                    Box(
-                        modifier = Modifier
-                            .size(64.dp)
-                            .background(Color.LightGray, RoundedCornerShape(8.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Restaurant,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(32.dp)
-                        )
-                    }
+                    ProductImage(
+                        productId = order.items.firstOrNull()?.productId.orEmpty(),
+                        productName = order.items.firstOrNull()?.productName.orEmpty(),
+                        restaurantName = order.restaurantName,
+                        size = 64.dp,
+                        cornerRadius = 8.dp
+                    )
 
                     Spacer(modifier = Modifier.width(12.dp))
 
@@ -116,7 +154,6 @@ fun PendingReviewCard(order: Order) {
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // 评价奖励
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -124,7 +161,7 @@ fun PendingReviewCard(order: Order) {
             ) {
                 Row {
                     Icon(
-                        imageVector = Icons.Default.CardGiftcard,
+                        imageVector = Icons.Default.Restaurant,
                         contentDescription = null,
                         tint = Color(0xFFFF6B00),
                         modifier = Modifier.size(16.dp)
@@ -153,7 +190,7 @@ fun PendingReviewCard(order: Order) {
 }
 
 @Composable
-fun CompletedReviewCard(review: Review, order: Order, context: android.content.Context) {
+fun CompletedReviewCard(review: Review, order: Order, context: Context) {
     var showDeleteDialog by remember { mutableStateOf(false) }
     var showDeleteSuccess by remember { mutableStateOf(false) }
 
@@ -168,19 +205,14 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(
+                    Image(
+                        painter = painterResource(id = ImageUtils.getRestaurantImage(order.restaurantName)),
+                        contentDescription = order.restaurantName,
                         modifier = Modifier
                             .size(32.dp)
-                            .background(Color(0xFFFF6B00), RoundedCornerShape(4.dp)),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Restaurant,
-                            contentDescription = null,
-                            tint = Color.White,
-                            modifier = Modifier.size(20.dp)
-                        )
-                    }
+                            .clip(RoundedCornerShape(6.dp)),
+                        contentScale = ContentScale.Crop
+                    )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
                         text = order.restaurantName,
@@ -189,7 +221,7 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                     )
                 }
                 Text(
-                    text = "2025-10-18",
+                    text = formatReviewDate(review.createTime),
                     fontSize = 12.sp,
                     color = Color.Gray
                 )
@@ -197,7 +229,6 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
 
             Spacer(modifier = Modifier.height(12.dp))
 
-            // 满意度星级
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     text = "满意度",
@@ -209,19 +240,18 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                     Icon(
                         imageVector = Icons.Default.Star,
                         contentDescription = null,
-                        tint = Color(0xFFFFD700),
+                        tint = Color(0xFFFF8A00),
                         modifier = Modifier.size(16.dp)
                     )
                 }
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "味道5星  包装5星",
+                    text = merchantMetricsText(order.restaurantName),
                     fontSize = 12.sp,
                     color = Color.Gray
                 )
             }
 
-            // 评价内容
             if (review.comment != null) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
@@ -231,8 +261,22 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                 )
             }
 
-            // 评价图片
-            if (review.images.isNotEmpty()) {
+            val reviewImages = reviewImageResources(review.reviewId, order.restaurantName)
+            if (reviewImages.isNotEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    items(reviewImages) { resId ->
+                        Image(
+                            painter = painterResource(id = resId),
+                            contentDescription = "评价图片",
+                            modifier = Modifier
+                                .size(80.dp)
+                                .clip(RoundedCornerShape(6.dp)),
+                            contentScale = ContentScale.Crop
+                        )
+                    }
+                }
+            } else if (review.images.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
                 LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(review.images.take(3)) { _ ->
@@ -252,7 +296,6 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                 }
             }
 
-            // 点赞商品
             if (review.tags.isNotEmpty()) {
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
@@ -270,7 +313,6 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                 }
             }
 
-            // 商家回复
             Spacer(modifier = Modifier.height(12.dp))
             Surface(
                 modifier = Modifier.fillMaxWidth(),
@@ -301,7 +343,6 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                 }
             }
 
-            // 操作按钮
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -323,12 +364,10 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
         }
     }
 
-    // 删除确认弹窗
     if (showDeleteDialog) {
         DeleteReviewDialog(
             onDismiss = { showDeleteDialog = false },
             onDelete = {
-                // 记录删除评价操作
                 ActionLogger.logAction(
                     context = context,
                     action = "delete_review",
@@ -348,7 +387,6 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
                 showDeleteSuccess = true
             },
             onAnonymous = {
-                // 记录设为匿名操作
                 ActionLogger.logAction(
                     context = context,
                     action = "set_review_anonymous",
@@ -367,7 +405,6 @@ fun CompletedReviewCard(review: Review, order: Order, context: android.content.C
         )
     }
 
-    // 删除成功弹窗
     if (showDeleteSuccess) {
         DeleteSuccessDialog(
             onDismiss = { showDeleteSuccess = false }
@@ -389,7 +426,6 @@ fun DeleteReviewDialog(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(horizontal = 32.dp)
         ) {
-            // 主弹窗卡片
             Surface(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(16.dp),
@@ -412,7 +448,7 @@ fun DeleteReviewDialog(
                         text = "不想让别人看到可以设为匿名哦",
                         fontSize = 14.sp,
                         color = Color.Gray,
-                        textAlign = androidx.compose.ui.text.style.TextAlign.Center
+                        textAlign = TextAlign.Center
                     )
 
                     Spacer(modifier = Modifier.height(24.dp))
@@ -421,7 +457,6 @@ fun DeleteReviewDialog(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        // 删除按钮
                         OutlinedButton(
                             onClick = onDelete,
                             modifier = Modifier.weight(1f),
@@ -433,7 +468,6 @@ fun DeleteReviewDialog(
                             Text("删除", fontSize = 16.sp)
                         }
 
-                        // 设为匿名按钮
                         Button(
                             onClick = onAnonymous,
                             modifier = Modifier.weight(1f),
@@ -450,7 +484,6 @@ fun DeleteReviewDialog(
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // 关闭按钮
             IconButton(
                 onClick = onDismiss,
                 modifier = Modifier
@@ -471,7 +504,7 @@ fun DeleteReviewDialog(
 @Composable
 fun DeleteSuccessDialog(onDismiss: () -> Unit) {
     LaunchedEffect(Unit) {
-        kotlinx.coroutines.delay(1500)
+        delay(1500)
         onDismiss()
     }
 
@@ -506,4 +539,34 @@ fun DeleteSuccessDialog(onDismiss: () -> Unit) {
             }
         }
     }
+}
+
+private fun reviewImageResources(reviewId: String, restaurantName: String): List<Int> {
+    return when {
+        restaurantName.contains("湘味轩") -> listOf(
+            R.drawable.reviews_pingjia_3
+        )
+        restaurantName.contains("川香麻辣烫") -> listOf(
+            R.drawable.reviews_pingjia_1,
+            R.drawable.reviews_pingjia_2
+        )
+        else -> emptyList()
+    }
+}
+
+private fun merchantMetricsText(restaurantName: String): String {
+    return when {
+        restaurantName.contains("川香麻辣烫") -> "味道5星  包装5星"
+        restaurantName.contains("湘味轩") -> "味道5星  包装5星"
+        restaurantName.contains("老北京炸酱面") -> "味道5星  包装5星"
+        restaurantName.contains("韩式炸鸡") -> "味道3星  包装4星"
+        else -> "味道5星  包装5星"
+    }
+}
+
+private fun formatReviewDate(date: Date): String {
+    return Instant.ofEpochMilli(date.time)
+        .atZone(ZoneId.systemDefault())
+        .toLocalDate()
+        .format(reviewDateFormatter)
 }

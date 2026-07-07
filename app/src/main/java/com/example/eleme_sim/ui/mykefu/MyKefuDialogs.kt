@@ -1,9 +1,16 @@
 package com.example.eleme_sim.ui.mykefu
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -20,44 +27,43 @@ fun OrderSelectorDialog(
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
-        containerColor = Color.White
+        containerColor = Color(0xFFFDFEFF)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp)
         ) {
             Text(
                 text = "选择订单",
-                fontSize = 18.sp,
+                fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black,
+                color = Color(0xFF181C25),
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            // 示例订单列表
             val orders = listOf(
-                "金长风荷叶烤鸡 (已送达) - ¥10.1",
-                "川香麻辣烫 (进行中) - ¥35.0",
-                "瑞幸咖啡 (已完成) - ¥19.9"
+                "金长风荷叶烤鸡(已送达) - ¥10.1",
+                "川香麻辣烫(进行中) - ¥35.0",
+                "瑞幸咖啡(已完成) - ¥19.9"
             )
 
-            orders.forEachIndexed { index, orderInfo ->
+            orders.forEach { orderInfo ->
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .clip(RoundedCornerShape(8.dp))
+                        .clip(RoundedCornerShape(18.dp))
                         .clickable {
-                            // 这里应该创建真实的Order对象
+                            // 这里应创建真实的 Order 对象
                             onDismiss()
                         }
                         .padding(vertical = 4.dp),
-                    color = Color(0xFFF5F5F5)
+                    color = Color(0xFFF5F7FB)
                 ) {
                     Text(
                         text = orderInfo,
-                        fontSize = 14.sp,
-                        color = Color.Black,
+                        fontSize = 15.sp,
+                        color = Color(0xFF181C25),
                         modifier = Modifier.padding(16.dp)
                     )
                 }

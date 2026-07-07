@@ -50,14 +50,14 @@ fun UserInfoHeader(navController: NavController) {
                 Column {
                     Text(
                         text = "于骁",
-                        fontSize = 18.sp,
+                        fontSize = 19.sp,
                         fontWeight = FontWeight.Bold,
                         color = Color.Black
                     )
                     Spacer(modifier = Modifier.height(4.dp))
                     Text(
                         text = "189****1018",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         color = Color.Gray
                     )
                 }
@@ -94,7 +94,7 @@ fun ClubBanner() {
         ) {
             Text(
                 text = "悦享俱乐部",
-                fontSize = 18.sp,
+                fontSize = 19.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.White
             )
@@ -152,7 +152,7 @@ fun MyOrders(navController: NavController) {
             ) {
                 Text(
                     text = "我的订单",
-                    fontSize = 16.sp,
+                    fontSize = 17.sp,
                     fontWeight = FontWeight.Bold,
                     color = Color.Black
                 )
@@ -164,7 +164,7 @@ fun MyOrders(navController: NavController) {
                 ) {
                     Text(
                         text = "全部",
-                        fontSize = 14.sp,
+                        fontSize = 15.sp,
                         color = Color.Gray
                     )
                     Icon(
@@ -280,7 +280,7 @@ fun MoreFunctions(navController: NavController) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
                 text = "更多功能",
-                fontSize = 16.sp,
+                fontSize = 17.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
                 modifier = Modifier.padding(bottom = 12.dp)
@@ -346,7 +346,7 @@ fun RecommendedFood(navController: NavController) {
     ) {
         Text(
             text = "你可能还喜欢",
-            fontSize = 16.sp,
+            fontSize = 17.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Black,
             modifier = Modifier.padding(bottom = 12.dp)
@@ -379,7 +379,7 @@ fun RecommendedFood(navController: NavController) {
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = restaurant.name,
-                            fontSize = 14.sp,
+                            fontSize = 15.sp,
                             fontWeight = FontWeight.Bold,
                             color = Color.Black
                         )
@@ -398,7 +398,7 @@ fun RecommendedFood(navController: NavController) {
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
                             text = restaurant.startPrice,
-                            fontSize = 14.sp,
+                            fontSize = 15.sp,
                             color = Color(0xFFFF3366),
                             fontWeight = FontWeight.Bold
                         )

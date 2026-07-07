@@ -1,12 +1,32 @@
-package com.example.eleme_sim.ui.reviews
+﻿package com.example.eleme_sim.ui.reviews
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,7 +47,6 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
     val orders = remember { repository.getOrders() }
     val reviews = remember { repository.getReviews() }
 
-    // 记录进入待评价页面
     LaunchedEffect(Unit) {
         ActionLogger.logAction(
             context = context,
@@ -44,14 +63,13 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
         )
     }
 
-    // 筛选待评价订单
     val pendingReviewOrders = orders.filter {
         it.status == OrderStatus.COMPLETED && !it.hasReview
     }
 
-    // 已评价列表
+    val reviewedOrders = orders.filter { it.hasReview && !it.reviewId.isNullOrBlank() }
     val completedReviews = reviews.filter { review ->
-        orders.any { order -> order.orderId == review.orderId && order.hasReview }
+        reviewedOrders.any { order -> order.reviewId == review.reviewId }
     }
 
     Scaffold(
@@ -81,13 +99,9 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
                 .padding(paddingValues)
                 .background(Color(0xFFF5F5F5))
         ) {
-            // 用户信息区域
             UserInfoSection()
-
-            // 评价官推广
             ReviewerPromoSection()
 
-            // 标签页
             TabRow(
                 selectedTabIndex = if (selectedTab == "待评价") 0 else 1,
                 containerColor = Color.White
@@ -116,7 +130,6 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
                     selected = selectedTab == "已评价",
                     onClick = {
                         selectedTab = "已评价"
-                        // 记录切换到已评价
                         ActionLogger.logAction(
                             context = context,
                             action = "switch_to_reviewed",
@@ -142,20 +155,18 @@ fun ReviewsScreen(navController: NavController, repository: DataRepository) {
                 )
             }
 
-            // 评价列表
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 if (selectedTab == "待评价") {
-                    items(pendingReviewOrders.size) { index ->
-                        PendingReviewCard(pendingReviewOrders[index])
+                    items(pendingReviewOrders) { order ->
+                        PendingReviewCard(order)
                     }
                 } else {
-                    items(completedReviews.size) { index ->
-                        val review = completedReviews[index]
-                        val order = orders.find { order -> order.orderId == review.orderId }
+                    items(completedReviews) { review ->
+                        val order = reviewedOrders.find { it.reviewId == review.reviewId }
                         if (order != null) {
                             CompletedReviewCard(review, order, context)
                         }

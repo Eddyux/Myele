@@ -27,7 +27,7 @@ fun CategoryList(
     LazyColumn(
         modifier = modifier
             .fillMaxHeight()
-            .background(Color.White)
+            .background(Color(0xFFF1EFEB))
     ) {
         items(categories) { category ->
             CategoryItem(
@@ -50,8 +50,8 @@ fun ProductList(
     LazyColumn(
         modifier = modifier
             .fillMaxHeight()
-            .background(Color.White)
-            .padding(bottom = 80.dp) // Space for bottom bar
+            .background(Color(0xFFFFFCF6))
+            .padding(bottom = 90.dp) // Space for bottom bar
     ) {
         // Signature dishes section
         val signatureProducts = products.filter { it.category == ProductCategory.SIGNATURE }
@@ -85,13 +85,23 @@ fun SignatureProductsSection(
     onAddToCart: (String) -> Unit,
     onRemoveFromCart: (String) -> Unit
 ) {
-    Column(modifier = Modifier.padding(16.dp)) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = 12.dp, end = 12.dp, top = 12.dp, bottom = 6.dp)
+            .background(
+                Color(0xFFA85C1B),
+                shape = androidx.compose.foundation.shape.RoundedCornerShape(18.dp)
+            )
+            .padding(14.dp)
+    ) {
         Text(
             text = "本店招牌拿手菜",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
+            fontSize = 17.sp,
+            color = Color.White,
+            fontWeight = FontWeight.ExtraBold
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(12.dp))
         LazyRow(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {

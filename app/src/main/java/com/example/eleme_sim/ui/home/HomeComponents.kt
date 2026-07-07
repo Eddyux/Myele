@@ -52,7 +52,7 @@ fun TopTabBar(
                     tabs.forEachIndexed { index, tab ->
                         Text(
                             text = tab,
-                            fontSize = 16.sp,
+                            fontSize = 17.sp,
                             fontWeight = if (selectedTab == index) FontWeight.Bold else FontWeight.Normal,
                             color = if (selectedTab == index) Color.Black else Color.Gray,
                             modifier = Modifier
@@ -95,7 +95,7 @@ fun TopTabBar(
                     ) {
                         Text(
                             text = "华中师范大学元宝山...",
-                            fontSize = 12.sp,
+                            fontSize = 13.sp,
                             color = Color.Gray,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -139,7 +139,7 @@ fun SearchBar(onSearchClick: () -> Unit) {
             Text(
                 text = "coco都可",
                 color = Color.Gray,
-                fontSize = 14.sp,
+                fontSize = 15.sp,
                 modifier = Modifier.weight(1f)
             )
             Text(
@@ -182,7 +182,7 @@ fun PromotionBanner() {
             Text(
                 text = "爆火好店 必得25元",
                 color = Color.White,
-                fontSize = 16.sp,
+                fontSize = 17.sp,
                 fontWeight = FontWeight.Bold
             )
             Button(
@@ -280,7 +280,7 @@ fun ProductRecommendation(navController: NavController) {
         ) {
             Text(
                 text = "爆品团 免凑单 免运费",
-                fontSize = 14.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
@@ -448,7 +448,7 @@ fun RestaurantCard(restaurant: Restaurant, navController: NavController) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = restaurant.name,
-                        fontSize = 16.sp,
+                        fontSize = 17.sp,
                         fontWeight = FontWeight.Bold
                     )
                     Spacer(modifier = Modifier.height(4.dp))

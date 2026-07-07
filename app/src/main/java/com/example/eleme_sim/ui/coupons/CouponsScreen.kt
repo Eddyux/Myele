@@ -1,14 +1,39 @@
 package com.example.eleme_sim.ui.coupons
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -20,6 +45,12 @@ import androidx.navigation.NavController
 import com.example.eleme_sim.data.DataRepository
 import com.example.eleme_sim.utils.JsonFileWriter
 
+private val CouponsPageBg = Color(0xFFF7F7F8)
+private val CouponsPrimary = Color(0xFF17181A)
+private val CouponsSecondary = Color(0xFF8A8D94)
+private val CouponsAccent = Color(0xFF25B8F7)
+private val CouponsChipBg = Color(0xFFF3F4F6)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CouponsScreen(navController: NavController, repository: DataRepository) {
@@ -28,7 +59,6 @@ fun CouponsScreen(navController: NavController, repository: DataRepository) {
     var selectedSort by remember { mutableStateOf("默认排序") }
     val coupons = remember { repository.getCoupons() }
 
-    // 页面进入时写入JSON数据到 /data/data/com.example.eleme/files/messages.json
     LaunchedEffect(Unit) {
         val jsonData = JsonFileWriter.createCouponsPageData(
             extraData = mapOf(
@@ -42,11 +72,22 @@ fun CouponsScreen(navController: NavController, repository: DataRepository) {
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("红包卡券") },
+            CenterAlignedTopAppBar(
+                title = {
+                    Text(
+                        text = "红包卡券",
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = CouponsPrimary
+                    )
+                },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "返回")
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "返回",
+                            tint = CouponsPrimary
+                        )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
@@ -54,88 +95,122 @@ fun CouponsScreen(navController: NavController, repository: DataRepository) {
                 ),
                 windowInsets = WindowInsets(0.dp, 0.dp, 0.dp, 0.dp)
             )
-        }
+        },
+        containerColor = CouponsPageBg
     ) { paddingValues ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .background(Color(0xFFF5F5F5))
+                .background(CouponsPageBg)
         ) {
-            // 标签页
-            TabRow(
-                selectedTabIndex = listOf("红包", "已购券", "卡").indexOf(selectedTab),
-                containerColor = Color.White
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = Color.White
             ) {
-                listOf("红包", "已购券", "卡").forEach { tab ->
-                    Tab(
-                        selected = selectedTab == tab,
-                        onClick = { selectedTab = tab },
-                        text = {
-                            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                                Text(
-                                    text = tab,
-                                    fontSize = 16.sp,
-                                    fontWeight = if (selectedTab == tab) FontWeight.Bold else FontWeight.Normal
-                                )
-                                if (selectedTab == tab && tab == "红包") {
-                                    Text(
-                                        text = "12",
-                                        fontSize = 12.sp,
-                                        color = Color(0xFFFF3366)
+                TabRow(
+                    selectedTabIndex = listOf("红包", "已购券", "卡").indexOf(selectedTab),
+                    containerColor = Color.White,
+                    divider = {},
+                    indicator = {}
+                ) {
+                    listOf("红包", "已购券", "卡").forEach { tab ->
+                        Tab(
+                            selected = selectedTab == tab,
+                            onClick = { selectedTab = tab },
+                            text = {
+                                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                    Row(verticalAlignment = Alignment.Top) {
+                                        Text(
+                                            text = tab,
+                                            fontSize = 18.sp,
+                                            fontWeight = if (selectedTab == tab) FontWeight.Bold else FontWeight.Normal,
+                                            color = if (selectedTab == tab) CouponsAccent else CouponsPrimary
+                                        )
+                                        if (selectedTab == tab && tab == "红包") {
+                                            Text(
+                                                text = "12",
+                                                fontSize = 12.sp,
+                                                color = CouponsAccent,
+                                                modifier = Modifier.padding(start = 2.dp, top = 2.dp)
+                                            )
+                                        }
+                                    }
+                                    Box(
+                                        modifier = Modifier
+                                            .padding(top = 10.dp)
+                                            .background(
+                                                if (selectedTab == tab) CouponsAccent else Color.Transparent,
+                                                RoundedCornerShape(4.dp)
+                                            )
+                                            .fillMaxWidth(0.34f)
+                                            .padding(vertical = 2.5f.dp)
                                     )
                                 }
                             }
-                        }
-                    )
+                        )
+                    }
                 }
             }
 
-            // 排序和筛选
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.White)
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    .padding(horizontal = 12.dp, vertical = 12.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
                 items(listOf("默认排序", "爆红包", "平台红包", "商品红包")) { sort ->
                     FilterChip(
                         selected = selectedSort == sort,
                         onClick = { selectedSort = sort },
-                        label = { Text(sort, fontSize = 13.sp) }
+                        label = {
+                            Text(
+                                text = sort,
+                                fontSize = 13.sp,
+                                color = if (selectedSort == sort) CouponsPrimary else CouponsSecondary
+                            )
+                        },
+                        colors = FilterChipDefaults.filterChipColors(
+                            selectedContainerColor = CouponsChipBg,
+                            containerColor = CouponsChipBg
+                        ),
+                        border = null
                     )
                 }
             }
 
-            // 红包卡券列表
             LazyColumn(
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 12.dp),
+                contentPadding = PaddingValues(start = 12.dp, end = 12.dp, top = 0.dp, bottom = 18.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
-                // 30元超级吃货卡
                 item {
                     SuperFoodieCardCoupon()
                 }
 
-                // 红包列表
                 items(coupons.size.coerceAtMost(10)) { index ->
                     CouponCard(coupons[index])
                 }
 
-                // 底部功能按钮
                 item {
-                    Row(
+                    Surface(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 16.dp),
-                        horizontalArrangement = Arrangement.SpaceEvenly
+                            .padding(top = 6.dp),
+                        color = Color.White,
+                        shape = RoundedCornerShape(24.dp)
                     ) {
-                        BottomActionButton("历史红包")
-                        BottomActionButton("兑换码")
-                        BottomActionButton("天天爆红包")
-                        BottomActionButton("天猫优惠")
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(vertical = 18.dp),
+                            horizontalArrangement = Arrangement.SpaceEvenly
+                        ) {
+                            BottomActionButton("历史红包")
+                            BottomActionButton("兑换码")
+                            BottomActionButton("天天爆红包")
+                            BottomActionButton("天猫优惠")
+                        }
                     }
                 }
             }
